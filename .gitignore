@@ -1,4 +1,6 @@
 # Personal data (user fills these)
+cv.md
+cv.json
 data/applications.md
 data/pipeline.md
 data/scan-history.tsv
@@ -12,6 +14,7 @@ batch/batch-state.tsv
 batch/batch-input.tsv
 batch/tracker-additions/**/*.tsv
 !batch/tracker-additions/.gitkeep
+batch/tracker-additions/merged/
 jds/*
 !jds/.gitkeep
 
@@ -26,14 +29,21 @@ modes/_profile.md
 .resolved-prompt-*
 node_modules/
 bun.lock
+.playwright-mcp/
+*-job-snapshot.md
+*-job.png
 
 # OS
 .DS_Store
 *.mov
 *.mp4
+*.bkp
 
 # Claude Code local
 .claude/settings.local.json
 .claude/memory/
 career-dashboard
 package-lock.json
+
+# Local experiments
+dashboard/senior-manager-v2.json
