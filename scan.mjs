@@ -134,6 +134,35 @@ function buildTitleFilter(titleFilter) {
   };
 }
 
+function buildIcExceptionFilter(titleFilter) {
+  const negative = (titleFilter?.negative || []).map(k => k.toLowerCase());
+  const fallbackTitles = [
+    'senior engineer',
+    'senior software engineer',
+    'senior backend engineer',
+    'staff engineer',
+    'staff software engineer',
+    'staff backend engineer',
+    'principal engineer',
+    'principal software engineer',
+    'principal backend engineer',
+  ];
+
+  return (title, company = {}) => {
+    const lower = title.toLowerCase();
+    const hasNegative = negative.some(k => lower.includes(k));
+    if (hasNegative) return false;
+
+    const customAllow = (company.ic_exception_titles || []).map(k => k.toLowerCase());
+    const allowList = customAllow.length > 0 ? customAllow : fallbackTitles;
+    return allowList.some(k => lower.includes(k));
+  };
+}
+
+function hasIcExceptionPolicy(company = {}) {
+  return company.ic_exception_company === true || company.culture_fit_tier === 'high';
+}
+
 // ── Dedup ───────────────────────────────────────────────────────────
 
 function loadSeenUrls() {
@@ -264,6 +293,7 @@ async function main() {
   const config = parseYaml(readFileSync(PORTALS_PATH, 'utf-8'));
   const companies = config.tracked_companies || [];
   const titleFilter = buildTitleFilter(config.title_filter);
+  const icExceptionFilter = buildIcExceptionFilter(config.title_filter);
 
   // 2. Filter to enabled companies with detectable APIs
   const targets = companies
@@ -297,7 +327,9 @@ async function main() {
       totalFound += jobs.length;
 
       for (const job of jobs) {
-        if (!titleFilter(job.title)) {
+        const passesDefaultFilter = titleFilter(job.title);
+        const passesCompanyIcException = hasIcExceptionPolicy(company) && icExceptionFilter(job.title, company);
+        if (!passesDefaultFilter && !passesCompanyIcException) {
           totalFiltered++;
           continue;
         }
