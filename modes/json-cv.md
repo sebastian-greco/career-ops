@@ -7,7 +7,7 @@ Create a tailored RxResume JSON resume artifact for a specific role using an exi
 The tailoring must be:
 - agent-driven, not deterministic
 - minimal-diff by default
-- interactive before significant changes
+- review-first, then interactive only when there is a concrete significant change to approve
 - validated for JSON and RxResume schema safety after edits
 
 ## Accepted input
@@ -71,6 +71,25 @@ Default behavior:
 - skills: reorder sections first
 - projects: for leadership templates, leave untouched unless explicitly discussed
 
+## Review-first interaction model
+
+Do NOT start by asking the user abstract preference questions.
+
+Instead, follow this order:
+1. Review the resolved role/report against the selected base JSON template
+2. Decide whether any change is actually needed
+3. If no meaningful change is needed, say so and keep the resume as-is
+4. If changes are needed, present a concise proposed change list first
+5. Only then ask for approval when the proposal includes additions, removals, or material rewrites
+
+The proposal shown to the user should be concrete, for example:
+- which bullets would move up or down
+- which sentence would be lightly rewritten
+- which new evidence from `interview-prep/story-bank.md` might be added
+- which content, if any, would be removed and why
+
+The user should never be asked to decide in the abstract without seeing the proposed modifications first.
+
 ## Mandatory interaction rules
 
 Ask the user before:
@@ -84,6 +103,8 @@ The only changes that may be done without asking are:
 - reordering sections or skill groups
 - very light summary adjustments when clearly helpful
 
+Even in those cases, first explain the proposed changes if they are not obvious.
+
 ## Output
 
 Write the tailored JSON to `output/` using the existing filename style.
@@ -93,6 +114,7 @@ After writing it:
 2. Report back with a concise summary:
    - what moved
    - what was lightly rewritten
+   - what was proposed but intentionally not changed
    - what was left intact
    - what still may need user review
 
