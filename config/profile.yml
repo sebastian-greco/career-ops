@@ -1,0 +1,92 @@
+# Career-Ops Profile Configuration
+# This is the single source of truth for your personal data across all modes.
+
+candidate:
+  full_name: "Sebastian Greco"
+  email: "greco.sebastian@gmail.com"
+  phone: "+39 389 464 8029"
+  location: "Seregno, Italy"
+  linkedin: "linkedin.com/in/grecosebastian"
+  portfolio_url: ""
+  github: "github.com/sebastian-greco"
+  twitter: ""
+
+resume:
+  artifact_default: "rxresume_json"
+  pdf_opt_in_only: true
+  output_dir: "output"
+  base_template_dir: "resumes"
+  upload_provider: "rxresume"
+  templates:
+    leadership:
+      base_json: "resumes/leadership-base.json"
+      use_for:
+        - "Director of Engineering"
+        - "Head of Engineering"
+        - "Senior Engineering Manager"
+        - "Engineering Manager"
+    ic:
+      base_json: "resumes/ic-base.json"
+      use_for:
+        - "Software Engineer"
+        - "Staff Engineer"
+        - "Staff Product Engineer"
+        - "Principal Engineer"
+        - "Platform Engineer"
+        - "Product Engineer"
+        - "Senior Backend Engineer"
+        - "Senior Software Engineer"
+
+target_roles:
+  primary:
+    - "Director of Engineering"
+    - "Senior Engineering Manager"
+    - "Head of Engineering"
+  archetypes:
+    - name: "Engineering Leadership"
+      level: "Senior Manager/Director"
+      fit: "primary"
+    - name: "Platform / Backend Leadership"
+      level: "Senior Manager/Director"
+      fit: "primary"
+    - name: "LLM / Agentic Product Engineering Leadership"
+      level: "Senior Manager/Director"
+      fit: "primary"
+    - name: "Staff / Principal Engineer (LLM Products, Agentic Systems, Crypto)"
+      level: "Staff/Principal"
+      fit: "adjacent"
+
+narrative:
+  headline: "Engineering leader and founder who prioritizes healthy teams, sustainable pace, and pragmatic product building"
+  exit_story: "From co-founding and running a digital agency, to building a WebRTC startup, to helping scale Riverside from 20 to 300+ people, I now optimize for leadership roles where sustainable pace, healthy culture, family-compatible flexibility, and practical product building matter as much as scope."
+  superpowers:
+    - "Scaling engineering teams and organizational structure through rapid growth"
+    - "Leading backend and platform architecture evolution in high-growth environments"
+    - "Hiring, mentoring, and calibrating senior engineering talent"
+    - "Driving pragmatic adoption of AI-assisted development across teams"
+    - "Building durable teams and working methods that avoid burnout and support long-term performance"
+  proof_points:
+    - name: "Riverside group leadership"
+      url: "https://riverside.fm"
+      hero_metric: "Led a group of 27 engineers and managers across 4 teams"
+    - name: "Backend architecture evolution"
+      url: "https://riverside.fm"
+      hero_metric: "Led the migration from a monolith toward an event-driven architecture using Kafka and Protobuf"
+    - name: "High-volume technical hiring"
+      url: "https://riverside.fm"
+      hero_metric: "Conducted 100+ interviews and served as technical sign-off across multiple domains"
+    - name: "Founder-to-scale operator"
+      url: "https://www.linkedin.com/in/grecosebastian"
+      hero_metric: "Helped scale Riverside from roughly 20 people to 300+ after founding and leading prior ventures"
+
+compensation:
+  target_range: "€150K-200K"
+  currency: "EUR"
+  minimum: ""
+  location_flexibility: "Remote-first, Europe-compatible, with strong preference for flexible and family-friendly cultures"
+
+location:
+  country: "Italy"
+  city: "Seregno"
+  timezone: "Europe/Rome"
+  visa_status: "Italian and Argentinian citizenship; no visa needed in the EU"

@@ -1,6 +1,7 @@
 # Personal data (user fills these)
 cv.md
 cv.json
+resumes/*.json
 data/applications.md
 data/pipeline.md
 data/scan-history.tsv
