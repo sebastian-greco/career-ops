@@ -30,6 +30,10 @@ El objetivo es adaptar un CV ya bueno con cambios mínimos y de alto valor:
 - reordenar evidencia fuerte para que lo más relevante aparezca antes
 - reescribir solo cuando una frase actual pueda perjudicar el fit o perder una oportunidad clara
 - eliminar contenido solo si es claramente irrelevante o dañino para el rol
+- por defecto, dejar el summary casi intacto
+- por defecto, reordenar experiencia antes de reescribirla
+- por defecto, reordenar skills antes de editar keywords
+- para roles de liderazgo, no tocar proyectos salvo que el usuario quiera enfatizar hands-on reciente
 
 Antes de cambiar algo, evaluar:
 1. ¿Qué parte de este CV haría que descartaran a Sebastian rápidamente para esta oferta?
@@ -37,6 +41,20 @@ Antes de cambiar algo, evaluar:
 3. ¿Qué parte ya está suficientemente bien y conviene dejar intacta?
 
 Si el CV ya está bien orientado para la oferta, hacer cambios muy pequeños o ninguno.
+
+## Interacción obligatoria con el usuario
+
+Antes de cualquiera de estos cambios, parar y preguntar al usuario:
+- eliminar bullets, proyectos o secciones
+- añadir bullets nuevos
+- introducir evidencia nueva desde `interview-prep/story-bank.md`
+- hacer reescrituras materiales más allá de summary ligero y reordenamiento
+
+Después de cada pase de tailoring, siempre resumir:
+- qué se movió
+- qué se reescribió
+- qué se dejó intacto
+- por qué
 
 ## Reglas ATS (parseo limpio)
 
@@ -81,6 +99,8 @@ Ejemplos de reformulación legítima:
 **NO hacer tailoring por el simple hecho de hacerlo.** Si una sección ya comunica bien el fit, dejarla como está.
 
 **NO mover keywords a categorías incorrectas.** Por ejemplo: términos de AI tooling no deben terminar en liderazgo/strategy salvo que realmente describan liderazgo.
+
+**Si un story de `interview-prep/story-bank.md` parece muy valioso para esta oferta, pedir permiso antes de incorporarlo al CV.**
 
 ## Template HTML
 
