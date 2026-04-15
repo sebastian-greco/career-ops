@@ -41,22 +41,8 @@ title_filter:
     - "Director of Software Engineering"
     - "Director of AI Products"
     - "Director of Agentic Products"
-    # -- Selective frontier IC roles --
-    - "Principal Engineer"
-    - "Staff Engineer"
-    - "Principal Software Engineer"
-    - "Staff Software Engineer"
-    - "Principal Platform Engineer"
-    - "Staff Platform Engineer"
-    - "Principal Backend Engineer"
-    - "Staff Backend Engineer"
-    - "Principal Product Engineer"
-    - "Staff Product Engineer"
-    - "Senior Software Engineer, Agents"
-    - "Senior Software Engineer, Agent"
-    - "Senior Software Engineer, Agentic"
-    - "Senior Software Engineer, AI Agent"
-    - "Senior Software Engineer, AI Agents"
+    # Selective IC titles are handled only through explicit
+    # ic_exception_company + ic_exception_titles entries below.
   negative:
     # [CUSTOMIZE] Add keywords for roles you want to exclude
     - "Junior"
@@ -407,6 +393,11 @@ tracked_companies:
     enabled: true
 
   # -- Ashby-based (Playwright direct) --
+
+  - name: Ashby
+    careers_url: https://jobs.ashbyhq.com/ashby
+    notes: "High culture-fit target: remote-friendly hiring software company with strong written-culture and hands-on leadership signals."
+    enabled: true
 
   - name: Cohere
     careers_url: https://jobs.ashbyhq.com/cohere
