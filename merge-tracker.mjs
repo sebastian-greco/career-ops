@@ -71,9 +71,25 @@ function normalizeCompany(name) {
   return name.toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
+function normalizeRole(role) {
+  return role.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+const ROLE_STOPWORDS = new Set([
+  'and', 'the', 'for', 'with', 'of', 'to', 'a', 'an',
+  'senior', 'staff', 'principal', 'lead', 'head', 'director', 'manager',
+  'engineering', 'engineer', 'software', 'developer',
+]);
+
 function roleFuzzyMatch(a, b) {
-  const wordsA = a.toLowerCase().split(/\s+/).filter(w => w.length > 3);
-  const wordsB = b.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+  const exactA = normalizeRole(a);
+  const exactB = normalizeRole(b);
+  if (exactA === exactB) return true;
+
+  const wordsA = exactA.split(/\s+/).filter(w => w.length > 3 && !ROLE_STOPWORDS.has(w));
+  const wordsB = exactB.split(/\s+/).filter(w => w.length > 3 && !ROLE_STOPWORDS.has(w));
+  if (wordsA.length === 0 || wordsB.length === 0) return false;
+
   const overlap = wordsA.filter(w => wordsB.some(wb => wb.includes(w) || w.includes(wb)));
   return overlap.length >= 2;
 }
