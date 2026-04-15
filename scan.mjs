@@ -32,6 +32,10 @@ mkdirSync('data', { recursive: true });
 const CONCURRENCY = 10;
 const FETCH_TIMEOUT_MS = 10_000;
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 // ── API detection ───────────────────────────────────────────────────
 
 function detectApi(company) {
@@ -117,6 +121,25 @@ async function fetchJson(url) {
     return await res.json();
   } finally {
     clearTimeout(timer);
+  }
+}
+
+async function fetchJsonWithRetry(url) {
+  try {
+    return await fetchJson(url);
+  } catch (error) {
+    if (error.name !== 'AbortError') throw error;
+    await sleep(300);
+
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS * 2);
+    try {
+      const res = await fetch(url, { signal: controller.signal });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json();
+    } finally {
+      clearTimeout(timer);
+    }
   }
 }
 
@@ -212,6 +235,14 @@ function loadSeenCompanyRoles() {
   return seen;
 }
 
+function resolveApi(company) {
+  if (company.scan_method === 'websearch' && !company.api) {
+    return null;
+  }
+
+  return detectApi(company);
+}
+
 // ── Pipeline writer ─────────────────────────────────────────────────
 
 function appendToPipeline(offers) {
@@ -299,7 +330,7 @@ async function main() {
   const targets = companies
     .filter(c => c.enabled !== false)
     .filter(c => !filterCompany || c.name.toLowerCase().includes(filterCompany))
-    .map(c => ({ ...c, _api: detectApi(c) }))
+    .map(c => ({ ...c, _api: resolveApi(c) }))
     .filter(c => c._api !== null);
 
   const skippedCount = companies.filter(c => c.enabled !== false).length - targets.length;
@@ -322,7 +353,7 @@ async function main() {
   const tasks = targets.map(company => async () => {
     const { type, url } = company._api;
     try {
-      const json = await fetchJson(url);
+      const json = await fetchJsonWithRetry(url);
       const jobs = PARSERS[type](json, company.name);
       totalFound += jobs.length;
 
