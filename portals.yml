@@ -423,6 +423,10 @@ tracked_companies:
     notes: "Remote-first privacy company; good fit for backend/platform leadership roles."
     culture_fit_tier: high
     ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
     enabled: true
 
   - name: Pinecone
@@ -493,6 +497,12 @@ tracked_companies:
     notes: "Remote-first company with strong work-life-balance and async culture signals."
     culture_fit_tier: high
     ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Backend Engineer"
+      - "Senior Software Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Product Engineer"
     enabled: true
 
   - name: Ghost
@@ -502,6 +512,11 @@ tracked_companies:
     notes: "Remote-first non-profit with strong async culture, four-day week, and balance-first company design."
     culture_fit_tier: high
     ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Platform Engineer"
+      - "Product Engineer"
+      - "Staff Product Engineer"
+      - "Staff Engineer"
     enabled: true
 
   - name: Buffer
@@ -511,6 +526,12 @@ tracked_companies:
     notes: "Remote-first company with a 4-day work week. Strong work-life-balance signal and worth tracking for selective IC roles too."
     culture_fit_tier: high
     ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "GTM Engineer"
     enabled: true
 
   # -- DACH & European AI ecosystem --
@@ -784,6 +805,14 @@ tracked_companies:
     notes: "Open-source Firebase alternative. Remote-first. Postgres + Auth + Storage. Strong DevRel/DX hiring."
     culture_fit_tier: high
     ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Platform Engineer"
+      - "Product Engineer"
+      - "Software Engineer"
+      - "GTM Engineer"
     enabled: true
 
   - name: Resend
@@ -832,6 +861,20 @@ tracked_companies:
     scan_query: 'site:jobs.ashbyhq.com/phantom'
     notes: "Remote-first crypto wallet company. Keep as a selective frontier crypto/product fit."
     enabled: true
+
+  - name: Deel
+    careers_url: https://jobs.ashbyhq.com/Deel
+    scan_method: websearch
+    scan_query: 'site:jobs.ashbyhq.com/Deel'
+    notes: "Global payroll and HR platform with strong remote maturity and EMEA-friendly hiring. Keep for selective leadership roles: the setup is attractive, but public culture and role language skew more hypergrowth and performance-heavy than the healthiest balance-first targets."
+    enabled: true
+
+  - name: Kraken
+    careers_url: https://jobs.ashbyhq.com/kraken.com
+    scan_method: websearch
+    scan_query: 'site:jobs.ashbyhq.com/kraken.com'
+    notes: "Disabled: public culture signals are not a fit for the target profile."
+    enabled: false
 
   # -- Product Tools (confirmed Ashby) --
 
