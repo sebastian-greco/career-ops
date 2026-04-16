@@ -605,6 +605,13 @@ tracked_companies:
     notes: "Berlin / London. Payments fintech, EU + LATAM hiring."
     enabled: true
 
+  - name: Pliant
+    careers_url: https://pliant.bamboohr.com/careers/list
+    api: https://pliant.bamboohr.com/careers/list
+    api_provider: bamboohr
+    notes: "Berlin-based B2B payments fintech with remote engineering roles and credible product/engineering signals. Keep as a selective fintech target: strong domain fit, but watch for higher-intensity culture signals."
+    enabled: true
+
   - name: Qonto
     careers_url: https://jobs.lever.co/qonto
     notes: "Paris / Berlin / Barcelona / Milan. European fintech; keep for leadership roles, not for AI/ML specialization."

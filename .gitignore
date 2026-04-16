@@ -33,6 +33,9 @@ bun.lock
 .playwright-mcp/
 *-job-snapshot.md
 *-job.png
+.opencode/*
+.opencode-*
+opencode.json*
 
 # OS
 .DS_Store

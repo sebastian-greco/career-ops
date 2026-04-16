@@ -39,9 +39,21 @@ function sleep(ms) {
 // ── API detection ───────────────────────────────────────────────────
 
 function detectApi(company) {
+  if (company.api && company.api_provider) {
+    return { type: company.api_provider, url: company.api };
+  }
+
   // Greenhouse: explicit api field
   if (company.api && company.api.includes('greenhouse')) {
     return { type: 'greenhouse', url: company.api };
+  }
+
+  if (company.api && company.api.includes('api.lever.co')) {
+    return { type: 'lever', url: company.api };
+  }
+
+  if (company.api && company.api.includes('.bamboohr.com/careers/list')) {
+    return { type: 'bamboohr', url: company.api };
   }
 
   const url = company.careers_url || '';
@@ -70,6 +82,15 @@ function detectApi(company) {
     return {
       type: 'greenhouse',
       url: `https://boards-api.greenhouse.io/v1/boards/${ghEuMatch[1]}/jobs`,
+    };
+  }
+
+  // BambooHR
+  const bambooMatch = url.match(/https?:\/\/([^/.]+)\.bamboohr\.com\/careers(?:\/list)?/);
+  if (bambooMatch) {
+    return {
+      type: 'bamboohr',
+      url: `https://${bambooMatch[1]}.bamboohr.com/careers/list`,
     };
   }
 
@@ -108,7 +129,34 @@ function parseLever(json, companyName) {
   }));
 }
 
-const PARSERS = { greenhouse: parseGreenhouse, ashby: parseAshby, lever: parseLever };
+function parseBambooHr(json, companyName, company) {
+  const jobs = Array.isArray(json?.result) ? json.result : Array.isArray(json) ? json : [];
+  const base = (() => {
+    const sourceUrl = company.api || company.careers_url || '';
+    const match = sourceUrl.match(/https?:\/\/([^/]+\.bamboohr\.com)/);
+    return match ? `https://${match[1]}` : '';
+  })();
+
+  const normalizeLocation = (location) => {
+    if (!location) return '';
+    if (typeof location === 'string') return location;
+    if (typeof location === 'object') {
+      return location.name || location.city || location.value || '';
+    }
+    return '';
+  };
+
+  return jobs
+    .map(j => ({
+      title: j.jobOpeningName || j.jobOpening?.jobOpeningName || '',
+      url: j.jobOpeningShareUrl || (j.id && base ? `${base}/careers/${j.id}/detail` : company.careers_url || ''),
+      company: companyName,
+      location: normalizeLocation(j.location),
+    }))
+    .filter(j => j.title && j.url);
+}
+
+const PARSERS = { greenhouse: parseGreenhouse, ashby: parseAshby, lever: parseLever, bamboohr: parseBambooHr };
 
 // ── Fetch with timeout ──────────────────────────────────────────────
 
@@ -203,7 +251,7 @@ function loadSeenUrls() {
   // pipeline.md — extract URLs from checkbox lines
   if (existsSync(PIPELINE_PATH)) {
     const text = readFileSync(PIPELINE_PATH, 'utf-8');
-    for (const match of text.matchAll(/- \[[ x]\] (https?:\/\/\S+)/g)) {
+    for (const match of text.matchAll(/- \[[ x!]\] (https?:\/\/\S+)/g)) {
       seen.add(match[1]);
     }
   }
@@ -236,10 +284,6 @@ function loadSeenCompanyRoles() {
 }
 
 function resolveApi(company) {
-  if (company.scan_method === 'websearch' && !company.api) {
-    return null;
-  }
-
   return detectApi(company);
 }
 
@@ -284,6 +328,20 @@ function appendToScanHistory(offers, date) {
 
   const lines = offers.map(o =>
     `${o.url}\t${date}\t${o.source}\t${o.title}\t${o.company}\tadded`
+  ).join('\n') + '\n';
+
+  appendFileSync(SCAN_HISTORY_PATH, lines, 'utf-8');
+}
+
+function appendHistoryRows(rows, date) {
+  if (rows.length === 0) return;
+
+  if (!existsSync(SCAN_HISTORY_PATH)) {
+    writeFileSync(SCAN_HISTORY_PATH, 'url\tfirst_seen\tportal\ttitle\tcompany\tstatus\n', 'utf-8');
+  }
+
+  const lines = rows.map(row =>
+    `${row.url}\t${date}\t${row.source}\t${row.title}\t${row.company}\t${row.status}`
   ).join('\n') + '\n';
 
   appendFileSync(SCAN_HISTORY_PATH, lines, 'utf-8');
@@ -348,13 +406,14 @@ async function main() {
   let totalFiltered = 0;
   let totalDupes = 0;
   const newOffers = [];
+  const historyRows = [];
   const errors = [];
 
   const tasks = targets.map(company => async () => {
     const { type, url } = company._api;
     try {
       const json = await fetchJsonWithRetry(url);
-      const jobs = PARSERS[type](json, company.name);
+      const jobs = PARSERS[type](json, company.name, company);
       totalFound += jobs.length;
 
       for (const job of jobs) {
@@ -362,21 +421,26 @@ async function main() {
         const passesCompanyIcException = hasIcExceptionPolicy(company) && icExceptionFilter(job.title, company);
         if (!passesDefaultFilter && !passesCompanyIcException) {
           totalFiltered++;
+          historyRows.push({ ...job, source: `${type}-api`, status: 'skipped_title' });
           continue;
         }
         if (seenUrls.has(job.url)) {
           totalDupes++;
+          historyRows.push({ ...job, source: `${type}-api`, status: 'skipped_dup' });
           continue;
         }
         const key = `${job.company.toLowerCase()}::${job.title.toLowerCase()}`;
         if (seenCompanyRoles.has(key)) {
           totalDupes++;
+          historyRows.push({ ...job, source: `${type}-api`, status: 'skipped_dup' });
           continue;
         }
         // Mark as seen to avoid intra-scan dupes
         seenUrls.add(job.url);
         seenCompanyRoles.add(key);
-        newOffers.push({ ...job, source: `${type}-api` });
+        const offer = { ...job, source: `${type}-api` };
+        newOffers.push(offer);
+        historyRows.push({ ...offer, status: 'added' });
       }
     } catch (err) {
       errors.push({ company: company.name, error: err.message });
@@ -388,7 +452,10 @@ async function main() {
   // 5. Write results
   if (!dryRun && newOffers.length > 0) {
     appendToPipeline(newOffers);
-    appendToScanHistory(newOffers, date);
+  }
+
+  if (!dryRun && historyRows.length > 0) {
+    appendHistoryRows(historyRows, date);
   }
 
   // 6. Print summary
