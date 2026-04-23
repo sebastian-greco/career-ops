@@ -26,6 +26,9 @@ modes/_profile.md
 .update-dismissed
 .update-lock
 
+# Secrets (never commit — use .env.example as template)
+.env
+
 # Generated
 .resolved-prompt-*
 node_modules/
