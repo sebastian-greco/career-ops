@@ -38,6 +38,7 @@ modes/_profile.md
 node_modules/
 bun.lock
 .playwright-mcp/
+tmp/
 *-job-snapshot.md
 *-job.png
 .opencode/*
