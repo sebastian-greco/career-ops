@@ -366,8 +366,6 @@ tracked_companies:
 
   - name: Lindy
     careers_url: https://jobs.ashbyhq.com/lindy
-    scan_method: websearch
-    scan_query: '"lindy.ai" "AI" "Forward Deployed" OR "Solutions" site:jobs.ashbyhq.com'
     notes: "Agent platform; keep as a selective frontier/product fit, not a default target."
     enabled: true
 
@@ -388,22 +386,16 @@ tracked_companies:
 
   - name: n8n
     careers_url: https://jobs.ashbyhq.com/n8n
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/n8n'
     notes: "Berlin + remote EU/US. Workflow automation."
     enabled: true
 
   - name: Zapier
     careers_url: https://jobs.ashbyhq.com/zapier
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/zapier'
     notes: "Remote-first. Automation platform leader."
     enabled: true
 
   - name: Make.com (Celonis)
     careers_url: https://www.make.com/en/careers
-    scan_method: websearch
-    scan_query: 'site:make.com/en/careers OR "make.com" "engineer" OR "solutions" site:jobs.ashbyhq.com'
     notes: "Celonis parent company. Automation platform."
     enabled: true
 
@@ -470,36 +462,26 @@ tracked_companies:
 
   - name: Attio
     careers_url: https://jobs.ashbyhq.com/attio
-    scan_method: websearch
-    scan_query: 'site:attio.com/careers OR site:jobs.ashbyhq.com/attio'
     notes: "Remote EU. AI-native CRM. Series B $52M."
     enabled: true
 
   - name: Tinybird
     careers_url: https://tinybird.co/about#join-us
-    scan_method: websearch
-    scan_query: 'site:tinybird.co "careers" OR "jobs" engineer OR manager'
     notes: "Remote. Real-time data platform. Left Ashby; custom site with 1 open role (SRE only) as of 2026-04-11. Was: jobs.ashbyhq.com/tinybird"
     enabled: true
 
   - name: Clarity AI
     careers_url: https://clarity.ai/careers/
-    scan_method: websearch
-    scan_query: 'site:clarity.ai/careers engineer OR manager'
     notes: "Madrid/Remote. Europe-compatible and mission-oriented. Left Lever; JS-heavy custom site as of 2026-04-11. Was: jobs.lever.co/clarity-ai"
     enabled: true
 
   - name: Travelperk
     careers_url: https://jobs.ashbyhq.com/travelperk
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/travelperk'
     notes: "Barcelona. Business travel unicorn."
     enabled: true
 
   - name: Doist
     careers_url: https://doist.com/careers#open-roles
-    scan_method: websearch
-    scan_query: 'site:doist.com/careers Doist careers'
     notes: "Remote-first company with strong work-life-balance and async culture signals."
     culture_fit_tier: high
     ic_exception_company: true
@@ -513,8 +495,6 @@ tracked_companies:
 
   - name: Ghost
     careers_url: https://careers.ghost.org/
-    scan_method: websearch
-    scan_query: 'site:careers.ghost.org Ghost careers'
     notes: "Remote-first non-profit with strong async culture, four-day week, and balance-first company design."
     culture_fit_tier: high
     ic_exception_company: true
@@ -527,8 +507,6 @@ tracked_companies:
 
   - name: Buffer
     careers_url: https://jobs.ashbyhq.com/buffer
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/buffer'
     notes: "Remote-first company with a 4-day work week. Strong work-life-balance signal and worth tracking for selective IC roles too."
     culture_fit_tier: high
     ic_exception_company: true
@@ -856,15 +834,11 @@ tracked_companies:
 
   - name: Aleph Alpha
     careers_url: https://jobs.ashbyhq.com/AlephAlpha
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/AlephAlpha'
     notes: "Heidelberg DE. Sovereign European LLM provider, enterprise & government focus."
     enabled: true
 
   - name: DeepL
     careers_url: https://jobs.ashbyhq.com/DeepL
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/DeepL'
     notes: "Cologne DE. Translation & language AI. 60+ open roles, EU/DACH heavy."
     enabled: true
 
@@ -958,8 +932,6 @@ tracked_companies:
 
   - name: Forto
     careers_url: https://careers.forto.com/forto-jobs/
-    scan_method: websearch
-    scan_query: 'site:careers.forto.com engineer OR manager OR director'
     notes: "Berlin DE. Digital freight forwarder. Left Lever; custom site with 10 roles as of 2026-04-11 (none matching title filter). Was: jobs.lever.co/forto"
     enabled: true
 
@@ -996,8 +968,6 @@ tracked_companies:
 
   - name: Goosechase
     careers_url: https://apply.workable.com/goosechase/
-    scan_method: websearch
-    scan_query: 'site:apply.workable.com/goosechase'
     notes: "Remote-friendly company with a strong work-life-balance reputation; keep on the radar even when roles are sparse."
     enabled: true
 
@@ -1041,8 +1011,6 @@ tracked_companies:
 
   - name: Synthesia
     careers_url: https://jobs.ashbyhq.com/synthesia
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/synthesia OR site:job-boards.greenhouse.io/synthesia'
     notes: "London UK. Keep selectively when flexibility and culture signals look strong."
     enabled: true
 
@@ -1064,15 +1032,11 @@ tracked_companies:
 
   - name: Lovable
     careers_url: https://jobs.ashbyhq.com/lovable
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/lovable'
     notes: "Stockholm SE. AI app builder (text-to-app), 80+ open roles."
     enabled: true
 
   - name: Legora
     careers_url: https://jobs.ashbyhq.com/legora
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/legora'
     notes: "Stockholm SE / NYC / London. AI-native legal workspace."
     enabled: true
 
@@ -1083,8 +1047,6 @@ tracked_companies:
 
   - name: Vinted
     careers_url: https://careers.vinted.com/jobs
-    scan_method: websearch
-    scan_query: 'site:careers.vinted.com engineer OR manager OR director'
     notes: "European product company. Left Lever; custom site with 93 roles (none matching title filter as of 2026-04-11). Was: jobs.lever.co/vinted"
     enabled: true
 
@@ -1107,8 +1069,6 @@ tracked_companies:
 
   - name: Clay Labs
     careers_url: https://jobs.ashbyhq.com/claylabs
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/claylabs "AI" OR "Developer Experience" OR "Growth" OR "Engineer"'
     notes: "Selective frontier/product fit; keep, but not as a default healthier-culture assumption."
     enabled: true
 
@@ -1126,8 +1086,6 @@ tracked_companies:
 
   - name: WorkOS
     careers_url: https://jobs.ashbyhq.com/workos
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/workos "Solutions Engineer" OR "Developer Success" OR "Engineer"'
     notes: "Developer tools company; plausible for healthier infrastructure/product culture."
     enabled: true
 
@@ -1135,8 +1093,6 @@ tracked_companies:
 
   - name: Supabase
     careers_url: https://jobs.ashbyhq.com/supabase
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/supabase'
     notes: "Open-source Firebase alternative. Remote-first. Postgres + Auth + Storage. Strong DevRel/DX hiring."
     culture_fit_tier: high
     ic_exception_company: true
@@ -1152,22 +1108,16 @@ tracked_companies:
 
   - name: Resend
     careers_url: https://jobs.ashbyhq.com/resend
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/resend'
     notes: "Remote-first developer tools company; keep, but expect many non-target roles."
     enabled: true
 
   - name: Clerk
     careers_url: https://jobs.ashbyhq.com/clerk
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/clerk'
     notes: "Developer platform company; keep selectively and expect many adjacent non-target roles."
     enabled: true
 
   - name: Inngest
     careers_url: https://jobs.ashbyhq.com/inngest
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/inngest'
     notes: "Durable workflow engine for serverless. DX/DevRel/Engineering hiring."
     enabled: true
 
@@ -1185,22 +1135,16 @@ tracked_companies:
 
   - name: RevenueCat
     careers_url: https://jobs.ashbyhq.com/revenuecat
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/revenuecat'
     notes: "Remote-first subscription infrastructure company. Strong product/platform fit with healthy remote culture signals."
     enabled: true
 
   - name: Phantom
     careers_url: https://jobs.ashbyhq.com/phantom
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/phantom'
     notes: "Remote-first crypto wallet company. Keep as a selective frontier crypto/product fit."
     enabled: true
 
   - name: Deel
     careers_url: https://jobs.ashbyhq.com/Deel
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/Deel'
     notes: "Global payroll and HR platform with strong remote maturity and EMEA-friendly hiring. Keep for selective leadership roles: the setup is attractive, but public culture and role language skew more hypergrowth and performance-heavy than the healthiest balance-first targets."
     enabled: true
 
@@ -1340,21 +1284,17 @@ tracked_companies:
   # -- Newly discovered: fintech / culture-fit / crypto --
 
   - name: Yuno
-    careers_url: https://y.uno/careers
-    scan_method: websearch
-    scan_query: 'site:jobs.lever.co/yuno "Engineering Manager" OR "Technical Lead" OR "Platform" OR "Payments"'
+    careers_url: https://jobs.lever.co/yuno
     notes: "Payments orchestration platform. Remote Europe leadership roles confirmed via Lever."
     enabled: true
 
   - name: Pennylane
-    careers_url: https://jobs.lever.co/pennylane
+    careers_url: https://jobs.ashbyhq.com/pennylane
     notes: "Financial OS for European SMEs. Remote-first engineering team hiring anywhere in Europe."
     enabled: true
 
   - name: Metabase
     careers_url: https://www.metabase.com/jobs
-    scan_method: websearch
-    scan_query: 'site:jobs.lever.co/metabase "Engineering Manager" OR "Backend" OR "Platform"'
     notes: "Fully remote, async-first analytics company with strong written culture, flexibility, and high autonomy."
     culture_fit_tier: high
     ic_exception_company: true
@@ -1369,8 +1309,6 @@ tracked_companies:
 
   - name: Cal.com
     careers_url: https://cal.com/jobs
-    scan_method: websearch
-    scan_query: 'site:cal-com.breezy.hr OR site:cal.com/jobs engineer OR manager OR backend'
     notes: "Async-first, fully remote scheduling company with location-agnostic pay, 30 days PTO, and low-bureaucracy culture."
     culture_fit_tier: high
     ic_exception_company: true
@@ -1385,8 +1323,6 @@ tracked_companies:
 
   - name: MailerLite
     careers_url: https://www.mailerlite.com/jobs
-    scan_method: websearch
-    scan_query: 'site:mailerlite.com/jobs engineer OR manager OR backend'
     notes: "Fully remote, async-first company with strong autonomy and healthy work-life-balance signals."
     culture_fit_tier: high
     ic_exception_company: true
@@ -1400,8 +1336,6 @@ tracked_companies:
 
   - name: Avara
     careers_url: https://avara.xyz/careers
-    scan_method: websearch
-    scan_query: 'site:avara.xyz/careers OR site:web3.career/web3-companies/aave principal OR staff OR backend OR smart contract'
     notes: "House of web3 behind Aave. Selective remote-EU crypto target for staff/principal/backend or smart contract roles."
     ic_exception_company: true
     ic_exception_titles:
@@ -1414,9 +1348,7 @@ tracked_companies:
     enabled: true
 
   - name: MoonPay
-    careers_url: https://www.moonpay.com/careers
-    scan_method: websearch
-    scan_query: 'site:jobs.lever.co/moonpay backend OR platform OR payments OR manager'
+    careers_url: https://jobs.lever.co/moonpay
     notes: "Crypto payments company with remote support across multiple European countries; selective crypto/platform fit."
     ic_exception_company: true
     ic_exception_titles:
@@ -1429,9 +1361,7 @@ tracked_companies:
     enabled: true
 
   - name: Polygon Labs
-    careers_url: https://polygon.technology/careers
-    scan_method: websearch
-    scan_query: 'site:jobs.ashbyhq.com/polygon-labs "Engineering Manager" OR "Senior Engineering Manager" OR "Staff Engineer" OR "Platform"'
+    careers_url: https://jobs.ashbyhq.com/polygon-labs
     notes: "Global remote blockchain infrastructure company; good selective fit for crypto leadership or staff/platform roles."
     ic_exception_company: true
     ic_exception_titles:
@@ -1445,8 +1375,6 @@ tracked_companies:
 
   - name: Tenderly
     careers_url: https://tenderly.co/careers
-    scan_method: websearch
-    scan_query: 'site:tenderly.co/careers OR site:web3.career/web3-companies/tenderly backend OR distributed OR platform OR security'
     notes: "Remote-Europe or Belgrade-based Web3 developer platform. Worth following long-term for strong backend/platform openings even when current roles skew blockchain-heavy."
     ic_exception_company: true
     ic_exception_titles:
@@ -1459,9 +1387,7 @@ tracked_companies:
     enabled: true
 
   - name: Uniswap Labs
-    careers_url: https://careers.uniswap.org/
-    scan_method: websearch
-    scan_query: 'site:careers.uniswap.org OR site:job-boards.greenhouse.io/uniswaplabs staff OR backend OR platform OR manager'
+    careers_url: https://jobs.ashbyhq.com/uniswap
     notes: "Top-tier DeFi company. Strong selective crypto fit for staff/backend/platform roles and occasional engineering management openings."
     ic_exception_company: true
     ic_exception_titles:
@@ -1486,9 +1412,7 @@ tracked_companies:
     enabled: true
 
   - name: Anchorage Digital
-    careers_url: https://www.anchorage.com/careers
-    scan_method: websearch
-    scan_query: 'site:jobs.lever.co/anchorage backend OR infrastructure OR engineering manager OR platform'
+    careers_url: https://jobs.lever.co/anchorage
     notes: "Institutional digital asset platform. Selective crypto/fintech target, especially for infrastructure and backend roles when Europe-compatible remote options appear."
     ic_exception_company: true
     ic_exception_titles:
@@ -1500,9 +1424,8 @@ tracked_companies:
     enabled: true
 
   - name: Proton
-    careers_url: https://proton.me/careers
-    scan_method: websearch
-    scan_query: 'site:careers.proton.me OR site:job-boards.eu.greenhouse.io/proton engineering manager OR engineering director OR backend OR platform'
+    careers_url: https://job-boards.eu.greenhouse.io/proton
+    api: https://boards-api.greenhouse.io/v1/boards/proton/jobs
     notes: "Swiss privacy company with distributed hiring signal across Europe. Good Swiss-aligned target despite some office-based roles."
     culture_fit_tier: high
     ic_exception_company: true
@@ -1516,9 +1439,7 @@ tracked_companies:
     enabled: true
 
   - name: Sygnum
-    careers_url: https://www.sygnum.com/working-at-sygnum-careers/
-    scan_method: websearch
-    scan_query: 'site:sygnum.com/working-at-sygnum-careers OR site:web3.career/web3-companies/sygnum backend OR blockchain OR platform OR engineer'
+    careers_url: https://www.sygnum.com/careers-portal/
     notes: "Swiss regulated digital asset bank. Good long-term Swiss crypto/fintech follow, especially for backend/platform roles if remote flexibility improves."
     ic_exception_company: true
     ic_exception_titles:
@@ -1560,16 +1481,12 @@ tracked_companies:
     enabled: true
 
   - name: Lunar
-    careers_url: https://jobs.lunar.app/
-    scan_method: websearch
-    scan_query: 'site:jobs.lunar.app backend OR payments OR engineer OR manager'
+    careers_url: https://jobs.lunar.app/jobs
     notes: "Nordic digital bank. More hybrid than the strongest remote-first targets, but still worth monitoring for Denmark/Nordics fintech roles."
     enabled: true
 
   - name: Mollie
-    careers_url: https://jobs.mollie.com/
-    scan_method: websearch
-    scan_query: 'site:jobs.mollie.com engineering manager OR platform engineer OR backend'
+    careers_url: https://jobs.ashbyhq.com/mollie
     notes: "Dutch payments leader. Worth tracking for platform/backend and occasional engineering management roles, even if many roles cluster around hub locations."
     enabled: true
 
@@ -1594,16 +1511,12 @@ tracked_companies:
     enabled: true
 
   - name: Klarna
-    careers_url: https://www.klarna.com/careers/
-    scan_method: websearch
-    scan_query: 'site:klarna.com/careers engineering manager OR backend OR platform'
+    careers_url: https://jobs.deel.com/job-boards/klarna
     notes: "Swedish fintech giant. Not a pure healthy-culture bet, but too relevant in Nordic fintech to ignore for selective leadership/platform roles."
     enabled: true
 
   - name: Vipps MobilePay
-    careers_url: https://vippsmobilepay.com/en/careers
-    scan_method: websearch
-    scan_query: 'site:vippsmobilepay.com/en/careers engineer OR manager OR backend OR platform'
+    careers_url: https://emp.jobylon.com/companies/1056-vipps/
     notes: "Nordic payments company across Norway, Denmark, and Finland. Worth tracking for payments-platform and engineering leadership roles in the region."
     enabled: true
 
@@ -1627,9 +1540,7 @@ tracked_companies:
     enabled: true
 
   - name: Cloudsmith
-    careers_url: https://careers.cloudsmith.com/
-    scan_method: websearch
-    scan_query: 'site:careers.cloudsmith.com engineering manager OR platform OR devops OR backend'
+    careers_url: https://careers.cloudsmith.com/jobs
     notes: "Strong remote devtools company with very relevant platform / artifact-management / supply-chain engineering work. Not Nordic, but a strong adjacent fit uncovered during the Finland pass."
     culture_fit_tier: high
     ic_exception_company: true

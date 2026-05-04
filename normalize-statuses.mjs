@@ -49,6 +49,9 @@ function normalizeStatus(raw) {
   // Aplicado with date → Applied (strip date)
   if (/^aplicado\s+\d{4}/i.test(s)) return { status: 'Applied' };
 
+  // Recommendation labels from older pipeline runs → Evaluated
+  if (/^(apply|consider|weak|strong)$/i.test(s)) return { status: 'Evaluated' };
+
   // CONDICIONAL / HOLD / EVALUAR / Verificar → Evaluated
   if (/^(condicional|hold|evaluar|verificar)$/i.test(s)) return { status: 'Evaluated' };
 

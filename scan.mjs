@@ -384,12 +384,21 @@ function pickBrowserExtractor(url) {
   const lower = url.toLowerCase();
 
   if (lower.includes('make.com')) return extractMakeJobs;
+  if (lower.includes('jobs.metabase.com')) return extractMetabaseJobs;
   if (lower.includes('tinybird.co')) return extractTinybirdJobs;
   if (lower.includes('clarity.ai')) return extractClarityJobs;
+  if (lower.includes('cal.com/jobs')) return extractCalJobs;
   if (lower.includes('doist.com')) return extractDoistJobs;
   if (lower.includes('forto.com')) return extractFortoJobs;
+  if (lower.includes('mailerlite.com/jobs')) return extractMailerLiteJobs;
+  if (lower.includes('/jobs') && (lower.includes('teamtailor') || lower.includes('jobs.lunar.app') || lower.includes('careers.cloudsmith.com'))) return extractTeamtailorJobs;
   if (lower.includes('lever.co')) return extractLeverHostedJobs;
   if (lower.includes('workable.com')) return extractWorkableJobs;
+  if (lower.includes('jobylon.com')) return extractJobylonJobs;
+  if (lower.includes('jobs.deel.com')) return extractDeelJobs;
+  if (lower.includes('avara.xyz/careers')) return extractAvaraJobs;
+  if (lower.includes('sygnum.com/careers-portal')) return extractSygnumJobs;
+  if (lower.includes('tenderly.co/careers')) return extractTenderlyJobs;
   if (lower.includes('veriff.com')) return extractVeriffJobs;
   if (lower.includes('coda.io')) return extractCodaJobs;
   if (lower.includes('vinted.com')) return extractVintedJobs;
@@ -449,6 +458,20 @@ async function extractMakeJobs(page) {
   return evaluateAnchorJobs(page, 'a[href*="/careers-detail?gh_jid="]');
 }
 
+async function extractMetabaseJobs(page) {
+  return page.evaluate(() => {
+    const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim();
+    const jobsHeading = Array.from(document.querySelectorAll('h1, h2, h3, h4')).find((heading) => normalize(heading.textContent) === 'Open Roles');
+    const scope = jobsHeading?.parentElement || document;
+
+    return Array.from(scope.querySelectorAll('a[href*="jobs.metabase.com/jobs/"]')).map((anchor) => ({
+      title: normalize(anchor.textContent),
+      url: anchor.href,
+      location: normalize(anchor.nextElementSibling?.textContent || ''),
+    }));
+  });
+}
+
 async function extractTinybirdJobs(page) {
   return page.evaluate(() => {
     const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim();
@@ -476,6 +499,26 @@ async function extractClarityJobs(page) {
   return evaluateAnchorJobs(frame, 'a[href*="/clarityai/jobs/"]');
 }
 
+async function extractCalJobs(page) {
+  return page.evaluate(() => {
+    const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim();
+
+    return Array.from(document.querySelectorAll('a[href^="https://cal.com/jobs/"]')).map((anchor) => {
+      const lines = (anchor.innerText || '')
+        .split(/\n+/)
+        .map(normalize)
+        .filter(Boolean);
+      const location = lines.find((line) => /remote|office|hybrid|nyc/i.test(line)) || '';
+
+      return {
+        title: lines[0] || '',
+        url: anchor.href,
+        location,
+      };
+    });
+  });
+}
+
 async function extractDoistJobs(page) {
   return evaluateAnchorJobs(page, 'a[href*="/careers/"]', {
     closest: 'a',
@@ -487,6 +530,20 @@ async function extractFortoJobs(page) {
     closest: 'main',
     useAnchorText: false,
     banned: ['View Job', 'POSITION', 'DEPARTMENT', 'EMPLOYMENT TYPE', 'LOCATION'],
+  });
+}
+
+async function extractMailerLiteJobs(page) {
+  return page.evaluate(() => {
+    const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim();
+    const currentJobsHeading = Array.from(document.querySelectorAll('h1, h2, h3, h4')).find((heading) => normalize(heading.textContent) === 'Current jobs');
+    const scope = currentJobsHeading?.parentElement || document;
+
+    return Array.from(scope.querySelectorAll('a[href*="/jobs/"]')).map((anchor) => ({
+      title: normalize(anchor.textContent),
+      url: anchor.href,
+      location: '',
+    }));
   });
 }
 
@@ -510,6 +567,58 @@ async function extractWorkableJobs(page) {
   return evaluateAnchorJobs(page, 'a[href*="/job/"]');
 }
 
+async function extractTeamtailorJobs(page) {
+  return page.evaluate(() => {
+    const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim();
+
+    return Array.from(document.querySelectorAll('a[href*="/jobs/"]')).map((anchor) => {
+      const lines = (anchor.innerText || '')
+        .split(/\n+/)
+        .map(normalize)
+        .filter(Boolean);
+
+      return {
+        title: lines[0] || '',
+        url: anchor.href,
+        location: lines.slice(1).join(' '),
+      };
+    });
+  });
+}
+
+async function extractJobylonJobs(page) {
+  return page.evaluate(() => {
+    const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim();
+
+    return Array.from(document.querySelectorAll('div.jobylon-job')).map((item) => {
+      const url = item.querySelector('a[href*="/jobs/"]')?.href || '';
+      const title = normalize(item.querySelector('.jobylon-job-title')?.textContent || '');
+      const location = normalize(item.querySelector('.jobylon-location')?.textContent.replace(/^Location:\s*/i, '') || '');
+
+      return { title, url, location };
+    });
+  });
+}
+
+async function extractDeelJobs(page) {
+  return page.evaluate(() => {
+    const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim();
+
+    return Array.from(document.querySelectorAll('a[href*="/job-details/"]')).map((anchor) => {
+      const title = normalize(anchor.querySelector('p')?.textContent || '');
+      const meta = Array.from(anchor.querySelectorAll('p.MuiTypography-body1'))
+        .map((element) => normalize(element.textContent))
+        .filter(Boolean);
+
+      return {
+        title,
+        url: anchor.href,
+        location: meta[0] || '',
+      };
+    });
+  });
+}
+
 async function extractVeriffJobs(page) {
   return page.evaluate(() => {
     const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim();
@@ -524,6 +633,25 @@ async function extractVeriffJobs(page) {
 
 async function extractCodaJobs() {
   return [];
+}
+
+async function extractAvaraJobs(page) {
+  return page.evaluate(() => {
+    const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim();
+
+    return Array.from(document.querySelectorAll('a[href*="/careers/"]')).map((anchor) => {
+      const lines = (anchor.innerText || '')
+        .split(/\n+/)
+        .map(normalize)
+        .filter(Boolean);
+
+      return {
+        title: lines[0] || '',
+        url: anchor.href,
+        location: lines[1] || '',
+      };
+    });
+  });
 }
 
 async function extractVintedJobs(page) {
@@ -556,6 +684,58 @@ async function extractGhostJobs(page) {
 
 async function extractConsensysJobs(page) {
   return evaluateAnchorJobs(page, 'a[href*="/open-roles/"]');
+}
+
+async function extractTenderlyJobs(page) {
+  const frame = page.frames().find((item) => item.url().includes('careers.kula.ai/tenderly'));
+  if (!frame) return [];
+
+  for (const label of ['Sales', 'General']) {
+    const button = frame.getByRole('button', { name: new RegExp(`^${label}$`, 'i') });
+    if (await button.isVisible().catch(() => false)) {
+      await button.click({ timeout: 2_000 }).catch(() => null);
+      await frame.waitForTimeout(250);
+    }
+  }
+
+  return frame.evaluate(() => {
+    const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim();
+
+    return Array.from(document.querySelectorAll('a[href*="/tenderly/"]')).map((anchor) => {
+      const region = anchor.closest('[role="region"]');
+      const lines = (region?.innerText || anchor.innerText || '')
+        .split(/\n+/)
+        .map(normalize)
+        .filter(Boolean)
+        .filter((line) => line !== 'Apply Now');
+
+      return {
+        title: lines[0] || '',
+        url: anchor.href,
+        location: lines.find((line) => /remote|office|belgrade|united states|europe/i.test(line)) || '',
+      };
+    });
+  });
+}
+
+async function extractSygnumJobs(page) {
+  return page.evaluate(() => {
+    const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim();
+
+    return Array.from(document.querySelectorAll('a[href*="sygnumpeopleportal.my.salesforce-sites.com/recruit/fRecruit__ApplyJob"]')).map((anchor) => {
+      const container = anchor.closest('li.result-item');
+      const lines = (container?.innerText || anchor.innerText || '')
+        .split(/\n+/)
+        .map(normalize)
+        .filter(Boolean);
+
+      return {
+        title: normalize(anchor.textContent || lines[0] || ''),
+        url: anchor.href,
+        location: lines[2] || lines[1] || '',
+      };
+    });
+  });
 }
 
 async function extractGenericJobs(page) {
