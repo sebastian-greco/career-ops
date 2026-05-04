@@ -1,27 +1,9 @@
 import { PipelineList } from "@/components/dashboard/pipeline-list";
-import type { PipelineFilter, PipelineSort, PipelineView } from "@/lib/dashboard/types";
+import { coerceFilter, coerceSearch, coerceSort, coerceView } from "@/lib/dashboard/pipeline-state";
 import { getServerCaller } from "@/lib/server/trpc/server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function coerceFilter(value?: string): PipelineFilter {
-  if (value === "evaluated" || value === "applied" || value === "interview" || value === "skip" || value === "top") {
-    return value;
-  }
-  return "all";
-}
-
-function coerceSort(value?: string): PipelineSort {
-  if (value === "date" || value === "company" || value === "status") {
-    return value;
-  }
-  return "score";
-}
-
-function coerceView(value?: string): PipelineView {
-  return value === "flat" ? "flat" : "grouped";
-}
 
 export default async function PipelinePage({
   searchParams,
@@ -32,6 +14,7 @@ export default async function PipelinePage({
   const filter = coerceFilter(typeof params.filter === "string" ? params.filter : undefined);
   const sort = coerceSort(typeof params.sort === "string" ? params.sort : undefined);
   const view = coerceView(typeof params.view === "string" ? params.view : undefined);
+  const search = coerceSearch(typeof params.q === "string" ? params.q : undefined);
   const selected = typeof params.selected === "string" ? params.selected : undefined;
 
   const caller = await getServerCaller();
@@ -56,6 +39,7 @@ export default async function PipelinePage({
         initialFilter={filter}
         initialSort={sort}
         initialView={view}
+        initialSearch={search}
         initialSelectedReportId={selected}
       />
     </div>

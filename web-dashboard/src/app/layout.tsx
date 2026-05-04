@@ -30,7 +30,7 @@ export default function RootLayout({
       lang="en"
       className={`${outfitSans.variable} ${geistMono.variable} h-full antialiased light`}
     >
-      <body className="min-h-full flex flex-col">
+      <body suppressHydrationWarning className="min-h-full flex flex-col">
         <TrpcProvider>{children}</TrpcProvider>
       </body>
     </html>

@@ -70,6 +70,7 @@ export function countFilters(applications: DashboardApplication[]) {
     evaluated: applications.filter((app) => app.statusNormalized === "evaluated").length,
     applied: applications.filter((app) => app.statusNormalized === "applied").length,
     interview: applications.filter((app) => app.statusNormalized === "interview").length,
+    rejected: applications.filter((app) => app.statusNormalized === "rejected").length,
     skip: applications.filter((app) => app.statusNormalized === "skip").length,
     top: applications.filter(
       (app) => app.score >= 4 && app.statusNormalized !== "skip",
@@ -85,9 +86,9 @@ export function statusPriority(status: string) {
       return 1;
     case "responded":
       return 2;
-    case "applied":
-      return 3;
     case "evaluated":
+      return 3;
+    case "applied":
       return 4;
     case "skip":
       return 5;

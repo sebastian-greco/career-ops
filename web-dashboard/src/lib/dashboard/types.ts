@@ -13,6 +13,7 @@ export type PipelineFilter =
   | "evaluated"
   | "applied"
   | "interview"
+  | "rejected"
   | "skip"
   | "top";
 
@@ -49,6 +50,8 @@ export interface ReportSummary {
   reportId: string;
   reportPath: string;
   title: string;
+  score: number;
+  scoreRaw: string;
   archetype: string;
   tldr: string;
   remote: string;
@@ -116,4 +119,5 @@ export interface PipelineQuery {
   filter?: PipelineFilter;
   sort?: PipelineSort;
   view?: PipelineView;
+  search?: string;
 }

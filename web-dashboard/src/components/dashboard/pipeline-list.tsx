@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { startTransition, useEffect, useMemo, useRef, useState } from "react";
 
-import { MetricChip } from "@/components/dashboard/metric-chip";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import type {
@@ -16,77 +15,18 @@ import type {
   ReportSummary,
   StatusOption,
 } from "@/lib/dashboard/types";
-import { statusPriority } from "@/lib/server/parsers/applications";
+import {
+  coerceSearch,
+  getApplicationId,
+  getFilteredApplications,
+  pipelineFilters,
+  searchApplications,
+  sortApplications,
+  statusLabel,
+  toPipelineSearchParams,
+} from "@/lib/dashboard/pipeline-state";
 import { trpc } from "@/lib/trpc/client";
 import { cn } from "@/lib/utils";
-
-const filters: Array<{ value: PipelineFilter; label: string }> = [
-  { value: "all", label: "All" },
-  { value: "evaluated", label: "Evaluated" },
-  { value: "applied", label: "Applied" },
-  { value: "interview", label: "Interview" },
-  { value: "top", label: "Top >= 4" },
-  { value: "skip", label: "Skip" },
-];
-
-const sorts: PipelineSort[] = ["score", "date", "company", "status"];
-const groupOrder = [
-  "interview",
-  "offer",
-  "responded",
-  "applied",
-  "evaluated",
-  "skip",
-  "rejected",
-  "discarded",
-];
-
-function getFilteredApplications(applications: DashboardApplication[], filter: PipelineFilter) {
-  switch (filter) {
-    case "evaluated":
-    case "applied":
-    case "interview":
-    case "skip":
-      return applications.filter((application) => application.statusNormalized === filter);
-    case "top":
-      return applications.filter(
-        (application) => application.score >= 4 && application.statusNormalized !== "skip",
-      );
-    case "all":
-    default:
-      return applications;
-  }
-}
-
-function sortApplications(applications: DashboardApplication[], sort: PipelineSort, view: PipelineView) {
-  return [...applications].sort((left, right) => {
-    if (view === "grouped") {
-      const leftPriority = statusPriority(String(left.statusNormalized));
-      const rightPriority = statusPriority(String(right.statusNormalized));
-      if (leftPriority !== rightPriority) {
-        return leftPriority - rightPriority;
-      }
-    }
-
-    switch (sort) {
-      case "date":
-        return right.date.localeCompare(left.date);
-      case "company":
-        return left.company.localeCompare(right.company);
-      case "status":
-        return view === "grouped"
-          ? right.score - left.score
-          : statusPriority(String(left.statusNormalized)) - statusPriority(String(right.statusNormalized));
-      case "score":
-      default:
-        return right.score - left.score;
-    }
-  });
-}
-
-function statusLabel(statuses: StatusOption[], value: string) {
-  return statuses.find((status) => status.id === value)?.label ?? value;
-}
 
 function scoreTone(score: number) {
   if (score >= 4.2) {
@@ -116,41 +56,19 @@ function isEditableTarget(target: EventTarget | null) {
 }
 
 function cycleSort(current: PipelineSort) {
+  const sorts: PipelineSort[] = ["score", "date", "company", "status"];
   const currentIndex = sorts.indexOf(current);
   return sorts[(currentIndex + 1) % sorts.length] ?? "score";
 }
 
 function nextFilter(current: PipelineFilter, direction: 1 | -1) {
-  const currentIndex = filters.findIndex((filter) => filter.value === current);
-  const nextIndex = (currentIndex + direction + filters.length) % filters.length;
-  return filters[nextIndex]?.value ?? "all";
+  const currentIndex = pipelineFilters.findIndex((filter) => filter.value === current);
+  const nextIndex = (currentIndex + direction + pipelineFilters.length) % pipelineFilters.length;
+  return pipelineFilters[nextIndex]?.value ?? "applied";
 }
 
 function groupCount(applications: DashboardApplication[], status: string) {
   return applications.filter((application) => application.statusNormalized === status).length;
-}
-
-function getApplicationId(application: DashboardApplication) {
-  return application.reportNumber || `row-${application.number}`;
-}
-
-function toPipelineSearchParams(filter: PipelineFilter, sort: PipelineSort, view: PipelineView, selectedId: string) {
-  const params = new URLSearchParams();
-
-  if (filter !== "all") {
-    params.set("filter", filter);
-  }
-  if (sort !== "score") {
-    params.set("sort", sort);
-  }
-  if (view !== "grouped") {
-    params.set("view", view);
-  }
-  if (selectedId) {
-    params.set("selected", selectedId);
-  }
-
-  return params.toString();
 }
 
 interface PipelineListProps {
@@ -158,6 +76,7 @@ interface PipelineListProps {
   initialFilter: PipelineFilter;
   initialSort: PipelineSort;
   initialView: PipelineView;
+  initialSearch: string;
   initialSelectedReportId?: string;
 }
 
@@ -166,16 +85,31 @@ export function PipelineList({
   initialFilter,
   initialSort,
   initialView,
+  initialSearch,
   initialSelectedReportId,
 }: PipelineListProps) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const hasExplicitFilter = searchParams.has("filter");
   const utils = trpc.useUtils();
   const selectedRowRef = useRef<HTMLTableRowElement | null>(null);
-  const [activeFilter, setActiveFilter] = useState<PipelineFilter>(initialFilter);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const [activeFilter, setActiveFilter] = useState<PipelineFilter>(() => {
+    if (hasExplicitFilter || typeof window === "undefined") {
+      return initialFilter;
+    }
+
+    const savedFilter = window.localStorage.getItem("career-ops-pipeline-filter");
+    if (savedFilter && pipelineFilters.some((filter) => filter.value === savedFilter)) {
+      return savedFilter as PipelineFilter;
+    }
+
+    return initialFilter;
+  });
   const [activeSort, setActiveSort] = useState<PipelineSort>(initialSort);
   const [activeView, setActiveView] = useState<PipelineView>(initialView);
+  const [activeSearch, setActiveSearch] = useState(initialSearch);
   const [selectedApplicationId, setSelectedApplicationId] = useState(() => {
     if (initialSelectedReportId) {
       const matchingApplication = initialSnapshot.applications.find(
@@ -191,37 +125,51 @@ export function PipelineList({
   const [statusMode, setStatusMode] = useState(false);
   const [pendingStatus, setPendingStatus] = useState("");
 
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    window.localStorage.setItem("career-ops-pipeline-filter", activeFilter);
+  }, [activeFilter]);
+
   const snapshotQuery = trpc.pipeline.snapshot.useQuery(undefined, {
     initialData: initialSnapshot,
     refetchOnWindowFocus: false,
   });
 
   const snapshot = snapshotQuery.data;
+  const normalizedSearch = coerceSearch(activeSearch);
 
   const filtered = useMemo(
-    () => sortApplications(getFilteredApplications(snapshot.applications, activeFilter), activeSort, activeView),
-    [activeFilter, activeSort, activeView, snapshot.applications],
+    () =>
+      sortApplications(
+        searchApplications(getFilteredApplications(snapshot.applications, activeFilter), normalizedSearch),
+        activeSort,
+        activeView,
+      ),
+    [activeFilter, activeSort, activeView, normalizedSearch, snapshot.applications],
   );
 
   const selected = filtered.find((application) => getApplicationId(application) === selectedApplicationId) ?? filtered[0];
   const currentStatusLabel = selected
     ? snapshot.statuses.find((status) => status.id === selected.statusNormalized)?.label ?? selected.statusRaw
     : "";
-  const selectedStateId = selected ? getApplicationId(selected) : selectedApplicationId;
-  const pipelineQuery = toPipelineSearchParams(activeFilter, activeSort, activeView, selectedStateId);
+  const selectedStateId = selected ? getApplicationId(selected) : "";
+  const pipelineQuery = toPipelineSearchParams(activeFilter, activeSort, activeView, selectedStateId, normalizedSearch);
   const pipelineHref = pipelineQuery ? `${pathname}?${pipelineQuery}` : pathname;
 
   useEffect(() => {
     selectedRowRef.current?.scrollIntoView({ block: "nearest" });
-  }, [selectedApplicationId, activeFilter, activeSort, activeView]);
+  }, [selectedApplicationId, activeFilter, activeSort, activeView, normalizedSearch]);
 
   useEffect(() => {
     const currentQuery = searchParams.toString();
-    const nextQuery = toPipelineSearchParams(activeFilter, activeSort, activeView, selectedStateId);
+    const nextQuery = toPipelineSearchParams(activeFilter, activeSort, activeView, selectedStateId, normalizedSearch);
     if (nextQuery !== currentQuery) {
       router.replace(nextQuery ? `${pathname}?${nextQuery}` : pathname, { scroll: false });
     }
-  }, [activeFilter, activeSort, activeView, pathname, router, searchParams, selectedStateId]);
+  }, [activeFilter, activeSort, activeView, normalizedSearch, pathname, router, searchParams, selectedStateId]);
 
   const summaryQuery = trpc.reports.summary.useQuery(
     { reportId: selected?.reportNumber ?? "" },
@@ -328,6 +276,13 @@ export function PipelineList({
         return;
       }
 
+      if (event.key === "/") {
+        event.preventDefault();
+        searchInputRef.current?.focus();
+        searchInputRef.current?.select();
+        return;
+      }
+
       if (event.key.toLowerCase() === "v") {
         event.preventDefault();
         setActiveView((current) => (current === "grouped" ? "flat" : "grouped"));
@@ -356,6 +311,7 @@ export function PipelineList({
             activeSort,
             activeView,
             getApplicationId(selected),
+            normalizedSearch,
           );
           const nextPipelineHref = nextQuery ? `${pathname}?${nextQuery}` : pathname;
           startTransition(() =>
@@ -377,7 +333,8 @@ export function PipelineList({
           activeFilter,
           activeSort,
           activeView,
-          selected ? getApplicationId(selected) : selectedApplicationId,
+          selected ? getApplicationId(selected) : "",
+          normalizedSearch,
         );
         const nextPipelineHref = nextQuery ? `${pathname}?${nextQuery}` : pathname;
         startTransition(() =>
@@ -422,6 +379,7 @@ export function PipelineList({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [
     activeFilter,
+    normalizedSearch,
     activeSort,
     activeView,
     filtered,
@@ -441,40 +399,22 @@ export function PipelineList({
 
   return (
     <div className="space-y-6">
-      <section className="grid gap-4 md:grid-cols-4">
-        <MetricChip label="Offers" value={String(snapshot.metrics.total)} hint="Tracker rows" />
-        <MetricChip
-          label="Average"
-          value={`${snapshot.metrics.avgScore.toFixed(1)}/5`}
-          hint={`Top ${snapshot.metrics.topScore.toFixed(1)}/5`}
-        />
-        <MetricChip label="With PDF" value={String(snapshot.metrics.withPdf)} hint="Generated CVs" />
-        <MetricChip label="Actionable" value={String(snapshot.metrics.actionable)} hint="Still in funnel" />
-      </section>
-
-      <Card>
-        <CardContent className="flex flex-wrap items-center gap-2 p-4 text-xs uppercase tracking-[0.15em] text-muted-foreground">
-          {groupOrder
-            .filter((status) => (snapshot.metrics.byStatus[status as keyof typeof snapshot.metrics.byStatus] ?? 0) > 0)
-            .map((status) => (
-              <span key={status} className="rounded-full border border-border px-3 py-1">
-                {statusLabel(snapshot.statuses, status)}:{" "}
-                {snapshot.metrics.byStatus[status as keyof typeof snapshot.metrics.byStatus] ?? 0}
-              </span>
-            ))}
-        </CardContent>
-      </Card>
-
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1.8fr)_minmax(320px,1fr)]">
         <div className="space-y-4">
           <Card>
-            <CardHeader>
-              <CardTitle>Pipeline</CardTitle>
-              <CardDescription>Interactive parity layer over the existing filesystem tracker.</CardDescription>
+            <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
+              <div>
+                <CardTitle>Pipeline</CardTitle>
+                <CardDescription>Interactive parity layer over the existing filesystem tracker.</CardDescription>
+              </div>
+              <Button variant="ghost" size="sm" onClick={() => snapshotQuery.refetch()} disabled={snapshotQuery.isFetching}>
+                <RefreshIcon className={cn("size-4", snapshotQuery.isFetching && "animate-spin")} />
+                <span className="sr-only">Refresh pipeline</span>
+              </Button>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex flex-wrap gap-2">
-                {filters.map((filter) => (
+                {pipelineFilters.map((filter) => (
                   <button
                     key={filter.value}
                     type="button"
@@ -482,8 +422,8 @@ export function PipelineList({
                     className={cn(
                       "rounded-full border px-3 py-2 text-sm font-medium transition-colors",
                       activeFilter === filter.value
-                        ? "border-primary bg-primary text-primary-foreground"
-                        : "border-border bg-background text-muted-foreground hover:text-foreground hover:bg-muted/50",
+                        ? "border-primary bg-primary text-primary-foreground shadow-xs"
+                        : "border-border/80 bg-accent/55 text-accent-foreground/80 hover:border-secondary/60 hover:bg-secondary hover:text-secondary-foreground",
                     )}
                   >
                     {filter.label} ({snapshot.filterCounts[filter.value]})
@@ -492,21 +432,34 @@ export function PipelineList({
               </div>
 
               <div className="flex flex-wrap items-center gap-2">
-                <Button variant="outline" size="sm" onClick={() => setActiveSort(cycleSort(activeSort))}>
-                  Sort: {activeSort}
-                </Button>
+                <label className="min-w-[15rem] flex-1">
+                  <span className="sr-only">Search pipeline</span>
+                  <input
+                    ref={searchInputRef}
+                    type="search"
+                    value={activeSearch}
+                    onChange={(event) => setActiveSearch(event.target.value)}
+                    placeholder="Search company or role"
+                    className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring focus:ring-1 focus:ring-ring"
+                  />
+                </label>
+                {normalizedSearch ? (
+                  <Button variant="ghost" size="sm" onClick={() => setActiveSearch("")}>
+                    Clear
+                  </Button>
+                ) : null}
                 <Button
-                  variant="outline"
+                  variant="secondary"
                   size="sm"
                   onClick={() => setActiveView((current) => (current === "grouped" ? "flat" : "grouped"))}
                 >
                   View: {activeView}
                 </Button>
-                <Button variant="outline" size="sm" onClick={() => snapshotQuery.refetch()} disabled={snapshotQuery.isFetching}>
-                  {snapshotQuery.isFetching ? "Refreshing..." : "Refresh"}
-                </Button>
+                <div className="text-xs text-muted-foreground">
+                  {filtered.length} match{filtered.length === 1 ? "" : "es"}
+                </div>
                 <div className="ml-auto text-xs text-muted-foreground">
-                  Shortcuts: j/k move, h/l tabs, s sort, v view, c status, Enter report, o url, p progress
+                  Shortcuts: j/k move, h/l tabs, / search, s sort, v view, c status, Enter report, o url, p progress
                 </div>
               </div>
 
@@ -515,12 +468,20 @@ export function PipelineList({
                   <table className="w-full border-collapse text-sm">
                     <thead className="sticky top-0 bg-muted/50 text-left text-xs uppercase tracking-[0.14em] text-muted-foreground">
                       <tr>
-                        <th className="px-4 py-3">Score</th>
-                        <th className="px-4 py-3">Company</th>
+                        <th className="px-4 py-3">
+                          <SortHeader label="Score" active={activeSort === "score"} onClick={() => setActiveSort("score")} />
+                        </th>
+                        <th className="px-4 py-3">
+                          <SortHeader label="Company" active={activeSort === "company"} onClick={() => setActiveSort("company")} />
+                        </th>
                         <th className="px-4 py-3">Role</th>
-                        <th className="px-4 py-3">Status</th>
+                        <th className="px-4 py-3">
+                          <SortHeader label="Status" active={activeSort === "status"} onClick={() => setActiveSort("status")} />
+                        </th>
                         <th className="px-4 py-3">Comp</th>
-                        <th className="px-4 py-3">Date</th>
+                        <th className="px-4 py-3">
+                          <SortHeader label="Date" active={activeSort === "date"} onClick={() => setActiveSort("date")} />
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -545,6 +506,17 @@ export function PipelineList({
                             statuses={snapshot.statuses}
                             groupCount={groupCount(filtered, String(application.statusNormalized))}
                             onSelect={() => setSelectedApplicationId(getApplicationId(application))}
+                            onOpen={() => {
+                              if (!application.reportNumber) {
+                                return;
+                              }
+
+                              startTransition(() =>
+                                router.push(
+                                  `/reports/${application.reportNumber}${pipelineQuery ? `?back=${encodeURIComponent(pipelineHref)}` : ""}`,
+                                ),
+                              );
+                            }}
                             rowRef={selected && getApplicationId(selected) === getApplicationId(application) ? selectedRowRef : undefined}
                             compEstimate={truncateComp(snapshot.summariesByReportId[application.reportNumber]?.compEstimate ?? "")}
                           />
@@ -591,7 +563,7 @@ export function PipelineList({
                   )}
                   {selected.jobUrl ? (
                     <a href={selected.jobUrl} target="_blank" rel="noreferrer">
-                      <Button variant="outline">Open Job URL</Button>
+                      <Button variant="secondary">Open Job URL</Button>
                     </a>
                   ) : null}
                 </div>
@@ -628,6 +600,7 @@ export function PipelineList({
                       ))}
                     </select>
                     <Button
+                      variant="secondary"
                       onClick={() =>
                         selected.reportNumber
                           ? updateStatusMutation.mutate({ reportId: selected.reportNumber, newStatus: pendingStatus })
@@ -657,6 +630,7 @@ function FragmentRow({
   statuses,
   groupCount,
   onSelect,
+  onOpen,
   rowRef,
   compEstimate,
 }: {
@@ -666,6 +640,7 @@ function FragmentRow({
   statuses: StatusOption[];
   groupCount: number;
   onSelect: () => void;
+  onOpen: () => void;
   rowRef?: React.RefObject<HTMLTableRowElement | null>;
   compEstimate: string;
 }) {
@@ -681,6 +656,7 @@ function FragmentRow({
       <tr
         ref={rowRef ?? undefined}
         onClick={onSelect}
+        onDoubleClick={onOpen}
         aria-selected={isSelected}
         className={cn(
           "cursor-pointer border-t border-border transition-colors",
@@ -697,6 +673,31 @@ function FragmentRow({
         <td className="px-4 py-3 text-muted-foreground">{application.date}</td>
       </tr>
     </>
+  );
+}
+
+function SortHeader({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "inline-flex items-center gap-1 font-semibold uppercase tracking-[0.14em] transition-colors",
+        active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+      )}
+    >
+      {label}
+      <span className={cn("text-[10px]", active ? "text-primary" : "text-muted-foreground/70")}>+</span>
+    </button>
+  );
+}
+
+function RefreshIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M21 12a9 9 0 1 1-2.64-6.36" />
+      <path d="M21 3v6h-6" />
+    </svg>
   );
 }
 

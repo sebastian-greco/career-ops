@@ -28,7 +28,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
             </p>
             <h1 className="text-lg font-bold tracking-tight text-foreground">Web Dashboard</h1>
           </div>
-          <nav className="flex items-center gap-1.5 rounded-full border border-border/50 bg-muted/30 p-1.5 shadow-xs">
+          <nav className="flex items-center gap-1 rounded-full border border-border/60 bg-accent/55 p-1 shadow-sm shadow-primary/5">
             {navItems.map((item) => {
               const active = currentPath?.startsWith(item.href);
               return (
@@ -38,8 +38,8 @@ export function DashboardShell({ children }: DashboardShellProps) {
                   className={cn(
                     "rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ease-out",
                     active
-                      ? "bg-primary text-primary-foreground shadow-sm ring-1 ring-ring/20"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                      ? "bg-primary text-primary-foreground shadow-sm ring-1 ring-primary/25"
+                      : "text-accent-foreground/80 hover:bg-background/75 hover:text-foreground",
                   )}
                 >
                   {item.label}

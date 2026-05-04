@@ -8,6 +8,8 @@ const tldrTableRegex = /\*\*TL;DR\*\*\s*\|\s*(.+)/i;
 const tldrColonRegex = /\*\*TL;DR:\*\*\s*(.+)/i;
 const remoteRegex = /\*\*Remote\*\*\s*\|\s*(.+)/i;
 const compRegex = /\*\*(?:Comp|Comp read|Comp verdict|Comp assessment):\*\*\s*(.+)/i;
+const scoreRegex = /\*\*Score:\*\*\s*([^\n]+)/i;
+const scoreValueRegex = /(\d+(?:\.\d+)?)\/5/;
 const titleRegex = /^#\s+(.+)$/m;
 const urlRegex = /^\*\*URL:\*\*\s*(https?:\/\/\S+)/m;
 const legitimacyRegex = /^\*\*Legitimacy:\*\*\s*(.+)$/m;
@@ -27,6 +29,8 @@ function truncate(text: string, max = 120) {
 
 export function parseReportSummary(reportPath: string, raw: string): ReportSummary {
   const title = raw.match(titleRegex)?.[1]?.trim() ?? path.basename(reportPath);
+  const scoreRaw = raw.match(scoreRegex)?.[1]?.trim() ?? "";
+  const score = Number.parseFloat(scoreRaw.match(scoreValueRegex)?.[1] ?? "0") || 0;
   const archetype =
     cleanCell(raw.match(archetypeTableRegex)?.[1] ?? raw.match(archetypeColonRegex)?.[1] ?? "");
   const tldr = truncate(
@@ -43,6 +47,8 @@ export function parseReportSummary(reportPath: string, raw: string): ReportSumma
     reportId,
     reportPath,
     title,
+    score,
+    scoreRaw,
     archetype,
     tldr,
     remote,
