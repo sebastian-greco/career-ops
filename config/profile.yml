@@ -25,6 +25,8 @@ resume:
         - "Head of Engineering"
         - "Senior Engineering Manager"
         - "Engineering Manager"
+        - "Platform Architect"
+        - "Backend Architect"
     ic:
       base_json: "resumes/ic-base.json"
       use_for:
@@ -32,7 +34,11 @@ resume:
         - "Staff Engineer"
         - "Staff Product Engineer"
         - "Principal Engineer"
+        - "Staff Software Engineer"
+        - "Principal Software Engineer"
         - "Platform Engineer"
+        - "Staff Platform Engineer"
+        - "Principal Platform Engineer"
         - "Product Engineer"
         - "Senior Backend Engineer"
         - "Senior Software Engineer"
@@ -42,6 +48,11 @@ target_roles:
     - "Director of Engineering"
     - "Senior Engineering Manager"
     - "Head of Engineering"
+  adjacent:
+    - "Platform Architect"
+    - "Backend Architect"
+    - "Staff Engineer"
+    - "Principal Engineer"
   archetypes:
     - name: "Engineering Leadership"
       level: "Senior Manager/Director"
@@ -52,6 +63,9 @@ target_roles:
     - name: "LLM / Agentic Product Engineering Leadership"
       level: "Senior Manager/Director"
       fit: "primary"
+    - name: "Platform Architect / Technical Strategy"
+      level: "Architect/Staff/Principal"
+      fit: "adjacent"
     - name: "Staff / Principal Engineer (LLM Products, Agentic Systems, Crypto)"
       level: "Staff/Principal"
       fit: "adjacent"

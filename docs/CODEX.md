@@ -35,6 +35,7 @@ npx playwright install chromium
 | Single evaluation only | `modes/_shared.md` + `modes/oferta.md` |
 | Multiple offers | `modes/_shared.md` + `modes/ofertas.md` |
 | Portal scan | `modes/_shared.md` + `modes/scan.md` |
+| Jobgether scan | `modes/_shared.md` + `modes/scan-jobgether.md` |
 | PDF generation | `modes/_shared.md` + `modes/pdf.md` |
 | Live application help | `modes/_shared.md` + `modes/apply.md` |
 | Pipeline inbox processing | `modes/_shared.md` + `modes/pipeline.md` |

@@ -44,6 +44,8 @@ title_filter:
     - "Director of Software Engineering"
     - "Director of AI Products"
     - "Director of Agentic Products"
+    - "Platform Architect"
+    - "Backend Architect"
     # Selective IC titles are handled only through explicit
     # ic_exception_company + ic_exception_titles entries below.
   negative:
@@ -132,6 +134,14 @@ search_queries:
 
   - name: Cross-portal — Frontier Staff/Principal Crypto
     query: '"Principal Engineer" OR "Staff Engineer" crypto OR blockchain OR web3 remote'
+    enabled: true
+
+  - name: Cross-portal — Platform Architect
+    query: '"Platform Architect" OR "Backend Architect" OR "Principal Platform Engineer" OR "Staff Platform Engineer" remote'
+    enabled: true
+
+  - name: Cross-portal — Staff Principal Platform Backend
+    query: '"Staff Engineer" OR "Principal Engineer" platform OR backend OR infrastructure OR reliability remote'
     enabled: true
 
   - name: Cross-portal — Crypto Leadership
@@ -523,11 +533,317 @@ tracked_companies:
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
+      - "Senior Growth Engineer"
       - "Senior Software Engineer"
       - "Senior Backend Engineer"
       - "Staff Engineer"
       - "Principal Engineer"
       - "GTM Engineer"
+    enabled: true
+
+  - name: Close
+    careers_url: https://jobs.ashbyhq.com/Close
+    notes: "Bootstrapped, profitable, remote-first CRM company with strong async culture, 5 weeks PTO, optional 4-day week at 80% pay, sabbatical, and strong autonomy signals. Mostly US hiring today, but worth tracking as a high-quality culture-fit company and for selective IC exceptions."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Senior Software Engineer - Backend"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Product Engineer"
+    enabled: true
+
+  - name: Help Scout
+    careers_url: https://jobs.ashbyhq.com/helpscout
+    notes: "Remote company with strong balance signals: flexible schedule, sabbatical after 4 years, 12 weeks parental leave, twice-yearly retreats, and a clear people-first culture. Worth tracking for leadership roles and selective IC exceptions despite many roles being US-based."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Platform Engineer"
+      - "VP of Engineering"
+    enabled: true
+
+  - name: Buildkite
+    careers_url: https://job-boards.greenhouse.io/buildkite
+    api: https://boards-api.greenhouse.io/v1/boards/buildkite/jobs
+    notes: "Remote-first developer infrastructure company with strong async culture, cool-down periods, self-care budget, profit sharing, equity, and unusually strong parental leave. Strong culture-fit target; keep for platform/leadership roles and selective IC exceptions."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Platform Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+    enabled: true
+
+  - name: Customer.io
+    careers_url: https://job-boards.greenhouse.io/customerio
+    api: https://boards-api.greenhouse.io/v1/boards/customerio/jobs
+    notes: "Remote-first product company with flexible schedules, mandatory minimum vacation, 16 weeks parental leave, strong home-office and learning allowances, and solid management/process maturity. Keep as a selective product/engineering culture-fit target with IC exceptions."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Senior Software Engineer, Backend"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+    enabled: true
+
+  - name: Fastmail
+    careers_url: https://apply.workable.com/fastmail-1/
+    scan_method: playwright
+    notes: "Bootstrapped, privacy-focused product company with strong leave policies, paid sabbatical, explicit long-term planning, and professional development support. Not as remote-native as the strongest targets, but still a credible people-first company worth tracking when compatible roles open."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+    enabled: true
+
+  - name: Checkly
+    careers_url: https://www.checklyhq.com/careers/
+    scan_method: websearch
+    scan_query: 'site:checklyhq.com/careers engineer OR manager OR director OR head'
+    notes: "Remote-first developer tooling company with strong async culture, 27 days PTO, paid parental leave, wellbeing budget, transparent pay calculator, and healthy work design. Strong people-first fit worth tracking even though the jobs site is custom."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Platform Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+    enabled: true
+
+  - name: Discourse
+    careers_url: https://www.discourse.org/jobs
+    scan_method: websearch
+    scan_query: 'site:discourse.org/jobs engineer OR manager OR director OR head'
+    notes: "Remote-first, open-source product company with five weeks vacation, transparent salary framework, strong async culture, and broad autonomy. Strong culture-fit company worth tracking even when openings are sparse or custom-hosted."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+      - "Director of Engineering"
+    enabled: true
+
+  - name: Harvest
+    careers_url: https://www.getharvest.com/careers
+    scan_method: websearch
+    scan_query: 'site:getharvest.com/careers engineer OR manager OR director OR head'
+    notes: "Independent remote-first product company with strong written culture, generous benefits, 16 weeks parental leave, winter break, learning budget, and deliberate time-respecting operating principles. Strong people-first fit worth tracking via search-first discovery."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+      - "Director of Engineering"
+    enabled: true
+
+  - name: Toggl
+    careers_url: https://toggl.com/jobs/
+    scan_method: websearch
+    scan_query: 'site:toggl.com/jobs engineer OR manager OR director OR head'
+    notes: "Bootstrapped remote company with ROWE-style flexibility, strong development budgets, sabbatical support, and a calm 40-hour work-week philosophy. Strong cultural fit and worth tracking despite the custom hiring setup."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+      - "Director of Engineering"
+    enabled: true
+
+  - name: Automattic
+    careers_url: https://automattic.com/work-with-us/
+    scan_method: websearch
+    scan_query: 'site:automattic.com/work-with-us engineer OR manager OR director OR head'
+    notes: "Distributed product company with unusually strong async maturity, open parental leave up to 6 months, sabbaticals, and deep remote operating experience. Strong culture-fit company worth tracking even when role discovery is less structured."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+      - "Director of Engineering"
+    enabled: true
+
+  - name: Whimsical
+    careers_url: https://whimsical.com/company/careers
+    scan_method: websearch
+    scan_query: 'site:whimsical.com/company/careers engineer OR manager OR director OR head'
+    notes: "Fully distributed product company with a calm 40-hour week, six weeks PTO, parental leave, equity, fair global compensation, and long-term craftsmanship culture. Strong people-first fit for selective leadership and IC opportunities."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+      - "Director of Engineering"
+    enabled: true
+
+  - name: Wistia
+    careers_url: https://wistia.com/about/careers
+    scan_method: websearch
+    scan_query: 'site:wistia.com/about/careers engineer OR manager OR director OR head'
+    notes: "Profitable product company with flexible schedules, strong parental leave, profit sharing, and explicit DEI investment. Keep as a selective people-first target via company search even though the careers page is not ATS-friendly."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+      - "Director of Engineering"
+    enabled: true
+
+  - name: SerpApi
+    careers_url: https://serpapi.com/careers
+    scan_method: websearch
+    scan_query: 'site:serpapi.com/careers engineer OR manager OR director OR head'
+    notes: "Bootstrapped remote-first developer API company with transparent books, async culture, high trust, profit sharing, and strong neurodivergent-friendly signals. Strong people-first fit worth tracking through search-based discovery."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+    enabled: true
+
+  - name: YouCanBookMe
+    careers_url: https://youcanbook.me/jobs
+    scan_method: websearch
+    scan_query: 'site:youcanbook.me/jobs engineer OR manager OR director OR head'
+    notes: "Bootstrapped remote product company with family-friendly flexibility, strong insurance and pension support, profit sharing, transparent salary model, and healthy long-term culture signals. Worth tracking as a people-first target via company search."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+      - "Director of Engineering"
+    enabled: true
+
+  - name: Giant Swarm
+    careers_url: https://giant-swarm.jobs.personio.de/
+    api: https://giant-swarm.jobs.personio.de/xml
+    api_provider: personio
+    notes: "One of the strongest explicit culture-fit targets: 4-day week, remote-first, transparent salary signals, childcare support, and a calm platform/infrastructure profile. Strong selective IC fit and worth tracking even when openings are sparse."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Platform Engineer"
+      - "Senior Platform Engineer"
+      - "Senior Software Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+    enabled: true
+
+  - name: Cycloid
+    careers_url: https://cycloid.jobs.personio.de/
+    api: https://cycloid.jobs.personio.de/xml
+    api_provider: personio
+    notes: "Strong Europe-compatible culture-fit target with explicit 4-day week, remote setup, flexible hours, and home-office support. Worth tracking despite quiet current engineering hiring because the operating model is unusually aligned."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Platform Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+      - "Director of Engineering"
+    enabled: true
+
+  - name: Paddle
+    careers_url: https://jobs.ashbyhq.com/paddle
+    notes: "Good product/infrastructure company with strong benefits, paid parental leave, pension matching, and meaningful flexibility. Not quite as calm-by-default as the top culture-fit tier, but still a strong selective target."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+      - "Director of Engineering"
+    enabled: true
+
+  - name: 1Password
+    careers_url: https://jobs.ashbyhq.com/1password
+    notes: "Remote-first security/product company with flexible core hours, strong wellness and benefits signals, and credible long-term culture quality. Strong selective IC target and worth tracking for leadership roles when they appear."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Developer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+      - "Director of Engineering"
+    enabled: true
+
+  - name: PagerDuty
+    careers_url: https://careers.pagerduty.com/jobs/search
+    scan_method: websearch
+    scan_query: 'site:careers.pagerduty.com/jobs/search engineer OR manager OR director OR head'
+    notes: "Flexible, family-friendly company with strong benefits and credible culture signals, but likely a lower-priority fit than the calmer balance-first targets because the domain and operating environment can skew more intensity-heavy. Track selectively."
+    enabled: true
+
+  - name: Contentsquare
+    careers_url: https://jobs.lever.co/contentsquare/
+    notes: "Add as Contentsquare rather than Hotjar. Good benefits, hybrid/remote flexibility, parental support, and learning investment. Keep as a selective target, but treat the old Hotjar culture signal as partially diluted after acquisition/integration."
+    enabled: true
+
+  - name: Wildbit
+    careers_url: https://wildbit.com/jobs
+    scan_method: websearch
+    scan_query: 'site:wildbit.com/jobs engineer OR manager OR director OR head'
+    notes: "One of the strongest pure culture-fit companies in the set: strict 4-day week, explicit people-first philosophy, sustainable pace, profit sharing, and strong parent-friendly signals. Even though they are not currently hiring, this is worth tracking long-term."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Platform Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+      - "Director of Engineering"
     enabled: true
 
   # -- DACH & European AI ecosystem --
@@ -608,6 +924,22 @@ tracked_companies:
     careers_url: https://job-boards.greenhouse.io/sumup
     api: https://boards-api.greenhouse.io/v1/boards/sumup/jobs
     notes: "Berlin / London. Payments fintech, EU + LATAM hiring."
+    enabled: true
+
+  - name: Awin
+    careers_url: https://job-boards.greenhouse.io/awin
+    api: https://boards-api.greenhouse.io/v1/boards/awin/jobs
+    notes: "Berlin / London / Madrid / Amsterdam. Strong EU footprint and reported 4-day work week; keep as a culture-fit product/engineering target."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Full Stack Software Engineer"
+      - "Full-Stack Software Engineer"
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Senior Platform Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
     enabled: true
 
   - name: Pliant

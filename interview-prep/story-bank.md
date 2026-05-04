@@ -123,3 +123,12 @@ This file accumulates your best interview stories over time. Each evaluation (Bl
 **R (Result):** The sabbatical gave me practical experience with LLM integration, agentic workflows, API-heavy product development, and privacy-first local deployment patterns that I can now bring back into a team environment.
 **Reflection:** AI becomes much more valuable when treated as an engineering system, not a magic layer. The combination of planning discipline, validation loops, and product judgment matters more than novelty on its own.
 **Best for questions about:** self-directed learning, AI systems, modern engineering workflows, privacy by design, building from scratch
+
+### [AI Product & Architecture] Building Riverside's first LLM microservice and flagship AI features
+**Source:** Manual story capture — Riverside
+**S (Situation):** Riverside wanted to leverage AI to extract value from podcast transcriptions, starting with automated Show Notes and later Magic Clips. At the time, we were using GPT-3 with severe context window limitations, and there was no existing AI infrastructure in the company.
+**T (Task):** Build the first LLM-powered features from scratch, overcome the technical limitations of early LLMs, and create a scalable way for other teams to build AI features without reinventing the wheel.
+**A (Action):** My team built Show Notes (summaries, chapters, timestamps) and Magic Clips (viral highlights). To make it work with GPT-3, we implemented context splitting and summarization pipelines. Recognizing this would be a company-wide need, we built it as a foundational microservice that handled quota management, transcription packaging, and context window limits. We also worked closely with Product on prompt iteration. Later, we instrumented the features to capture usage data (saves, exports, votes), which we fed to our internal AI team to train a custom fine-tuned model.
+**R (Result):** We shipped Riverside's most famous AI features. Our microservice became the backbone for all subsequent AI features built by other teams (blog posts, translations). As a Senior EM, I later used this foundation to orchestrate multi-team efforts like Video Dubbing.
+**Reflection:** Getting to market first with AI requires pragmatic engineering to bypass model limitations. But turning that into a platform capability (microservice + data flywheel for fine-tuning) is what creates lasting company value.
+**Best for questions about:** AI integration, LLMs, microservice architecture, greenfield projects, working with product, scaling AI features.

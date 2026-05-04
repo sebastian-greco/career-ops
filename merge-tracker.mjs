@@ -254,7 +254,10 @@ for (const file of tsvFiles) {
   const addition = parseTsvContent(content, file);
   if (!addition) { skipped++; continue; }
 
-  // Check for duplicate by:
+  // Check for duplicate by semantic identity, not proposed tracker row number.
+  // Row numbers in incoming TSVs can legitimately collide with unrelated entries
+  // when work is resumed later, so they are only a suggestion for new rows.
+  // Dedup by:
   // 1. Exact report number match
   // 2. Company + role fuzzy match
   const reportNum = extractReportNum(addition.report);
@@ -266,11 +269,6 @@ for (const file of tsvFiles) {
       const existingReportNum = extractReportNum(app.report);
       return existingReportNum === reportNum;
     });
-  }
-
-  if (!duplicate) {
-    // Exact entry number match
-    duplicate = existingApps.find(app => app.num === addition.num);
   }
 
   if (!duplicate) {
@@ -290,7 +288,7 @@ for (const file of tsvFiles) {
       console.log(`🔄 Update: #${duplicate.num} ${addition.company} — ${addition.role} (${oldScore}→${newScore})`);
       const lineIdx = appLines.indexOf(duplicate.raw);
       if (lineIdx >= 0) {
-        const updatedLine = `| ${duplicate.num} | ${addition.date} | ${addition.company} | ${addition.role} | ${addition.score} | ${duplicate.status} | ${duplicate.pdf} | ${addition.report} | Re-eval ${addition.date} (${oldScore}→${newScore}). ${addition.notes} |`;
+        const updatedLine = `| ${duplicate.num} | ${addition.date} | ${addition.company} | ${addition.role} | ${addition.score} | ${addition.status} | ${addition.pdf} | ${addition.report} | Re-eval ${addition.date} (${oldScore}→${newScore}). ${addition.notes} |`;
         appLines[lineIdx] = updatedLine;
         updated++;
       }

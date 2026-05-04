@@ -15,22 +15,28 @@
  *   node scan.mjs --company Cohere # scan a single company
  */
 
-import { readFileSync, writeFileSync, appendFileSync, existsSync, mkdirSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { chromium } from 'playwright';
 import yaml from 'js-yaml';
 import { classifyLiveness } from './liveness-core.mjs';
+import {
+  APPLICATIONS_PATH,
+  PIPELINE_PATH,
+  SCAN_HISTORY_PATH,
+  appendHistoryRows,
+  appendToPipeline,
+  buildIcExceptionFilter,
+  buildTitleFilter,
+  hasIcExceptionPolicy,
+  loadSeenCompanyRoles,
+  loadSeenUrls,
+  normalizeText,
+} from './scan-utils.mjs';
 const parseYaml = yaml.load;
 
 // ── Config ──────────────────────────────────────────────────────────
 
 const PORTALS_PATH = 'portals.yml';
-const SCAN_HISTORY_PATH = 'data/scan-history.tsv';
-const PIPELINE_PATH = 'data/pipeline.md';
-const APPLICATIONS_PATH = 'data/applications.md';
-
-// Ensure required directories exist (fresh setup)
-mkdirSync('data', { recursive: true });
-
 const CONCURRENCY = 10;
 const FETCH_TIMEOUT_MS = 10_000;
 const BROWSER_TIMEOUT_MS = 20_000;
@@ -38,10 +44,6 @@ const BROWSER_WAIT_MS = 1_500;
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-function normalizeText(value) {
-  return (value || '').replace(/\s+/g, ' ').trim();
 }
 
 function toAbsoluteUrl(base, value) {
@@ -70,6 +72,10 @@ function detectApi(company) {
 
   if (company.api && company.api.includes('.bamboohr.com/careers/list')) {
     return { type: 'bamboohr', url: company.api };
+  }
+
+   if (company.api && company.api.includes('.jobs.personio.de/xml')) {
+    return { type: 'personio', url: company.api };
   }
 
   const url = company.careers_url || '';
@@ -107,6 +113,14 @@ function detectApi(company) {
     return {
       type: 'bamboohr',
       url: `https://${bambooMatch[1]}.bamboohr.com/careers/list`,
+    };
+  }
+
+  const personioMatch = url.match(/https?:\/\/([^/]+)\.jobs\.personio\.de\/?/);
+  if (personioMatch) {
+    return {
+      type: 'personio',
+      url: `https://${personioMatch[1]}.jobs.personio.de/xml`,
     };
   }
 
@@ -172,7 +186,28 @@ function parseBambooHr(json, companyName, company) {
     .filter(j => j.title && j.url);
 }
 
-const PARSERS = { greenhouse: parseGreenhouse, ashby: parseAshby, lever: parseLever, bamboohr: parseBambooHr };
+function parsePersonio(xml, companyName, company) {
+  const jobs = [];
+  const positions = xml.match(/<position>([\s\S]*?)<\/position>/g) || [];
+
+  const readTag = (block, tag) => {
+    const match = block.match(new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`, 'i'));
+    return normalizeText(decodeHtmlEntities(match?.[1] || ''));
+  };
+
+  for (const block of positions) {
+    const id = readTag(block, 'id');
+    const title = readTag(block, 'name');
+    const location = readTag(block, 'office');
+    const url = id ? `${company.careers_url.replace(/\/$/, '')}/job/${id}` : company.careers_url || '';
+    if (!title || !url) continue;
+    jobs.push({ title, url, company: companyName, location });
+  }
+
+  return jobs;
+}
+
+const PARSERS = { greenhouse: parseGreenhouse, ashby: parseAshby, lever: parseLever, bamboohr: parseBambooHr, personio: parsePersonio };
 
 // ── Fetch with timeout ──────────────────────────────────────────────
 
@@ -207,6 +242,14 @@ async function fetchJsonWithRetry(url) {
   }
 }
 
+async function fetchApiPayload(url, type) {
+  if (type === 'personio') {
+    return await fetchText(url);
+  }
+
+  return await fetchJsonWithRetry(url);
+}
+
 async function fetchText(url) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS * 2);
@@ -222,49 +265,6 @@ async function fetchText(url) {
   } finally {
     clearTimeout(timer);
   }
-}
-
-// ── Title filter ────────────────────────────────────────────────────
-
-function buildTitleFilter(titleFilter) {
-  const positive = (titleFilter?.positive || []).map(k => k.toLowerCase());
-  const negative = (titleFilter?.negative || []).map(k => k.toLowerCase());
-
-  return (title) => {
-    const lower = title.toLowerCase();
-    const hasPositive = positive.length === 0 || positive.some(k => lower.includes(k));
-    const hasNegative = negative.some(k => lower.includes(k));
-    return hasPositive && !hasNegative;
-  };
-}
-
-function buildIcExceptionFilter(titleFilter) {
-  const negative = (titleFilter?.negative || []).map(k => k.toLowerCase());
-  const fallbackTitles = [
-    'senior engineer',
-    'senior software engineer',
-    'senior backend engineer',
-    'staff engineer',
-    'staff software engineer',
-    'staff backend engineer',
-    'principal engineer',
-    'principal software engineer',
-    'principal backend engineer',
-  ];
-
-  return (title, company = {}) => {
-    const lower = title.toLowerCase();
-    const hasNegative = negative.some(k => lower.includes(k));
-    if (hasNegative) return false;
-
-    const customAllow = (company.ic_exception_titles || []).map(k => k.toLowerCase());
-    const allowList = customAllow.length > 0 ? customAllow : fallbackTitles;
-    return allowList.some(k => lower.includes(k));
-  };
-}
-
-function hasIcExceptionPolicy(company = {}) {
-  return company.ic_exception_company === true || company.culture_fit_tier === 'high';
 }
 
 function decodeHtmlEntities(value) {
@@ -354,53 +354,11 @@ async function runSearchQuery(queryConfig) {
   return results;
 }
 
-// ── Dedup ───────────────────────────────────────────────────────────
-
-function loadSeenUrls() {
-  const seen = new Set();
-
-  // scan-history.tsv
-  if (existsSync(SCAN_HISTORY_PATH)) {
-    const lines = readFileSync(SCAN_HISTORY_PATH, 'utf-8').split('\n');
-    for (const line of lines.slice(1)) { // skip header
-      const url = line.split('\t')[0];
-      if (url) seen.add(url);
-    }
-  }
-
-  // pipeline.md — extract URLs from checkbox lines
-  if (existsSync(PIPELINE_PATH)) {
-    const text = readFileSync(PIPELINE_PATH, 'utf-8');
-    for (const match of text.matchAll(/- \[[ x!]\] (https?:\/\/\S+)/g)) {
-      seen.add(match[1]);
-    }
-  }
-
-  // applications.md — extract URLs from report links and any inline URLs
-  if (existsSync(APPLICATIONS_PATH)) {
-    const text = readFileSync(APPLICATIONS_PATH, 'utf-8');
-    for (const match of text.matchAll(/https?:\/\/[^\s|)]+/g)) {
-      seen.add(match[0]);
-    }
-  }
-
-  return seen;
-}
-
-function loadSeenCompanyRoles() {
-  const seen = new Set();
-  if (existsSync(APPLICATIONS_PATH)) {
-    const text = readFileSync(APPLICATIONS_PATH, 'utf-8');
-    // Parse markdown table rows: | # | Date | Company | Role | ...
-    for (const match of text.matchAll(/\|[^|]+\|[^|]+\|\s*([^|]+)\s*\|\s*([^|]+)\s*\|/g)) {
-      const company = match[1].trim().toLowerCase();
-      const role = match[2].trim().toLowerCase();
-      if (company && role && company !== 'company') {
-        seen.add(`${company}::${role}`);
-      }
-    }
-  }
-  return seen;
+function buildCompanySearchConfig(company) {
+  return {
+    name: company.name,
+    query: company.scan_query,
+  };
 }
 
 function resolveApi(company) {
@@ -733,66 +691,6 @@ async function scanBrowserCompanies(companies, state) {
   }
 }
 
-// ── Pipeline writer ─────────────────────────────────────────────────
-
-function appendToPipeline(offers) {
-  if (offers.length === 0) return;
-
-  let text = readFileSync(PIPELINE_PATH, 'utf-8');
-
-  // Find "## Pendientes" section and append after it
-  const marker = '## Pendientes';
-  const idx = text.indexOf(marker);
-  if (idx === -1) {
-    // No Pendientes section — append at end before Procesadas
-    const procIdx = text.indexOf('## Procesadas');
-    const insertAt = procIdx === -1 ? text.length : procIdx;
-    const block = `\n${marker}\n\n` + offers.map(o =>
-      `- [ ] ${o.url} | ${o.company} | ${o.title}`
-    ).join('\n') + '\n\n';
-    text = text.slice(0, insertAt) + block + text.slice(insertAt);
-  } else {
-    // Find the end of existing Pendientes content (next ## or end)
-    const afterMarker = idx + marker.length;
-    const nextSection = text.indexOf('\n## ', afterMarker);
-    const insertAt = nextSection === -1 ? text.length : nextSection;
-
-    const block = '\n' + offers.map(o =>
-      `- [ ] ${o.url} | ${o.company} | ${o.title}`
-    ).join('\n') + '\n';
-    text = text.slice(0, insertAt) + block + text.slice(insertAt);
-  }
-
-  writeFileSync(PIPELINE_PATH, text, 'utf-8');
-}
-
-function appendToScanHistory(offers, date) {
-  // Ensure file + header exist
-  if (!existsSync(SCAN_HISTORY_PATH)) {
-    writeFileSync(SCAN_HISTORY_PATH, 'url\tfirst_seen\tportal\ttitle\tcompany\tstatus\n', 'utf-8');
-  }
-
-  const lines = offers.map(o =>
-    `${o.url}\t${date}\t${o.source}\t${o.title}\t${o.company}\tadded`
-  ).join('\n') + '\n';
-
-  appendFileSync(SCAN_HISTORY_PATH, lines, 'utf-8');
-}
-
-function appendHistoryRows(rows, date) {
-  if (rows.length === 0) return;
-
-  if (!existsSync(SCAN_HISTORY_PATH)) {
-    writeFileSync(SCAN_HISTORY_PATH, 'url\tfirst_seen\tportal\ttitle\tcompany\tstatus\n', 'utf-8');
-  }
-
-  const lines = rows.map(row =>
-    `${row.url}\t${date}\t${row.source}\t${row.title}\t${row.company}\t${row.status}`
-  ).join('\n') + '\n';
-
-  appendFileSync(SCAN_HISTORY_PATH, lines, 'utf-8');
-}
-
 // ── Parallel fetch with concurrency limit ───────────────────────────
 
 async function parallelFetch(tasks, limit) {
@@ -831,15 +729,16 @@ async function main() {
   const titleFilter = buildTitleFilter(config.title_filter);
   const icExceptionFilter = buildIcExceptionFilter(config.title_filter);
 
-  // 2. Split enabled companies into API-backed and browser-backed paths
+  // 2. Split enabled companies into API-backed, browser-backed, and company-search paths
   const enabledCompanies = companies
     .filter(c => c.enabled !== false)
     .filter(c => !filterCompany || c.name.toLowerCase().includes(filterCompany))
     .map(c => ({ ...c, _api: resolveApi(c) }));
-  const apiTargets = enabledCompanies.filter(c => c._api !== null);
-  const browserTargets = enabledCompanies.filter(c => c._api === null && c.careers_url);
+  const companySearchTargets = enabledCompanies.filter(c => c.scan_method === 'websearch' && c.scan_query);
+  const apiTargets = enabledCompanies.filter(c => c._api !== null && c.scan_method !== 'websearch');
+  const browserTargets = enabledCompanies.filter(c => c._api === null && c.careers_url && c.scan_method !== 'websearch');
 
-  console.log(`Scanning ${enabledCompanies.length} companies (${apiTargets.length} API, ${browserTargets.length} browser)`);
+  console.log(`Scanning ${enabledCompanies.length} companies (${apiTargets.length} API, ${browserTargets.length} browser, ${companySearchTargets.length} company-search)`);
   if (dryRun) console.log('(dry run — no files will be written)\n');
 
   // 3. Load dedup sets
@@ -863,21 +762,34 @@ async function main() {
     errors: [],
   };
   const browserFallbackTargets = [];
+  const companySearchFallbackTargets = [];
 
   const tasks = apiTargets.map(company => async () => {
     const { type, url } = company._api;
     try {
-      const json = await fetchJsonWithRetry(url);
-      const jobs = PARSERS[type](json, company.name, company);
+      const payload = await fetchApiPayload(url, type);
+      const jobs = PARSERS[type](payload, company.name, company);
       processJobs(jobs, company, `${type}-api`, state);
     } catch (err) {
-      if (company.careers_url) browserFallbackTargets.push(company);
+      if (company.scan_query) companySearchFallbackTargets.push(company);
+      else if (company.careers_url) browserFallbackTargets.push(company);
       else state.errors.push({ company: company.name, error: err.message });
     }
   });
 
   await parallelFetch(tasks, CONCURRENCY);
   await scanBrowserCompanies([...browserTargets, ...browserFallbackTargets], state);
+
+  const companySearchTasks = [...companySearchTargets, ...companySearchFallbackTargets].map(company => async () => {
+    try {
+      const jobs = await runSearchQuery(buildCompanySearchConfig(company));
+      processJobs(jobs, company, `CompanySearch — ${company.name}`, state);
+    } catch (error) {
+      state.errors.push({ company: company.name, error: error.message });
+    }
+  });
+
+  await parallelFetch(companySearchTasks, Math.min(CONCURRENCY, 4));
 
   const searchTasks = searchQueries.map(queryConfig => async () => {
     try {

@@ -190,3 +190,24 @@ Compact proof points from extended experience that do not always fit cleanly in 
 - Kept hands-on product building current during the sabbatical rather than treating AI as a purely managerial topic.
 - Shipped production-style products across local AI, browser automation, and grounded search use cases.
 - These projects are also reflected in `resumes/ic-base.json`.
+
+---
+
+## Riverside -- Foundational LLM Microservice & First AI Features
+
+**Tags:** ai, llm, gpt-3, microservices, architecture, prompt-engineering, cross-team, product-engineering
+
+**Hero scope:** Led the team that built Riverside's first LLM features (Show Notes, Magic Clips) and architected the foundational AI microservice used by the rest of the company.
+
+**Architecture:** GPT-3 -> Node.js microservice -> Context window management (splitting/summarizing) -> Quota management & common handlers -> Fine-tuned internal model (later phase)
+
+**Key decisions:**
+- Built the first AI-driven features (Show Notes, Magic Clips) by overcoming early GPT-3 context limitations through chunking and summarization pipelines.
+- Extracted the AI orchestration into a dedicated microservice to centralize quota management, context handling, and transcription processing for the whole company.
+- Collaborated directly with Product to iterate on prompts and output quality.
+- Captured usage data (downloads, exports, upvotes) to eventually allow the internal AI team to train a fine-tuned model for Magic Clips.
+
+**Proof points:**
+- Shipped Riverside's first flagship AI features: Show Notes (automated chapters, summaries, keywords) and Magic Clips (automated viral highlights).
+- Created the foundational LLM microservice that enabled multiple other teams to build AI features (blog posts, translations, video dubbing).
+- Transitioned a prompt-engineered GPT-3 MVP into a data-flywheel that powered a custom fine-tuned model.
