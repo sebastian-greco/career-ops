@@ -190,19 +190,19 @@ tracked_companies:
     careers_url: https://job-boards.eu.greenhouse.io/polyai
     api: https://boards-api.greenhouse.io/v1/boards/polyai/jobs
     notes: "UK. Voice AI for enterprise contact centers."
-    enabled: false
+    enabled: true
 
   - name: Parloa
     careers_url: https://job-boards.eu.greenhouse.io/parloa
     api: https://boards-api.greenhouse.io/v1/boards/parloa/jobs
     notes: "Berlin EMEA. Voice AI enterprise."
-    enabled: false
+    enabled: true
 
   - name: Intercom
     careers_url: https://job-boards.greenhouse.io/intercom
     api: https://boards-api.greenhouse.io/v1/boards/intercom/jobs
     notes: "Dublin EMEA. Fin AI agent."
-    enabled: false
+    enabled: true
 
   - name: Hume AI
     careers_url: https://job-boards.greenhouse.io/humeai
@@ -295,7 +295,7 @@ tracked_companies:
     scan_method: websearch
     scan_query: 'site:liveperson.com/careers OR "liveperson" "Solutions" OR "AI" site:job-boards.greenhouse.io'
     notes: "Remote EMEA. Conversational AI enterprise."
-    enabled: false
+    enabled: true
 
   - name: Sierra
     careers_url: https://jobs.ashbyhq.com/sierra
@@ -318,7 +318,7 @@ tracked_companies:
     scan_method: websearch
     scan_query: 'site:talkdesk.com/careers "AI" OR "Solutions Architect" OR "AI Engineer"'
     notes: "Lisbon. Contact center AI. EMEA friendly."
-    enabled: false
+    enabled: true
 
   - name: Twilio
     careers_url: https://www.twilio.com/en-us/company/jobs
@@ -376,13 +376,13 @@ tracked_companies:
     scan_method: websearch
     scan_query: '"cognigy" careers "AI" OR "Solutions" OR "Engineer"'
     notes: "Dusseldorf EMEA. Conversational AI enterprise."
-    enabled: false
+    enabled: true
 
   - name: Speechmatics
     careers_url: https://job-boards.greenhouse.io/speechmatics
     api: https://boards-api.greenhouse.io/v1/boards/speechmatics/jobs
     notes: "Cambridge UK. Speech recognition platform."
-    enabled: false
+    enabled: true
 
   # -- No-Code/Low-Code & Automation --
 
@@ -859,14 +859,14 @@ tracked_companies:
     scan_method: websearch
     scan_query: 'site:jobs.ashbyhq.com/AlephAlpha'
     notes: "Heidelberg DE. Sovereign European LLM provider, enterprise & government focus."
-    enabled: false
+    enabled: true
 
   - name: DeepL
     careers_url: https://jobs.ashbyhq.com/DeepL
     scan_method: websearch
     scan_query: 'site:jobs.ashbyhq.com/DeepL'
     notes: "Cologne DE. Translation & language AI. 60+ open roles, EU/DACH heavy."
-    enabled: false
+    enabled: true
 
   - name: Black Forest Labs
     careers_url: https://job-boards.greenhouse.io/blackforestlabs
@@ -975,8 +975,8 @@ tracked_companies:
   - name: Scandit
     careers_url: https://job-boards.greenhouse.io/scandit
     api: https://boards-api.greenhouse.io/v1/boards/scandit/jobs
-    notes: "Zurich CH. Computer vision / smart data capture, ML roles."
-    enabled: false
+    notes: "Zurich CH. Smart data capture company with at least some platform/engineering-management signal; worth monitoring selectively for Swiss-compatible roles."
+    enabled: true
 
   - name: Cradle
     careers_url: https://jobs.ashbyhq.com/cradlebio
@@ -1330,3 +1330,314 @@ tracked_companies:
     scan_query: '"Maxim AI" OR "getmaxim" careers "engineer" OR "product"'
     notes: "Mostly on-site and not aligned with Europe-compatible remote preferences."
     enabled: false
+
+  - name: Mesh Payments
+    careers_url: https://meshpayments.com/careers/
+    scan_method: playwright
+    notes: "NYC / Tel Aviv. Travel and expense management fintech. Custom WP careers page — no ATS API."
+    enabled: true
+
+  # -- Newly discovered: fintech / culture-fit / crypto --
+
+  - name: Yuno
+    careers_url: https://y.uno/careers
+    scan_method: websearch
+    scan_query: 'site:jobs.lever.co/yuno "Engineering Manager" OR "Technical Lead" OR "Platform" OR "Payments"'
+    notes: "Payments orchestration platform. Remote Europe leadership roles confirmed via Lever."
+    enabled: true
+
+  - name: Pennylane
+    careers_url: https://jobs.lever.co/pennylane
+    notes: "Financial OS for European SMEs. Remote-first engineering team hiring anywhere in Europe."
+    enabled: true
+
+  - name: Metabase
+    careers_url: https://www.metabase.com/jobs
+    scan_method: websearch
+    scan_query: 'site:jobs.lever.co/metabase "Engineering Manager" OR "Backend" OR "Platform"'
+    notes: "Fully remote, async-first analytics company with strong written culture, flexibility, and high autonomy."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Software Engineer (Backend)"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Platform Engineer"
+    enabled: true
+
+  - name: Cal.com
+    careers_url: https://cal.com/jobs
+    scan_method: websearch
+    scan_query: 'site:cal-com.breezy.hr OR site:cal.com/jobs engineer OR manager OR backend'
+    notes: "Async-first, fully remote scheduling company with location-agnostic pay, 30 days PTO, and low-bureaucracy culture."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Product Engineer"
+    enabled: true
+
+  - name: MailerLite
+    careers_url: https://www.mailerlite.com/jobs
+    scan_method: websearch
+    scan_query: 'site:mailerlite.com/jobs engineer OR manager OR backend'
+    notes: "Fully remote, async-first company with strong autonomy and healthy work-life-balance signals."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+    enabled: true
+
+  - name: Avara
+    careers_url: https://avara.xyz/careers
+    scan_method: websearch
+    scan_query: 'site:avara.xyz/careers OR site:web3.career/web3-companies/aave principal OR staff OR backend OR smart contract'
+    notes: "House of web3 behind Aave. Selective remote-EU crypto target for staff/principal/backend or smart contract roles."
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Principal Engineer"
+      - "Staff Engineer"
+      - "Staff Backend Engineer"
+      - "Senior Backend Engineer"
+      - "Senior Smart Contract Engineer"
+      - "Staff Smart Contract Engineer"
+    enabled: true
+
+  - name: MoonPay
+    careers_url: https://www.moonpay.com/careers
+    scan_method: websearch
+    scan_query: 'site:jobs.lever.co/moonpay backend OR platform OR payments OR manager'
+    notes: "Crypto payments company with remote support across multiple European countries; selective crypto/platform fit."
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Backend Engineer"
+      - "Platform Engineer"
+    enabled: true
+
+  - name: Polygon Labs
+    careers_url: https://polygon.technology/careers
+    scan_method: websearch
+    scan_query: 'site:jobs.ashbyhq.com/polygon-labs "Engineering Manager" OR "Senior Engineering Manager" OR "Staff Engineer" OR "Platform"'
+    notes: "Global remote blockchain infrastructure company; good selective fit for crypto leadership or staff/platform roles."
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Senior Engineering Manager"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Staff Backend Engineer"
+      - "Platform Engineer"
+    enabled: true
+
+  - name: Tenderly
+    careers_url: https://tenderly.co/careers
+    scan_method: websearch
+    scan_query: 'site:tenderly.co/careers OR site:web3.career/web3-companies/tenderly backend OR distributed OR platform OR security'
+    notes: "Remote-Europe or Belgrade-based Web3 developer platform. Worth following long-term for strong backend/platform openings even when current roles skew blockchain-heavy."
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Lead Backend Engineer"
+      - "Senior Backend Engineer"
+      - "Senior Distributed Systems Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Platform Engineer"
+    enabled: true
+
+  - name: Uniswap Labs
+    careers_url: https://careers.uniswap.org/
+    scan_method: websearch
+    scan_query: 'site:careers.uniswap.org OR site:job-boards.greenhouse.io/uniswaplabs staff OR backend OR platform OR manager'
+    notes: "Top-tier DeFi company. Strong selective crypto fit for staff/backend/platform roles and occasional engineering management openings."
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Staff Backend Engineer"
+      - "Senior Backend Engineer"
+      - "Platform Engineer"
+      - "Principal Engineer"
+    enabled: true
+
+  - name: OP Labs
+    careers_url: https://jobs.ashbyhq.com/oplabs
+    notes: "Remote-first, location-agnostic blockchain infrastructure company. Strong selective crypto fit for platform/devx/engineering management roles."
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Platform Engineer"
+      - "Senior Software Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Developer Experience Engineer"
+    enabled: true
+
+  - name: Anchorage Digital
+    careers_url: https://www.anchorage.com/careers
+    scan_method: websearch
+    scan_query: 'site:jobs.lever.co/anchorage backend OR infrastructure OR engineering manager OR platform'
+    notes: "Institutional digital asset platform. Selective crypto/fintech target, especially for infrastructure and backend roles when Europe-compatible remote options appear."
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Staff Backend Engineer"
+      - "Senior Backend Engineer"
+      - "Platform Engineer"
+      - "Principal Engineer"
+    enabled: true
+
+  - name: Proton
+    careers_url: https://proton.me/careers
+    scan_method: websearch
+    scan_query: 'site:careers.proton.me OR site:job-boards.eu.greenhouse.io/proton engineering manager OR engineering director OR backend OR platform'
+    notes: "Swiss privacy company with distributed hiring signal across Europe. Good Swiss-aligned target despite some office-based roles."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Engineering Director"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Platform Engineer"
+    enabled: true
+
+  - name: Sygnum
+    careers_url: https://www.sygnum.com/working-at-sygnum-careers/
+    scan_method: websearch
+    scan_query: 'site:sygnum.com/working-at-sygnum-careers OR site:web3.career/web3-companies/sygnum backend OR blockchain OR platform OR engineer'
+    notes: "Swiss regulated digital asset bank. Good long-term Swiss crypto/fintech follow, especially for backend/platform roles if remote flexibility improves."
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Blockchain Engineer"
+      - "Platform Engineer"
+    enabled: true
+
+  # -- Newly discovered: Netherlands / Denmark / Nordics / Germany --
+
+  - name: Finom
+    careers_url: https://jobs.eu.lever.co/pnlfin
+    notes: "Amsterdam-based fintech with remote-first / async-first signals across Europe, 32 days PTO, and strong product/backend relevance."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Team Lead"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Platform Engineer"
+    enabled: true
+
+  - name: Pleo
+    careers_url: https://jobs.ashbyhq.com/pleo/
+    notes: "Copenhagen fintech with strong trust-and-empowerment culture signals and broad Europe-compatible remote footprint."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Platform Engineer"
+    enabled: true
+
+  - name: Lunar
+    careers_url: https://jobs.lunar.app/
+    scan_method: websearch
+    scan_query: 'site:jobs.lunar.app backend OR payments OR engineer OR manager'
+    notes: "Nordic digital bank. More hybrid than the strongest remote-first targets, but still worth monitoring for Denmark/Nordics fintech roles."
+    enabled: true
+
+  - name: Mollie
+    careers_url: https://jobs.mollie.com/
+    scan_method: websearch
+    scan_query: 'site:jobs.mollie.com engineering manager OR platform engineer OR backend'
+    notes: "Dutch payments leader. Worth tracking for platform/backend and occasional engineering management roles, even if many roles cluster around hub locations."
+    enabled: true
+
+  - name: Personio
+    careers_url: https://www.personio.com/about-personio/careers/
+    api: https://www.personio.com/api/careers/jobs/list/
+    api_provider: personio_json
+    notes: "German HR platform with remote options across Germany, the Netherlands, Spain, Ireland, and the UK. Strong product/platform relevance."
+    enabled: true
+
+  - name: Chainalysis
+    careers_url: https://jobs.ashbyhq.com/chainalysis-careers
+    notes: "Crypto/compliance company with teams in Denmark and clear remote support. Strong selective fit for crypto leadership or platform/backend roles."
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Senior Engineering Manager"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Platform Engineer"
+      - "Senior Backend Engineer"
+    enabled: true
+
+  - name: Klarna
+    careers_url: https://www.klarna.com/careers/
+    scan_method: websearch
+    scan_query: 'site:klarna.com/careers engineering manager OR backend OR platform'
+    notes: "Swedish fintech giant. Not a pure healthy-culture bet, but too relevant in Nordic fintech to ignore for selective leadership/platform roles."
+    enabled: true
+
+  - name: Vipps MobilePay
+    careers_url: https://vippsmobilepay.com/en/careers
+    scan_method: websearch
+    scan_query: 'site:vippsmobilepay.com/en/careers engineer OR manager OR backend OR platform'
+    notes: "Nordic payments company across Norway, Denmark, and Finland. Worth tracking for payments-platform and engineering leadership roles in the region."
+    enabled: true
+
+  - name: Smartly
+    careers_url: https://job-boards.greenhouse.io/smartlyio
+    api: https://boards-api.greenhouse.io/v1/boards/smartlyio/jobs
+    notes: "Finnish adtech platform with credible engineering-manager and backend/platform signals, plus reasonable work-life-balance messaging."
+    enabled: true
+
+  - name: Veriff
+    careers_url: https://www.veriff.com/careers/open-positions
+    notes: "Estonian identity platform with real engineering-manager and backend openings, including Estonia/Spain remote options. Salary may not always clear the target, but worth monitoring selectively."
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Senior Engineering Manager"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Platform Engineer"
+    enabled: true
+
+  - name: Cloudsmith
+    careers_url: https://careers.cloudsmith.com/
+    scan_method: websearch
+    scan_query: 'site:careers.cloudsmith.com engineering manager OR platform OR devops OR backend'
+    notes: "Strong remote devtools company with very relevant platform / artifact-management / supply-chain engineering work. Not Nordic, but a strong adjacent fit uncovered during the Finland pass."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Engineering Manager"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Platform Engineer"
+      - "DevOps Engineer"
+    enabled: true

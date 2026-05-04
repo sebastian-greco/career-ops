@@ -138,7 +138,7 @@ export function normalizeExternalJobUrl(url) {
   try {
     const parsed = new URL(url);
 
-    if (parsed.hostname === 'jobs.lever.co') {
+    if (parsed.hostname === 'jobs.lever.co' || parsed.hostname === 'jobs.eu.lever.co') {
       parsed.pathname = parsed.pathname.replace(/\/apply$/, '');
       parsed.search = '';
       return parsed.toString();

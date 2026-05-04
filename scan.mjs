@@ -70,6 +70,10 @@ function detectApi(company) {
     return { type: 'lever', url: company.api };
   }
 
+  if (company.api && company.api.includes('/api/careers/jobs/list')) {
+    return { type: 'personio_json', url: company.api };
+  }
+
   if (company.api && company.api.includes('.bamboohr.com/careers/list')) {
     return { type: 'bamboohr', url: company.api };
   }
@@ -207,7 +211,18 @@ function parsePersonio(xml, companyName, company) {
   return jobs;
 }
 
-const PARSERS = { greenhouse: parseGreenhouse, ashby: parseAshby, lever: parseLever, bamboohr: parseBambooHr, personio: parsePersonio };
+function parsePersonioJson(json, companyName) {
+  if (!Array.isArray(json)) return [];
+
+  return json.map((job) => ({
+    title: job.name || '',
+    url: job.id ? `https://www.personio.com/careers/${job.id}/` : '',
+    company: companyName,
+    location: Array.isArray(job.allOffices) ? job.allOffices.join(', ') : job.office || '',
+  })).filter((job) => job.title && job.url);
+}
+
+const PARSERS = { greenhouse: parseGreenhouse, ashby: parseAshby, lever: parseLever, bamboohr: parseBambooHr, personio: parsePersonio, personio_json: parsePersonioJson };
 
 // ── Fetch with timeout ──────────────────────────────────────────────
 
@@ -373,7 +388,9 @@ function pickBrowserExtractor(url) {
   if (lower.includes('clarity.ai')) return extractClarityJobs;
   if (lower.includes('doist.com')) return extractDoistJobs;
   if (lower.includes('forto.com')) return extractFortoJobs;
+  if (lower.includes('lever.co')) return extractLeverHostedJobs;
   if (lower.includes('workable.com')) return extractWorkableJobs;
+  if (lower.includes('veriff.com')) return extractVeriffJobs;
   if (lower.includes('coda.io')) return extractCodaJobs;
   if (lower.includes('vinted.com')) return extractVintedJobs;
   if (lower.includes('coreweave.com')) return extractCoreWeaveJobs;
@@ -473,8 +490,36 @@ async function extractFortoJobs(page) {
   });
 }
 
+async function extractLeverHostedJobs(page) {
+  return page.evaluate(() => {
+    const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim();
+
+    return Array.from(document.querySelectorAll('a.posting-title[href]')).map((anchor) => ({
+      title: normalize(
+        anchor.querySelector('[data-qa="posting-name"]')?.textContent
+        || anchor.querySelector('h1, h2, h3, h4, h5, h6')?.textContent
+        || ''
+      ),
+      url: anchor.href,
+      location: normalize(anchor.querySelector('.sort-by-location, .location')?.textContent || ''),
+    }));
+  });
+}
+
 async function extractWorkableJobs(page) {
   return evaluateAnchorJobs(page, 'a[href*="/job/"]');
+}
+
+async function extractVeriffJobs(page) {
+  return page.evaluate(() => {
+    const normalize = (value) => (value || '').replace(/\s+/g, ' ').trim();
+
+    return Array.from(document.querySelectorAll('a.job-item[href]')).map((anchor) => ({
+      title: normalize(anchor.getAttribute('data-title') || anchor.querySelector('.job-item__role .text-p')?.textContent || ''),
+      url: anchor.href,
+      location: normalize(anchor.getAttribute('data-location') || anchor.querySelector('.job-item__ubication .text-p')?.textContent || ''),
+    }));
+  });
 }
 
 async function extractCodaJobs() {
@@ -725,7 +770,6 @@ async function main() {
 
   const config = parseYaml(readFileSync(PORTALS_PATH, 'utf-8'));
   const companies = config.tracked_companies || [];
-  const searchQueries = (config.search_queries || []).filter(q => q.enabled !== false);
   const titleFilter = buildTitleFilter(config.title_filter);
   const icExceptionFilter = buildIcExceptionFilter(config.title_filter);
 
@@ -734,6 +778,9 @@ async function main() {
     .filter(c => c.enabled !== false)
     .filter(c => !filterCompany || c.name.toLowerCase().includes(filterCompany))
     .map(c => ({ ...c, _api: resolveApi(c) }));
+  const searchQueries = filterCompany
+    ? []
+    : (config.search_queries || []).filter(q => q.enabled !== false);
   const companySearchTargets = enabledCompanies.filter(c => c.scan_method === 'websearch' && c.scan_query);
   const apiTargets = enabledCompanies.filter(c => c._api !== null && c.scan_method !== 'websearch');
   const browserTargets = enabledCompanies.filter(c => c._api === null && c.careers_url && c.scan_method !== 'websearch');
