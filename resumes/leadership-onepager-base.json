@@ -40,7 +40,7 @@
     "title": "Profile",
     "columns": 1,
     "hidden": false,
-    "content": "<p>Engineering leader with 19+ years across the full entrepreneurial lifecycle, from running a digital agency and co-founding a startup to helping Riverside scale from 20 to 300+ people. Background spans platform strategy, monetization systems, event-driven architecture, and hands-on AI product development.</p>"
+    "content": "<p>Engineering leader with 19+ years of experience across SaaS, startups, and founder-led environments. Scaled teams and backend/platform systems at Riverside, including leading a 27-person engineering group across 4 teams.</p><p>My career spans the full entrepreneurial lifecycle, from running a digital agency and co-founding a startup to helping Riverside grow from a 20-person startup into a 300+ person company. Most recently, I focused on hands-on AI product and workflow development during a career sabbatical.</p>"
   },
   "sections": {
     "profiles": {
@@ -68,7 +68,7 @@
             "url": "",
             "label": ""
           },
-          "description": "<ul><li><p>Built AI-native products across local transcription, document-intelligence workflows, and applied retrieval systems.</p></li><li><p>Worked hands-on with on-device models, context caching, agent orchestration, and stealth-startup product scoping and architecture.</p></li></ul><p></p>",
+          "description": "<ul><li><p>Built AI-native products across local transcription, document-intelligence workflows, and applied retrieval systems.</p></li><li><p>Worked hands-on with on-device models, context caching, and agent orchestration.</p></li><li><p>Advised an Italian stealth startup as a fractional CTO, defining scope, tech stack, architecture, and an initial POC.</p></li></ul><p></p>",
           "roles": []
         },
         {
@@ -121,7 +121,7 @@
             "url": "",
             "label": ""
           },
-          "description": "<ul><li>Co-founded and led Streamix, a WebRTC video-production platform, owning product strategy and technical direction across streaming systems, backend services, and cross-platform product development.</li></ul>",
+          "description": "<ul><li><p>Co-founded and led Streamix, a WebRTC video-production platform, owning product strategy and technical direction across streaming systems, backend services, and cross-platform product development.</p></li></ul><p></p>",
           "roles": []
         },
         {
@@ -423,7 +423,10 @@
             "awards",
             "certifications",
             "references",
-            "volunteer"
+            "volunteer",
+            "education",
+            "projects",
+            "interests"
           ],
           "sidebar": []
         }
@@ -437,7 +440,7 @@
       "gapX": 4,
       "gapY": 8,
       "marginX": 25,
-      "marginY": 25,
+      "marginY": 15,
       "format": "a4",
       "locale": "en-US",
       "hideIcons": false
@@ -458,13 +461,13 @@
         "fontFamily": "Open Sans",
         "fontWeights": ["400", "600"],
         "fontSize": 10,
-        "lineHeight": 1.17
+        "lineHeight": 1.19
       },
       "heading": {
         "fontFamily": "Open Sans",
         "fontWeights": ["700", "800"],
         "fontSize": 16,
-        "lineHeight": 1.5
+        "lineHeight": 1.3
       }
     },
     "notes": ""
