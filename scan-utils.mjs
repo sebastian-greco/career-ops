@@ -10,6 +10,10 @@ export function normalizeText(value) {
   return (value || '').replace(/\s+/g, ' ').trim();
 }
 
+function normalizeCompanyMatchKey(value) {
+  return (value || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
 export function buildTitleFilter(titleFilter) {
   const positive = (titleFilter?.positive || []).map((keyword) => keyword.toLowerCase());
   const negative = (titleFilter?.negative || []).map((keyword) => keyword.toLowerCase());
@@ -44,6 +48,18 @@ export function buildIcExceptionFilter(titleFilter) {
     const customAllow = (company.ic_exception_titles || []).map((keyword) => keyword.toLowerCase());
     const allowList = customAllow.length > 0 ? customAllow : fallbackTitles;
     return allowList.some((keyword) => lower.includes(keyword));
+  };
+}
+
+export function buildExcludedCompanyFilter(titleFilter) {
+  const excluded = (titleFilter?.excluded_companies || [])
+    .map(normalizeCompanyMatchKey)
+    .filter(Boolean);
+
+  return (company = '') => {
+    const key = normalizeCompanyMatchKey(company);
+    if (!key) return false;
+    return excluded.some((item) => key.includes(item) || item.includes(key));
   };
 }
 

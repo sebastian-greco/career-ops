@@ -26,8 +26,10 @@ title_filter:
     - "Director of Engineering"
     - "Director, Engineering"
     - "Engineering Director"
-    - "Senior Director"
-    - "Sr. Director"
+    - "Senior Director of Engineering"
+    - "Senior Director, Engineering"
+    - "Sr. Director of Engineering"
+    - "Sr. Director, Engineering"
     - "Director, Engineering"
     - "Senior Engineering Manager"
     - "Senior Manager, Engineering"
@@ -93,6 +95,12 @@ title_filter:
     - "Oracle EBS"
     - "Mainframe"
     - "COBOL"
+  excluded_companies:
+    - "Uniswap Labs"
+    - "MoonPay"
+    - "Proton"
+    - "Anchorage Digital"
+    - "Spotify"
   seniority_boost:
     # These prefixes add relevance but are not required
     - "Senior"
@@ -461,8 +469,10 @@ tracked_companies:
     enabled: false
 
   - name: Attio
-    careers_url: https://jobs.ashbyhq.com/attio
-    notes: "Remote EU. AI-native CRM. Series B $52M."
+    careers_url: https://attio.com/careers
+    api: https://api.ashbyhq.com/posting-api/job-board/attio?includeCompensation=true
+    api_provider: ashby
+    notes: "AI-native CRM. Legit, well-funded ($116M total; GV/Redpoint/Balderton/Point Nine/01A). Keep tracked, but roles skew IC/GTM and Europe remote excludes Italy so fit is selective."
     enabled: true
 
   - name: Tinybird
@@ -1042,8 +1052,8 @@ tracked_companies:
 
   - name: Spotify
     careers_url: https://jobs.lever.co/spotify
-    notes: "Stockholm-based large product company; keep for Nordic culture signal more than ML adjacency."
-    enabled: true
+    notes: "Disabled: current openings consistently resolve to hybrid or geo-anchored roles that are not actionable from Italy for Sebastian's search."
+    enabled: false
 
   - name: Vinted
     careers_url: https://careers.vinted.com/jobs
@@ -1349,7 +1359,7 @@ tracked_companies:
 
   - name: MoonPay
     careers_url: https://jobs.lever.co/moonpay
-    notes: "Crypto payments company with remote support across multiple European countries; selective crypto/platform fit."
+    notes: "Disabled: recent live checks show current openings are hybrid or country-scoped remote outside Italy, creating recurring false positives for Sebastian's search."
     ic_exception_company: true
     ic_exception_titles:
       - "Engineering Manager"
@@ -1358,7 +1368,7 @@ tracked_companies:
       - "Principal Engineer"
       - "Backend Engineer"
       - "Platform Engineer"
-    enabled: true
+    enabled: false
 
   - name: Polygon Labs
     careers_url: https://jobs.ashbyhq.com/polygon-labs
@@ -1388,7 +1398,7 @@ tracked_companies:
 
   - name: Uniswap Labs
     careers_url: https://jobs.ashbyhq.com/uniswap
-    notes: "Top-tier DeFi company. Strong selective crypto fit for staff/backend/platform roles and occasional engineering management openings."
+    notes: "Disabled: recent live checks show current openings are consistently New York hybrid and not Europe-compatible remote for Sebastian's search."
     ic_exception_company: true
     ic_exception_titles:
       - "Engineering Manager"
@@ -1396,7 +1406,7 @@ tracked_companies:
       - "Senior Backend Engineer"
       - "Platform Engineer"
       - "Principal Engineer"
-    enabled: true
+    enabled: false
 
   - name: OP Labs
     careers_url: https://jobs.ashbyhq.com/oplabs
@@ -1413,7 +1423,7 @@ tracked_companies:
 
   - name: Anchorage Digital
     careers_url: https://jobs.lever.co/anchorage
-    notes: "Institutional digital asset platform. Selective crypto/fintech target, especially for infrastructure and backend roles when Europe-compatible remote options appear."
+    notes: "Disabled: recent live checks show current openings are consistently Portugal-only or US-only remote, not broad Europe-compatible remote for Sebastian's search."
     ic_exception_company: true
     ic_exception_titles:
       - "Engineering Manager"
@@ -1421,12 +1431,12 @@ tracked_companies:
       - "Senior Backend Engineer"
       - "Platform Engineer"
       - "Principal Engineer"
-    enabled: true
+    enabled: false
 
   - name: Proton
     careers_url: https://job-boards.eu.greenhouse.io/proton
     api: https://boards-api.greenhouse.io/v1/boards/proton/jobs
-    notes: "Swiss privacy company with distributed hiring signal across Europe. Good Swiss-aligned target despite some office-based roles."
+    notes: "Disabled: recent live checks show current openings are office-first or tied to named offices, creating recurring false positives for Sebastian's search."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -1436,7 +1446,7 @@ tracked_companies:
       - "Staff Engineer"
       - "Principal Engineer"
       - "Platform Engineer"
-    enabled: true
+    enabled: false
 
   - name: Sygnum
     careers_url: https://www.sygnum.com/careers-portal/

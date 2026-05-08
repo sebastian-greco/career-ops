@@ -25,6 +25,7 @@ import {
   SCAN_HISTORY_PATH,
   appendHistoryRows,
   appendToPipeline,
+  buildExcludedCompanyFilter,
   buildIcExceptionFilter,
   buildTitleFilter,
   hasIcExceptionPolicy,
@@ -782,6 +783,12 @@ function processJobs(jobs, company, source, state) {
       company: rawJob.company || company.name,
     };
 
+    if (state.excludedCompanyFilter(job.company)) {
+      state.totalFiltered++;
+      state.historyRows.push({ ...job, source, status: 'skipped_company' });
+      continue;
+    }
+
     const passesDefaultFilter = state.titleFilter(job.title);
     const passesCompanyIcException = hasIcExceptionPolicy(company) && state.icExceptionFilter(job.title, company);
 
@@ -952,6 +959,7 @@ async function main() {
   const companies = config.tracked_companies || [];
   const titleFilter = buildTitleFilter(config.title_filter);
   const icExceptionFilter = buildIcExceptionFilter(config.title_filter);
+  const excludedCompanyFilter = buildExcludedCompanyFilter(config.title_filter);
 
   // 2. Split enabled companies into API-backed, browser-backed, and company-search paths
   const enabledCompanies = companies
@@ -977,6 +985,7 @@ async function main() {
   const state = {
     titleFilter,
     icExceptionFilter,
+    excludedCompanyFilter,
     seenUrls,
     seenCompanyRoles,
     totalFound: 0,

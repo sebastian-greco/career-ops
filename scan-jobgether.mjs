@@ -5,6 +5,7 @@ import yaml from 'js-yaml';
 import {
   appendHistoryRows,
   appendToPipeline,
+  buildExcludedCompanyFilter,
   buildIcExceptionFilter,
   buildTitleFilter,
   isObviousJobgetherNonFit,
@@ -91,6 +92,27 @@ function processItems(items, helpers) {
     const normalizedUrl = normalizeExternalJobUrl(item.externalUrl);
     const historyUrl = normalizedUrl || item.externalUrl || item.jobgetherOfferUrl;
 
+    if (helpers.excludedCompanyFilter(item.company)) {
+      const result = {
+        ...item,
+        normalizedUrl,
+        status: 'skipped_invalid',
+      };
+      result.cleanupAction = 'Leave Alone';
+      results.push(result);
+
+      if (historyUrl) {
+        historyRows.push({
+          url: historyUrl,
+          source: 'Jobgether',
+          title: item.title || '(missing title)',
+          company: item.company || '(missing company)',
+          status: 'skipped_invalid',
+        });
+      }
+      continue;
+    }
+
     if (!item.company || !item.title || !item.externalUrl) {
       const result = {
         ...item,
@@ -173,6 +195,7 @@ function main() {
     portals,
     titleFilter: buildTitleFilter(portals?.title_filter),
     icExceptionFilter: buildIcExceptionFilter(portals?.title_filter),
+    excludedCompanyFilter: buildExcludedCompanyFilter(portals?.title_filter),
     seenUrls: loadSeenUrls(),
     seenCompanyRoles: loadSeenCompanyRoles(),
   };
