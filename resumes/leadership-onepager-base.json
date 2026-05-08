@@ -40,7 +40,7 @@
     "title": "Profile",
     "columns": 1,
     "hidden": false,
-    "content": "<p>Engineering leader with 19+ years of experience across SaaS, startups, and product environments. Scaled backend and platform systems at Riverside while leading a 27-person engineering group across 4 teams.</p><p>Background spans platform strategy, monetization systems, event-driven architecture, and hands-on AI product development during a recent sabbatical.</p>"
+    "content": "<p>Engineering leader with 19+ years of experience across the full entrepreneurial lifecycle, from running a digital agency and co-founding a startup to helping Riverside scale from 20 to 300+ people.</p><p>Background spans platform strategy, monetization systems, event-driven architecture, and hands-on AI product development during a recent sabbatical.</p>"
   },
   "sections": {
     "profiles": {
@@ -91,7 +91,7 @@
               "id": "019d864b-73f5-728f-9144-dd88d08237ae",
               "position": "Senior Engineering Manager (Internal Title: Group Lead)",
               "period": "01/2024 – 08/2025 | 1 year 8 months - Remote",
-              "description": "<ul><li><p>Directed a 27-person engineering group across 4 teams, working through team leads and managers across Platform, Publishing, Business, and Growth.</p></li><li><p>Served as final technical sign-off for senior backend and system design interviews across multiple orgs.</p></li><li><p>Guided the backend evolution from a monolith to event-driven architecture with Kafka and Protobuf, improving reliability, observability, and team autonomy.</p></li><li><p>Acted as an architectural reviewer across my group and partner teams, driving design reviews, technical sign-off, and cross-team coordination for complex features and platform changes.</p></li></ul><p></p>"
+              "description": "<ul><li><p>Directed a 27-person engineering group across 4 teams, working through team leads and managers across Platform, Publishing, Business, and Growth.</p></li><li><p>Owned budget and compensation planning and partnered with the CEO on evaluating and hiring VP-level engineering leaders.</p></li><li><p>Served as final technical sign-off for senior backend and system design interviews across multiple orgs.</p></li><li><p>Guided the backend evolution from a monolith to event-driven architecture with Kafka and Protobuf, improving reliability, observability, and team autonomy.</p></li><li><p>Acted as an architectural reviewer across my group and partner teams, driving design reviews, technical sign-off, and cross-team coordination for complex features and platform changes.</p></li></ul><p></p>"
             },
             {
               "id": "019d864b-b332-751e-8e7d-ee03d331fe64",
@@ -122,6 +122,23 @@
             "label": ""
           },
           "description": "<ul><li>Co-founded and led Streamix, a cloud platform for professional live video production built around WebRTC workflows.</li><li>Owned product strategy and technical direction across streaming systems, backend services, and cross-platform product development.</li></ul>",
+          "roles": []
+        },
+        {
+          "id": "0d62d2ea-822d-45de-91d1-678dc717fdf7",
+          "hidden": false,
+          "options": {
+            "showLinkInTitle": false
+          },
+          "company": "Bothmedia S.R.L.",
+          "position": "Co-Founder & Director",
+          "location": "",
+          "period": "09/2006 – 09/2017 | 11 years - Buenos Aires, Argentina",
+          "website": {
+            "url": "",
+            "label": ""
+          },
+          "description": "<ul><li><p>Co-founded and led a 6-person digital agency for 11 years, delivering web, mobile, and interactive work for agencies and enterprise clients across 5 countries.</p></li></ul><p></p>",
           "roles": []
         }
       ]
@@ -219,17 +236,29 @@
           "hidden": false,
           "icon": "",
           "iconColor": "",
-          "name": "Leadership & Architecture",
+          "name": "Leadership",
           "proficiency": "",
           "level": 0,
           "keywords": [
             "Engineering leadership",
+            "Hiring",
+            "Compensation planning",
+            "Cross-functional coordination"
+          ]
+        },
+        {
+          "id": "leadership-onepager-architecture-platforms",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "Architecture & Platforms",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
             "Platform strategy",
             "System design",
-            "Design reviews",
             "Distributed systems",
-            "Event-driven architecture",
-            "Monetization systems"
+            "Event-driven architecture"
           ]
         },
         {
@@ -237,14 +266,25 @@
           "hidden": false,
           "icon": "",
           "iconColor": "",
-          "name": "AI & Stack",
+          "name": "AI & Product",
           "proficiency": "",
           "level": 0,
           "keywords": [
             "Retrieval",
             "Context caching",
             "Agent orchestration",
-            "Workflow automation",
+            "Workflow automation"
+          ]
+        },
+        {
+          "id": "leadership-onepager-technologies",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "Technologies",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
             "Node.js",
             "TypeScript",
             "Kafka",
