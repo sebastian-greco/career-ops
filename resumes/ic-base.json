@@ -1,11 +1,11 @@
 {
   "picture": {
-    "hidden": false,
+    "hidden": true,
     "url": "/uploads/019ddde2-a353-73a5-ac0f-92f1453fc70a/pictures/1777544182590.webp",
     "size": 120,
     "rotation": 0,
     "aspectRatio": 1,
-    "borderRadius": 100,
+    "borderRadius": 10,
     "borderColor": "rgba(0, 0, 0, 0.5)",
     "borderWidth": 0,
     "shadowColor": "rgba(0, 0, 0, 0.5)",
@@ -13,7 +13,7 @@
   },
   "basics": {
     "name": "Sebastian Greco",
-    "headline": "Backend Engineering Leader",
+    "headline": "Principal Engineer | Backend, Platform & AI",
     "email": "greco.sebastian@gmail.com",
     "phone": "+39 389 464 8029",
     "location": "Seregno, Italy",
@@ -40,7 +40,7 @@
     "title": "Profile",
     "columns": 1,
     "hidden": false,
-    "content": "<p>Backend engineering leader with nearly 20 years of experience building product platforms, APIs, and distributed systems. My strongest hands-on background is in Node.js, TypeScript, NestJS, event-driven architecture, and performance work in fast-growing product environments.</p><p>At Riverside, I helped scale backend and platform systems during rapid growth, moving critical services out of a monolith and improving latency while staying close to architecture and delivery as I grew into management. I am especially drawn to backend roles where reliability, product judgment, and execution all matter at once.</p>"
+    "content": "<p>Principal-level backend and platform engineer with 19+ years of experience building product systems across SaaS, startups, and founder-led environments. My strongest hands-on background is in Node.js, TypeScript, event-driven architecture, monetization systems, performance work, and technical design for product-critical backend services.</p><p>At Riverside, I stayed close to architecture, system design, and technical sign-off as the company scaled from startup to 300+ people, helping evolve the backend from a monolith toward more observable, event-driven services. Most recently, I have stayed hands-on during my sabbatical by building AI-native products, orchestration workflows, and applied retrieval systems end to end.</p>"
   },
   "sections": {
     "profiles": {
@@ -54,6 +54,23 @@
       "columns": 1,
       "hidden": false,
       "items": [
+        {
+          "id": "career-sabbatical-ai-projects",
+          "hidden": false,
+          "options": {
+            "showLinkInTitle": false
+          },
+          "company": "Career Sabbatical",
+          "position": "Independent AI Product Development",
+          "location": "Remote",
+          "period": "08/2025 – Present",
+          "website": {
+            "url": "",
+            "label": ""
+          },
+          "description": "<ul><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://verbaspeech.app/\">Verba</a>, a macOS dictation app using on-device transcription models and local LLM cleanup for privacy-first speech workflows.</p></li><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://www.informia.com.ar/\">Informia</a>, a multi-pass document-intelligence workflow for Argentine property records using vision models, evidence scoring, and context caching.</p></li><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://falloses.com/\">FallosES</a>, an agentic legal research assistant grounded on curated public sources, with cited answers via WhatsApp and web.</p></li><li><p>Used the sabbatical to deepen hands-on expertise with retrieval, context caching, agent orchestration, and AI workflow design.</p></li></ul><p></p>",
+          "roles": []
+        },
         {
           "id": "e8d98d24-8b64-4e44-b0db-6e69f8c6ebaa",
           "hidden": false,
@@ -73,96 +90,170 @@
             {
               "id": "019d864b-73f5-728f-9144-dd88d08237ae",
               "position": "Senior Engineering Manager (Internal Title: Group Lead)",
-              "period": "01/2024 – 08/2025 | 1 year 8 months",
-              "description": "<ul><li><p>Led a group of 27 engineers and managers across 4 teams, balancing delivery, technical direction, and org design during fast growth.</p></li><li><p>Acted as an architectural reviewer for backend and platform work across multiple groups, with final sign-off on complex features touching shared infrastructure.</p></li><li><p>Helped drive the backend from a monolith toward an event-driven architecture using Kafka and Protobuf so teams could scale and ship more independently.</p></li><li><p>Stayed close to system design, backend architecture, and engineering quality while also handling budgeting, compensation planning, and team design.</p></li><li><p>Ran high-volume hiring across multiple domains, with final technical sign-off for system design and backend interviews.</p></li></ul><p></p>"
+              "period": "01/2024 – 08/2025 | 1 year 8 months - Remote",
+              "description": "<ul><li><p>Acted as an architectural reviewer across my group and partner teams, driving design reviews, technical sign-off, and cross-team coordination for complex backend and platform changes.</p></li><li><p>Guided the backend evolution from a monolith to event-driven architecture with Kafka and Protobuf, improving reliability, observability, and team autonomy.</p></li><li><p>Stayed close to system design, backend architecture, incident reviews, and engineering quality while leading a 27-person group across 4 teams.</p></li><li><p>Served as final technical sign-off for senior backend and system design interviews across multiple orgs.</p></li><li><p>Piloted AI-assisted development and review workflows across my teams, helping normalize practical use of GitHub Copilot and Cursor in production engineering work.</p></li></ul><p></p>"
             },
             {
               "id": "019d864b-b332-751e-8e7d-ee03d331fe64",
               "position": "Engineering Manager",
-              "period": "06/2022 - 01/2024 | 1 year 6 months",
-              "description": "<ul><li><p>Led the team responsible for core platform services and the main user dashboard, shipping work that crossed backend, product, and internal platform boundaries.</p></li><li><p>Built the company's first formal full-stack team from a previously flat structure, then hired and grew the team as the platform scope expanded.</p></li><li><p>Guided the extraction of critical services from the backend monolith, contributing to a 33% reduction in overall system latency.</p></li><li><p>Worked closely on API and platform design for high-traffic product surfaces, with a strong focus on reliability and performance.</p></li></ul><p></p>"
+              "period": "06/2022 - 01/2024 | 1 year 6 months - Remote",
+              "description": "<ul><li><p>Oversaw the team responsible for core platform services and the main user dashboard across billing, plans, entitlements, and payment flows.</p></li><li><p>Split critical services from the monolith and introduced end-to-end observability across backend services and Kafka flows, contributing to a 33% reduction in overall system latency.</p></li><li><p>Designed and shipped the first version of an event-driven token ledger that supported AI feature billing and enabled usage-based monetization.</p></li><li><p>Worked closely on API, platform, and monetization-system design for product-critical backend surfaces, with a strong focus on reliability and performance.</p></li></ul><p></p>"
             }
           ]
+        },
+        {
+          "id": "019e0263-d04d-774f-bdb9-0da54abbeb67",
+          "hidden": false,
+          "options": {
+            "showLinkInTitle": false
+          },
+          "company": "Riverside",
+          "position": "",
+          "location": "",
+          "period": "",
+          "website": {
+            "url": "https://riverside.com",
+            "label": ""
+          },
+          "description": "",
+          "roles": [
+            {
+              "id": "019e0263-d9ee-71cf-958b-2ce3b1289fb6",
+              "position": "Senior Full Stack Developer",
+              "period": "03/2021 – 06/2022 | 1 year 3 months - Remote",
+              "description": "<ul><li><p>Joined Riverside as one of 6 engineers and shipped core backend features that supported the product's early growth.</p></li><li><p>Took ownership of billing, payments, plans, features, and entitlements, evolving an early Stripe-and-webhooks setup into a more robust internal monetization model.</p></li><li><p>Resolved monolith and database bottlenecks that improved reliability and performance while mentoring junior engineers on architecture and design.</p></li></ul><p></p>"
+            }
+          ]
+        },
+        {
+          "id": "ab70edba-1a74-42b7-a37a-f111f1de454a",
+          "hidden": false,
+          "options": {
+            "showLinkInTitle": false
+          },
+          "company": "Streamix",
+          "position": "CEO & Co-Founder",
+          "location": "",
+          "period": "09/2017 – 03/2021 | 3 years 6 months - Milan, Italy",
+          "website": {
+            "url": "",
+            "label": ""
+          },
+          "description": "<ul><li>Co-founded and led Streamix, a pioneering cloud-based platform that democratized professional live video production using WebRTC.</li><li>Led the product strategy and technical vision, gaining deep, hands-on experience with video transcoding, streaming formats, and cross-platform mobile app development.</li><li>Successfully secured a place in the Startup Bootcamp accelerator in the Netherlands, acting as the primary spokesperson and pitching to audiences of 250+ investors.</li><li>Managed the entire startup lifecycle, from initial concept and team building to a market-ready SaaS product with a defined go-to-market strategy.</li></ul>",
+          "roles": []
+        },
+        {
+          "id": "0d62d2ea-822d-45de-91d1-678dc717fdf7",
+          "hidden": false,
+          "options": {
+            "showLinkInTitle": false
+          },
+          "company": "Bothmedia S.R.L.",
+          "position": "Co-Founder & Director",
+          "location": "",
+          "period": "09/2006 – 09/2017 | 11 years - Buenos Aires, Argentina",
+          "website": {
+            "url": "",
+            "label": ""
+          },
+          "description": "<ul><li><p>Co-founded and led a 6-person digital agency for 11 years, overseeing delivery, staffing, and client operations across web, mobile, and interactive installations. Delivered work for agencies and enterprise clients across 5 countries, including financial services projects and physical-digital campaigns for malls, airports, and retail environments.</p></li></ul><p></p>",
+          "roles": []
         }
       ]
     },
     "education": {
       "title": "Education",
       "columns": 1,
-      "hidden": false,
-      "items": []
+      "hidden": true,
+      "items": [
+        {
+          "id": "019e027e-f99f-7525-af07-9463bc02ca93",
+          "hidden": false,
+          "options": {
+            "showLinkInTitle": false
+          },
+          "school": "University of Buenos Aires",
+          "degree": "Studies in Computer Science",
+          "area": "Completed 1.5 years of coursework",
+          "grade": "",
+          "location": "Buenos Aires, Argentina",
+          "period": "2013 – 2016",
+          "website": {
+            "url": "",
+            "label": ""
+          },
+          "description": ""
+        },
+        {
+          "id": "019e027d-ba47-722e-845d-56c965ecc4a3",
+          "hidden": false,
+          "options": {
+            "showLinkInTitle": false
+          },
+          "school": "Universidad Nacional de La Matanza",
+          "degree": "Studies in Informatics Engineering",
+          "area": "Completed coursework through the 3rd year",
+          "grade": "",
+          "location": "Buenos Aires, Argentina",
+          "period": "2005 – 2009",
+          "website": {
+            "url": "",
+            "label": ""
+          },
+          "description": ""
+        }
+      ]
     },
     "projects": {
       "title": "Projects",
       "columns": 1,
-      "hidden": false,
+      "hidden": true,
       "items": [
         {
           "id": "phantom-project-verba",
           "hidden": false,
           "name": "Verba",
-          "description": "<p>Built a local-first speech-to-text app for macOS, including the product flow, licensing model, and on-device transcription pipeline. Combined transcription with local language-model cleanup so users can dictate without sending audio to the cloud.</p>",
           "period": "2026",
           "website": {
-            "label": "verbaspeech.app",
-            "url": "https://verbaspeech.app"
-          }
+            "url": "https://verbaspeech.app",
+            "label": "verbaspeech.app"
+          },
+          "description": "<p>Built a local-first speech-to-text app for macOS, including the product flow, licensing model, and on-device transcription pipeline. Combined transcription with local language-model cleanup so users can dictate without sending audio to the cloud.</p>"
         },
         {
           "id": "phantom-project-informia",
           "hidden": false,
           "name": "Informia",
-          "description": "<p>Built an AI-assisted workflow for property registry processes in Argentina, covering document extraction, review, and browser-assisted submission. Extracts key fields from scanned deeds, shows supporting evidence, and uses context caching to reduce operating cost.</p>",
           "period": "2026",
           "website": {
-            "label": "informia.com.ar",
-            "url": "https://informia.com.ar"
-          }
+            "url": "https://informia.com.ar",
+            "label": "informia.com.ar"
+          },
+          "description": "<p>Built an AI-assisted workflow for property registry processes in Argentina, covering document extraction, review, and browser-assisted submission. Extracts key fields from scanned deeds, shows supporting evidence, and uses context caching to reduce operating cost.</p>"
         },
         {
           "id": "phantom-project-falloses",
           "hidden": false,
           "name": "FallosES",
-          "description": "<p>Built a legal research assistant for Spain with a WhatsApp interface, lightweight web app, and grounded search over official sources. Maintains context and returns cited answers with concise summaries.</p>",
           "period": "2026",
           "website": {
-            "label": "falloses.com",
-            "url": "https://falloses.com"
-          }
+            "url": "https://falloses.com",
+            "label": "falloses.com"
+          },
+          "description": "<p>Built a legal research assistant for Spain with a WhatsApp interface, lightweight web app, and grounded search over official sources. Maintains context and returns cited answers with concise summaries.</p>"
         }
       ]
     },
     "skills": {
-      "title": "Core Competencies",
-      "columns": 1,
+      "title": "Backend & Technical Skills",
+      "columns": 2,
       "hidden": false,
       "items": [
-        {
-          "id": "84882e3b-967b-4d4d-a9b0-9426f0ecdbcc",
-          "hidden": false,
-          "icon": "",
-          "name": "Technologies & Platforms",
-          "proficiency": "",
-          "level": 0,
-          "keywords": [
-            "Node.js",
-            "TypeScript",
-            "NestJS",
-            "Kafka",
-            "AWS",
-            "Kubernetes",
-            "MongoDB",
-            "MySQL",
-            "Qdrant",
-            "Next.js",
-            "React",
-            "RESTful Services"
-          ]
-        },
         {
           "id": "3bf7ab31-8f55-44cb-ad06-cd34c3298c39",
           "hidden": false,
           "icon": "",
+          "iconColor": "",
           "name": "Backend & Platform",
           "proficiency": "",
           "level": 0,
@@ -171,38 +262,68 @@
             "Platform Services",
             "Backend Systems",
             "Product Infrastructure",
-            "Service Design"
+            "Monetization Systems"
           ]
         },
         {
           "id": "cf14da4f-b67f-4b07-a602-de533ffdd280",
           "hidden": false,
           "icon": "",
+          "iconColor": "",
           "name": "Architecture & Reliability",
           "proficiency": "",
           "level": 0,
           "keywords": [
-            "System Architecture",
-            "Distributed Systems",
-            "Microservices",
-            "Event-Driven Architecture",
-            "Performance Optimization"
+            "Distributed systems",
+            "Event-driven architecture",
+            "Observability",
+            "Performance optimization",
+            "System architecture"
+          ]
+        },
+        {
+          "id": "ed7fbd0f-dc71-4dd9-a5c9-943fcfc14210",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "AI Workflows",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
+            "AI coding tools",
+            "Retrieval",
+            "Context caching",
+            "Agent orchestration",
+            "Workflow automation"
           ]
         },
         {
           "id": "b304c478-f7b5-4b0b-9cc7-efb1ad07fc97",
           "hidden": false,
           "icon": "",
-          "name": "AI Tooling",
+          "iconColor": "",
+          "name": "Technologies",
           "proficiency": "",
           "level": 0,
-          "keywords": ["OpenAI", "Anthropic", "Context Caching", "Cursor"]
+          "keywords": [
+            "Node.js",
+            "TypeScript",
+            "NestJS",
+            "Next.js",
+            "React",
+            "Kafka",
+            "AWS",
+            "Kubernetes",
+            "MongoDB",
+            "MySQL",
+            "Qdrant"
+          ]
         }
       ]
     },
     "languages": {
       "title": "Languages",
-      "columns": 1,
+      "columns": 4,
       "hidden": false,
       "items": [
         {
@@ -230,13 +351,14 @@
     },
     "interests": {
       "title": "Hobbies",
-      "columns": 1,
+      "columns": 4,
       "hidden": false,
       "items": [
         {
           "id": "5a41be08-59df-4416-b118-a6d1a1b1836a",
           "hidden": false,
           "icon": "",
+          "iconColor": "",
           "name": "Being a Dad",
           "keywords": []
         },
@@ -244,6 +366,7 @@
           "id": "e4b6009a-6b83-4976-b9b9-d2613ce474e0",
           "hidden": false,
           "icon": "",
+          "iconColor": "",
           "name": "Snowboarding",
           "keywords": []
         },
@@ -251,6 +374,7 @@
           "id": "769da891-bdf0-4b24-be57-4b717b08ddfb",
           "hidden": false,
           "icon": "",
+          "iconColor": "",
           "name": "Swimming",
           "keywords": []
         },
@@ -258,6 +382,7 @@
           "id": "1d8eb697-eb89-4b3f-84d0-b30fcc293cd1",
           "hidden": false,
           "icon": "",
+          "iconColor": "",
           "name": "3d Printing and Modeling",
           "keywords": []
         }
@@ -298,100 +423,42 @@
     {
       "title": "Professional Experience",
       "columns": 1,
-      "hidden": false,
+      "hidden": true,
       "id": "019d7e72-1597-70a4-ad1f-67f7b40a67af",
       "type": "experience",
-      "items": [
-        {
-          "id": "5bc837c7-c7db-45ab-8583-de0d7a2cd1c2",
-          "hidden": false,
-          "options": {
-            "showLinkInTitle": false
-          },
-          "company": "Riverside",
-          "position": "",
-          "location": "4.5 years",
-          "period": "",
-          "website": {
-            "url": "",
-            "label": ""
-          },
-          "description": "<p></p>",
-          "roles": [
-            {
-              "id": "019d865e-7365-7707-932b-08111feb665b",
-              "position": "Senior Full Stack Developer",
-              "period": "03/2021 – 06/2022 | 1 year 3 months - Remote",
-              "description": "<ul><li><p>Joined as an early engineer and worked on core backend systems during the product's early growth, using Node.js and NestJS in a fast-moving environment.</p></li><li><p>Resolved application and database bottlenecks, improving reliability, and became a go-to engineer for backend, APIs, and technical design tradeoffs.</p></li></ul><p></p>"
-            }
-          ]
-        },
-        {
-          "id": "ab70edba-1a74-42b7-a37a-f111f1de454a",
-          "hidden": false,
-          "options": {
-            "showLinkInTitle": false
-          },
-          "company": "Streamix",
-          "position": "CEO & Co-Founder",
-          "location": "",
-          "period": "09/2017 – 03/2021 | 3 years 6 months - Milan, Italy",
-          "website": {
-            "url": "",
-            "label": ""
-          },
-          "description": "<ul><li>Co-founded and led Streamix, a cloud platform for professional live video production built around real-time collaboration and broadcasting workflows.</li><li>Owned product strategy and technical direction, with hands-on work across streaming systems, backend services, and cross-platform product development.</li><li>Took the company from idea to market-ready SaaS, covering product, engineering, hiring, and go-to-market decisions.</li></ul>",
-          "roles": []
-        },
-        {
-          "id": "0d62d2ea-822d-45de-91d1-678dc717fdf7",
-          "hidden": false,
-          "options": {
-            "showLinkInTitle": false
-          },
-          "company": "Bothmedia S.R.L.",
-          "position": "Co-Founder & Director",
-          "location": "",
-          "period": "09/2006 – 09/2017 | 11 years - Buenos Aires, Argentina",
-          "website": {
-            "url": "",
-            "label": ""
-          },
-          "description": "<ul><li><p>Co-founded and ran a digital agency for 11 years, leading delivery, client relationships, hiring, and operations.</p></li><li><p>Delivered web and mobile products for clients across the US, Spain, Argentina, Panama, and Mexico, building a strong foundation in product execution and software consulting.</p></li></ul><p></p>",
-          "roles": []
-        }
-      ]
+      "items": []
     }
   ],
   "metadata": {
-    "template": "glalie",
+    "template": "rhyhorn",
     "layout": {
       "sidebarWidth": 36,
       "pages": [
         {
-          "fullWidth": false,
+          "fullWidth": true,
           "main": [
             "summary",
-            "education",
+            "skills",
             "experience",
-            "volunteer",
-            "references",
-            "certifications",
+            "019d7e72-1597-70a4-ad1f-67f7b40a67af",
+            "projects",
+            "languages",
+            "education",
+            "interests",
+            "profiles",
+            "publications",
             "awards",
-            "publications"
+            "certifications",
+            "references",
+            "volunteer"
           ],
-          "sidebar": ["profiles", "skills"]
-        },
-        {
-          "fullWidth": false,
-          "main": ["019d7e72-1597-70a4-ad1f-67f7b40a67af", "projects"],
-          "sidebar": ["languages", "interests"]
+          "sidebar": []
         }
       ]
     },
     "css": {
       "enabled": true,
-      "value": ".page-content {\n  --page-primary-light-color: rgb(243, 242, 239);\n}\n\n.page-sidebar-background {\n  background-color: var(--page-primary-light-color);\n}\n\n.page-header .basics-items {\n  border: none;\n  padding: 0;\n  order: 3\n}\n.page-header .page-picture {\n  order: 2\n}\n\n.page-header .text-center {\n  text-align: left ;\n}\n\n.page-header .basics-name {\n  font-size: 2.8em;\n  line-height: 1;\n  color: #17535B;\n}\n\n.page-header .basics-headline {\n  font-size: 1.7em;\n  color: #17535B;\n  font-style: italic;\n}\n\n.page-section > h6 {\n  background-color: var(--page-primary-color);\n  border: none;\n  color: var(--page-secondary-color);\n  text-align: center;\n  margin-bottom: 0.8em;\n}\n\n.section-item-header {\n  padding-bottom: 0.2em;\n}\n\n.experience-item-roles {\n  border-left: 1px solid var(--page-primary-color);\n  padding-left: 10pt;\n  margin-left: 2pt;\n}\n\n.experience-item-roles li {\n  margin-inline-start: 1.5rem;\n}\n\n.basics-items svg, .basics-items i {\n  fill: var(--page-secondary-color);;\n  color: var(--page-secondary-color) !important;\n}\n.basics-items .ph-linkedin-logo {\n  position: relative;\n  top: 3px;\n}\n\n.basics-items .basics-item-email svg {\n  position: relative;\n  top: 2px;        \n}\n\n.basics-items .ph-github-logo {\n  position: relative;\n  top: 2px;\n}\n.basics-items  .basics-item-location svg {\n  position: relative;\n  bottom: 1px;\n}\n.basics-items .basics-item-location{\n  order: 10\n}\n.experience-item-role > div:first-child {\n  grid-template-columns: repeat(1, minmax(0, 1fr));\n}\n\n.experience-item-role-position {\n  font-weight: 600;\n}\n\n.page-1 .section-item-experience:nth-child(2) .experience-item-header div, .page-1 .section-item-experience:nth-child(2) .experience-item-header span {\n  display: block;\n  text-align: left;\n}\n\n.page-1 .section-item-experience:nth-child(3) .experience-item-header div, .page-1 .section-item-experience:nth-child(3) .experience-item-header span {\n  display: block;\n  text-align: left;\n}"
+      "value": ".NOPEpage-content {\n  --page-primary-light-color: rgb(243, 242, 239);\n}\n\n.NOPEpage-sidebar-background {\n  background-color: var(--page-primary-light-color);\n}\n\n.NOPEpage-header .basics-items {\n  border: none;\n  padding: 0;\n  order: 3\n}\n.NOPEpage-header .page-picture {\n  order: 2\n}\n\n.NOPEpage-header .text-center {\n  text-align: left ;\n}\n\n.NOPEpage-header .basics-name {\n  font-size: 2.8em;\n  line-height: 1;\n  color: #17535B;\n}\n\n.NOPEpage-header .basics-headline {\n  font-size: 1.7em;\n  color: #17535B;\n  font-style: italic;\n}\n\n.NOPEpage-section > h6 {\n  background-color: var(--page-primary-color);\n  border: none;\n  color: var(--page-secondary-color);\n  text-align: center;\n  margin-bottom: 0.8em;\n}\n\n.NOPEsection-item-header {\n  padding-bottom: 0.2em;\n}\n\n.experience-item-roles {\n  border-left: 1px solid var(--page-primary-color);\n  padding-left: 10pt;\n  margin-left: 2pt;\n}\n\n.experience-item-roles li {\n  margin-inline-start: 1.5rem;\n}\n\n.basics-items .ph-linkedin-logo {\n  position: relative;\n  top: 1px;\n}\n\n.basics-items .basics-item-email svg {\n  position: relative;\n  top: 1px;        \n}\n\n.basics-items .ph-github-logo {\n  position: relative;\n  top: 1px;\n}\n.basics-items  .basics-item-location svg {\n  position: relative;\n  bottom: 1px;\n}\n.basics-items .basics-item-location {\n  order: 100;\n  padding: 0;\n  border: none;\n  margin-left: auto;\n}\n\n.basics-items {\n    column-gap: 5pt;\n}\n\n.experience-item-role > div:first-child {\n  grid-template-columns: repeat(1, minmax(0, 1fr));\n}\n\n.experience-item-role-position {\n  font-weight: 600;\n}\n\n.page-1 .section-item-experience:nth-child(2) .experience-item-header div, .page-1 .section-item-experience:nth-child(2) .experience-item-header span {\n  display: block;\n  text-align: left;\n}\n\n.page-1 .section-item-experience:nth-child(3) .experience-item-header div, .page-1 .section-item-experience:nth-child(3) .experience-item-header span {\n  display: block;\n  text-align: left;\n}\n\n.experience-item-role .items-start {\n  display: flex; \n}\n.page-section-experience .section-content {\n  row-gap: 2pt\n}\n\n.page-section-skills .section-content {\n  row-gap: 4pt;\n}\n\n.experience-item-website a {\n  padding-bottom: 4pt;\n}"
     },
     "page": {
       "gapX": 4,
@@ -408,7 +475,7 @@
         "type": "hidden"
       },
       "colors": {
-        "primary": "rgba(230, 229, 226, 1)",
+        "primary": "rgba(0, 132, 209, 1)",
         "text": "rgba(0, 0, 0, 1)",
         "background": "rgba(255, 255, 255, 1)"
       }
@@ -417,14 +484,14 @@
       "body": {
         "fontFamily": "Open Sans",
         "fontWeights": ["400", "600"],
-        "fontSize": 10.5,
-        "lineHeight": 1.3
+        "fontSize": 10,
+        "lineHeight": 1.17
       },
       "heading": {
         "fontFamily": "Open Sans",
         "fontWeights": ["700", "800"],
-        "fontSize": 16.5,
-        "lineHeight": 1.7
+        "fontSize": 16,
+        "lineHeight": 1.5
       }
     },
     "notes": ""
