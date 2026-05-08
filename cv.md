@@ -1,91 +1,110 @@
-# Sebastian Greco - Engineering Leader & Founder
+# Sebastian Greco - Engineering Leader | Platform, Product & AI
 
-**Email:** [greco.sebastian​@gmail.com](mailto:greco.sebastian@gmail.com)
-**Phone:** [+39 389 464 8029](tel:+39 389 464 8029)
+**Email:** [greco.sebastian@gmail.com](mailto:greco.sebastian@gmail.com)
+**Phone:** [+39 389 464 8029](tel:+393894648029)
 **Location:** Seregno, Italy
 **LinkedIn:** [grecosebastian](https://www.linkedin.com/in/grecosebastian)
 **GitHub:** [sebastian-greco](https://github.com/sebastian-greco)
 
 ## Profile
 
-An engineering leader with nearly 20 years of experience and a founder's mindset, passionate about scaling technology and the talented teams that create it.
+Engineering leader with 19+ years of experience across SaaS, startups, and founder-led environments. Scaled teams and backend/platform systems at Riverside, including leading a 27-person engineering group across 4 teams.
 
-My career has been forged through the full entrepreneurial lifecycle: from managing clients at a digital agency to pitching investors and playing an integral role in Riverside's expansion from a 20-person startup to a 300+ person company.
+My career spans the full entrepreneurial lifecycle, from running a digital agency and co-founding a startup to helping Riverside grow from a 20-person startup into a 300+ person company. Most recently, I focused on hands-on AI product and workflow development during a career sabbatical.
 
-Proven ability to scale technical infrastructure, drive high-volume recruitment, and champion AI-driven development. As an early adopter of AI tooling, I pioneered the rollout of AI coding assistants (Cursor, GitHub Copilot) across my engineering teams at Riverside, and have continued to deepen this expertise of AI-driven development during my recent sabbatical.
+## Leadership & Technical Skills
+
+- Leadership: Engineering leadership, Org design & hiring, Coaching & mentorship, Compensation planning, Cross-functional strategy
+- Architecture & Platforms: Platform strategy, Distributed systems, Event-driven architecture, Performance optimization, Billing & monetization systems
+- AI & Product: AI coding tools, LLM applications, Retrieval & context caching, Workflow automation, Product engineering
+- Technologies: Node.js, TypeScript, NestJS, Next.js, React, Kafka, AWS, Kubernetes, MongoDB, MySQL, Qdrant
 
 ## Professional Experience
 
-### [Riverside - 4.5 years⁠](https://riverside.com/)
+### Career Sabbatical
+
+#### Independent AI Product Development
+
+08/2025 - Present | Remote
+
+- Built [Verba](https://verbaspeech.app/), a macOS dictation app using on-device transcription models and local LLM cleanup for privacy-first speech workflows.
+- Built [Informia](https://www.informia.com.ar/), a multi-pass document-intelligence workflow for Argentine property records using vision models, evidence scoring, and context caching.
+- Advised a stealth startup founder in a fractional CTO-style engagement, defining scope, tech stack, database architecture, roadmap, and an initial product skeleton and POC.
+- Used the sabbatical to deepen hands-on expertise with LLM applications, agent orchestration, retrieval, context caching, and AI workflow design.
+
+### [Riverside - 4.5 years](https://riverside.com)
 
 #### Senior Engineering Manager (Internal Title: Group Lead)
 
-01/2024 – 08/2025 | 1 year 8 months - Remote
+01/2024 - 08/2025 | 1 year 8 months - Remote
 
-- Spearheaded a group of 27 engineers and managers across 4 teams (1 platform, 3 feature), driving technical strategy during a period of rapid company growth.
-
-- Managed departmental budgets and compensation planning, partnering directly with the CEO to evaluate and hire executive engineering leadership (VPs).
-
-- Conducted 100+ interviews, serving as the definitive technical sign-off for system design, backend architecture, and cultural fit across multiple company domains.
-
-- Acted as a primary architectural reviewer across multiple engineering groups, providing critical design guidance and final sign-off on complex features impacting the core backend and shared infrastructure.
-
-- Drove the architectural evolution of the backend by leading the migration from a monolith to an event-driven architecture using Kafka and Protobuf.
-
-- Initiated the team's transition to AI-assisted coding, being the first to successfully integrate AI-generated code and review into the core system workflow.
+- Directed a 27-person engineering group across 4 teams, working through team leads and managers across Platform, Publishing, Business, and Growth, with group-level QA leadership spanning the org.
+- Owned budget and compensation planning and partnered with the CEO on evaluating and hiring VP-level engineering leaders.
+- Ran 100+ interviews and served as final technical sign-off for senior backend, system design, and culture-fit evaluation across multiple orgs.
+- Guided the backend evolution from a monolith to event-driven architecture with Kafka and Protobuf, improving reliability, observability, and team autonomy.
+- Executed a zero-downtime migration of millions of active sessions to a JWT-based architecture, protecting live recording flows where dropped sessions were unacceptable.
+- Piloted AI-assisted development and review workflows across my teams, helping normalize practical use of GitHub Copilot and Cursor in production engineering work.
 
 #### Engineering Manager
 
-06/2022 – 01/2024 | 1 year 6 months - Remote
+06/2022 - 01/2024 | 1 year 6 months - Remote
 
-- Led a full-stack team responsible for core platform services and the main user dashboard, delivering complex features that spanned multiple product domains.
-- Established the company's first formal full-stack team by consolidating engineers from a flat organizational structure, then grew the team by hiring 2 additional engineers.
-- Mentored top-performing ICs and successfully transitioned them into Team Lead roles as the Dashboard group evolved into the company's core Platform team.
-- Continued owning platform capabilities behind Riverside's plans, billing, and payment flows as that scope became part of the broader Platform team.
-- Architected and guided the team in splitting critical services from a backend monolith, a key initiative that contributed to a 33% reduction in overall system latency.
-- Designed an event-driven token ledger for AI feature consumption, giving Riverside a scalable foundation for usage-based monetization while keeping the first release intentionally lean.
+- Built Riverside's first formal full-stack team by consolidating engineers from a flat structure and hiring 2 additional engineers, growing the team to 6.
+- Oversaw the team responsible for core platform services and the main user dashboard across billing, plans, entitlements, and payment flows.
+- Coached 2 high-performing engineers into Team Lead roles as the Dashboard group evolved into Riverside's core Platform team.
+- Split critical services from the monolith and introduced end-to-end observability across backend services and Kafka flows, contributing to a 33% reduction in overall system latency.
+- Designed and shipped the first version of an event-driven token ledger that supported AI feature billing and enabled usage-based monetization.
 
 #### Senior Full Stack Developer
 
-03/2021 – 06/2022 | 1 year 3 months - Remote
+03/2021 - 06/2022 | 1 year 3 months - Remote
 
-- Joined as an early engineer, playing a key role in developing and maintaining the core backend monolith and shipping features essential to the product's early success.
-- Took ownership of Riverside's billing and payment-product logic early on, evolving a basic Stripe plus webhooks setup into a database-backed model for plans, features, and entitlements.
-- Proactively identified and resolved performance bottlenecks within the monolith and database, laying the groundwork for future architectural improvements.
-- Acted as a mentor to junior developers and took the lead on complex technical design discussions, quickly establishing myself as a senior member of the engineering team.
+- Joined Riverside as one of 6 engineers and shipped core backend features that supported the product's early growth.
+- Took ownership of billing, payments, plans, features, and entitlements, evolving an early Stripe-and-webhooks setup into a more robust internal monetization model.
+- Resolved monolith and database bottlenecks that improved reliability and performance while mentoring junior engineers on architecture and design.
 
-### Streamix - 3.5 years
+### Streamix
 
 #### CEO & Co-Founder
 
-09/2017 – 03/2021 | Milan, Italy
+09/2017 - 03/2021 | 3 years 6 months - Milan, Italy
 
 - Co-founded and led Streamix, a pioneering cloud-based platform that democratized professional live video production using WebRTC.
 - Led the product strategy and technical vision, gaining deep, hands-on experience with video transcoding, streaming formats, and cross-platform mobile app development.
 - Successfully secured a place in the Startup Bootcamp accelerator in the Netherlands, acting as the primary spokesperson and pitching to audiences of 250+ investors.
 - Managed the entire startup lifecycle, from initial concept and team building to a market-ready SaaS product with a defined go-to-market strategy.
 
-### Bothmedia SRL - 11 years
+### Bothmedia S.R.L.
 
 #### Co-Founder & Director
 
-09/2006 – 09/2017 | Buenos Aires, Argentina
+09/2006 - 09/2017 | 11 years - Buenos Aires, Argentina
 
-Co-founded and directed a successful digital agency for 11 years, leading all business operations from team building to project delivery. I managed a diverse portfolio of international clients, delivering web and mobile solutions for businesses in the US, Spain, Argentina, Panama, and Mexico.
+- Co-founded and led a 6-person digital agency for 11 years, overseeing delivery, staffing, and client operations across web, mobile, and interactive installations. Delivered work for agencies and enterprise clients across 5 countries, including financial services projects and physical-digital campaigns for malls, airports, and retail environments.
 
-## Core Competencies
+## Education
 
-- Leadership & Strategy: Engineering Leadership, Team Building & Mentorship, Platform Strategy, Agile Methodologies, Crisis Management
-- Architecture & Design: System Architecture & Design, High-Scale Systems, Microservices, Event-Driven Architecture (Kafka), Performance Optimization
-- AI Tooling: Cursor, GitHub Copilot, TUI/CLI Tools (Claude Code, OpenCode, Codex), Code Review (CodeRabbit, Github Copilot).
-- AI Integration & Arch: OpenAI, Anthropic, Open-Weight Models, AI Gateways (Vercel, OpenRouter), Context Caching.
-- Technologies & Platforms: Node.js, TypeScript, NestJS, Next.js, Kubernetes, Kafka, Qdrant, React, AWS, MongoDB, React.js, MySQL, WebRTC, RESTful Services
+### University of Buenos Aires
+
+#### Studies in Computer Science
+
+2013 - 2016 | Buenos Aires, Argentina
+
+- Completed 1.5 years of coursework.
+
+### Universidad Nacional de La Matanza
+
+#### Studies in Informatics Engineering
+
+2005 - 2009 | Buenos Aires, Argentina
+
+- Completed coursework through the 3rd year.
 
 ## Languages
 
-- English — Fluent
-- Italian — Fluent
-- Spanish — Native/Bilingual
+- English - Fluent
+- Italian - Fluent
+- Spanish - Native/Bilingual
 
 ## Hobbies
 
