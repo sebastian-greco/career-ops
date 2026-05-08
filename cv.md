@@ -42,7 +42,7 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 - Owned budget and compensation planning and partnered with the CEO on evaluating and hiring VP-level engineering leaders.
 - Ran 100+ interviews and served as final technical sign-off for senior backend, system design, and culture-fit evaluation across multiple orgs.
 - Guided the backend evolution from a monolith to event-driven architecture with Kafka and Protobuf, improving reliability, observability, and team autonomy.
-- Executed a zero-downtime migration of millions of active sessions to a JWT-based architecture, protecting live recording flows where dropped sessions were unacceptable.
+- Acted as an architectural reviewer across my group and partner teams, driving design reviews, technical sign-off, and cross-team coordination for complex features and platform changes.
 - Piloted AI-assisted development and review workflows across my teams, helping normalize practical use of GitHub Copilot and Cursor in production engineering work.
 
 #### Engineering Manager
@@ -74,7 +74,7 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 - Successfully secured a place in the Startup Bootcamp accelerator in the Netherlands, acting as the primary spokesperson and pitching to audiences of 250+ investors.
 - Managed the entire startup lifecycle, from initial concept and team building to a market-ready SaaS product with a defined go-to-market strategy.
 
-### Bothmedia S.R.L.
+### Bothmedia S.R.L
 
 #### Co-Founder & Director
 
