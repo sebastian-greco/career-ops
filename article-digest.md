@@ -71,17 +71,21 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 **Tags:** payments, billing, ledger, monetization, entitlements, stripe, fintech, token-ledger, product-platform
 
-**Hero scope:** Owned billing and payment-product logic from an early Stripe plus webhooks setup through a more mature platform model for plans, features, entitlements, and AI consumption.
+**Hero scope:** Owned billing and payment-product logic from an early Stripe plus webhooks setup through a more mature platform model for plans, features, and entitlements, then later led cross-team design review for the AI token ledger as Group Lead.
 
-**Architecture:** Stripe execution layer + internal plans/features/entitlements model + event-driven token ledger for AI consumption
+**Architecture:** Stripe execution layer + internal plans/features/entitlements model + RevenueCat bridge for mobile + event-driven token ledger for AI consumption
 
 **Key decisions:**
 - Kept Stripe as the payment execution layer while moving product logic for plans, features, and entitlements into Riverside systems.
+- During the Engineering Manager phase, owned the backend systems for billing, plans, features, entitlements, and payment flows, and later helped the mobile team integrate RevenueCat with those systems.
+- As Group Lead, led design review and coordination across two teams in the group to ship the AI token ledger rather than treating it as a single-team EM project.
 - Designed the AI token ledger as an event-driven foundation but scoped v1 to essential purchase and spending events.
 - Deferred user-facing transaction history and automated refunds until usage patterns justified them.
 
 **Proof points:**
 - Built a more robust monetization foundation without overbuilding payments primitives.
+- Helped connect mobile RevenueCat adoption to Riverside's backend monetization model.
+- Led design review and coordination across two teams to ship the token ledger for AI feature consumption.
 - Enabled faster iteration on billing behavior and AI feature consumption.
 - Created a path for later refund and credit flows without re-architecting the core model.
 

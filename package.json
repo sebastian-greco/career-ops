@@ -10,6 +10,8 @@
     "merge": "node merge-tracker.mjs",
     "pdf": "node generate-pdf.mjs",
     "resume:validate": "node validate-resume-json.mjs",
+    "resume:sync": "node sync-rxresume.mjs",
+    "tracker:app": "node sync-application-tracker.mjs",
     "sync-check": "node cv-sync-check.mjs",
     "update:check": "node update-system.mjs check",
     "update": "node update-system.mjs apply",

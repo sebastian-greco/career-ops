@@ -9,6 +9,7 @@
  *
  * Dedup: company normalized + role fuzzy match + report number match
  * If duplicate with higher score → update in-place, update report link
+ * If duplicate with same/lower score but newer status or notes → update in-place
  * Validates status against states.yml (rejects non-canonical, logs warning)
  *
  * Run: node career-ops/merge-tracker.mjs [--dry-run] [--verify]
@@ -128,6 +129,64 @@ function extractReportNum(reportStr) {
 function parseScore(s) {
   const m = s.replace(/\*\*/g, '').match(/([\d.]+)/);
   return m ? parseFloat(m[1]) : 0;
+}
+
+function statusPriority(status) {
+  const priorities = {
+    'SKIP': 0,
+    'Discarded': 1,
+    'Evaluated': 2,
+    'Applied': 3,
+    'Responded': 4,
+    'Interview': 5,
+    'Offer': 6,
+    'Rejected': 7,
+  };
+
+  return priorities[validateStatus(status)] ?? 0;
+}
+
+function shouldUpdateDuplicate(addition, duplicate) {
+  const newScore = parseScore(addition.score);
+  const oldScore = parseScore(duplicate.score);
+  if (newScore > oldScore) {
+    return { update: true, reason: 'score', newScore, oldScore };
+  }
+
+  const newStatusPriority = statusPriority(addition.status);
+  const oldStatusPriority = statusPriority(duplicate.status);
+  const notesChanged = (addition.notes || '').trim() && addition.notes.trim() !== (duplicate.notes || '').trim();
+  const reportChanged = addition.report && addition.report !== duplicate.report;
+  const statusChanged = validateStatus(addition.status) !== validateStatus(duplicate.status);
+  const dateChanged = addition.date && addition.date !== duplicate.date;
+
+  if (newStatusPriority > oldStatusPriority) {
+    return { update: true, reason: 'status', newScore, oldScore };
+  }
+
+  if (statusChanged || notesChanged || reportChanged || dateChanged) {
+    return { update: true, reason: 'metadata', newScore, oldScore };
+  }
+
+  return { update: false, reason: 'skip', newScore, oldScore };
+}
+
+function buildUpdatedLine(duplicate, addition, updateReason, oldScore, newScore) {
+  const score = newScore > oldScore ? addition.score : duplicate.score;
+  const status = updateReason === 'score' || updateReason === 'status' || updateReason === 'metadata'
+    ? addition.status
+    : duplicate.status;
+  const report = addition.report || duplicate.report;
+  const pdf = addition.pdf || duplicate.pdf;
+  const date = addition.date || duplicate.date;
+  const reasonPrefix = updateReason === 'score'
+    ? `Re-eval ${addition.date} (${oldScore}→${newScore}).`
+    : updateReason === 'status'
+      ? `Status update ${addition.date} (${duplicate.status}→${addition.status}).`
+      : `Tracker update ${addition.date}.`;
+  const notes = [reasonPrefix, addition.notes].filter(Boolean).join(' ').trim();
+
+  return `| ${duplicate.num} | ${date} | ${addition.company} | ${addition.role} | ${score} | ${status} | ${pdf} | ${report} | ${notes} |`;
 }
 
 function parseAppLine(line) {
@@ -307,19 +366,23 @@ for (const file of tsvFiles) {
   }
 
   if (duplicate) {
-    const newScore = parseScore(addition.score);
-    const oldScore = parseScore(duplicate.score);
+    const decision = shouldUpdateDuplicate(addition, duplicate);
 
-    if (newScore > oldScore) {
-      console.log(`🔄 Update: #${duplicate.num} ${addition.company} — ${addition.role} (${oldScore}→${newScore})`);
+    if (decision.update) {
+      const reasonLabel = decision.reason === 'score'
+        ? `${decision.oldScore}→${decision.newScore}`
+        : decision.reason === 'status'
+          ? `${duplicate.status}→${addition.status}`
+          : 'metadata';
+      console.log(`🔄 Update: #${duplicate.num} ${addition.company} — ${addition.role} (${reasonLabel})`);
       const lineIdx = appLines.indexOf(duplicate.raw);
       if (lineIdx >= 0) {
-        const updatedLine = `| ${duplicate.num} | ${addition.date} | ${addition.company} | ${addition.role} | ${addition.score} | ${addition.status} | ${addition.pdf} | ${addition.report} | Re-eval ${addition.date} (${oldScore}→${newScore}). ${addition.notes} |`;
+        const updatedLine = buildUpdatedLine(duplicate, addition, decision.reason, decision.oldScore, decision.newScore);
         appLines[lineIdx] = updatedLine;
         updated++;
       }
     } else {
-      console.log(`⏭️  Skip: ${addition.company} — ${addition.role} (existing #${duplicate.num} ${oldScore} >= new ${newScore})`);
+      console.log(`⏭️  Skip: ${addition.company} — ${addition.role} (existing #${duplicate.num} unchanged)`);
       skipped++;
     }
   } else {

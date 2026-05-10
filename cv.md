@@ -17,7 +17,7 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 - Leadership: Engineering leadership, Org design & hiring, Coaching & mentorship, Compensation planning, Cross-functional strategy
 - Architecture & Platforms: Platform strategy, Distributed systems, Event-driven architecture, Performance optimization, Billing & monetization systems
 - AI & Product: AI coding tools, LLM applications, Retrieval & context caching, Workflow automation, Product engineering
-- Technologies: Node.js, TypeScript, NestJS, Next.js, React, Kafka, AWS, Kubernetes, MongoDB, MySQL, Qdrant
+- Technologies: Node.js, TypeScript, NestJS, Next.js, React, Kafka, AWS, Kubernetes, Docker, MongoDB, MySQL, Qdrant
 
 ## Professional Experience
 
@@ -42,7 +42,7 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 - Owned budget and compensation planning and partnered with the CEO on evaluating and hiring VP-level engineering leaders.
 - Ran 100+ interviews and served as final technical sign-off for senior backend, system design, and culture-fit evaluation across multiple orgs.
 - Guided the backend evolution from a monolith to event-driven architecture with Kafka and Protobuf, improving reliability, observability, and team autonomy.
-- Acted as an architectural reviewer across my group and partner teams, driving design reviews, technical sign-off, and cross-team coordination for complex features and platform changes.
+- Acted as an architectural reviewer across my group and partner teams, including leading design review and coordination across two teams to ship an event-driven token ledger for AI feature consumption.
 - Piloted AI-assisted development and review workflows across my teams, helping normalize practical use of GitHub Copilot and Cursor in production engineering work.
 
 #### Engineering Manager
@@ -50,10 +50,10 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 06/2022 - 01/2024 | 1 year 6 months - Remote
 
 - Built Riverside's first formal full-stack team by consolidating engineers from a flat structure and hiring 2 additional engineers, growing the team to 6.
-- Oversaw the team responsible for core platform services and the main user dashboard across billing, plans, entitlements, and payment flows.
+- Oversaw the team responsible for core platform services and the main user dashboard across billing, plans, entitlements, and Stripe-backed payment flows.
 - Coached 2 high-performing engineers into Team Lead roles as the Dashboard group evolved into Riverside's core Platform team.
 - Split critical services from the monolith and introduced end-to-end observability across backend services and Kafka flows, contributing to a 33% reduction in overall system latency.
-- Designed and shipped the first version of an event-driven token ledger that supported AI feature billing and enabled usage-based monetization.
+- Helped the mobile team integrate RevenueCat with our backend billing, entitlements, and payment systems.
 
 #### Senior Full Stack Developer
 

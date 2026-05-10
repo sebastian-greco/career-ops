@@ -98,6 +98,28 @@ Agent(
 
 ### Mode-specific execution notes
 
+#### `apply`
+
+- This mode is browser-assisted by default.
+- The browser is read-only in this mode: inspect the live JD and visible questions, but do not fill fields, upload files, solve captchas, click through the form, or submit anything on the user's behalf.
+- Do not stop just because the current Chrome tab is blank or unrelated.
+- If the invocation includes a report id or report path, read the report and use its `**URL:**` as the default page to open in Chrome.
+- If the invocation includes a direct job URL, open that URL in Chrome yourself.
+- Only ask the user to open or paste the form manually when there is no usable URL available, the site blocks access, or the application flow requires an authenticated session you cannot continue through.
+- After opening the page, extract the live JD and visible form content first.
+- In this mode, the live JD is the primary proof source. Matching reports are supporting context only.
+- Ground answers in the following order: live JD, `cv.md`, `article-digest.md`, `modes/_profile.md`, `config/profile.yml`, then matching reports.
+- During drafting, create or update the external application tracker record through `sync-application-tracker.mjs` using `APPLICATION_TRACKER_URL`.
+- Save the extracted JD to the tracker app `jobDescriptionText` field.
+- Save a cover letter draft to the tracker app `currentDraft` field only when the live application explicitly asks for a cover letter.
+- Save only genuinely reusable substantive answers to the tracker app. Default to not saving question/answer pairs, with one explicit exception: save salary / compensation answers for recordkeeping.
+- Text-entry management / hiring / coaching experience answers are also worth saving when they are substantive narrative responses rather than a simple numeric screen.
+- Do not store identity / boilerplate questions like name, location, LinkedIn, GitHub, current company, uploads, generic work-authorization fields, simple radio/dropdown screening questions, or other short-lived form-only answers.
+- Saved question answers must default to `includeInAiContext: false`. Only mark them as AI context when the user explicitly wants that answer reused automatically later.
+- Before drafting long-form answers, search prior saved answers in the tracker app and reuse them carefully when relevant.
+- Keep the markdown tracker in sync too, but do not edit `data/applications.md` directly from `apply`; use the tracker-additions flow.
+- Generate answers without submitting the application.
+
 #### `scan-jobgether`
 
 - This mode is a browser-driven workflow, not a pure shell scan.

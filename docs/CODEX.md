@@ -54,7 +54,14 @@ layer.
 - Keep all personalization in `config/profile.yml`, `modes/_profile.md`, `article-digest.md`, or `portals.yml`.
 - Never verify a job’s live status with generic web fetch when Playwright is available.
 - Never submit an application for the user.
+- In `apply` mode, never fill fields, upload files, solve captchas, or click through the application on the user's behalf. Use the browser only to inspect the live JD and visible form questions.
 - Never add new tracker rows directly to `data/applications.md`; use the TSV addition flow and `merge-tracker.mjs`.
+- In `apply` mode, treat the live JD as the primary proof source and use reports only as supporting context.
+- In `apply` mode, sync only selective reusable application memory to the external tracker app through `APPLICATION_TRACKER_URL` when configured.
+- In `apply` mode, also keep salary / compensation answers in the tracker for recordkeeping.
+- In `apply` mode, also keep substantive text-entry management / hiring / coaching experience answers when they are reusable narratives rather than simple numeric screening answers.
+- In `apply` mode, only store a cover letter in the external tracker if the live form explicitly asks for one.
+- Saved tracker Q&A should default to `includeInAiContext: false`.
 
 ## Verification
 

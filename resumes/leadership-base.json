@@ -68,7 +68,7 @@
             "url": "",
             "label": ""
           },
-          "description": "<ul><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://verbaspeech.app/\">Verba</a>, a macOS dictation app using on-device transcription models and local LLM cleanup for privacy-first speech workflows.</p></li><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://www.informia.com.ar/\">Informia</a>, a multi-pass document-intelligence workflow for Argentine property records using vision models, evidence scoring, and context caching.</p></li><li><p>Advised a stealth startup founder in a fractional CTO-style engagement, defining scope, tech stack, database architecture, roadmap, and an initial product skeleton and POC.</p></li><li><p>Used the sabbatical to deepen hands-on expertise with LLM applications, agent orchestration, retrieval, context caching, and AI workflow design.</p></li></ul><p></p>",
+          "description": "<ul><li><p>Built AI-native products across local transcription, document-intelligence workflows, and applied retrieval systems.</p></li><li><p>Worked hands-on with on-device models, context caching, agent orchestration, and light Polar-based payment integration.</p></li><li><p>Advised an Italian stealth startup as a fractional CTO, defining scope, tech stack, architecture, and an initial POC.</p></li></ul><p></p>",
           "roles": []
         },
         {
@@ -91,37 +91,19 @@
               "id": "019d864b-73f5-728f-9144-dd88d08237ae",
               "position": "Senior Engineering Manager (Internal Title: Group Lead)",
               "period": "01/2024 – 08/2025 | 1 year 8 months - Remote",
-              "description": "<ul><li><p>Directed a 27-person engineering group across 4 teams, working through team leads and managers across Platform, Publishing, Business, and Growth, with group-level QA leadership spanning the org.</p></li><li><p>Owned budget and compensation planning and partnered with the CEO on evaluating and hiring VP-level engineering leaders.</p></li><li><p>Ran 100+ interviews and served as final technical sign-off for senior backend, system design, and culture-fit evaluation across multiple orgs.</p></li><li><p>Guided the backend evolution from a monolith to event-driven architecture with Kafka and Protobuf, improving reliability, observability, and team autonomy.</p></li><li><p>Acted as an architectural reviewer across my group and partner teams, driving design reviews, technical sign-off, and cross-team coordination for complex features and platform changes.</p></li><li><p>Piloted AI-assisted development and review workflows across my teams, helping normalize practical use of GitHub Copilot and Cursor in production engineering work.</p></li></ul><p></p>"
+              "description": "<ul><li><p>Directed a 27-person engineering group across 4 teams spanning Platform, Publishing, Business, and Growth.</p></li><li><p>Owned budget and compensation planning and partnered with the CEO on evaluating and hiring VP-level engineering leaders.</p></li><li><p>Served as final technical sign-off for senior backend and system design interviews across multiple orgs.</p></li><li><p>Guided broader backend evolution toward Kafka-based services, and led design review across two teams to ship an event-driven token ledger for AI feature consumption.</p></li><li><p>Piloted AI-assisted development and review workflows across my teams, helping normalize practical use of GitHub Copilot and Cursor in production engineering work.</p></li></ul><p></p>"
             },
             {
               "id": "019d864b-b332-751e-8e7d-ee03d331fe64",
               "position": "Engineering Manager",
               "period": "06/2022 - 01/2024 | 1 year 6 months - Remote",
-              "description": "<ul><li><p>Built Riverside's first formal full-stack team by consolidating engineers from a flat structure and hiring 2 additional engineers, growing the team to 6.</p></li><li><p>Oversaw the team responsible for core platform services and the main user dashboard across billing, plans, entitlements, and payment flows.</p></li><li><p>Coached 2 high-performing engineers into Team Lead roles as the Dashboard group evolved into Riverside's core Platform team.</p></li><li><p>Split critical services from the monolith and introduced end-to-end observability across backend services and Kafka flows, contributing to a 33% reduction in overall system latency.</p></li><li><p>Designed and shipped the first version of an event-driven token ledger that supported AI feature billing and enabled usage-based monetization.</p></li></ul><p></p>"
-            }
-          ]
-        },
-        {
-          "id": "019e0263-d04d-774f-bdb9-0da54abbeb67",
-          "hidden": false,
-          "options": {
-            "showLinkInTitle": false
-          },
-          "company": "Riverside",
-          "position": "",
-          "location": "",
-          "period": "",
-          "website": {
-            "url": "https://riverside.com",
-            "label": ""
-          },
-          "description": "",
-          "roles": [
+              "description": "<ul><li><p>Built Riverside's first formal full-stack team, growing the team to 6.</p></li><li><p>Owned core platform services plus billing, plans, entitlements, and Stripe-backed payment flows, and helped the mobile team integrate RevenueCat with our backend monetization systems.</p></li><li><p>Split critical services from the monolith and introduced end-to-end observability across backend services and Kafka flows, contributing to a 33% reduction in overall system latency.</p></li></ul><p></p>"
+            },
             {
               "id": "019e0263-d9ee-71cf-958b-2ce3b1289fb6",
               "position": "Senior Full Stack Developer",
               "period": "03/2021 – 06/2022 | 1 year 3 months - Remote",
-              "description": "<ul><li><p>Joined Riverside as one of 6 engineers and shipped core backend features that supported the product's early growth.</p></li><li><p>Took ownership of billing, payments, plans, features, and entitlements, evolving an early Stripe-and-webhooks setup into a more robust internal monetization model.</p></li><li><p>Resolved monolith and database bottlenecks that improved reliability and performance while mentoring junior engineers on architecture and design.</p></li></ul><p></p>"
+              "description": "<ul><li><p>Joined Riverside as one of 6 engineers, shipping core backend features and evolving an early Stripe-and-webhooks setup into a more robust monetization model for billing, plans, entitlements, and payments.</p></li><li><p>Resolved monolith and database bottlenecks that improved reliability and performance while mentoring junior engineers on architecture and design.</p></li></ul><p></p>"
             }
           ]
         },
@@ -139,7 +121,7 @@
             "url": "",
             "label": ""
           },
-          "description": "<ul><li>Co-founded and led Streamix, a pioneering cloud-based platform that democratized professional live video production using WebRTC.</li><li>Led the product strategy and technical vision, gaining deep, hands-on experience with video transcoding, streaming formats, and cross-platform mobile app development.</li><li>Successfully secured a place in the Startup Bootcamp accelerator in the Netherlands, acting as the primary spokesperson and pitching to audiences of 250+ investors.</li><li>Managed the entire startup lifecycle, from initial concept and team building to a market-ready SaaS product with a defined go-to-market strategy.</li></ul>",
+          "description": "<ul><li><p>Co-founded and led Streamix, a WebRTC video-production platform, owning product strategy and technical direction across streaming systems, backend services, and cross-platform product development.</p></li></ul><p></p>",
           "roles": []
         },
         {
@@ -156,7 +138,7 @@
             "url": "",
             "label": ""
           },
-          "description": "<ul><li><p>Co-founded and led a 6-person digital agency for 11 years, overseeing delivery, staffing, and client operations across web, mobile, and interactive installations. Delivered work for agencies and enterprise clients across 5 countries, including financial services projects and physical-digital campaigns for malls, airports, and retail environments.</p></li></ul><p></p>",
+          "description": "<ul><li><p>Co-founded and led a 6-person digital agency for 11 years, delivering web, mobile, and interactive work across 5 countries.</p></li></ul><p></p>",
           "roles": []
         }
       ]
@@ -245,7 +227,7 @@
       ]
     },
     "skills": {
-      "title": "Leadership & Technical Skills",
+      "title": "Core Skills",
       "columns": 2,
       "hidden": false,
       "items": [
@@ -259,14 +241,13 @@
           "level": 0,
           "keywords": [
             "Engineering leadership",
-            "Org design & hiring",
-            "Coaching & mentorship",
+            "Hiring",
             "Compensation planning",
-            "Cross-functional strategy"
+            "Cross-functional coordination"
           ]
         },
         {
-          "id": "cf14da4f-b67f-4b07-a602-de533ffdd280",
+          "id": "leadership-onepager-architecture-platforms",
           "hidden": false,
           "icon": "",
           "iconColor": "",
@@ -275,14 +256,13 @@
           "level": 0,
           "keywords": [
             "Platform strategy",
+            "System design",
             "Distributed systems",
-            "Event-driven architecture",
-            "Performance optimization",
-            "Billing & monetization systems"
+            "Event-driven architecture"
           ]
         },
         {
-          "id": "ed7fbd0f-dc71-4dd9-a5c9-943fcfc14210",
+          "id": "leadership-onepager-ai-stack",
           "hidden": false,
           "icon": "",
           "iconColor": "",
@@ -290,15 +270,14 @@
           "proficiency": "",
           "level": 0,
           "keywords": [
-            "AI coding tools",
-            "LLM applications",
-            "Retrieval & context caching",
-            "Workflow automation",
-            "Product engineering"
+            "Retrieval",
+            "Context caching",
+            "Agent orchestration",
+            "Workflow automation"
           ]
         },
         {
-          "id": "b304c478-f7b5-4b0b-9cc7-efb1ad07fc97",
+          "id": "leadership-onepager-technologies",
           "hidden": false,
           "icon": "",
           "iconColor": "",
@@ -309,14 +288,11 @@
             "Node.js",
             "TypeScript",
             "NestJS",
-            "Next.js",
-            "React",
             "Kafka",
             "AWS",
             "Kubernetes",
             "MongoDB",
-            "MySQL",
-            "Qdrant"
+            "React"
           ]
         }
       ]
@@ -324,7 +300,7 @@
     "languages": {
       "title": "Languages",
       "columns": 4,
-      "hidden": false,
+      "hidden": true,
       "items": [
         {
           "id": "2da1fb9a-669b-4688-bcd0-a7d1880492cb",
@@ -352,7 +328,7 @@
     "interests": {
       "title": "Hobbies",
       "columns": 4,
-      "hidden": false,
+      "hidden": true,
       "items": [
         {
           "id": "5a41be08-59df-4416-b118-a6d1a1b1836a",
@@ -441,16 +417,16 @@
             "skills",
             "experience",
             "019d7e72-1597-70a4-ad1f-67f7b40a67af",
-            "projects",
             "languages",
-            "education",
-            "interests",
             "profiles",
             "publications",
             "awards",
             "certifications",
             "references",
-            "volunteer"
+            "volunteer",
+            "education",
+            "projects",
+            "interests"
           ],
           "sidebar": []
         }
@@ -464,7 +440,7 @@
       "gapX": 4,
       "gapY": 8,
       "marginX": 25,
-      "marginY": 25,
+      "marginY": 15,
       "format": "a4",
       "locale": "en-US",
       "hideIcons": false
@@ -485,13 +461,13 @@
         "fontFamily": "Open Sans",
         "fontWeights": ["400", "600"],
         "fontSize": 10,
-        "lineHeight": 1.17
+        "lineHeight": 1.19
       },
       "heading": {
         "fontFamily": "Open Sans",
         "fontWeights": ["700", "800"],
         "fontSize": 16,
-        "lineHeight": 1.5
+        "lineHeight": 1.3
       }
     },
     "notes": ""

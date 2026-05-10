@@ -34,7 +34,27 @@ The mode argument is `<job-or-report>` and can be:
    - `data/pipeline.md`
 5. If multiple plausible matches exist, ask the user to choose
 
-Preferred source of truth is an existing report whenever possible.
+Preferred source of truth for tailoring is the exact job description.
+
+Use an existing report to:
+- resolve the job URL
+- recover prior artifact paths
+- reuse fit/context notes
+- avoid redoing obvious lookup work
+
+Do not use the report as the primary description of the role when the live JD is available.
+
+If the resolved report includes a live job URL, open that listing and extract the exact current JD before tailoring.
+
+Do not rely only on an older report snapshot when the live JD is still available.
+
+If both a live JD and a report are available:
+- treat the live JD as primary for requirements, scope, wording, and skill emphasis
+- treat the report as secondary context only
+
+If the live JD is unavailable:
+- fall back to the resolved report
+- say clearly that tailoring is being done from report text rather than the live listing
 
 ## Required context
 
@@ -42,7 +62,9 @@ Read before tailoring:
 - `cv.md`
 - `config/profile.yml`
 - `modes/_profile.md`
+- `article-digest.md`
 - `interview-prep/story-bank.md`
+- the exact current JD text from the live listing, when the URL is available
 - the resolved report, if any
 - the selected base JSON template
 
@@ -54,7 +76,59 @@ Choose between:
 
 Follow the template policy in `_profile.md`.
 
+For leadership roles:
+- default application base is `resumes/leadership-base.json` (one page)
+
 If the choice is ambiguous, ask the user.
+
+## Skill Coverage Scan
+
+Before proposing any tailoring changes, run a skill coverage scan against:
+- the exact live JD text
+- the selected base JSON template
+- the resolved report as supporting context
+
+Use a dedicated agent/subagent for this scan when that capability is available.
+
+The scan should return a compact report with two tables:
+1. hard skills comparison
+2. soft skills / leadership signals comparison
+
+Recommended columns:
+- Skill
+- Resume
+- Job Description
+- Notes
+
+Coverage rules:
+- treat the selected base JSON template as the resume being scanned, not `cv.md`
+- hidden sections in the JSON should not count as present in the rendered resume
+- distinguish explicit matches from adjacent or partial matches
+- prefer concrete, role-relevant skills over generic word overlap
+- do not treat missing skills as permission to invent them
+
+Hard-skill scan examples:
+- languages, frameworks, infra, architecture patterns, APIs, databases, security practices, payments terms, AI tooling
+
+Soft-skill scan examples:
+- mentoring, coaching, ownership, communication, cross-functional collaboration, decision-making, stakeholder management, pace, adaptability, technical leadership
+
+Use the scan report to answer:
+1. Which 3-5 hard skills already align well and should be surfaced earlier?
+2. Which missing hard skills are true risks versus acceptable non-matches?
+3. Which soft-skill expectations are already evidenced and where?
+4. Which wording in the base resume is too generic for this JD?
+
+This scan is an input to tailoring, not a separate rewriting pass.
+
+## JD-First Tailoring Rule
+
+Tailor to the live JD, not to the report summary.
+
+That means:
+- match against the actual wording, scope, and requirements shown in the listing
+- use the report only to preserve useful prior context such as fit score, recommendation, location checks, or known risks
+- if the report and the live JD diverge, prefer the live JD and note the mismatch briefly
 
 ## Tailoring philosophy
 
@@ -71,22 +145,39 @@ Default behavior:
 - skills: reorder sections first
 - projects: for leadership templates, leave untouched unless explicitly discussed
 
+One-page application rule for leadership resumes:
+- Tailored JSON resumes for real applications should remain one-page oriented by default
+- Use the one-page base as the output template
+- Add only the most relevant supported evidence for the JD
+- If stronger evidence from `cv.md`, `article-digest.md`, or `interview-prep/story-bank.md` is more relevant than the current bullet set, propose swapping it in
+- Avoid duplicating the same idea across summary, skills, and bullets unless the duplication clearly helps match the JD
+- Prefer precise evidence over broad keyword coverage
+- Treat layout space as fixed: total text should stay flat or shrink
+- Never increase the total number of bullets in the one-page leadership resume
+- If wording grows in one place, shorten or replace content elsewhere to keep the resume balanced and one-page safe
+- Prefer replacing weaker content over appending more content
+
 ## Review-first interaction model
 
 Do NOT start by asking the user abstract preference questions.
 
 Instead, follow this order:
 1. Review the resolved role/report against the selected base JSON template
-2. Decide whether any change is actually needed
-3. If no meaningful change is needed, say so and keep the resume as-is
-4. If changes are needed, present a concise proposed change list first
-5. Only then ask for approval when the proposal includes additions, removals, or material rewrites
+2. Run the hard-skill and soft-skill coverage scan against the live JD and selected base template
+3. Decide whether any change is actually needed
+4. If no meaningful change is needed, say so and keep the resume as-is
+5. If changes are needed, present a concise proposed change list first
+6. Only then ask for approval when the proposal includes additions, removals, or material rewrites
 
 The proposal shown to the user should be concrete, for example:
 - which bullets would move up or down
 - which sentence would be lightly rewritten
 - which new evidence from `interview-prep/story-bank.md` might be added
+- which evidence from `article-digest.md`, `cv.md`, or `interview-prep/story-bank.md` might replace a weaker current bullet
 - which content, if any, would be removed and why
+- how the proposed changes keep the one-page text and bullet budget in balance
+- which hard-skill gaps are intentionally left unmatched because they are unsupported or not worth forcing
+- which soft-skill expectations are already covered well enough without adding text
 
 The user should never be asked to decide in the abstract without seeing the proposed modifications first.
 
@@ -109,18 +200,36 @@ Even in those cases, first explain the proposed changes if they are not obvious.
 
 Write the tailored JSON to `output/` using the existing filename style.
 
+Naming rule for JSON artifacts:
+- Prefix the filename with the report number when a resolved report exists
+
+RxResume sync rule:
+- After writing and validating the tailored JSON, sync it to local RxResume by default when `RX_RESUME_URL` and `RX_RESUME_KEY` are configured
+- Skip the sync only when the user explicitly asks for local-only output or when the RxResume environment is not configured
+- Pair the resolved report with its generated JSON artifact and run `npm run resume:sync -- <report-id-or-report-path>`
+- The sync must create the resume if it does not exist yet, or update it if it already exists
+- Prefer the human-readable RxResume title format `Sebastian Greco - <Company>`
+- Append ` - <Role>` only when multiple roles exist for the same company
+
 After writing it:
 1. Run `npm run resume:validate -- <output-file>`
-2. Report back with a concise summary:
+2. If RxResume sync is enabled, run `npm run resume:sync -- <report-id-or-report-path>`
+3. Report back with a concise summary:
+   - what the hard-skill scan said
+   - what the soft-skill scan said
    - what moved
    - what was lightly rewritten
    - what was proposed but intentionally not changed
    - what was left intact
    - what still may need user review
+   - whether RxResume was created or updated, or why sync was skipped
 
 ## Important constraints
 
 - Never invent new experience, metrics, or tools
+- Never invent new experience, metrics, tools, projects, or JD-specific claims
 - Never keyword-stuff skills into the wrong categories
 - Never remove content silently
+- Never treat `article-digest.md` or `story-bank.md` as permission to add unsupported content without user approval
+- Never let one-page leadership tailoring grow into a larger resume by accumulation
 - Prefer preserving speed and trust over forcing alignment
