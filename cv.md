@@ -30,7 +30,7 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 - Built [Verba](https://verbaspeech.app/), a macOS dictation app using on-device transcription models and local LLM cleanup for privacy-first speech workflows.
 - Built [Informia](https://www.informia.com.ar/), a multi-pass document-intelligence workflow for Argentine property records using vision models, evidence scoring, and context caching.
 - Advised a stealth startup founder in a fractional CTO-style engagement, defining scope, tech stack, database architecture, roadmap, and an initial product skeleton and POC.
-- Used the sabbatical to deepen hands-on expertise with LLM applications, agent orchestration, retrieval, context caching, and AI workflow design.
+- Used the sabbatical to deepen hands-on expertise with Next.js product builds, long-running workflow orchestration, LLM applications, retrieval, context caching, and AI workflow design.
 
 ### [Riverside - 4.5 years](https://riverside.com)
 

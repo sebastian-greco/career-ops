@@ -81,6 +81,42 @@ For leadership roles:
 
 If the choice is ambiguous, ask the user.
 
+## Base File Handling -- MANDATORY
+
+The output resume must start as a direct file copy of the selected base JSON.
+
+Required workflow:
+1. Resolve the output filename in `output/`
+2. Copy the selected base JSON file to that output path
+3. Modify the copied output file in place
+4. Validate the final output file
+5. Sync that exact validated file to RxResume if enabled
+
+Do not reconstruct the resume JSON from scratch.
+
+Do not rebuild the full JSON document from snippets, summaries, or partial file reads.
+
+Do not hand-transcribe long embedded strings such as:
+- `metadata.css.value`
+- large HTML description fields
+- layout metadata blocks
+
+This matters because the base JSON contains long single-line strings and nested metadata that are easy to truncate or corrupt when manually recreated.
+
+Safe editing rule:
+- treat the selected base JSON as the source document
+- preserve every field by default
+- only change the specific keys needed for tailoring
+- if a field is unchanged, it should remain byte-for-byte inherited from the copied base unless a formatter or validator intentionally normalizes it
+
+Unsafe workflow to avoid:
+- reading the base JSON through a truncated view
+- recreating the whole file manually
+- pasting back a partial `metadata.css.value`
+- omitting layout or typography fields because they looked unrelated to tailoring
+
+If the existing output artifact already exists and is the one paired to the report, prefer editing that artifact in place rather than creating a fresh manual reconstruction.
+
 ## Skill Coverage Scan
 
 Before proposing any tailoring changes, run a skill coverage scan against:
@@ -242,6 +278,10 @@ Write the tailored JSON to `output/` using the existing filename style.
 
 Naming rule for JSON artifacts:
 - Prefix the filename with the report number when a resolved report exists
+
+Write rule:
+- The file written to `output/` must be created by copying the selected base JSON first, then applying minimal edits to that copied file
+- Never write a fresh handcrafted full JSON artifact when tailoring from a base template
 
 RxResume sync rule:
 - After writing and validating the tailored JSON, sync it to local RxResume by default when `RX_RESUME_URL` and `RX_RESUME_KEY` are configured

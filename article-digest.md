@@ -183,15 +183,17 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 **Hero scope:** Built and shipped three products to develop a practical AI-native engineering workflow end to end.
 
-**Products:** Verba (local-first transcription), Informia (document extraction and browser-assisted submission), FallosES (grounded legal research assistant)
+**Products:** Verba (local-first transcription), Informia (document extraction and browser-assisted submission), FallosES (grounded legal research assistant) -- built primarily with Next.js.
 
 **Key decisions:**
 - Standardized a workflow around voice-prompted context capture, two-phase planning, TDD, and manual review.
+- Built the products primarily in Next.js and used long-running workflow patterns where multi-step AI and browser tasks needed durable execution.
 - Focused Verba on on-device transcription and privacy-by-default instead of cloud dependency and mandatory registration.
 - Used grounded retrieval, citations, and context caching where the product demanded traceable AI behavior.
 
 **Proof points:**
 - Kept hands-on product building current during the sabbatical rather than treating AI as a purely managerial topic.
+- Built the sabbatical products primarily in Next.js, including workflow-heavy async patterns rather than short synchronous demos.
 - Shipped production-style products across local AI, browser automation, and grounded search use cases.
 - These projects are also reflected in `resumes/ic-base.json`.
 
