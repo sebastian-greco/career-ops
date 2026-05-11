@@ -121,6 +121,28 @@ Use the scan report to answer:
 
 This scan is an input to tailoring, not a separate rewriting pass.
 
+## Coverage-Driven Surfacing Rule
+
+The coverage scan must actively drive the tailoring outcome.
+
+If the JD strongly emphasizes a dimension that is already truthfully supported by `cv.md`, `article-digest.md`, `interview-prep/story-bank.md`, or the selected base resume, but that dimension is underexposed in the current base template, the default behavior is to surface it more clearly.
+
+Common examples:
+- full-stack or frontend/product-heavy leadership roles
+- product-minded engineering management
+- async/written collaboration
+- coaching and people development
+- hands-on AI/LLM product delivery
+
+When that happens, prefer this order of changes:
+1. headline under the candidate name
+2. summary language
+3. skills grouping/order
+4. bullet order within the most relevant existing role
+5. swapping a weaker bullet for a stronger supported bullet from existing evidence sources
+
+Do not leave a strong supported fit buried just because the base template is leadership-oriented.
+
 ## JD-First Tailoring Rule
 
 Tailor to the live JD, not to the report summary.
@@ -140,10 +162,15 @@ Start from the selected base template and ask:
 3. What is already good enough and should stay untouched?
 
 Default behavior:
-- summary: leave mostly intact
+- summary: leave mostly intact, unless the coverage scan shows an important supported fit that is underexposed
 - experience: reorder bullets within each role first; keep jobs and role history in reverse chronological order
-- skills: reorder sections first
+- skills: reorder sections first, and retune visible keywords when the JD emphasizes already-supported strengths that are currently buried
 - projects: for leadership templates, leave untouched unless explicitly discussed
+
+For leadership roles with strong hands-on/full-stack/product expectations:
+- keep the leadership base template by default
+- do not flatten the resume into an IC resume
+- do expose supported hands-on/full-stack/product signals earlier and more explicitly when the JD makes them important
 
 One-page application rule for leadership resumes:
 - Tailored JSON resumes for real applications should remain one-page oriented by default
@@ -170,8 +197,10 @@ Instead, follow this order:
 6. Only then ask for approval when the proposal includes additions, removals, or material rewrites
 
 The proposal shown to the user should be concrete, for example:
+- which supported JD-critical signals are currently underexposed in the base template
 - which bullets would move up or down
 - which sentence would be lightly rewritten
+- which headline or summary phrasing would change to surface a supported fit more clearly
 - which new evidence from `interview-prep/story-bank.md` might be added
 - which evidence from `article-digest.md`, `cv.md`, or `interview-prep/story-bank.md` might replace a weaker current bullet
 - which content, if any, would be removed and why
@@ -193,6 +222,8 @@ The only changes that may be done without asking are:
 - reordering bullets within a role
 - reordering sections or skill groups
 - very light summary adjustments when clearly helpful
+- headline adjustments that only surface already-supported role fit more accurately
+- swapping visible skill keywords to better reflect already-supported JD-critical strengths
 
 Even in those cases, first explain the proposed changes if they are not obvious.
 
@@ -238,6 +269,7 @@ After writing it:
 - Never invent new experience, metrics, or tools
 - Never invent new experience, metrics, tools, projects, or JD-specific claims
 - Never keyword-stuff skills into the wrong categories
+- Never let a JD-critical but already-supported strength remain buried just because the base template phrases the profile too generically
 - Never remove content silently
 - Never treat `article-digest.md` or `story-bank.md` as permission to add unsupported content without user approval
 - Never let one-page leadership tailoring grow into a larger resume by accumulation

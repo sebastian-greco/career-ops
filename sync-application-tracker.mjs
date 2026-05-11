@@ -175,11 +175,15 @@ function shouldPersistQuestion(entry) {
   if (entry.savePolicy === 'skip') return false;
   if (entry.savePolicy === 'store') return true;
   const question = normalizeText(entry.question);
+  const answer = normalizeText(entry.answer);
   if (/\b(salary|compensation|comp|expected salary|salary expectation|salary expectations)\b/.test(question)) {
     return true;
   }
   if (/(why this role|why this company|leadership philosophy|ai workflow|ai tooling|coding assistants|payment service providers|psps|acquirers|payment gateways|payments integrations|role fit|managing software engineering teams|hiring coaching performance reviews|management experience)/.test(question)) {
     return true;
+  }
+  if (/(additional information|anything more you d like to tell us|anything else you d like to share|anything else you want us to know|anything else)/.test(question)) {
+    return answer.length >= 180;
   }
   if (isQuestionDefinitelyNotMemory(entry)) return false;
   return false;

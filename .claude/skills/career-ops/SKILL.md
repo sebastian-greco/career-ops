@@ -125,6 +125,7 @@ Agent(
 - Save a cover letter draft to the tracker app `currentDraft` field only when the live application explicitly asks for a cover letter.
 - Save only genuinely reusable substantive answers to the tracker app. Default to not saving question/answer pairs, with one explicit exception: save salary / compensation answers for recordkeeping.
 - Text-entry management / hiring / coaching experience answers are also worth saving when they are substantive narrative responses rather than a simple numeric screen.
+- Substantive `Additional Information` / `Anything else you'd like us to know?` responses are also worth saving when they contain role-specific motivation, culture fit, or useful interview context rather than boilerplate.
 - Do not store identity / boilerplate questions like name, location, LinkedIn, GitHub, current company, uploads, generic work-authorization fields, simple radio/dropdown screening questions, or other short-lived form-only answers.
 - Saved question answers must default to `includeInAiContext: false`. Only mark them as AI context when the user explicitly wants that answer reused automatically later.
 - Before drafting long-form answers, search prior saved answers in the tracker app and reuse them carefully when relevant.

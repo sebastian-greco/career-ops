@@ -196,6 +196,12 @@ Stored fields:
 - substantive questions → `savedQuestionAnswers`
 - application stage like `applied` / `rejected` → `pipelineStatus`
 
+Persistence guidance for substantive questions:
+- Save salary / compensation answers for recordkeeping
+- Save management / hiring / coaching / leadership narrative answers when reusable
+- Save substantive `Additional Information` / `Anything else you'd like us to know?` answers when they contain meaningful motivation, culture-fit framing, or interview-useful context
+- Do not save boilerplate or identity-only filler
+
 ## Step 8 — Post-apply (optional)
 
 If the candidate confirms that they submitted the application:
