@@ -85,6 +85,16 @@ Read `modes/{mode}.md`
 
 Applies to: `tracker`, `deep`, `training`, `project`, `patterns`, `followup`
 
+### Resume chronology guardrail
+
+For any resume-tailoring mode (`json-cv`, `pdf`, `latex`, and resume generation inside other flows):
+
+- Keep professional experience entries in reverse chronological order at all times.
+- Keep nested roles within the same company in their real chronological order.
+- Do not move an older company or role above a newer one just because it matches the JD better.
+- Allowed reordering is limited to bullets within a role, skill groups, and other non-chronology structural elements.
+- If stronger older evidence matters, surface it by reordering bullets within that role or lightly rewriting supported wording, not by reordering the job history.
+
 ### Modes delegated to subagent:
 For `scan`, `scan-jobgether`, `apply` (with Playwright), and `pipeline` (3+ URLs): launch as Agent with the content of `_shared.md` + `modes/{mode}.md` injected into the subagent prompt.
 
@@ -106,11 +116,12 @@ Agent(
 - If the invocation includes a report id or report path, read the report and use its `**URL:**` as the default page to open in Chrome.
 - If the invocation includes a direct job URL, open that URL in Chrome yourself.
 - Only ask the user to open or paste the form manually when there is no usable URL available, the site blocks access, or the application flow requires an authenticated session you cannot continue through.
-- After opening the page, extract the live JD and visible form content first.
+- After opening the page, extract the full live JD and visible form content first.
 - In this mode, the live JD is the primary proof source. Matching reports are supporting context only.
+- If the live page reveals a hard mismatch and the user confirms it is a blocker, stop there. Do not continue drafting persuasive answers for that application.
 - Ground answers in the following order: live JD, `cv.md`, `article-digest.md`, `modes/_profile.md`, `config/profile.yml`, then matching reports.
 - During drafting, create or update the external application tracker record through `sync-application-tracker.mjs` using `APPLICATION_TRACKER_URL`.
-- Save the extracted JD to the tracker app `jobDescriptionText` field.
+- Save the full extracted live JD to the tracker app `jobDescriptionText` field verbatim, as close to copy-paste from the live page as possible. Do not summarize, compress, or paraphrase it.
 - Save a cover letter draft to the tracker app `currentDraft` field only when the live application explicitly asks for a cover letter.
 - Save only genuinely reusable substantive answers to the tracker app. Default to not saving question/answer pairs, with one explicit exception: save salary / compensation answers for recordkeeping.
 - Text-entry management / hiring / coaching experience answers are also worth saving when they are substantive narrative responses rather than a simple numeric screen.

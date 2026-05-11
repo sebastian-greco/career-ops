@@ -141,7 +141,7 @@ Start from the selected base template and ask:
 
 Default behavior:
 - summary: leave mostly intact
-- experience: reorder first
+- experience: reorder bullets within each role first; keep jobs and role history in reverse chronological order
 - skills: reorder sections first
 - projects: for leadership templates, leave untouched unless explicitly discussed
 
@@ -190,11 +190,20 @@ Ask the user before:
 - materially rewriting content beyond light summary tweaks and reordering
 
 The only changes that may be done without asking are:
-- reordering bullets
+- reordering bullets within a role
 - reordering sections or skill groups
 - very light summary adjustments when clearly helpful
 
 Even in those cases, first explain the proposed changes if they are not obvious.
+
+## Experience chronology rule
+
+Professional experience chronology is mandatory:
+- keep company/job entries in reverse chronological order
+- keep nested roles within a company in their real chronological sequence
+- do not move an older role or company above a newer one to improve JD relevance
+
+If older evidence is stronger for the target role, surface it by reordering bullets inside that role or lightly tightening supported wording.
 
 ## Output
 
@@ -232,4 +241,5 @@ After writing it:
 - Never remove content silently
 - Never treat `article-digest.md` or `story-bank.md` as permission to add unsupported content without user approval
 - Never let one-page leadership tailoring grow into a larger resume by accumulation
+- Never reorder professional experience entries out of chronological order
 - Prefer preserving speed and trust over forcing alignment

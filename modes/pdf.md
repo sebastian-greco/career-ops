@@ -12,7 +12,7 @@
 6. Detecta arquetipo del rol → adapta framing
 7. Reescribe Professional Summary inyectando keywords del JD + exit narrative bridge ("Built and sold a business. Now applying systems thinking to [domain del JD].")
 8. Selecciona top 3-4 proyectos más relevantes para la oferta
-9. Reordena bullets de experiencia por relevancia al JD
+9. Reordena bullets de experiencia por relevancia al JD, manteniendo intacto el orden cronológico de los trabajos
 10. Construye competency grid desde requisitos del JD (6-8 keyword phrases)
 11. Inyecta keywords naturalmente en logros existentes (NUNCA inventa)
 12. Genera HTML completo desde template + contenido personalizado
@@ -31,9 +31,18 @@ El objetivo es adaptar un CV ya bueno con cambios mínimos y de alto valor:
 - reescribir solo cuando una frase actual pueda perjudicar el fit o perder una oportunidad clara
 - eliminar contenido solo si es claramente irrelevante o dañino para el rol
 - por defecto, dejar el summary casi intacto
-- por defecto, reordenar experiencia antes de reescribirla
+- por defecto, reordenar bullets dentro de cada rol antes de reescribir
 - por defecto, reordenar skills antes de editar keywords
 - para roles de liderazgo, no tocar proyectos salvo que el usuario quiera enfatizar hands-on reciente
+
+## Regla obligatoria de cronología
+
+El historial laboral debe mantenerse siempre en cronología inversa.
+- NO mover un trabajo o empresa más antigua por encima de una más reciente para mejorar el fit
+- NO alterar el orden real de roles dentro de una misma empresa
+- SÍ se pueden reordenar bullets dentro de cada rol y secciones como skills
+
+Si una evidencia antigua es más relevante para el JD, súbela dentro de los bullets de ese rol, no en el orden del historial.
 
 Antes de cambiar algo, evaluar:
 1. ¿Qué parte de este CV haría que descartaran a Sebastian rápidamente para esta oferta?

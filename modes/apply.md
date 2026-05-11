@@ -13,7 +13,7 @@ Interactive mode for when the candidate is filling out an application form in Ch
 ```text
 1. DETECT      → Read active Chrome tab (screenshot/URL/title)
 2. IDENTIFY    → Extract company + role from the page
-3. EXTRACT     → Capture the live JD / visible job details from the page
+3. EXTRACT     → Capture the full live JD / visible job details from the page verbatim
 4. LOAD        → Read cv.md, article-digest.md, _profile.md, profile.yml, and matching report if it exists
 5. COMPARE     → Does the role on screen match the one evaluated? If it changed → notify
 6. ANALYZE     → Identify ALL visible form questions and classify what should be remembered
@@ -40,7 +40,7 @@ Interactive mode for when the candidate is filling out an application form in Ch
 ## Step 2 — Identify and search for context
 
 1. Extract company name and role title from the page
-2. Extract the live JD text from the visible job page itself
+2. Extract the full live JD text from the visible job page itself, word for word as visible on the page
 3. Read `cv.md`, `article-digest.md`, `modes/_profile.md`, and `config/profile.yml`
 4. Search in `reports/` by company name (case-insensitive grep)
 5. If there is a match → load the full report as secondary context only
@@ -57,6 +57,8 @@ Interactive mode for when the candidate is filling out an application form in Ch
 7. `interview-prep/story-bank.md` only when a supported long-form proof point is needed
 
 If the live page and the report differ, always prefer the live page.
+
+If the live page reveals a hard mismatch and the candidate confirms it is a blocker, stop the drafting flow there. Do not continue generating persuasive application answers for that role.
 
 ## Step 3 — Detect changes in the role
 
@@ -178,7 +180,7 @@ The payload should include:
 - company name
 - role title
 - job posting URL
-- extracted live JD text
+- extracted full live JD text copied verbatim from the page, as close to copy-paste as possible
 - cover letter draft only when the form explicitly asks for one
 - pipeline stage (default `draft` until confirmed otherwise)
 - only the few substantive saved question answers worth keeping
@@ -189,7 +191,7 @@ Upsert behavior:
 - use the tracker app's default resume version
 
 Stored fields:
-- JD text → `jobDescriptionText`
+- JD text → `jobDescriptionText` as the full live JD copied verbatim from the page, not a summary
 - cover letter → `currentDraft` only when the live form asks for one
 - substantive questions → `savedQuestionAnswers`
 - application stage like `applied` / `rejected` → `pipelineStatus`

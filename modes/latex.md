@@ -12,7 +12,7 @@ Export a tailored, ATS-optimized CV as a `.tex` file and compile it to PDF via `
 6. Detect role archetype → adapt framing
 7. Rewrite Professional Summary injecting JD keywords (same rules as `pdf` mode — NEVER invent skills)
 8. Select top 3-4 most relevant projects for the offer
-9. Reorder experience bullets by JD relevance
+9. Reorder experience bullets by JD relevance, while keeping job history in reverse chronological order
 10. Inject keywords naturally into existing achievements
 11. Generate the `.tex` file using `templates/cv-template.tex`
 12. Write to `output/cv-{candidate}-{company}-{YYYY-MM-DD}.tex`
@@ -133,6 +133,7 @@ All text content MUST be escaped for LaTeX before insertion:
 Same ethical rules as `modes/pdf.md`:
 - NEVER add skills the candidate doesn't have
 - Only reformulate existing experience using JD vocabulary
+- Never reorder professional experience entries out of chronological order
 - Examples:
   - JD says "RAG pipelines" → reword "LLM workflows with retrieval" to "RAG pipeline design"
   - JD says "MLOps" → reword "observability, evals" to "MLOps and observability"
