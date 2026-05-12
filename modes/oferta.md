@@ -162,6 +162,7 @@ Guardar evaluación completa en `reports/{###}-{company-slug}-{YYYY-MM-DD}.md`.
 **Fecha:** {YYYY-MM-DD}
 **Arquetipo:** {detectado}
 **Score:** {X/5}
+**URL:** {job-url}
 **Legitimacy:** {High Confidence | Proceed with Caution | Suspicious}
 **PDF:** {ruta o pendiente}
 
@@ -188,7 +189,21 @@ Guardar evaluación completa en `reports/{###}-{company-slug}-{YYYY-MM-DD}.md`.
 ## G) Posting Legitimacy
 (contenido completo del bloque G)
 
-## H) Draft Application Answers
+## H) Artifact
+- Job description saved: `jds/{###}-{company-slug}-{role-slug}-{YYYY-MM-DD}.md`
+- Skill coverage scan: `reports/{###}-{company-slug}-{YYYY-MM-DD}-skills.md`
+- Resume artifact generated: `output/...json` o `❌ not generated`
+- PDF artifact: `output/...pdf` o `❌ not generated`
+
+## I) Application Form Questions
+- [Exact visible question 1]
+- [Exact visible question 2]
+- ...
+
+Si no se pudieron extraer preguntas visibles del formulario:
+- `Not captured: apply flow inaccessible / no visible questions / login required`
+
+## J) Draft Application Answers
 (solo si score >= 4.5 — borradores de respuestas para el formulario de aplicación)
 
 ---
@@ -196,6 +211,14 @@ Guardar evaluación completa en `reports/{###}-{company-slug}-{YYYY-MM-DD}.md`.
 ## Keywords extraídas
 (lista de 15-20 keywords del JD para ATS optimization)
 ```
+
+### Reglas nuevas de persistencia del report
+
+- El JD completo debe guardarse SIEMPRE en `jds/` salvo que ya exista como input `local:jds/...`
+- El report principal debe apuntar SIEMPRE al archivo del JD persistido
+- El skill coverage scan debe guardarse SIEMPRE como markdown reutilizable y referenciarse desde el report principal
+- Las preguntas visibles del formulario deben quedar dentro del report principal, no en un skill separado
+- No guardar respuestas del formulario dentro del skill-scan; las respuestas van solo en la seccion de draft cuando aplique
 
 ### 2. Registrar en tracker
 

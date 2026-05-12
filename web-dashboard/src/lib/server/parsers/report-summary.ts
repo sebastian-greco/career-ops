@@ -14,9 +14,33 @@ const titleRegex = /^#\s+(.+)$/m;
 const urlRegex = /^\*\*URL:\*\*\s*(https?:\/\/\S+)/m;
 const legitimacyRegex = /^\*\*Legitimacy:\*\*\s*(.+)$/m;
 const pdfRegex = /^\*\*PDF:\*\*\s*(.+)$/m;
-
+const jobDescriptionArtifactRegex = /- Job description saved:\s*`([^`]+)`/i;
+const skillCoverageArtifactRegex = /- Skill coverage scan:\s*`([^`]+)`/i;
+const resumeArtifactRegex = /- Resume artifact generated:\s*`([^`]+\.json)`/i;
 function cleanCell(value: string) {
   return value.trim().replace(/\|$/, "").trim();
+}
+
+function extractApplicationQuestions(raw: string) {
+  const heading = "## I) Application Form Questions";
+  const startIndex = raw.indexOf(heading);
+  if (startIndex === -1) {
+    return [];
+  }
+
+  const sectionStart = raw.indexOf("\n", startIndex);
+  if (sectionStart === -1) {
+    return [];
+  }
+
+  const nextHeadingIndex = raw.indexOf("\n## ", sectionStart + 1);
+  const section = raw.slice(sectionStart + 1, nextHeadingIndex === -1 ? undefined : nextHeadingIndex);
+  return section
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line.startsWith("- "))
+    .map((line) => line.slice(2).trim())
+    .filter((line) => line && !line.toLowerCase().startsWith("not captured:"));
 }
 
 function truncate(text: string, max = 120) {
@@ -41,6 +65,10 @@ export function parseReportSummary(reportPath: string, raw: string): ReportSumma
   const url = raw.match(urlRegex)?.[1] ?? "";
   const legitimacy = raw.match(legitimacyRegex)?.[1]?.trim() ?? "";
   const pdf = raw.match(pdfRegex)?.[1]?.trim() ?? "";
+  const jobDescriptionPath = raw.match(jobDescriptionArtifactRegex)?.[1]?.trim() ?? "";
+  const skillCoveragePath = raw.match(skillCoverageArtifactRegex)?.[1]?.trim() ?? "";
+  const resumeArtifactPath = raw.match(resumeArtifactRegex)?.[1]?.trim() ?? "";
+  const applicationQuestions = extractApplicationQuestions(raw);
   const reportId = path.basename(reportPath).slice(0, 3);
 
   return {
@@ -56,5 +84,9 @@ export function parseReportSummary(reportPath: string, raw: string): ReportSumma
     url,
     legitimacy,
     pdf,
+    jobDescriptionPath,
+    skillCoveragePath,
+    resumeArtifactPath,
+    applicationQuestions,
   };
 }

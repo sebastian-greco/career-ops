@@ -73,7 +73,7 @@ export function loadSeenUrls() {
   if (existsSync(SCAN_HISTORY_PATH)) {
     const lines = readFileSync(SCAN_HISTORY_PATH, 'utf-8').split('\n');
     for (const line of lines.slice(1)) {
-      const url = line.split('\t')[0];
+      const url = normalizeExternalJobUrl(line.split('\t')[0]);
       if (url) seen.add(url);
     }
   }
@@ -81,14 +81,16 @@ export function loadSeenUrls() {
   if (existsSync(PIPELINE_PATH)) {
     const text = readFileSync(PIPELINE_PATH, 'utf-8');
     for (const match of text.matchAll(/- \[[ x!]\] (https?:\/\/\S+)/g)) {
-      seen.add(match[1]);
+      const url = normalizeExternalJobUrl(match[1]);
+      if (url) seen.add(url);
     }
   }
 
   if (existsSync(APPLICATIONS_PATH)) {
     const text = readFileSync(APPLICATIONS_PATH, 'utf-8');
     for (const match of text.matchAll(/https?:\/\/[^\s|)]+/g)) {
-      seen.add(match[0]);
+      const url = normalizeExternalJobUrl(match[0]);
+      if (url) seen.add(url);
     }
   }
 
@@ -99,11 +101,17 @@ export function loadSeenCompanyRoles() {
   const seen = new Set();
   if (!existsSync(APPLICATIONS_PATH)) return seen;
 
-  const text = readFileSync(APPLICATIONS_PATH, 'utf-8');
-  for (const match of text.matchAll(/\|[^|]+\|[^|]+\|\s*([^|]+)\s*\|\s*([^|]+)\s*\|/g)) {
-    const company = match[1].trim().toLowerCase();
-    const role = match[2].trim().toLowerCase();
-    if (company && role && company !== 'company') {
+  const lines = readFileSync(APPLICATIONS_PATH, 'utf-8').split('\n');
+  for (const line of lines) {
+    if (!line.startsWith('|')) continue;
+
+    const cells = line.split('|').slice(1, -1).map((cell) => cell.trim());
+    if (cells.length < 4) continue;
+    if (cells[0] === '#' || /^-+$/.test(cells[0])) continue;
+
+    const company = normalizeText(cells[2]).toLowerCase();
+    const role = normalizeText(cells[3]).toLowerCase();
+    if (company && role) {
       seen.add(`${company}::${role}`);
     }
   }

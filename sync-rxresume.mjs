@@ -82,7 +82,15 @@ function parseArgs(argv) {
 function resolveReportPath(target) {
   if (/^\d+$/.test(target)) {
     const padded = String(target).padStart(3, '0');
-    const match = readdirSync(REPORTS_DIR).find((file) => file.startsWith(`${padded}-`) && file.endsWith('.md'));
+    const matches = readdirSync(REPORTS_DIR)
+      .filter((file) => file.startsWith(`${padded}-`) && file.endsWith('.md'))
+      .sort((left, right) => {
+        const leftIsSkills = left.endsWith('-skills.md');
+        const rightIsSkills = right.endsWith('-skills.md');
+        if (leftIsSkills === rightIsSkills) return left.localeCompare(right);
+        return leftIsSkills ? 1 : -1;
+      });
+    const match = matches[0];
     if (!match) throw new Error(`Could not resolve report id ${target}`);
     return join(REPORTS_DIR, match);
   }

@@ -8,9 +8,12 @@ Procesa URLs de ofertas acumuladas en `data/pipeline.md`. El usuario agrega URLs
 2. **Para cada URL pendiente**:
    a. Calcular siguiente `REPORT_NUM` secuencial (leer `reports/`, tomar el número más alto + 1)
    b. **Extraer JD** usando Playwright (browser_navigate + browser_snapshot) → WebFetch → WebSearch
+   c. **Guardar el JD** en `jds/{###}-{company-slug}-{role-slug}-{YYYY-MM-DD}.md` salvo que el input ya sea `local:jds/...`
+   d. **Generar coverage scan reutilizable** en `reports/{###}-{company-slug}-{YYYY-MM-DD}-skills.md` siguiendo la misma estructura base que usa `json-cv` para hard skills, soft skills y keywords
+   e. **Inspeccionar preguntas visibles del formulario** cuando sea factible con Playwright y embutirlas en el report
    c. Si la URL no es accesible → marcar como `- [!]` con nota y continuar
-   d. **Ejecutar auto-pipeline completo**: Evaluación A-F → Report .md → PDF (si score >= 3.0) → Tracker
-   e. **Mover de "Pendientes" a "Procesadas"**: `- [x] #NNN | URL | Empresa | Rol | Score/5 | PDF ✅/❌`
+   f. **Ejecutar auto-pipeline completo**: Evaluación A-F → Report .md con referencias a JD/skills → PDF (si score >= 3.0) → Tracker
+   g. **Mover de "Pendientes" a "Procesadas"**: `- [x] #NNN | URL | Empresa | Rol | Score/5 | PDF ✅/❌`
 3. **Si hay 3+ URLs pendientes**, lanzar agentes en paralelo (Agent tool con `run_in_background`) para maximizar velocidad.
 4. **Al terminar**, mostrar tabla resumen:
 
@@ -55,3 +58,13 @@ Antes de procesar cualquier URL, verificar sync:
 node cv-sync-check.mjs
 ```
 Si hay desincronización, advertir al usuario antes de continuar.
+
+## Artefactos persistidos por evaluación
+
+Cada item procesado por pipeline debe dejar, como minimo, estos artefactos reutilizables:
+
+1. Report principal: `reports/{###}-{company-slug}-{YYYY-MM-DD}.md`
+2. JD completo guardado: `jds/{###}-{company-slug}-{role-slug}-{YYYY-MM-DD}.md`
+3. Skill coverage scan: `reports/{###}-{company-slug}-{YYYY-MM-DD}-skills.md`
+
+El report principal debe incluir las rutas de 2 y 3 en su sección de artifacts para que el dashboard y futuros modos puedan reutilizarlas sin volver a extraer ni re-analizar innecesariamente.

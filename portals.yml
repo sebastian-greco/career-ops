@@ -812,6 +812,12 @@ tracked_companies:
     notes: "Flexible, family-friendly company with strong benefits and credible culture signals, but likely a lower-priority fit than the calmer balance-first targets because the domain and operating environment can skew more intensity-heavy. Track selectively."
     enabled: true
 
+  - name: Datadog
+    careers_url: https://careers.datadoghq.com/all-jobs/
+    api: https://boards-api.greenhouse.io/v1/boards/datadog/jobs
+    notes: "Strong observability platform with meaningful EMEA presence, including Italy-compatible hiring in some teams. Keep tracked selectively: likely more useful for senior IC or engineering-manager openings than for leadership-first discovery."
+    enabled: true
+
   - name: Contentsquare
     careers_url: https://jobs.lever.co/contentsquare/
     notes: "Add as Contentsquare rather than Hotjar. Good benefits, hybrid/remote flexibility, parental support, and learning investment. Keep as a selective target, but treat the old Hotjar culture signal as partially diluted after acquisition/integration."

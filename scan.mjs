@@ -31,6 +31,7 @@ import {
   hasIcExceptionPolicy,
   loadSeenCompanyRoles,
   loadSeenUrls,
+  normalizeExternalJobUrl,
   normalizeText,
 } from './scan-utils.mjs';
 const parseYaml = yaml.load;
@@ -778,7 +779,7 @@ function processJobs(jobs, company, source, state) {
     const job = {
       ...rawJob,
       title: normalizeText(rawJob.title),
-      url: normalizeText(rawJob.url),
+      url: normalizeExternalJobUrl(normalizeText(rawJob.url)),
       location: normalizeText(rawJob.location),
       company: rawJob.company || company.name,
     };

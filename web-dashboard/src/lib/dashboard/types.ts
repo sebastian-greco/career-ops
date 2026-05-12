@@ -59,6 +59,10 @@ export interface ReportSummary {
   url: string;
   legitimacy: string;
   pdf: string;
+  jobDescriptionPath: string;
+  skillCoveragePath: string;
+  resumeArtifactPath: string;
+  applicationQuestions: string[];
 }
 
 export interface ReportDocument extends ReportSummary {

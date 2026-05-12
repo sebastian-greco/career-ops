@@ -28,6 +28,10 @@ import {
 import { trpc } from "@/lib/trpc/client";
 import { cn } from "@/lib/utils";
 
+function artifactHref(artifactPath: string) {
+  return `/artifacts/${artifactPath.split("/").map(encodeURIComponent).join("/")}`;
+}
+
 function scoreTone(score: number) {
   if (score >= 4.2) {
     return "text-emerald-600 dark:text-emerald-400";
@@ -550,6 +554,12 @@ export function PipelineList({
                   <PreviewField label="Comp" value={selectedSummary?.compEstimate || "Not found"} />
                   <PreviewField label="Status" value={statusLabel(snapshot.statuses, String(selected.statusNormalized))} />
                   <PreviewField label="Report" value={selected.reportPath || "Missing report path"} mono />
+                  <PreviewField label="Saved JD" value={selectedSummary?.jobDescriptionPath || "Not found"} mono />
+                  <PreviewField label="Skill Scan" value={selectedSummary?.skillCoveragePath || "Not found"} mono />
+                  <PreviewField
+                    label="Form Questions"
+                    value={selectedSummary?.applicationQuestions.length ? `${selectedSummary.applicationQuestions.length} captured` : "Not found"}
+                  />
                   <PreviewField label="Notes" value={selected.notes || "No notes"} />
                 </div>
 
@@ -565,6 +575,16 @@ export function PipelineList({
                     <a href={selected.jobUrl} target="_blank" rel="noreferrer">
                       <Button variant="secondary">Open Job URL</Button>
                     </a>
+                  ) : null}
+                  {selectedSummary?.jobDescriptionPath ? (
+                    <Link href={artifactHref(selectedSummary.jobDescriptionPath)}>
+                      <Button variant="secondary">Open JD</Button>
+                    </Link>
+                  ) : null}
+                  {selectedSummary?.skillCoveragePath ? (
+                    <Link href={artifactHref(selectedSummary.skillCoveragePath)}>
+                      <Button variant="secondary">Open Skills Scan</Button>
+                    </Link>
                   ) : null}
                 </div>
 

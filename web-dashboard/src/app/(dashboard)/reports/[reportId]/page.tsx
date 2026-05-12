@@ -16,6 +16,10 @@ import {
 } from "@/lib/dashboard/pipeline-state";
 import { getServerCaller } from "@/lib/server/trpc/server";
 
+function artifactHref(artifactPath: string) {
+  return `/artifacts/${artifactPath.split("/").map(encodeURIComponent).join("/")}`;
+}
+
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
@@ -83,6 +87,16 @@ export default async function ReportPage({
               <Button>Open Job URL</Button>
             </a>
           ) : null}
+          {report.jobDescriptionPath ? (
+            <Link href={artifactHref(report.jobDescriptionPath)}>
+              <Button variant="secondary">Open JD</Button>
+            </Link>
+          ) : null}
+          {report.skillCoveragePath ? (
+            <Link href={artifactHref(report.skillCoveragePath)}>
+              <Button variant="secondary">Open Skills Scan</Button>
+            </Link>
+          ) : null}
         </div>
       </div>
 
@@ -118,6 +132,32 @@ export default async function ReportPage({
             <div className="flex flex-col gap-1.5">
               <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Legitimacy</p>
               <p className="font-medium text-foreground">{report.legitimacy || "Not found"}</p>
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Saved JD</p>
+              {report.jobDescriptionPath ? (
+                <Link className="font-mono text-xs text-primary underline-offset-4 hover:underline" href={artifactHref(report.jobDescriptionPath)}>
+                  {report.jobDescriptionPath}
+                </Link>
+              ) : (
+                <p className="font-medium text-foreground">Not found</p>
+              )}
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Skill Scan</p>
+              {report.skillCoveragePath ? (
+                <Link className="font-mono text-xs text-primary underline-offset-4 hover:underline" href={artifactHref(report.skillCoveragePath)}>
+                  {report.skillCoveragePath}
+                </Link>
+              ) : (
+                <p className="font-medium text-foreground">Not found</p>
+              )}
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Form Questions</p>
+              <p className="font-medium text-foreground">
+                {report.applicationQuestions.length > 0 ? `${report.applicationQuestions.length} captured` : "Not found"}
+              </p>
             </div>
           </CardContent>
         </Card>
