@@ -12,13 +12,13 @@ Procesa URLs de ofertas acumuladas en `data/pipeline.md`. El usuario agrega URLs
    d. **Generar coverage scan reutilizable** en `reports/{###}-{company-slug}-{YYYY-MM-DD}-skills.md` siguiendo la misma estructura base que usa `json-cv` para hard skills, soft skills y keywords
    e. **Inspeccionar preguntas visibles del formulario** cuando sea factible con Playwright y embutirlas en el report
    c. Si la URL no es accesible → marcar como `- [!]` con nota y continuar
-   f. **Ejecutar auto-pipeline completo**: Evaluación A-F → Report .md con referencias a JD/skills → PDF (si score >= 3.0) → Tracker
-   g. **Mover de "Pendientes" a "Procesadas"**: `- [x] #NNN | URL | Empresa | Rol | Score/5 | PDF ✅/❌`
+   f. **Ejecutar auto-pipeline completo**: Evaluación A-F → Report .md con referencias a JD/skills → JSON CV (si score >= 4.0, siguiendo la preferencia RxResume) → Tracker
+   g. **Mover de "Pendientes" a "Procesadas"**: `- [x] #NNN | URL | Empresa | Rol | Score/5 | JSON ✅/❌`
 3. **Si hay 3+ URLs pendientes**, lanzar agentes en paralelo (Agent tool con `run_in_background`) para maximizar velocidad.
 4. **Al terminar**, mostrar tabla resumen:
 
 ```
-| # | Empresa | Rol | Score | PDF | Acción recomendada |
+| # | Empresa | Rol | Score | JSON | Acción recomendada |
 ```
 
 ## Formato de pipeline.md
@@ -30,8 +30,8 @@ Procesa URLs de ofertas acumuladas en `data/pipeline.md`. El usuario agrega URLs
 - [!] https://private.url/job — Error: login required
 
 ## Procesadas
-- [x] #143 | https://jobs.example.com/posting/789 | Acme Corp | AI PM | 4.2/5 | PDF ✅
-- [x] #144 | https://boards.greenhouse.io/xyz/jobs/012 | BigCo | SA | 2.1/5 | PDF ❌
+- [x] #143 | https://jobs.example.com/posting/789 | Acme Corp | AI PM | 4.2/5 | JSON ✅
+- [x] #144 | https://boards.greenhouse.io/xyz/jobs/012 | BigCo | SA | 2.1/5 | JSON ❌
 ```
 
 ## Detección inteligente de JD desde URL
