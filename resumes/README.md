@@ -4,10 +4,11 @@ This directory holds local RxResume base templates used to generate tailored JSO
 
 Local files expected here:
 - `leadership-base.json` — one-page leadership-oriented application base for Director / Head / Senior Engineering Manager / Engineering Manager roles
-- `ic-base.json` — hands-on IC-oriented base resume for Staff / Principal / Senior Backend / Senior Software Engineer roles
+- `ic-base.json` — one-page hands-on IC-oriented application base for Staff / Principal / Senior Backend / Senior Software Engineer roles
 
 Optional local file:
 - `leadership-master-base.json` — fuller leadership working draft kept for manual reference; normal tailoring should rely on `cv.md` plus the selected base template
+- `ic-base-master.json` — fuller IC working draft kept for manual reference; normal tailoring should rely on `cv.md` plus the selected base template
 
 These JSON files are local resume assets that can be versioned in your fork.
 
