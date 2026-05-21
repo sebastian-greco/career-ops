@@ -18,6 +18,7 @@ All scripts live in the project root as `.mjs` modules and are exposed via `npm 
 | `npm run rollback` | `update-system.mjs rollback` | Rollback last update |
 | `npm run liveness` | `check-liveness.mjs` | Test if job URLs are still active |
 | `npm run scan` | `scan.mjs` | Zero-token portal scanner |
+| `npm run evaluate:job -- --jd-file <path> --meta-file <path>` | `evaluate-job.mjs` | Shared structured evaluator used by pipeline extraction flows |
 
 ---
 

@@ -1,5 +1,14 @@
 # Modo: auto-pipeline — Pipeline Completo Automático
 
+**Required companion:** `modes/_evaluation-rubric.md`
+
+This mode must use the exact same final evaluation method as `oferta`, `pipeline`, and `batch`.
+
+That means:
+- deterministic tools may extract and normalize facts
+- final judgment and scoring must follow `modes/_evaluation-rubric.md`
+- do not use a shallower method just because this is a single pasted URL
+
 Cuando el usuario pega un JD (texto o URL) sin sub-comando explícito, ejecutar TODO el pipeline en secuencia:
 
 ## Paso 0 — Extraer JD
@@ -25,6 +34,8 @@ Si el input es una **URL** (no texto de JD pegado), seguir esta estrategia para 
 
 ## Paso 1 — Evaluación A-G
 Ejecutar exactamente igual que el modo `oferta` (leer `modes/oferta.md` para todos los bloques A-F + Block G Posting Legitimacy).
+
+The score in this mode must come from the shared rubric, not from heuristic-only code.
 
 **Antes de cerrar la evaluacion**, generar tambien un artefacto de coverage scan reutilizable para futuros pasos:
 

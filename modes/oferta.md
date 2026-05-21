@@ -1,8 +1,19 @@
 # Modo: oferta — Evaluación Completa A-G
 
+**Required companion:** `modes/_evaluation-rubric.md`
+
+Before evaluating, read `modes/_evaluation-rubric.md` and use it as the source of truth for the scoring methodology.
+
+That means:
+- all final scoring is agentic
+- deterministic extraction is allowed, deterministic judgment is not
+- the same rubric must be used here as in `auto-pipeline`, `pipeline`, and `batch`
+
 Cuando el candidato pega una oferta (texto o URL), entregar SIEMPRE los 7 bloques (A-F evaluation + G legitimacy):
 
 ## Paso 0 — Detección de Arquetipo
+
+Use the shared rubric's standard questions and consistency rules.
 
 Clasificar la oferta en uno de los 6 arquetipos (ver `_shared.md`). Si es híbrido, indicar los 2 más cercanos. Esto determina:
 - Qué proof points priorizar en bloque B
@@ -139,6 +150,19 @@ Analyze the job posting for signals that indicate whether this is a real, active
 - **Startup / pre-revenue:** Early-stage companies may have vague JDs because the role is genuinely undefined. Weight description vagueness less heavily.
 - **No date available:** If posting age cannot be determined and no other signals are concerning, default to "Proceed with Caution" with a note that limited data was available. NEVER default to "Suspicious" without evidence.
 - **Recruiter-sourced (no public posting):** Freshness signals unavailable. Note that active recruiter contact is itself a positive legitimacy signal.
+
+## Scoring Method -- Mandatory
+
+Use the five shared dimensions from `modes/_evaluation-rubric.md`:
+- CV Match
+- North Star alignment
+- Comp
+- Cultural signals
+- Red flags
+
+Use the shared weights and thresholds exactly as defined there.
+
+Do not invent an alternative scoring formula for `oferta`.
 
 ---
 

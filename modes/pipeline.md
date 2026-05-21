@@ -1,5 +1,14 @@
 # Modo: pipeline — Inbox de URLs (Second Brain)
 
+**Required companions:** `modes/oferta.md` + `modes/_evaluation-rubric.md`
+
+This mode changes orchestration only. It must not change evaluation methodology.
+
+Every URL processed through `pipeline` must use the same final rubric as:
+- `auto-pipeline`
+- `oferta`
+- `batch`
+
 Procesa URLs de ofertas acumuladas en `data/pipeline.md`. El usuario agrega URLs cuando quiera y luego ejecuta `/career-ops pipeline` para procesarlas todas.
 
 ## Workflow
@@ -14,7 +23,7 @@ Procesa URLs de ofertas acumuladas en `data/pipeline.md`. El usuario agrega URLs
    c. Si la URL no es accesible → marcar como `- [!]` con nota y continuar
    f. **Ejecutar auto-pipeline completo**: Evaluación A-F → Report .md con referencias a JD/skills → JSON CV (si score >= 4.0, siguiendo la preferencia RxResume) → Tracker
    g. **Mover de "Pendientes" a "Procesadas"**: `- [x] #NNN | URL | Empresa | Rol | Score/5 | JSON ✅/❌`
-3. **Si hay 3+ URLs pendientes**, lanzar agentes en paralelo (Agent tool con `run_in_background`) para maximizar velocidad.
+3. **Si hay 3+ URLs pendientes**, lanzar agentes en paralelo para maximizar velocidad, pero cada agente debe usar la misma rubric final de `modes/_evaluation-rubric.md`.
 4. **Al terminar**, mostrar tabla resumen:
 
 ```
@@ -68,3 +77,14 @@ Cada item procesado por pipeline debe dejar, como minimo, estos artefactos reuti
 3. Skill coverage scan: `reports/{###}-{company-slug}-{YYYY-MM-DD}-skills.md`
 
 El report principal debe incluir las rutas de 2 y 3 en su sección de artifacts para que el dashboard y futuros modos puedan reutilizarlas sin volver a extraer ni re-analizar innecesariamente.
+
+## Consistency Rule
+
+If `pipeline` processes 1 URL or 50 URLs, the evaluation method must remain the same.
+
+Only the orchestration may change:
+- ordering
+- batching
+- concurrency
+
+The scoring rubric, evidence sources, and recommendation thresholds must remain identical across all jobs.

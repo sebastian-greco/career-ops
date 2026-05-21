@@ -71,19 +71,32 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 **Tags:** payments, billing, ledger, monetization, entitlements, stripe, fintech, token-ledger, product-platform
 
-**Hero scope:** Owned billing and payment-product logic from an early Stripe plus webhooks setup through a more mature platform model for plans, features, and entitlements, then later led cross-team design review for the AI token ledger as Group Lead.
+**Hero scope:** Owned Riverside's customer-facing billing and plan-management surface from an early Stripe-plus-webhooks setup through a more mature platform model for plans, features, entitlements, account overrides, and plan versioning, then later led cross-team design review for the AI token ledger as Group Lead.
 
-**Architecture:** Stripe execution layer + internal plans/features/entitlements model + RevenueCat bridge for mobile + event-driven token ledger for AI consumption
+**Architecture:** Stripe execution layer + internal plans/features/entitlements model + account-level overrides + plan versioning and grandfathering support + RevenueCat bridge for mobile + event-driven token ledger for AI consumption
 
 **Key decisions:**
 - Kept Stripe as the payment execution layer while moving product logic for plans, features, and entitlements into Riverside systems.
+- Cleaned up an early messy billing implementation, including Stripe-side structure, database state, and migrations across legacy plans created before the system had stronger product boundaries.
 - During the Engineering Manager phase, owned the backend systems for billing, plans, features, entitlements, and payment flows, and later helped the mobile team integrate RevenueCat with those systems.
+- Used the introduction of a new pricing plan as the moment to redesign the feature-management model so features were explicitly mapped to plans instead of being hardcoded across the codebase.
+- Designed support for enterprise-specific account overrides so commercial teams could grant temporary or contract-specific features without creating one-off technical debt.
+- Added plan versioning so Riverside could grandfather pricing and feature access cleanly across multiple generations of the same plan.
+- Reworked churn and account-state handling so support and internal teams could recover and manage problematic account states more cleanly instead of leaving users stuck in inconsistent plan situations.
 - As Group Lead, led design review and coordination across two teams in the group to ship the AI token ledger rather than treating it as a single-team EM project.
+- Designed the plan and entitlement system in a way that later integrated cleanly with AI token consumption, including free credits in some plans and smoother connection to the token ledger service.
 - Designed the AI token ledger as an event-driven foundation but scoped v1 to essential purchase and spending events.
 - Deferred user-facing transaction history and automated refunds until usage patterns justified them.
 
 **Proof points:**
 - Built a more robust monetization foundation without overbuilding payments primitives.
+- Replaced hardcoded feature access with a structured plan, entitlement, and override system that made experimentation, enterprise sales flexibility, and internal testing much easier.
+- Improved the customer-facing billing and plan experience by making plan behavior clearer, more flexible, and easier to evolve without regressions.
+- Improved commercial flexibility by making it easier to support upsells, close larger enterprise contracts, and temporarily grant account-level feature access where needed.
+- Reduced churn and support friction by giving internal teams cleaner tools and account states to work with.
+- Improved Stripe-side reporting and internal visibility into plans, revenue behavior, and account distribution.
+- Gave account executives and commercial teams a cleaner way to support upsells and enterprise contracts through controlled account-level feature overrides.
+- Created a foundation that supported later pricing, packaging, and AI-credit changes without forcing repeated re-architecture.
 - Helped connect mobile RevenueCat adoption to Riverside's backend monetization model.
 - Led design review and coordination across two teams to ship the token ledger for AI feature consumption.
 - Enabled faster iteration on billing behavior and AI feature consumption.
@@ -133,16 +146,17 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 ## Riverside -- Developer Platform, CI/CD, and Service Templates
 
-**Tags:** developer-experience, devex, platform, ci-cd, github-actions, microservices, kafka, logging, templates, docker, release-engineering
+**Tags:** developer-experience, devex, platform, ci-cd, github-actions, microservices, kafka, logging, templates, docker, release-engineering, openapi, swagger, api-contracts, nestjs
 
 **Hero scope:** Improved the internal developer platform at Riverside by standardizing how microservices were created, instrumented, and released.
 
-**Architecture:** Microservice templates + shared internal libraries for Kafka and logging + GitHub Actions release pipelines + Docker-based service packaging
+**Architecture:** Microservice templates + shared internal libraries for Kafka and logging + OpenAPI/Swagger-by-default API contracts for new services + GitHub Actions release pipelines + Docker-based service packaging
 
 **Key decisions:**
 - Proposed creating Riverside's first dedicated platform team as the company grew and the need for internal infrastructure became unavoidable.
 - Partnered with the incoming VP of Engineering to reshape an existing team, move user-facing ownership to more relevant product teams, and free the new platform team to focus on leverage for the broader organization.
 - Created reusable service templates so new microservices started from a consistent baseline instead of custom one-off setups.
+- Standardized OpenAPI/Swagger as a default requirement for new endpoints, first by introducing it into the monolith and then by shipping it out of the box in new NestJS microservices through decorator-based API definitions.
 - Built shared company libraries for Kafka consumption and logging so teams could adopt the same operational patterns across services.
 - Simplified release engineering from a more complicated branching model to a thinner single-branch flow: work via PRs into `main`, create a version tag or release, and let GitHub Actions deploy the latest release automatically.
 - Kept Docker packaging deliberately simple so teams could ship reliably without accumulating unnecessary CI/CD complexity.
@@ -152,6 +166,7 @@ Compact proof points from extended experience that do not always fit cleanly in 
 - Helped define the organizational case for platform as a product, not just a support function.
 - Built the first formal platform team around internal infrastructure, developer workflows, and shared engineering leverage.
 - Improved developer experience by making service setup faster and more standardized across teams.
+- Improved API consistency and integration readiness by making OpenAPI/Swagger documentation a default part of both legacy endpoint evolution and new microservice delivery.
 - Reduced friction in microservice delivery through a simpler GitHub Actions-based release model.
 - Helped turn platform work into leverage for the broader engineering organization rather than only supporting a single team.
 - Partnered directly with the platform team lead, release manager, and VP of Engineering to push the release-process redesign first through microservices and then into the monolith.
@@ -166,6 +181,7 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 **Key decisions:**
 - Championed the first serious use of GitHub Copilot and later Cursor across engineering teams.
+- Backed a team-led initiative to introduce AI-assisted PR review, worked through the early privacy and approval concerns, and helped operationalize it as part of the delivery workflow rather than an isolated experiment.
 - Introduced AI-assisted PR review to reduce review bottlenecks and surface issues earlier, before human review became the constraint.
 - Treated AI as an engineering systems problem: useful when paired with clear workflows, guardrails, and internal tooling rather than as an open-ended chat interface.
 - Left Riverside before the next wave of agentic automation matured, but had already been pushing the organization toward stronger internal tooling and CLI-driven workflows that AI systems could build on top of.
@@ -173,7 +189,29 @@ Compact proof points from extended experience that do not always fit cleanly in 
 **Proof points:**
 - Was an early internal advocate for practical AI adoption in day-to-day engineering work.
 - Helped normalize AI-assisted code generation and review as part of the workflow rather than as an individual experiment.
+- Improved PR flow by letting engineers run AI review earlier, so human reviewers could spend more time on business logic, product nuances, and higher-value design decisions instead of routine fixes.
 - Formed a clear point of view that the strongest long-term path is AI layered on top of high-quality company tooling, templates, and workflows.
+
+---
+
+## Riverside -- Agile Operating Model, Planning, and Product/Design Alignment
+
+**Tags:** agile, delivery, planning, product, design, cross-functional, operating-model, engineering-management, predictability
+
+**Hero scope:** Improved team effectiveness at Riverside by introducing a more structured agile operating model across multiple teams during a scaling phase where product, design, and engineering were creating too much delivery churn.
+
+**Key decisions:**
+- Expanded a more structured agile approach from a single engineering-managed team to a broader group as Riverside scaled and a new VP of Engineering pushed for stronger operating discipline across the org.
+- Worked through resistance from some product partners by framing the change as a way to reduce waste and rework, not add process for its own sake.
+- Used the first wave of internal AI tooling to make documentation, clearer ticket descriptions, and stronger acceptance criteria easier to produce and maintain.
+- Reinforced that the process should stay lightweight and only exist where it made delivery more genuinely agile, especially around planning, scope clarity, and edge-case definition.
+- Connected the team-level changes to better quarterly planning, so cross-company alignment improved instead of each team planning in isolation.
+
+**Proof points:**
+- Reduced late back-and-forth between product, design, and engineering by improving scope definition and acceptance criteria earlier in the cycle.
+- Improved predictability and made it easier to align multiple teams with broader company priorities.
+- Reduced communication noise and delivery friction across engineering, product, and design.
+- Earned explicit buy-in from initially skeptical product stakeholders once the new model showed clearer planning and smoother execution.
 
 ---
 

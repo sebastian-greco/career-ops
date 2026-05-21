@@ -4,6 +4,7 @@ import path from "node:path";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { ReportRenderer } from "@/components/markdown/report-renderer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { resolveCareerOpsRoot } from "@/lib/server/career-ops-root";
@@ -23,6 +24,16 @@ function normalizeArtifactPath(parts: string[]) {
   }
 
   return normalized;
+}
+
+function artifactTitle(relativePath: string) {
+  if (relativePath.startsWith("jds/") && relativePath.endsWith(".md")) {
+    return "Job Description";
+  }
+  if (relativePath.endsWith("-skills.md")) {
+    return "Skills Scan";
+  }
+  return "Artifact";
 }
 
 export default async function ArtifactPage({
@@ -51,6 +62,8 @@ export default async function ArtifactPage({
     notFound();
   }
 
+  const isMarkdownArtifact = relativePath.endsWith(".md");
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center gap-2">
@@ -61,14 +74,20 @@ export default async function ArtifactPage({
 
       <Card className="overflow-hidden border-border/50 shadow-sm">
         <CardHeader className="border-b border-border/40 bg-muted/20 pb-4">
-          <CardTitle className="text-lg">Artifact</CardTitle>
+          <CardTitle className="text-lg">{artifactTitle(relativePath)}</CardTitle>
           <CardDescription>{relativePath}</CardDescription>
         </CardHeader>
-        <CardContent className="p-0">
-          <pre className="overflow-x-auto p-6 text-sm leading-6 text-foreground">
-            <code>{raw}</code>
-          </pre>
-        </CardContent>
+        {isMarkdownArtifact ? (
+          <CardContent className="p-8 sm:p-12">
+            <ReportRenderer markdown={raw} />
+          </CardContent>
+        ) : (
+          <CardContent className="p-0">
+            <pre className="overflow-x-auto p-6 text-sm leading-6 text-foreground">
+              <code>{raw}</code>
+            </pre>
+          </CardContent>
+        )}
       </Card>
     </div>
   );

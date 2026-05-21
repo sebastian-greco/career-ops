@@ -157,6 +157,10 @@ function parseScore(s) {
   return m ? parseFloat(m[1]) : 0;
 }
 
+function sanitizeTableCell(value) {
+  return String(value ?? '').replace(/\|/g, ' - ').trim();
+}
+
 function statusPriority(status) {
   const priorities = {
     'SKIP': 0,
@@ -212,7 +216,7 @@ function buildUpdatedLine(duplicate, addition, updateReason, oldScore, newScore)
       : `Tracker update ${addition.date}.`;
   const notes = [reasonPrefix, addition.notes].filter(Boolean).join(' ').trim();
 
-  return `| ${duplicate.num} | ${date} | ${addition.company} | ${addition.role} | ${score} | ${status} | ${pdf} | ${report} | ${notes} |`;
+  return `| ${duplicate.num} | ${sanitizeTableCell(date)} | ${sanitizeTableCell(addition.company)} | ${sanitizeTableCell(addition.role)} | ${sanitizeTableCell(score)} | ${sanitizeTableCell(status)} | ${sanitizeTableCell(pdf)} | ${sanitizeTableCell(report)} | ${sanitizeTableCell(notes)} |`;
 }
 
 function parseAppLine(line) {
@@ -416,7 +420,7 @@ for (const file of tsvFiles) {
     const entryNum = addition.num > maxNum ? addition.num : ++maxNum;
     if (addition.num > maxNum) maxNum = addition.num;
 
-    const newLine = `| ${entryNum} | ${addition.date} | ${addition.company} | ${addition.role} | ${addition.score} | ${addition.status} | ${addition.pdf} | ${addition.report} | ${addition.notes} |`;
+    const newLine = `| ${entryNum} | ${sanitizeTableCell(addition.date)} | ${sanitizeTableCell(addition.company)} | ${sanitizeTableCell(addition.role)} | ${sanitizeTableCell(addition.score)} | ${sanitizeTableCell(addition.status)} | ${sanitizeTableCell(addition.pdf)} | ${sanitizeTableCell(addition.report)} | ${sanitizeTableCell(addition.notes)} |`;
     newLines.push(newLine);
     added++;
     console.log(`➕ Add #${entryNum}: ${addition.company} — ${addition.role} (${addition.score})`);

@@ -1,5 +1,14 @@
 # career-ops Batch Worker — Evaluación Completa + PDF + Tracker Line
 
+**Required companion:** `modes/_evaluation-rubric.md`
+
+Before judging a role, read `modes/_evaluation-rubric.md` and use it as the final scoring source of truth.
+
+This worker must use the same evaluation methodology as:
+- `auto-pipeline`
+- `oferta`
+- `pipeline`
+
 Eres un worker de evaluación de ofertas de empleo for the candidate (read name from config/profile.yml). Recibes una oferta (URL + JD text) y produces:
 
 1. Evaluación completa A-G (report .md)
@@ -155,6 +164,10 @@ Analyze posting signals to assess whether this is a real, active opening.
 **Assessment:** Apply the same three tiers (High Confidence / Proceed with Caution / Suspicious), weighting available signals more heavily. If insufficient signals are available to make a determination, default to "Proceed with Caution" with a note about limited data.
 
 #### Score Global
+
+Use the shared five dimensions, weights, thresholds, and recommendation mapping from `modes/_evaluation-rubric.md`.
+
+Do not invent a batch-only scoring method.
 
 | Dimensión | Score |
 |-----------|-------|

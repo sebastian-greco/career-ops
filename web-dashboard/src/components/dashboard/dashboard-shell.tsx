@@ -19,7 +19,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
   const currentPath = usePathname();
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-primary/20">
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/20 [--dashboard-header-offset:5rem]">
       <header className="sticky top-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
           <div className="flex flex-col gap-0.5">

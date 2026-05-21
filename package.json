@@ -19,7 +19,8 @@
     "liveness": "node check-liveness.mjs",
     "scan": "node scan.mjs",
     "scan:jobgether": "node scan-jobgether.mjs",
-    "gemini:eval": "node gemini-eval.mjs"
+    "gemini:eval": "node gemini-eval.mjs",
+    "evaluate:job": "node evaluate-job.mjs"
   },
   "keywords": [
     "ai",

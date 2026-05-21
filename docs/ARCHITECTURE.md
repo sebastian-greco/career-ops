@@ -38,18 +38,29 @@
 
 1. **Input**: User pastes JD text or URL
 2. **Extract**: Playwright/WebFetch extracts JD from URL
-3. **Classify**: Detect archetype (1 of 6 types)
-4. **Evaluate**: 6 blocks (A-F):
+3. **Normalize facts**: company, role, location, salary, apply questions, liveness
+4. **Evaluate**: one standardized agentic rubric shared across single-offer, pipeline, and batch:
    - A: Role summary
    - B: CV match (gaps + mitigation)
    - C: Level strategy
    - D: Comp research (WebSearch)
    - E: CV personalization plan
    - F: Interview prep (STAR stories)
-5. **Score**: Weighted average across 10 dimensions (1-5)
+5. **Score**: Weighted average across the shared five dimensions (`CV Match`, `North Star`, `Comp`, `Culture`, `Red flags`)
 6. **Report**: Save as `reports/{num}-{company}-{date}.md`
 7. **PDF**: Generate ATS-optimized CV (`generate-pdf.mjs`)
 8. **Track**: Write TSV to `batch/tracker-additions/`, auto-merged
+
+## Consistency Rule
+
+`auto-pipeline`, `pipeline`, and `batch` should all use the same final evaluation rubric.
+
+The only allowed differences are orchestration concerns such as:
+- when the job is processed
+- how many jobs run concurrently
+- whether URLs come from chat, `data/pipeline.md`, or batch input
+
+Extraction may remain deterministic. Final scoring should not silently switch to a shallower methodology for multi-job runs.
 
 ## Batch Processing
 

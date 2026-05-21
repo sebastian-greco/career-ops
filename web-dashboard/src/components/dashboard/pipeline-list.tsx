@@ -475,6 +475,7 @@ export function PipelineList({
                         <th className="px-4 py-3">
                           <SortHeader label="Score" active={activeSort === "score"} onClick={() => setActiveSort("score")} />
                         </th>
+                        <th className="px-4 py-3">Report</th>
                         <th className="px-4 py-3">
                           <SortHeader label="Company" active={activeSort === "company"} onClick={() => setActiveSort("company")} />
                         </th>
@@ -491,7 +492,7 @@ export function PipelineList({
                     <tbody>
                       {filtered.length === 0 ? (
                         <tr>
-                          <td colSpan={6} className="px-4 py-8 text-center text-sm text-muted-foreground">
+                          <td colSpan={7} className="px-4 py-8 text-center text-sm text-muted-foreground">
                             No offers match this filter.
                           </td>
                         </tr>
@@ -668,7 +669,7 @@ function FragmentRow({
     <>
       {showGroupHeader ? (
         <tr className="bg-muted/40">
-          <td colSpan={6} className="px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+          <td colSpan={7} className="px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
             {statusLabel(statuses, String(application.statusNormalized))} ({groupCount})
           </td>
         </tr>
@@ -684,6 +685,7 @@ function FragmentRow({
         )}
       >
         <td className={cn("px-4 py-3 font-semibold", scoreTone(application.score))}>{application.score.toFixed(1)}</td>
+        <td className="px-4 py-3 font-mono text-xs text-muted-foreground">{application.reportNumber || "-"}</td>
         <td className="px-4 py-3 font-medium">{application.company}</td>
         <td className="px-4 py-3 text-muted-foreground">{application.role}</td>
         <td className="px-4 py-3 text-muted-foreground">

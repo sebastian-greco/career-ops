@@ -2,6 +2,7 @@ import { PageShortcuts } from "@/components/dashboard/page-shortcuts";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { CopyCommandButton } from "@/components/dashboard/copy-command-button";
 import { ReportRenderer } from "@/components/markdown/report-renderer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -57,7 +58,7 @@ export default async function ReportPage({
 
   return (
     <div className="space-y-6">
-      <div className="sticky top-16 z-30 space-y-4 border-b border-border/40 bg-background/95 pb-6 pt-2 backdrop-blur">
+      <div className="sticky top-[var(--dashboard-header-offset)] z-30 space-y-4 border-b border-border/40 bg-background/95 pb-6 pt-2 backdrop-blur">
         <div className="space-y-1">
           <p className="text-[10px] font-bold uppercase tracking-widest text-primary/80">
             Report {report.reportId}
@@ -101,7 +102,7 @@ export default async function ReportPage({
       </div>
 
       <div className="grid items-start gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
-        <Card className="sticky top-24 border-border/50 shadow-xs">
+        <Card className="sticky top-[calc(var(--dashboard-header-offset)+1.5rem)] border-border/50 shadow-xs">
           <CardHeader className="border-b border-border/40 bg-muted/20 pb-4">
             <CardTitle className="text-lg">Metadata</CardTitle>
             <CardDescription>Parsed from the report header and summary blocks.</CardDescription>
@@ -112,6 +113,10 @@ export default async function ReportPage({
               <p className="mt-2 text-3xl font-bold tracking-tight text-foreground">
                 {report.scoreRaw || (report.score ? `${report.score.toFixed(1)}/5` : "Not found")}
               </p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <CopyCommandButton command={`/career-ops-apply ${report.reportId}`} label="Apply" />
+                <CopyCommandButton command={`/career-ops-json-cv ${report.reportId}`} label="JSON CV" />
+              </div>
             </div>
             <div className="flex flex-col gap-1.5">
               <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Archetype</p>
