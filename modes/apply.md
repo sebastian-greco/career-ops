@@ -7,6 +7,7 @@ Interactive mode for when the candidate is filling out an application form in Ch
 - **Best with Playwright in visible mode**: In visible mode, the candidate sees the browser and Claude can inspect the page.
 - **Hard rule**: Do not fill, upload, click through, solve captchas, or submit the application on the candidate's behalf. The browser is read-only for `apply` mode.
 - **Without Playwright**: the candidate shares a screenshot or pastes the questions manually.
+- **Environment config**: `sync-application-tracker.mjs` loads `APPLICATION_TRACKER_URL` from the process environment or the repo `.env` file. Do not treat `printenv` alone as proof that tracker sync is unavailable.
 
 ## Workflow
 
@@ -82,6 +83,8 @@ Classify each question:
 - **Substantive / reusable** → persist it in the tracker app as saved Q&A
 
 Default to **not** persisting. Only store answers that are genuinely worth reusing later.
+
+Important: the agent should make this persistence decision directly. `sync-application-tracker.mjs` should be treated as a mechanical writer for the already-selected saved questions, not as a second classifier that re-decides based on regexes.
 
 Exception: save salary / compensation answers by default for recordkeeping, even when they are primarily useful as an interview and negotiation reference rather than a reusable drafting answer.
 
@@ -176,6 +179,8 @@ During drafting, create or update the application record in the external tracker
 node sync-application-tracker.mjs upsert --input /tmp/apply-tracker-payload.json
 ```
 
+`sync-application-tracker.mjs` loads `APPLICATION_TRACKER_URL` from either the active environment or the repo `.env` file, so availability should be judged by the script behavior, not only by shell-exported variables.
+
 The payload should include:
 - company name
 - role title
@@ -183,7 +188,7 @@ The payload should include:
 - extracted full live JD text copied verbatim from the page, as close to copy-paste as possible
 - cover letter draft only when the form explicitly asks for one
 - pipeline stage (default `draft` until confirmed otherwise)
-- only the few substantive saved question answers worth keeping
+- only the few substantive saved question answers worth keeping, already selected by the agent
 
 Upsert behavior:
 - exact `jobPostingUrl` match first
@@ -201,11 +206,12 @@ Persistence guidance for substantive questions:
 - Save management / hiring / coaching / leadership narrative answers when reusable
 - Save substantive `Additional Information` / `Anything else you'd like us to know?` answers when they contain meaningful motivation, culture-fit framing, or interview-useful context
 - Do not save boilerplate or identity-only filler
+- If a mixed list must be passed, mark non-memory entries with `savePolicy: skip`; otherwise prefer passing only the selected reusable questions
 
 ## Step 8 — Post-apply (optional)
 
 If the candidate confirms that they submitted the application:
-1. Update pipeline status in the external tracker app to `applied`
+1. Update pipeline status in the external tracker app to `applied`. Prefer omitting `effectiveDate` so the backend records the exact current timestamp. Only pass `effectiveDate` when you are intentionally backfilling or correcting the applied time, and use a full ISO-8601 datetime.
 2. Queue a markdown tracker update through `batch/tracker-additions/` and merge it with `merge-tracker.mjs`
 3. Update Section G of the report with the final responses
 4. Suggest next step: `/career-ops contacto` for LinkedIn outreach

@@ -284,7 +284,7 @@ Write rule:
 - Never write a fresh handcrafted full JSON artifact when tailoring from a base template
 
 RxResume sync rule:
-- After writing and validating the tailored JSON, sync it to local RxResume by default when `RX_RESUME_URL` and `RX_RESUME_KEY` are configured
+- After writing and validating the tailored JSON, sync it to local RxResume by default when `RX_RESUME_URL` and `RX_RESUME_KEY` are configured. `sync-rxresume.mjs` also loads them from the repo `.env`, so do not rely on `printenv` alone when checking availability.
 - Skip the sync only when the user explicitly asks for local-only output or when the RxResume environment is not configured
 - Pair the resolved report with its generated JSON artifact and run `npm run resume:sync -- <report-id-or-report-path>`
 - The sync must create the resume if it does not exist yet, or update it if it already exists

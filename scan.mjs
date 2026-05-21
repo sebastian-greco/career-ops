@@ -411,6 +411,10 @@ function pickBrowserExtractor(url) {
   return extractGenericJobs;
 }
 
+function hasDedicatedBrowserExtractor(url) {
+  return pickBrowserExtractor(url) !== extractGenericJobs;
+}
+
 async function clickLoadMore(page) {
   for (let i = 0; i < 10; i++) {
     const button = page.getByRole('button', { name: /load more|show more|more jobs/i }).first();
@@ -972,7 +976,7 @@ async function main() {
     : (config.search_queries || []).filter(q => q.enabled !== false);
   const companySearchTargets = enabledCompanies.filter(c => c.scan_method === 'websearch' && c.scan_query);
   const apiTargets = enabledCompanies.filter(c => c._api !== null && c.scan_method !== 'websearch');
-  const browserTargets = enabledCompanies.filter(c => c._api === null && c.careers_url && c.scan_method !== 'websearch');
+  const browserTargets = enabledCompanies.filter(c => c._api === null && c.careers_url && (c.scan_method !== 'websearch' || hasDedicatedBrowserExtractor(c.careers_url)));
 
   console.log(`Scanning ${enabledCompanies.length} companies (${apiTargets.length} API, ${browserTargets.length} browser, ${companySearchTargets.length} company-search)`);
   if (dryRun) console.log('(dry run — no files will be written)\n');

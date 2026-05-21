@@ -38,7 +38,7 @@ function usage() {
   console.log(`Usage:
   node sync-application-tracker.mjs upsert --input <json-file>
   node sync-application-tracker.mjs search --query <text>
-  node sync-application-tracker.mjs status --id <application-id> --stage <draft|applied|interviewing|offer|rejected|declined> [--date YYYY-MM-DD]
+  node sync-application-tracker.mjs status --id <application-id> --stage <draft|applied|interviewing|offer|rejected|declined> [--date <ISO-8601 datetime>]
 
 Environment:
   APPLICATION_TRACKER_URL   Base URL for the NextStage tracker API (example: http://localhost:3002)
@@ -137,59 +137,13 @@ function ensurePipelineStatus(input) {
   };
 }
 
-function isQuestionDefinitelyNotMemory(entry) {
-  const question = normalizeText(entry.question);
-  if (!question) return true;
-
-  const patterns = [
-    /\b(full )?name\b/,
-    /\bemail\b/,
-    /\bphone\b/,
-    /\bmobile\b/,
-    /\blocation\b/,
-    /\bcity\b/,
-    /\bcountry\b/,
-    /\baddress\b/,
-    /\blinkedin\b/,
-    /\bgithub\b/,
-    /\bportfolio\b/,
-    /\bwebsite\b/,
-    /\bwork authorization\b/,
-    /\bvisa\b/,
-    /\bpronouns\b/,
-    /\bdate of birth\b/,
-    /\bgender\b/,
-    /\brace\b/,
-    /\bethnicity\b/,
-    /\bdisability\b/,
-    /\bveteran\b/,
-    /\bcheckbox\b/,
-    /\backnowledg/,
-  ];
-
-  return patterns.some((pattern) => pattern.test(question));
-}
-
-function shouldPersistQuestion(entry) {
+export function shouldPersistQuestion(entry) {
   if (!entry || !entry.question || !entry.answer) return false;
-  if (entry.savePolicy === 'skip') return false;
-  if (entry.savePolicy === 'store') return true;
-  const question = normalizeText(entry.question);
-  const answer = normalizeText(entry.answer);
-  if (/\b(salary|compensation|comp|expected salary|salary expectation|salary expectations)\b/.test(question)) {
-    return true;
-  }
-  if (/(why this role|why this company|leadership philosophy|ai workflow|ai tooling|coding assistants|payment service providers|psps|acquirers|payment gateways|payments integrations|role fit|managing software engineering teams|hiring coaching performance reviews|management experience)/.test(question)) {
-    return true;
-  }
-  if (/(additional information|anything more you d like to tell us|anything else you d like to share|anything else you want us to know|anything else)/.test(question)) {
-    return answer.length >= 180;
-  }
-  if (isQuestionDefinitelyNotMemory(entry)) return false;
-  return false;
+  if (entry.savePolicy === 'skip' || entry.persist === false) return false;
+  return true;
 }
 
-function toSavedQuestionAnswers(inputQuestions) {
+export function toSavedQuestionAnswers(inputQuestions) {
   const persisted = [];
   const seen = new Map();
 
@@ -404,12 +358,17 @@ async function handleStatus(options) {
     throw new Error('Missing or invalid --stage');
   }
 
-  const effectiveDate = options.date || todayString();
+  const pipelineStatus = options.date
+    ? {
+        stage: options.stage,
+        effectiveDate: options.date,
+      }
+    : {
+        stage: options.stage,
+      };
+
   const response = await updateApplication(options.id, {
-    pipelineStatus: {
-      stage: options.stage,
-      effectiveDate,
-    },
+    pipelineStatus,
   });
 
   console.log(JSON.stringify({
@@ -418,20 +377,24 @@ async function handleStatus(options) {
   }, null, 2));
 }
 
-const { command, options } = parseArgs(process.argv);
+const isMain = process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 
-try {
-  if (command === 'upsert') {
-    await handleUpsert(options);
-  } else if (command === 'search') {
-    await handleSearch(options);
-  } else if (command === 'status') {
-    await handleStatus(options);
-  } else {
-    usage();
+if (isMain) {
+  const { command, options } = parseArgs(process.argv);
+
+  try {
+    if (command === 'upsert') {
+      await handleUpsert(options);
+    } else if (command === 'search') {
+      await handleSearch(options);
+    } else if (command === 'status') {
+      await handleStatus(options);
+    } else {
+      usage();
+      process.exit(1);
+    }
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : String(error));
     process.exit(1);
   }
-} catch (error) {
-  console.error(error instanceof Error ? error.message : String(error));
-  process.exit(1);
 }

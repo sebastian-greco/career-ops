@@ -120,7 +120,7 @@ Agent(
 - In this mode, the live JD is the primary proof source. Matching reports are supporting context only.
 - If the live page reveals a hard mismatch and the user confirms it is a blocker, stop there. Do not continue drafting persuasive answers for that application.
 - Ground answers in the following order: live JD, `cv.md`, `article-digest.md`, `modes/_profile.md`, `config/profile.yml`, then matching reports.
-- During drafting, create or update the external application tracker record through `sync-application-tracker.mjs` using `APPLICATION_TRACKER_URL`.
+- During drafting, create or update the external application tracker record through `sync-application-tracker.mjs` using `APPLICATION_TRACKER_URL`. The script also reads the repo `.env`, so do not rely on `printenv` alone to decide whether tracker sync is available.
 - Save the full extracted live JD to the tracker app `jobDescriptionText` field verbatim, as close to copy-paste from the live page as possible. Do not summarize, compress, or paraphrase it.
 - Save a cover letter draft to the tracker app `currentDraft` field only when the live application explicitly asks for a cover letter.
 - Save only genuinely reusable substantive answers to the tracker app. Default to not saving question/answer pairs, with one explicit exception: save salary / compensation answers for recordkeeping.
@@ -130,6 +130,7 @@ Agent(
 - Saved question answers must default to `includeInAiContext: false`. Only mark them as AI context when the user explicitly wants that answer reused automatically later.
 - Before drafting long-form answers, search prior saved answers in the tracker app and reuse them carefully when relevant.
 - Keep the markdown tracker in sync too, but do not edit `data/applications.md` directly from `apply`; use the tracker-additions flow.
+- When moving an application to a new pipeline stage through the tracker API, prefer omitting `pipelineStatus.effectiveDate` so the backend stores the current timestamp. Only send `effectiveDate` when intentionally backfilling/correcting the stage time, and use a full ISO-8601 datetime.
 - Generate answers without submitting the application.
 
 #### `scan-jobgether`

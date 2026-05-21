@@ -280,7 +280,7 @@ search_queries:
 
 # -- Tracked companies --
 # Companies whose career pages are checked directly.
-# scan_method: playwright (default), websearch, greenhouse_api
+# scan_method: playwright (direct browser scan), websearch (discovery/fallback), greenhouse_api
 # For Greenhouse companies, add api: field for faster structured JSON access.
 
 tracked_companies:
@@ -408,7 +408,7 @@ tracked_companies:
 
   - name: LivePerson
     careers_url: https://liveperson.com/company/careers
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:liveperson.com/careers OR "liveperson" "Solutions" OR "AI" site:job-boards.greenhouse.io'
     notes: "Remote EMEA. Conversational AI enterprise."
     enabled: true
@@ -431,7 +431,7 @@ tracked_companies:
 
   - name: Talkdesk
     careers_url: https://www.talkdesk.com/careers
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:talkdesk.com/careers "AI" OR "Solutions Architect" OR "AI Engineer"'
     notes: "Lisbon. Contact center AI. EMEA friendly."
     enabled: true
@@ -489,7 +489,7 @@ tracked_companies:
 
   - name: Cognigy
     careers_url: https://careers.cognigy.com
-    scan_method: websearch
+    scan_method: playwright
     scan_query: '"cognigy" careers "AI" OR "Solutions" OR "Engineer"'
     notes: "Dusseldorf EMEA. Conversational AI enterprise."
     enabled: true
@@ -554,8 +554,10 @@ tracked_companies:
     enabled: true
 
   - name: Weights & Biases
-    careers_url: https://jobs.lever.co/wandb
-    notes: "MLOps platform."
+    careers_url: https://coreweave.com/careers/weights-biases
+    scan_method: playwright
+    scan_query: 'site:coreweave.com/careers "weights" OR "wandb"'
+    notes: "Acquired by CoreWeave 2025. Jobs now on CoreWeave site. JS-heavy, no API. Was: jobs.lever.co/wandb"
     enabled: true
 
   - name: Palantir

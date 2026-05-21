@@ -137,10 +137,40 @@ try {
   fail(`Liveness classification tests crashed: ${e.message}`);
 }
 
-// ── 4. DASHBOARD BUILD ──────────────────────────────────────────
+// ── 4. TRACKER QUESTION PERSISTENCE ─────────────────────────────
+
+console.log('\n4. Tracker question persistence');
+
+try {
+  const { toSavedQuestionAnswers } = await import(pathToFileURL(join(ROOT, 'sync-application-tracker.mjs')).href);
+
+  const saved = toSavedQuestionAnswers([
+    {
+      question: 'What is it about DuckDuckGo and this role that interests you?',
+      answer: 'Mission, privacy, backend scope, and product judgment all line up strongly for me.',
+      includeInAiContext: false,
+    },
+    {
+      question: 'Location',
+      answer: 'Seregno, Italy',
+      savePolicy: 'skip',
+      includeInAiContext: false,
+    },
+  ]);
+
+  if (saved.length === 1 && saved[0].question === 'What is it about DuckDuckGo and this role that interests you?') {
+    pass('Tracker persists agent-selected questions and respects explicit skip');
+  } else {
+    fail(`Unexpected tracker persistence result: ${JSON.stringify(saved)}`);
+  }
+} catch (e) {
+  fail(`Tracker question persistence tests crashed: ${e.message}`);
+}
+
+// ── 5. DASHBOARD BUILD ──────────────────────────────────────────
 
 if (!QUICK) {
-  console.log('\n4. Dashboard build');
+  console.log('\n5. Dashboard build');
   const goBuild = run('cd dashboard && go build -o /tmp/career-dashboard-test . 2>&1');
   if (goBuild !== null) {
     pass('Dashboard compiles');
@@ -148,12 +178,12 @@ if (!QUICK) {
     fail('Dashboard build failed');
   }
 } else {
-  console.log('\n4. Dashboard build (skipped --quick)');
+  console.log('\n5. Dashboard build (skipped --quick)');
 }
 
-// ── 5. DATA CONTRACT ────────────────────────────────────────────
+// ── 6. DATA CONTRACT ────────────────────────────────────────────
 
-console.log('\n5. Data contract validation');
+console.log('\n6. Data contract validation');
 
 // Check system files exist
 const systemFiles = [
@@ -187,9 +217,9 @@ for (const f of userFiles) {
   }
 }
 
-// ── 6. PERSONAL DATA LEAK CHECK ─────────────────────────────────
+// ── 7. PERSONAL DATA LEAK CHECK ─────────────────────────────────
 
-console.log('\n6. Personal data leak check');
+console.log('\n7. Personal data leak check');
 
 const leakPatterns = [
   'Santiago', 'santifer.io', 'Santifer iRepair', 'Zinkee', 'ALMAS',
@@ -237,9 +267,9 @@ if (!leakFound) {
   pass('No personal data leaks outside allowed files');
 }
 
-// ── 7. ABSOLUTE PATH CHECK ──────────────────────────────────────
+// ── 8. ABSOLUTE PATH CHECK ──────────────────────────────────────
 
-console.log('\n7. Absolute path check');
+console.log('\n8. Absolute path check');
 
 // Same git grep approach: only scans tracked files. Untracked AI tool
 // outputs, local debate artifacts, etc. can't false-positive here.
@@ -254,9 +284,9 @@ if (!absPathResult) {
   }
 }
 
-// ── 8. MODE FILE INTEGRITY ──────────────────────────────────────
+// ── 9. MODE FILE INTEGRITY ──────────────────────────────────────
 
-console.log('\n8. Mode file integrity');
+console.log('\n9. Mode file integrity');
 
 const expectedModes = [
   '_shared.md', '_profile.template.md', 'oferta.md', 'pdf.md', 'scan.md',

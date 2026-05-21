@@ -174,7 +174,7 @@ search_queries:
 
 # -- Tracked companies --
 # Companies whose career pages are checked directly.
-# scan_method: playwright (default), websearch, greenhouse_api
+# scan_method: playwright (direct browser scan), websearch (discovery/fallback), greenhouse_api
 # For Greenhouse companies, add api: field for faster structured JSON access.
 
 tracked_companies:
@@ -300,7 +300,7 @@ tracked_companies:
 
   - name: LivePerson
     careers_url: https://liveperson.com/company/careers
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:liveperson.com/careers OR "liveperson" "Solutions" OR "AI" site:job-boards.greenhouse.io'
     notes: "Remote EMEA. Conversational AI enterprise."
     enabled: true
@@ -323,7 +323,7 @@ tracked_companies:
 
   - name: Talkdesk
     careers_url: https://www.talkdesk.com/careers
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:talkdesk.com/careers "AI" OR "Solutions Architect" OR "AI Engineer"'
     notes: "Lisbon. Contact center AI. EMEA friendly."
     enabled: true
@@ -379,7 +379,7 @@ tracked_companies:
 
   - name: Cognigy
     careers_url: https://careers.cognigy.com
-    scan_method: websearch
+    scan_method: playwright
     scan_query: '"cognigy" careers "AI" OR "Solutions" OR "Engineer"'
     notes: "Dusseldorf EMEA. Conversational AI enterprise."
     enabled: true
@@ -450,7 +450,7 @@ tracked_companies:
   - name: Weights & Biases
     careers_url: https://coreweave.com/careers/weights-biases
     notes: "Acquired by CoreWeave 2025. Jobs now on CoreWeave site. JS-heavy, no API. Was: jobs.lever.co/wandb"
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:coreweave.com/careers "weights" OR "wandb"'
     enabled: true
 
@@ -602,7 +602,7 @@ tracked_companies:
 
   - name: Checkly
     careers_url: https://www.checklyhq.com/careers/
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:checklyhq.com/careers engineer OR manager OR director OR head'
     notes: "Remote-first developer tooling company with strong async culture, 27 days PTO, paid parental leave, wellbeing budget, transparent pay calculator, and healthy work design. Strong people-first fit worth tracking even though the jobs site is custom."
     culture_fit_tier: high
@@ -618,7 +618,7 @@ tracked_companies:
 
   - name: Discourse
     careers_url: https://www.discourse.org/jobs
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:discourse.org/jobs engineer OR manager OR director OR head'
     notes: "Remote-first, open-source product company with five weeks vacation, transparent salary framework, strong async culture, and broad autonomy. Strong culture-fit company worth tracking even when openings are sparse or custom-hosted."
     culture_fit_tier: high
@@ -634,7 +634,7 @@ tracked_companies:
 
   - name: Harvest
     careers_url: https://www.getharvest.com/careers
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:getharvest.com/careers engineer OR manager OR director OR head'
     notes: "Independent remote-first product company with strong written culture, generous benefits, 16 weeks parental leave, winter break, learning budget, and deliberate time-respecting operating principles. Strong people-first fit worth tracking via search-first discovery."
     culture_fit_tier: high
@@ -650,7 +650,7 @@ tracked_companies:
 
   - name: Toggl
     careers_url: https://toggl.com/jobs/
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:toggl.com/jobs engineer OR manager OR director OR head'
     notes: "Bootstrapped remote company with ROWE-style flexibility, strong development budgets, sabbatical support, and a calm 40-hour work-week philosophy. Strong cultural fit and worth tracking despite the custom hiring setup."
     culture_fit_tier: high
@@ -666,7 +666,7 @@ tracked_companies:
 
   - name: Automattic
     careers_url: https://automattic.com/work-with-us/
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:automattic.com/work-with-us engineer OR manager OR director OR head'
     notes: "Distributed product company with unusually strong async maturity, open parental leave up to 6 months, sabbaticals, and deep remote operating experience. Strong culture-fit company worth tracking even when role discovery is less structured."
     culture_fit_tier: high
@@ -682,7 +682,7 @@ tracked_companies:
 
   - name: Whimsical
     careers_url: https://whimsical.com/company/careers
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:whimsical.com/company/careers engineer OR manager OR director OR head'
     notes: "Fully distributed product company with a calm 40-hour week, six weeks PTO, parental leave, equity, fair global compensation, and long-term craftsmanship culture. Strong people-first fit for selective leadership and IC opportunities."
     culture_fit_tier: high
@@ -697,9 +697,9 @@ tracked_companies:
     enabled: true
 
   - name: Wistia
-    careers_url: https://wistia.com/about/careers
-    scan_method: websearch
-    scan_query: 'site:wistia.com/about/careers engineer OR manager OR director OR head'
+    careers_url: https://wistia.com/jobs
+    scan_method: playwright
+    scan_query: 'site:wistia.com/jobs engineer OR manager OR director OR head'
     notes: "Profitable product company with flexible schedules, strong parental leave, profit sharing, and explicit DEI investment. Keep as a selective people-first target via company search even though the careers page is not ATS-friendly."
     culture_fit_tier: high
     ic_exception_company: true
@@ -714,7 +714,7 @@ tracked_companies:
 
   - name: SerpApi
     careers_url: https://serpapi.com/careers
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:serpapi.com/careers engineer OR manager OR director OR head'
     notes: "Bootstrapped remote-first developer API company with transparent books, async culture, high trust, profit sharing, and strong neurodivergent-friendly signals. Strong people-first fit worth tracking through search-based discovery."
     culture_fit_tier: high
@@ -729,7 +729,7 @@ tracked_companies:
 
   - name: YouCanBookMe
     careers_url: https://youcanbook.me/jobs
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:youcanbook.me/jobs engineer OR manager OR director OR head'
     notes: "Bootstrapped remote product company with family-friendly flexibility, strong insurance and pension support, profit sharing, transparent salary model, and healthy long-term culture signals. Worth tracking as a people-first target via company search."
     culture_fit_tier: high
@@ -807,7 +807,7 @@ tracked_companies:
 
   - name: PagerDuty
     careers_url: https://careers.pagerduty.com/jobs/search
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:careers.pagerduty.com/jobs/search engineer OR manager OR director OR head'
     notes: "Flexible, family-friendly company with strong benefits and credible culture signals, but likely a lower-priority fit than the calmer balance-first targets because the domain and operating environment can skew more intensity-heavy. Track selectively."
     enabled: true
@@ -825,7 +825,7 @@ tracked_companies:
 
   - name: Wildbit
     careers_url: https://wildbit.com/jobs
-    scan_method: websearch
+    scan_method: playwright
     scan_query: 'site:wildbit.com/jobs engineer OR manager OR director OR head'
     notes: "One of the strongest pure culture-fit companies in the set: strict 4-day week, explicit people-first philosophy, sustainable pace, profit sharing, and strong parent-friendly signals. Even though they are not currently hiring, this is worth tracking long-term."
     culture_fit_tier: high

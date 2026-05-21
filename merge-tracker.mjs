@@ -95,6 +95,22 @@ const ROLE_STOPWORDS = new Set([
   'with', 'from', 'into', 'over', 'this', 'that',
 ]);
 
+// Very generic job-family words that should not, on their own, cause two roles
+// at the same company to be treated as duplicates.
+const GENERIC_ROLE_TOKENS = new Set([
+  'engineering', 'engineer', 'engineers', 'manager', 'managers',
+  'software', 'developer', 'developers', 'technical', 'technology',
+]);
+
+function normalizeRoleIdentity(s) {
+  return s
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean)
+    .join(' ');
+}
+
 function roleTokens(s) {
   return s
     .toLowerCase()
@@ -104,13 +120,23 @@ function roleTokens(s) {
 }
 
 function roleFuzzyMatch(a, b) {
+  if (normalizeRoleIdentity(a) === normalizeRoleIdentity(b)) return true;
+
   const wordsA = roleTokens(a);
   const wordsB = roleTokens(b);
   if (wordsA.length === 0 || wordsB.length === 0) return false;
 
   const setB = new Set(wordsB);
-  const overlap = wordsA.filter(w => setB.has(w)).length;
+  const overlapWords = wordsA.filter(w => setB.has(w));
+  const overlap = overlapWords.length;
   if (overlap === 0) return false;
+
+  // Prevent false duplicates like:
+  // - Engineering Manager - Plug and Play
+  // - Engineering Manager - Inventory
+  // where the only shared words are generic role-family terms.
+  const specificOverlap = overlapWords.filter(w => !GENERIC_ROLE_TOKENS.has(w));
+  if (specificOverlap.length === 0) return false;
 
   // Jaccard-style ratio on content tokens. Two roles are "the same" only
   // when the overlap dominates the smaller side — not when they just share

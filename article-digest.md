@@ -177,6 +177,23 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 ---
 
+## Riverside -- QA Automation Transition and Playwright Enablement
+
+**Tags:** qa, quality, playwright, test-automation, coaching, enablement, engineering-managers, delivery, workflow
+
+**Hero scope:** Helped shift QA work from a manual model toward Playwright-based automation during the Senior Engineering Manager phase by supporting people transition and team adoption rather than owning the QA automation function directly.
+
+**Key decisions:**
+- Supported the move away from a more manual QA model by helping manual QAs learn and transition into Playwright-based automation work.
+- Treated the transition as an enablement and operating-model change, not just a tooling swap, so quality work could scale with the engineering organization.
+- Coordinated with the teams and leaders directly responsible for QA automation while keeping the group focused on sustainable adoption.
+
+**Proof points:**
+- Helped train and transition manual QAs into Playwright-based QA automation during the Senior Engineering Manager period.
+- Can credibly speak to QA automation enablement and rollout without overstating direct ownership of the QA automation function.
+
+---
+
 ## Sabbatical -- AI-Native Product Builds
 
 **Tags:** ai, llm, agentic, projects, product, local-first, grounded-search, browser-automation, hands-on
