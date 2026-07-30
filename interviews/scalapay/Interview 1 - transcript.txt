@@ -1,0 +1,458 @@
+Meeting Title: Sebastian Greco and André dos Santos
+Date: May 26
+Meeting participants: Greco Sebastian, Andre Santos
+
+Transcript:
+
+Them: This meeting is being recorded.  
+Me: Hello? Hello? Hello?  
+Them: Chao, Sebastián. Good night. Is is it afternoon for you guys? Yeah. Morning. Morning. I'm sitting in Australia.  
+Me: Morning. Oh, okay.  
+Them: Yeah. On the other the other side of the world.  
+Me: Hello?  
+Them: Sebastian, so just  
+Me: Good morning.  
+Them: yeah. Just don't know Matt? So Matt is, like, part of of actually, owns Resource, which is the recruitment agency that helps exclusively Scala pay at this at this point. Like, he's, like, thinks he's my my boss, but he isn't. I'm I'm just collaborating with lead. I'm the account lead for for Skype May. So Andre is my boss. No. No. No. Doctor, yeah, There there is a specific role, Sebastian. So there's an engineering manager position. And, yeah, Andre shared your profile. You very well accomplished. I guess you've gone on a bit of a ride with Riverside. Was reading about them and the the the clients that you accumulated and the journey you must have gone on. So then you finished up there. Right? And and yeah. So just to kind of get from the top of it a bit, what what if your works  
+Me: Last year. Yeah. No. I'm actually I'm  
+Them: currently?  
+Me: just started looking. I took a sub article. It was quite a ride. So I stopped for a bit on purpose. So, yeah, so and right now, I'm I started just started searching for a new position.  
+Them: Yep.  
+Me: Honestly. But, yeah, in the last months, I have been just seeing and trying and playing with all the AI revolution we are having, basically. Yeah.  
+Them: Yeah. What what do you think? What have you played with? Anything fruitful? I guess any any million dollar I mean, you're not gonna not gonna share with us any million dollar ideas.  
+Me: That  
+Them: If you predict the stock market yet.  
+Me: No. No. Sadly, no. No. No. No. I think I think the... Look. I have, like, almost twenty years of experience. I never saw this thing. Like it's it's revolutionary. If it's a good thing or a bad thing, we will see. But  
+Them: Yeah.  
+Me: for sure, we are seeing something that I never saw before. And and  
+Them: Yeah.  
+Me: for me, it was refreshing, to be honest. I, like, I went back and I went like I I felt like I was when I was 15 years old again. Discovering everything and being able to do almost anything now. So  
+Them: Yeah. I hear that a lot. I hear that a lot.  
+Me: a lot of fun.  
+Them: Yeah. You manage to implement any AI stuff in Riverside before you  
+Me: Oh, yeah. Yeah. So feature wise, yes.  
+Them: left? You did?  
+Me: And, also, like, when I start when I was still a group lead, I we were the first group to implement, like, to normalize using Cursor We started actually with with Copilot and then Cursor. We moved to Cursor. But, yeah, it was still in the agent. You know? It was a different  
+Them: Yep.  
+Me: it wasn't so much do everything I will tell you. And we were also the first ones to implement CodeRabbit, and then that we were the base for the entire company to review PRs and everything. But, yeah, since then, things have changed quite a bit, I would say. But, yeah, and then features. Course, we, in reverse, we started using features with LLMs. Back with GPT-three. And my team was the first one, the dashboard one, to create, like, don't know if the product what the product is, but  
+Them: Yeah.  
+Me: basically video podcast. Okay? So we started doing show notes and about the using the transcriptions from the show and also the most known one, which is Magic Clips. Okay? So we will take a recording and make the cuts for, socials. Automatically with the highlights of the of the conversation. Yeah. And from there, like, like, a ton, like, a ton of AI since  
+Them: No. No. No. That's very popular.  
+Me: yeah.  
+Them: I think there's a isn't there a product called Opus that does a similar thing?  
+Me: Yes. There is.  
+Them: Where you take the long form Yeah. Like, I I see Gary V talk about that. Do, like, a two hour podcast, and then it just spits loads of Shorts and TikToks and spreads your content out there.  
+Me: Yeah. Yeah. Of course, since dance, we iterated a lot and  
+Them: That's interesting.  
+Me: then, of course, when we started with GPT three, it was really difficult.  
+Them: Yeah.  
+Me: To get it to have, a consistent reply. Things have changed so much, and you can iterate. You can give your own style. You have templates, and then there is a lot of things now in in real estate that are  
+Them: Yeah.  
+Me: pretty like, I love the product still. Like, it's an amazing product. Yeah.  
+Them: Nice.  
+Me: Yeah.  
+Them: Nice. And what about the way that you're coding and the way that you're managing? Did you get to implement or have you know, everyone's got their their every company's got their tech stack. How how prominent was AI in the actual solutioning in the of truth, maybe in the the coding side of things, how  
+Me: No. So when I left, we have some automation with AI using the the when I left was the beginning of the MCPs, basically. So Jira MCPs And All Those Things For The Tickets And SLAs, We Were Automating All That And Having Automatic Discovery Of The Problems On The Issues It Was In The Early Days. I Had Been Talking With Friends Working In Riverside, and and they used mostly Cloud Code. Today, and they automate everything with the it and responses even. And and pull requests open. And they just review it, before fix ing a bug. And having solutions. So yeah. So, yeah, of course, when when you do like I did in this sabbatical, a product from scratch is very different than managing a a very big source, like code base. Has different complications and different also the stakes of production are not the same, right? When you are serving thousands of users. But but, yeah, when I left, we were we had some of course, all the one on ones and help AI with the with the the  
+Them: Yep.  
+Me: following all of them, but not as as automated as it is today, I believe. Yeah.  
+Them: Yeah. For sure. And then what about the tech stack? What kind of tech stack? Did you choose a tech stack or when you came that it was already there in your building it, you're augmenting it?  
+Me: So, no, we we didn't we didn't choose the tech stack. I I was familiar with most of it, basically. So Riverside was basically Node. J s,  
+Them: Yep.  
+Me: Express, and just to put it put it simple. Of course, WebRTC, a lot of WebRTC. And then MongoDB as database. But during these four and a half years, of course, we had some Python. We had some different databases ready We migrate everything to event driven. There. So we moved to Kafka. It was a a heavy heavy lifting, actually.  
+Them: Yep.  
+Me: And, of course, microservices, we started doing microservices.  
+Them: Yep.  
+Me: One of my teams was the platform team. Which I was the original team lead, by the way.  
+Them: Yeah.  
+Me: So we did a lot of my  
+Them: Cool.  
+Me: creation of templates in NextJS. So we implemented NextJS as a framework microservices. And so at the end, we were doing also developer experience, CLIs, and things for because also, AI now now they they move forward with it. I I speak with them now and then, and they have AI of course, use all these CLIs to create new environments and and testing and and things like that.  
+Them: Yeah.  
+Me: But yeah. So the stack was we we kind of used different technologies depending, but our main stack was Node GIS for sure.  
+Them: Yep.  
+Me: React on the front end and those kind of things.  
+Them: Cool. No.  
+Me: Back in the day, I used PHP, those kind of things.  
+Them: Yeah.  
+Me: MySQL, all those kind of things. Yeah.  
+Them: Nice. You're showing your age there, Sebastian, back in the day.  
+Me: Yes. I  
+Them: Odd Wild West, the PHP.  
+Me: I'm I'm 40 now. Like, I cannot hide it anymore. You know?  
+Them: No. No. Well, you don't look it, man. I'll tell you that for free.  
+Me: Wow. Thank you.  
+Them: So with that then, because you're slight engineering manager then senior engineering manager. So bit of a trivial question, but if you had to just, like, percentage wise, how much you were pure people management and how much you were technical management what was that split? How did that split look like?  
+Me: So so people management, of course, I had. I thought it wasn't that hard for me. I have direct in the last part. It was five four four team leads and the QA team lead. So I was managing five five persons directly. Of course, all the complications that comes with a group of almost 30 persons  
+Them: Yep.  
+Me: So it was the I would say 30% of my time was management And then there was a lot of my job was a lot of architectural review and being so involved in the platform, being there for a long time. I was almost in any big feature as a reviewer. So architectural reviewer, the design, and the architecture that they will use.  
+Them: Yep.  
+Me: Only because, we were a platform, at some point, also because the knowledge I have, from the beginning of the company. Right? So  
+Them: Yep.  
+Me: coding almost disappeared for me. As a as a group lead. Except for the last months because AI started coming in and those two hours that I had between one meeting or the other, I would I was able to do a lot more. So I actually push a lot of things in the in the the last three, four months. But till then, I wasn't touching the code. I was just reviewing maybe, of course,  
+Them: Yeah.  
+Me: PRs and things like that for sure.  
+Them: Yeah.  
+Me: But yeah. My handsome was more on the architect. What? Yeah. Yeah. It was  
+Them: Very interesting that you say that. No. No. No. I think that that that just because I was speaking with the the CTO of this company, and he hasn't been hands on. But since because it's more like you're like the unblocker and making sure there's no bottlenecks. And so he's created tools for the like you were saying before, the developer experience. But it's like  
+Me: Yeah  
+Them: he he and probably you were thinking at one point, the higher you go and the more you like, architectural manager you go, the less hands on you become, and AI has just brought that all back. Because you're able to see fit. Because your job has just been everyone's job including coding and solutioning and project, everything's been amplified by AI. To unblock, he's using AI, like, they've got lots of internal AI tools for, like, even DevOps and design and  
+Me: Ya,  
+Them: validation tools, all of these kinds of stuff. But it's just very interesting what you said. I think that's really relevant.  
+Me: Yeah. And I love it, to be honest, because I was able to do things that I I and unblock people. And, yeah, I think I think there was, the last part, especially I had very in my I before I leave, I wanted to leave, JWT authentication done.  
+Them: Yep.  
+Me: So I want I went really, really hands on at the end. Course, the last month was easier because I already had someone that I was onboarding and doing the just, path so so I had a a bit more free time as well. But, yeah, I felt that a lot. I was usually not doing big you cannot do features when I you're in that. Right? So you're doing so  
+Them: Yeah.  
+Me: small things, improvements, or or cases, things like that that was the end I was, I I was starting to make PRs myself  
+Them: Yeah.  
+Me: often. Yeah. It was it was refreshing, to be honest. Yeah.  
+Them: Yeah. Yeah. Yeah. Oh, nice. No. It's cool. It's just it's it's no. It's good. It just means that you've got more you can split yourself more. You not like a labor intensive thing anymore. It's more of like direction or more solutioning. And yeah, you're it's just part of that organizational piece. You've got your own chief of staff. Basically. So it's a it's an interesting one.  
+Me: Yeah. Exactly. I think I think, also, when you when you become a manager or you're architectural level, you also become that for the AI. Right? You have all these agents that work and review, and you go there, and it's you you propose plan and you say, what is the architecture, the trade offs, and so you become that in your own computer  
+Them: Yep.  
+Me: and is, I think all those, abilities and and experience that you got in the years is very useful at at now in in in this era. It's it's crazy, like, how it's  
+Them: Yeah.  
+Me: it's completely different now. Yeah.  
+Them: Yeah. Yeah. Yeah. Well, I was gonna ask you because you you're you were close to the architectural decisions. What about the product? Decisions strategically? Obviously, not features What about your product thinking and how close you were to those types of decisions?  
+Me: So I was so one of the things I did in the beginning as a as a group not in the beginning, like, after six, seven months, we started implementing a bit more agile in the company. So I was I had four teams. Right? Four which three were featured teams. One was platform, and the other was business, growth, and and hosting. Publishing. Sorry. We changed the name twice. And, basically, all those three were were feature oriented. So I worked with them I wasn't on the plannings. Of course, planning for me was very important. So I was there trade offs times, deadlines, trying to cut corners sometimes to make things fit, and those kind of things were part of my my dailies. Most of the heavy lifting was done by by my team leads, but I was on like, we had the sprints of two two weeks. So I tried to be at least in two and two. So do do two teams one week two teams on the other. Team. Also, to be there, to give my input, to be with the product, and discuss the different solutions. And and, yeah, when you have your your normal sprint planning, you also talk about the product and the trade offs and the things like that. Yeah. It was very different. Right? At the beginning, worked directly with the CTO and the CEO,  
+Them: Alright.  
+Me: It was very fast and very fast moving. But, yeah, as you grow, things change. Of  
+Them: Was there, like, an alignment between  
+Me: course. Yeah.  
+Them: like, what c t what the CTO or or CEO and CTO by like, what they want maybe how the team is able to pivot? Was there any sort of you know, change in direction or anything like this that maybe you got pushed back on or  
+Me: All the time. Riverside was a very fast moving place. Like,  
+Them: organized anything like this? Yeah.  
+Me: that was part of our dailies. Like like,  
+Them: Yeah.  
+Me: And and you want you want to push back a bit on some things and you want to also understand what is needed. I did and I started myself and especially, like, Riverside it is still a very hard competitor on Desk Script. So we were in a in a in a battle. Okay? There, like, we were to push and change priorities and move things around as the need of the business. Trying to protect, of course, our deadlines, the context switching, There is a lot of a manager, in my opinion, needs to do. I think the most important thing to do is I always say this is product product manager team lead needs to be a unit, and they need to work together and understand together. I hate when when they see each other as enemies some at some point that I think it's it's so bad for the culture.  
+Them: Yeah.  
+Me: We had that for a time, and and we we would really try to fix it. But, yeah, changes of plans and pushing of course, you plan for a quarter, for example, knowing that that's not going to happen. Right? Plannings are are are only to give you, like, a head start, a guideline on where to go and things of  
+Them: Yeah.  
+Me: of course, will change and and can change. But, yeah, it's a normal thing to to change your priorities, at least in my experience.  
+Them: Yeah. Yeah. Especially when his car's growing as well. Right?  
+Me: Yeah. Fast growing.  
+Them: It's like you've got so much competition  
+Me: So much ambition. You say you start you start the planning saying, we're going to  
+Them: It's like how do you translate  
+Me: hire five more people and create a new team. And then hiring is also hard. Okay? It's not easy. Like, did a lot of hiring as well, and and that also changed how you plan because you you you say, okay. For mid quarter and and and when I was leaving, honestly, we started changing also the the quarter planning because AI was changing the rules.  
+Them: Yeah.  
+Me: Okay? Planning for a quarter was too much. We started reducing even that because the the rules have changed.  
+Them: Yep.  
+Me: Really, the the rules have changed a lot. So, yeah, it is a very dynamic Riverside was a very dynamic and fun, if you ask me.  
+Them: Yeah. Yeah. Yeah.  
+Me: I used to work. Yeah.  
+Them: Did you have any because you're like, the the plans were ambitious, and you're hiring a lot. Did you have any engineers you, like, burn out or or any like, attrition or things like this because it's it's so hard to keep you know, things are pivoting, people get a little bit overwhelmed. Any of those types of situations and how you  
+Me: Yeah. We had one in particular. The growth team the most  
+Them: you dealt with that?  
+Me: pressed, I would say. We had we had one engineer  
+Them: Yep.  
+Me: almost, burning out.  
+Them: Yeah.  
+Me: Be honest, when I left Riverside, I was almost burned out.  
+Them: Yeah. Yeah.  
+Me: That's why I took my sabbatical. I was on every single incident since the company started, and any time. And also, when the company grows, it's it's harder than harder. And of course, when I left, the culture also shift a shift that I didn't like much as well. I I I felt like I I did my part  
+Them: Yep.  
+Me: It was my moment to, you know, live when when you are in the the best moment, you know, not not the worst. But I needed a break.  
+Them: ¿Y el  
+Me: So burnout, I would say myself as an example.  
+Them: Yeah. Yeah. No. No. A 100%.  
+Me: Before that. Yeah. Yeah. Yeah. I think it's yeah.  
+Them: Yeah. But you just looking at your profile, you grew loads.  
+Me: Yeah.  
+Them: Man. Like, you've gone from seeing your full stack to an engineering manager, and then you're looking after 27 people. In the space of four and a half years. So it's a good story for them to say, hey. Look. You come in four and a half years. You could be a senior engineering manager. But I think on the ground for you, you know, you're it's kind of, like, very it's ambitious.  
+Me: I learn a lot.  
+Them: And you grow with it. I'm sure you learn a lot. But yeah. A lot of pressure.  
+Me: A lot. Like, it was one of the best experiences, to be honest.  
+Them: Yeah.  
+Me: And and the beginning was a lot of fun because that's where I, like, a lot of fun. Then then it was weird. We we were a year without a VP of engineering. And and, yes, it was a it was a lot of things happening at the same time. We made a lot of mistakes while growing growing fast is one of the hardest things. Believe. There there is some some jump that, is is very hard to do, I believe. Especially if you don't have a a an experienced BP of engineering. I think I also got a lot of experience from that. All her mistakes, organizational,  
+Them: Yeah.  
+Me: how to introduce processes when our way too much. I remember we tried to to to we did we did it. We we someone say, we need to do Scrum now, and it wasn't our moment. Like, we we only  
+Them: Yeah.  
+Me: failed with with the with with unneeded and superflual, like, you know, meetings. But then, down the road, when we were on a 110 people, you need to plan. You need to organize yourself.  
+Them: Yep.  
+Me: Otherwise, it's impossible to to have a common goal to do things properly. So yeah, I think I I learned a lot. I learned a lot. And  
+Them: Yeah. Yeah.  
+Me: sometimes you learn a lot also from mistakes. Yeah. That's part of the  
+Them: Yeah.  
+Me: road.  
+Them: 100%. And, you know, the company changes, and sometimes the change happens so quickly that even the founders, c level, they aren't aware. So what worked as a chaotic startup with not a lot of structure and your dynamic doesn't work as well when you need the structure you're growing, when you're scaling. Like you said, with the processes, I see that a lot as well. I understand.  
+Me: Yeah. Yeah.  
+Them: Are you are you looking for the same role? Like, what what kind of role what's ideal  
+Me: So so,  
+Them: for you then, Sebastian? What kind of roles?  
+Me: my main search right now is, like, management, engineering management. So  
+Them: Yep.  
+Me: I'm down to be engineer manager or senior engineer manager. I I do know that being a manager of manager is something that I found myself enjoying more than I thought I was going to, to be honest.  
+Them: Yeah.  
+Me: Also, I know that I have a year and a half. I think it's a year and eight months kind of experience, so it's not that much either. So I'm I'm there searching. I also apply into small teams that are growing, like, from going to 10, 15 to 30, or they plan to  
+Them: Yep.  
+Me: grow to up to 50. You know? That that I think that's very nice. Is a lot of challenges, and I like,  
+Them: Yeah.  
+Me: I have this problem. I like challenges. I like problems, and I like to solve them. Yeah. Yeah.  
+Them: What you need. That's that's what you need, man. It's it's a good disease to have.  
+Me: Yeah. Yeah. Yes. Exactly.  
+Them: It just there's not a lot of there's not a lot just by definition, there's not a lot of good engineering well, a lot a lot of engineering managers out there just has to be that way. So the people that do stick in engineering yeah, you need to have that kind of mentality, especially as as a as a software like, technical engineer. Because a lot of technical people  
+Me: Yeah. That's true.  
+Them: don't necessarily they don't even like people, let let alone people management. So it's like you've gotta be a certain type of person to be able to translate and talk business and then talk product and then be able to manage people's lives and careers. But still think strategically. So you've got to kind of be the go between between people and business, between strategy and operations and tactical. So it's a it's a tough balance to play. And, yeah, I only just by sheer supply and demand can certain people play it. So if you're challenged by that, then it's great. I was gonna ask you, what do you how do you assess how do you assess a good role in a good company? What's your criteria?  
+Me: So so so after I just said, like, I I tried to understand the the culture in it. I think culture is  
+Them: Yep.  
+Me: like I have been managing people for a while now. So culture is basically very important, for me. As I said, respecting people's time, respect being have ownership. I I think one of the things I pretend from my teams and and and everyone because I do it myself. Right? Having ownership and and have this collaboration kind of cultural. I don't I don't mind if it's another team's or another problem. I we are all in the same ship. We're all going in that direction.  
+Them: Yep.  
+Me: And when it's not like that, is a problem. Is a problem for the entire ship and not for a single team. That's one of the things I I've looked first, to be honest, because it's one of the things that for me, especially in Riverside, at the end, was I love the product. I I that thing is almost my baby. Okay? But but the sheep was a bit broken, in my in my opinion. And and, yeah, that's that's the first thing. And, of course, I look for a nice challenge. I like challenges. I like technical challenges as well. And and something to to have fun. Like, I'm I I still I still, like, I have a very product oriented kind of mindset, and that's what drives me. So if I find something that is appealing to me as a as a as a product, of course, I'll I'll look into that as well. Yeah. I think that those are the two things that I will look  
+Them: Yeah. Okay. Yeah.  
+Me: the most. Yeah.  
+Them: Nice. Cool. So because Riverside was sort of media, podcasts, stream mix, Did they did you get head hunted from Streammix? Because  
+Me: Yes, exactly.  
+Them: they saw that you were  
+Me: Yeah. Yeah. Yeah. Yeah.  
+Them: yeah. So you've got ten nine year well, coming up to ten years worth of and then and then a digital agency before that. Have you had any oh, I can see services somewhere just right at the bottom of your CV. You have what kind of financial services and you have any interest in that kind of thing? Is it has it been a I guess it was a conscious decision because Streamix was your own company. And then Riverside was a like a growing start up that they head hunted you, but yeah, like, are you are you done with the media industry? Do you do you still feel there's more to do?  
+Me: I think I need  
+Them: If you had a media industry  
+Me: I I need a break from video and livestreaming  
+Them: Yeah.  
+Me: Live livestreaming is kind also very stressful. Something that happens live it cannot be undone. You know? It's  
+Them: Yeah.  
+Me: which is the same for financial, by the way. Like, things are happening all the time twenty four seven. You cannot go back. But I think I'm I'm not saying I'm I'm done with it, but I will I  
+Them: Yeah.  
+Me: really am looking other sectors, to be honest, like, fintech or or  
+Them: Okay.  
+Me: or health is something that I have been looking very closely. Like, I I but I'm not I'm not, like, in a box of this sector is my my preferred one.  
+Them: Yep.  
+Me: The role I saw that Andre sent me, like, it was it has a lot of things that I don't have, like, very financial, like, fintech like, context and and things that I I  
+Them: Yeah.  
+Me: honestly don't have the experience. And, also, this job description was very clear, like, having these kind of description for at least five years or something like that. And honestly, I don't. But fintech is something that I I find very appealing, to be honest. Yeah.  
+Them: Yeah. Yeah. Okay. What was the just out of interest then, what was the financial services clients that you're working with  
+Me: Yeah.  
+Them: Was it anything in payments?  
+Me: And and we were doing the home banking for an app where you're looking at Down Down because that's  
+Them: I'm I'm going right back. I'm going back  
+Me: Yes. Yeah. So, it was actually two banks.  
+Them: 2006, the glory day.  
+Me: In Argentina. Itaú, I don't know if you know it, and certain  
+Them: Yeah.  
+Me: was also there. We we designed the entire interface for the  
+Them: Okay.  
+Me: home banking back then. But we're talking another era jQuery. Like, I was doing yes. I was taking a  
+Them: Was gonna say 2006. That's that's it. That's it. That's That's versus  
+Me: don't even remember anymore what we did back there. You know? But yes.  
+Them: Yeah.  
+Me: It was another error.  
+Them: Right. Is it a date Zinedine Zidane was still headbutton footballers back in 2006.  
+Me: Yeah. It was a very different world. Yes.  
+Them: Back then A very, very different world.  
+Me: Yeah. Yeah.  
+Them: But that's fine. Like like Andre said, it's not the key things, it it the domain knowledge is is a is a nice to have And with an asterisk, like, it really is a nice to have. The key thing is the engineering management because yeah, like, the domain knowledge can be learned, but the real skills gap and the transferable skills, the value, is being a safe pair of hands at the engineering management level from an architectural point of view, from an operational guidance, hiring processes, all of these things are transferable. The domain knowledge I mean, really, it could work anywhere, really, in in three to six months time  
+Me: Knew nothing about the video on livestreaming when I started Streamix. That's for sure.  
+Them: You're you're exactly.  
+Me: There is a lot of compliance here that can can be  
+Them: Exactly.  
+Me: can be hard to learn, I I almost admit. But, yeah, everything can be learned, of course. I think it's yeah. Yeah.  
+Them: And are you are you immediately available? Like, are you still  
+Me: No. No. I'm I'm  
+Them: you still traveling or you're you're sort of Great.  
+Me: I'm here. I'm immediately available. Yes. Yep.  
+Them: Oh, then you were in in Milan. Right?  
+Me: Yes. I'm actually Serenia, which is up north. It's like twenty minutes from Milan. Yes.  
+Them: Are you are you open did you come into the office with Riverside? Are you open to being in the office?  
+Me: You know, I went to the office once.  
+Them: Like, Yeah.  
+Me: And then it's the offices are in Tel Aviv.  
+Them: Alright. Fair enough.  
+Me: Then things got heated. So so we did other  
+Them: Slightly different.  
+Me: so being a group lead, I also went with my groups, and we will have met in Poland, in Berlin, and different places. In Milan as well, we did it. So we did a so we, yeah, we traveled now and then. Twice a year, a bit more sometimes depending on the meetings from the teams. Yeah.  
+Them: Okay. So what was it completely so the head call was in Tel Aviv, but then it was, like, fully remote in, like, Italy and the other places that  
+Me: No. We have some we have  
+Them: Riverside  
+Me: teams in the office in Tel Aviv, and then a lot of teams are scared  
+Them: Yep.  
+Me: like, the whole world. We we even have still have Brazil, Mexico, and Argentina. We had a lot in Europe as well. Poland, the end, like, we hired a lot in Poland. Yeah, we had people from Portugal. Spain, Italy, yeah, a bunch of places. Germany, yeah. I had actually when I was actually  
+Them: Oh, no.  
+Me: I have an hybrid, which is very difficult to do. I have a team. One of my teams was in the office. The growth team was in the office, by the way. Yeah.  
+Them: Alright. Fair. So did you but on on on that topic, Matt, what is your opinion about this when after the remote, there's one guy remote that there are, like, two guys in the office in a specific office. And you are remote. How do you tackle this? Is is this something  
+Me: Look. I I don't  
+Them: to  
+Me: I think the manager should be because there is some things that happen in the office, situations for a manager. For me, was very hard. Basically, I had to ask them to go three times a week to the office and respect some some, certain ranges. And I was trying to sell, look, I'm going to do it, but it is a bit weird. I never there So it's weird for me to, hey guys, we need to be there. Three days a week, and I wasn't there myself. So it is a with so I prefer the thing that when one thing is remote and and when the if it is hybrid, that's fine. Okay? So you have three days, two days in the office, that's fine. But I I believe the manager should be with them. When I was a group lead, was easier, to be honest. Because at least I have my team lead there that will report me. And it was easier, right? The growth team has own team lead in the office. So again, it was a bit weird some sometimes, but and you'll you'll you'll miss some things  
+Them: Yeah.  
+Me: that happen in in the in the office, of course. But, yeah.  
+Them: Okay.  
+Me: What?  
+Them: Thanks. Is that address anywhere near you? See see you in the chat. Via via Neversa. I'm I'm butchering this with my I sound like Brad Pitt from Inglorious Bastards trying to Is that anywhere near you, Sebastian? Central Central Milan? This is come for Milan, Porta Romana. Okay.  
+Me: Porta Romana?  
+Them: There you go.  
+Me: Beh, it's not not... It's it's in the opposite of the... It's  
+Them: Sounds better. Alright.  
+Me: is a train and a and a metro for me.  
+Them: Takes a while to get there for you?  
+Me: Basically. An hour, I would say. Yeah.  
+Them: There's no mandate, by the way. It's just that from an engineering management perspective, there is a return on investment. Just to your point that you were making, there is the return on investment because all of the execs are in the office. So there's no but you can be remote if you want from a from an engineering wider and engineering perspective, everyone can be remote, can go to the office, but an engineering manager, you're you know, you're setting the culture. You're you're doing a lot more than  
+Me: Of course. Of course. Yeah.  
+Them: business and product, which is what is a return on investment. But but the same token, the policy is it's your choice if if you want to come in, you can come in, and if you don't, that's fine as well.  
+Me: Okay. So it's very flexible. Okay.  
+Them: Yeah. And even flexibility when you come in.  
+Me: Okay. So we're always talking about this position that you sent me. Right, Andrea?  
+Them: Yep.  
+Me: Is is that position? Okay. So it's it's the payments. Okay.  
+Them: Yeah. Yeah. Yeah. Yeah.  
+Me: So I do have a few questions there. Can I Oh, it's done?  
+Them: Guys, my my limited Zoom version, we have, like, six but let's let's yeah. Matt, are you okay with Well, I was coming because there was the your availability, which is immediately available, and I was gonna ask you from a salary perspective Sebastian, what you would consider. And that was that was actually my final question. What you'd look at for the ideal role? What what you would consider?  
+Me: Yeah. I was I was I'm trying to get pretty much what I was getting in Riverside. I was making a 152 k. Euro but that was with I was a contractor there for the whole year. So  
+Them: Wow.  
+Me: it's actually less in my pocket. So they're they're very high taxes here.  
+Them: Yeah.  
+Me: I think it's around a 120 for for a employee A 110, a 120, something like that. So I'm good. I I was  
+Them: Okay.  
+Me: going with that range to be in in pretty much the same range at I was before in Riverside. Yeah.  
+Them: And is that and you didn't get any bonuses being a contractor? Or you did?  
+Me: No. I didn't have bonuses at all.  
+Them: Okay.  
+Me: Course, I did have my vacations and time off and leave when I had a kid and everything. But no, no bonuses. We didn't have bonuses in general in Riverside, by the way. No bonuses at all. Yeah.  
+Them: Interesting.  
+Me: No. Yeah. We didn't have  
+Them: And oh, just just to clarify on that. So one twenty is that  
+Me: Yeah.  
+Them: so expectations wise, one twenty would you consider that as a packet, like, in your pocket, a take home package?  
+Me: Oh, no. Depends on the on oh, yeah. Depends on, of course, on the on the  
+Them: Like a okay.  
+Me: equity and and and bonuses and whatever other things are  
+Them: Okay.  
+Me: the mix, of course. Yeah. No? Not necessarily.  
+Them: Cool. Fair enough. So you again, just to clarify, and I give you I mean, how long we got. Maybe we can do a four minutes. Let's see if I can go you speak very fast, Sebastian. So that gives me confidence because I speak very fast as well, and I can I can wrap it up?  
+Me: Okay. Okay.  
+Them: Carla, just firstly, how do you know any like, you're in Milan. Right? Yeah. You you're Italian yourself.  
+Me: I'm Argentinian, actually. I'm Argentinian. I'm  
+Them: So you must have heard of I'd continue.  
+Me: Italian Argentinian, so I have both citizenships. I live here have been living here for ten ten years now. Yeah. Yeah.  
+Them: Okay. Fine.  
+Me: Been living Yeah. Yeah. Yeah. Yeah. Of course.  
+Them: You've heard of ScalaPay either as a consumer Yeah.  
+Me: It's a big brand. Yeah.  
+Them: Yeah, I mean, look, Scala Pay, they're they're very they're they're they're a scale up. They would classify themselves as a fintech scale up. They started in Australia in 2019. I started work with them five years ago in Australia. They've still got 30 people in Australia These guys do more of the the back end stuff, like the internal back end stuff. Platform DevOps,  
+Me: Okay.  
+Them: of the customer facing stuff is in Milan. They I they it's interesting. Buy now, payload. I'm not sure how familiar you are with the world of buy now, pay later. Obviously, like Klarna, there's some it's a really cool space there's a lot of liquidity in it, and there's a lot of success stories with buy now, pay later companies like Afterpay, for example, Afterpay sold to Square oh, sorry. Block which is Jack Dorsey's company for $39,000,000,000 So and then Klarna IPO for 16,000,000,000 the other year. So there's a lot of money in it. They so they dominate the Italian market and also in in Barcelona and in Paris as well. When it comes to buy now, pay later, the whole thing is that ecosystem that they're building. There's a consumer facing side, a merchant facing side. There's a bit in the middle where you've got platforms where merchants sit and they have rewards, where can customers sit and they have rewards schemes and affiliates and and memberships They're basically you as a as a consumer and you as a merchant have a journey a financial journey, and they're building products to to enable people on that journey before they get to the to the to the Afterpay sorry. Before they get to the ScarletPay main core product. They have got a lot of users. They've got  
+Me: Oh, wow.  
+Them: 20 they've got 12,000,000, users They've got over 15 10,000 merchants that use them. They transact over €4,100,000 a day. There is a lot of users, and there is a lot of impact. This team sits in the payments team Be looking after nine people Each each team, you've got card, you've got acquisition, you've got payments.  
+Me: Okay.  
+Them: Necessarily need to know So you've got a team of nine that you're gonna inherit. And, like like like I say, the key thing here the context is important because it's the company. The key thing is that operational and engineering excellence. That that's what they need. So yeah. I mean, look. You're you're sitting like, you're you're it's CEO and CTO together and then the engineering managers. So just in terms of like, reporting lines, you got loads of autonomy. You got loads of visibility.  
+Me: Iced. Okay. Good.  
+Them: Influence everything, influence your product. You influence technical direction. And operational direction. Now Andre, do wanna set up another minute? Because you'll have some questions for me, Sebastian. So  
+Me: Yeah. We can have it for for another time. There's no no  
+Them: want to No. No. Let's we can continue now. We  
+Me: problem. But you already asked replying some, though, some of of my questions already.  
+Them: Can you create a meeting?  
+Me: But yeah. Okay.  
+Them: Maybe a Teams maybe, Matt? Or Yeah. Alright. Do wanna send me your email? Just send me maybe Andre because you got Sebastian's email. You said it that sent it to me. I'll set it up. We'll continue, Sebastien, because that was too quick. Yeah. And I'm sure you have questions for me.  
+Me: I talk a lot. Sorry. I have the  
+Them: No. No. No. No. No. That's that well, brother.  
+Me: And there we go.  
+Them: So do you do you use Teams normally? Or not really?  
+Me: Not really.  
+Them: Do you use Teams?  
+Me: No.  
+Them: Not really. I was gonna say me me and Andre were like, you know, that annoying thing where you click and then you got to install Teams and it hasn't been a then you got your thing, ah, fuck this. I'm just gonna go on the browser, and then you go in the browser, and then so  
+Me: Yeah. Luckily, I don't. Yeah. Yeah.  
+Them: that's me, mate. I'm I've got I've got an Outlook license, unfortunately. But, no, just what like, whilst we have more time, the key things I wanted to reiterate is that the the role is baby on the periphery of an exec, and so the key things that they are looking for is it it it's a safe pair of hands. Really. Like, that's how I the the best way to describe it You look after payments, but you've got a director of payments, the product side that you can lean on. You've got the CTO and CEO that have, like, the you know, real strategic blue sky thinking level of the business.  
+Me: Mhmm.  
+Them: And you've got, nine engineers. You've got three every team has their own principal engineer.  
+Me: Okay.  
+Them: So it's less about, like, you being technical is amazing, and will get like, if you want to, like, it is a benefit to get involved in the architect decisions, but you don't necessarily have to because you've got free very well accomplished  
+Me: Mhmm.  
+Them: principles exactly that they look at reviews. And then you've got seniors underneath these people too. So the the main value add is is the people management and being that, you know, the unblocking piece that we were talking about and being able to really pivot, like, translate all these ambitious people at the top with this the the sort of day to day is the operationals, the that's going on from a, you know, deliverables perspective. So yeah, man. I think for you, it's, like, very challenging, massive, massive space. A company that dominate their space, and they're very well known in Italy as well. They are the only and the first Italian unicorn So they're, they've got a good name. In Italy. So yeah.  
+Me: Yeah.  
+Them: That's what we have in mind for you.  
+Me: Nice. It's really nice. Okay. Because also, I was I saw the the the thing you sent me, and it says 16 people is and I read all the descriptions. I was that's a lot of sick  
+Them: Yeah. That's my bad. Yeah. Yeah. Yeah.  
+Me: Okay. And the other thing is I saw that you your loop also for a director of payments, or I'm  
+Them: So they all look for a director of of payments, but they I think that they've they've got one. I think they have a director of payments.  
+Me: Okay. So it is today there is no no director. Right?  
+Them: You looked in their website?  
+Me: Of payments.  
+Them: I I think I think that there is. You know? I think that there is.  
+Me: Okay. Because if I look at the  
+Them: I think there is. Did you where did you see that?  
+Me: honestly, there is in the career page. In the career page, there there is an open for the direct there is this position is not there. Only director payments, unless that's the same, but it's not, I don't know.  
+Them: No. No. That it would no. That would be different.  
+Me: Yeah. So I was wondering how the how 16 people are being managed today. That was my first thing. And the first thing is someone left, and they are trying to to to fill it right  
+Them: Yeah.  
+Me: very quickly, that might be the that happens. Right? That  
+Them: It does.  
+Me: sadly happens. It does. It does.  
+Them: Yeah.  
+Me: For experience, that that happens. So, yeah, I wanna know a bit that what is the this current situation, who's managing these people, I'm guessing this this principle they want to be they don't want to be promoted to this, or are not fit to do people management, maybe  
+Them: May, you've got it. You've got it in one. That's exact that's exactly it.  
+Me: Okay.  
+Them: That's exactly it. The the person that was the engineering manager, who's there for, like, four years, by the way, so, like, a long time, but doesn't because like we were saying before, some people, especially technical people, they don't want to manage. Some people see it as like a backward step. Some people you know, I've heard people say it's like, you know, you're diluting your experience because you're not on the tools. And some people the reason they got into software engineering is so they can code and be hands on and be on the tools. And I think for this person, his career path was gonna be a a senior at, engineering manager, then a senior. Didn't wanna go down that people management path. Director of sorry. The the director of payments, they've definitely got someone in the products. I need to double check then if that's the case. But I think they've got someone from a product side of the payment space.  
+Me: Okay.  
+Them: Like the person that's managing the actual yeah. Like, the affiliation, the integration, just like business integration of  
+Me: Okay. So so that's the product side. The I didn't get that. So the director of of payment would be the product side, and then  
+Them: yeah. Yes.  
+Me: would be working with the the also, I I Red Treasury, other parts of the other stakeholders. Right? Not only technical. Okay. Good. K.  
+Them: Yeah. Yep. Any other questions?  
+Me: Yeah. No. No. I think those, like, when I saw that I was still wondering what is going on there. But, yeah, yeah, I think you are.  
+Them: Yeah.  
+Me: Yeah.  
+Them: Yeah. That's that that is it. That is it. But the like, another I mean, look. It's all product based, but a key strategy for them is to become a bank as a service. They've got a lot of customers  
+Me: Yeah. I I heard that they're becoming  
+Them: and so they are looking for  
+Me: a bank. Right? That's that's what's happened.  
+Them: yeah.  
+Me: Basically. Yeah.  
+Them: Correct. Correct. It's just, like, once you've got  
+Me: Oh, nice. Sounds like a good challenge, honestly. Yeah.  
+Them: I I was gonna say too, like, if if you're, like, these guys, I mean, look. They're very ambitious. They think big. They're affiliated with, like, the Bank of of Italy. Deutsche Bank in in Germany, in in Spain, and in France as well. Like, these guys like, they're they're they're you know, they're taking over for for a reason. Right? And so yeah, and engineering is a core part of that. Their their business is a technology And so the guys that lead this, they're giving full support. But I think because they're they are empowering their principles and their tech leads to be hands on in the coding part. The engineering manager is more you know how you were talking about before where you really enjoyed managing managers? It's kind of a bit like that in a way because, like, the person that was in this role was more from the principal perspective he was there for so long that he understood the business. And so was a promotion to go for engineering manager. And so when he was an engineering manager, then you've got these three technical leads, staff people, that are managing the technical side, but he wanted to be that. So that's why it was a kind of a the friction there, whereas here, with this role, it's not necessary to to to be  
+Me: K.  
+Them: overly on the code. So yeah.  
+Me: And and and what is the challenge in that position today? Like, what you you said that before. Like, unblock and make things that that's the current issue right now. They're, like, kind of stuck on where they are.  
+Them: Yeah.  
+Me: Delivery. Okay.  
+Them: It's not so much they're stuck. It's it's just it's translating strategy to operations. Because there is a lot of like, there are new features. There are new, like, business ideas. There's a new risk team that's, like, separate to this that's being spun up now. Like, they're they're another growth stage in in their story. And so because there's a lot of business strategy, this role is is essentially, it's a structuring type of role. Right? You wanna translate that strategy, and that's where the and then be able to kind of yeah, milestone it and and navigate the the deliverables, and you're navigating people's careers whilst navigating those deliverables because everyone is looking for a step up in the career. And so there's lots of different subsets of challenges as you unpack the sort of overall business deliverables And so yeah. And then the unblocking part comes with you know, you've got certain deadlines or with new strategies that coming in. So it's kind of like where do we focus our attention. So it is. It's a proper structuring type of position. And by the way, there are other engineering managers too. So there are there's another two engineering managers.  
+Me: Okay.  
+Them: The business. So it's not like you're by yourself,  
+Me: And how big is the entire engineering? And the entire engineering?  
+Them: Tire engineering teams sits at 80 people in the entire engineering team.  
+Me: Approximately. Okay. Okay. Okay.  
+Them: And 30 are in Australia. Then the others are in Italy. So it  
+Me: The platform. Okay.  
+Them: yeah. So you got b to b payments, which is this team, b to c, then you got a data team and infrastructure team and an IT governance team. And then everyone put everyone reports into the CTO, and then yeah, as an engineering manager, like, again, the way I'm describe like, it's a big challenge. Like, you're you're right, but there is a lot of you're not by yourself, basically, Sebastian. That's the key thing to reiterate. They've got a good culture. They want it to be fun. They want to empower you. They want you to stick around. They've they've actually got they've actually got one of the highest retention rates in the industry. They've been around for seven years. Their average retention rate is four and a half years. So I think when they read your CV, that'll probably give them a little bit of, like, a warm smile. That you've you've been there for about the same time as their their average Yeah. Exactly. Yeah. So yeah, man. Like, the the the key thing is, like, they do not burn people out. They want people to stick, and they want you to be empowered. And they wanna look after you. So  
+Me: Okay.  
+Them: yeah. That's my that's my  
+Me: Good. Good to know. Good to know. Okay.  
+Them: overview. Sound good?  
+Me: Yeah. Yeah. I think that answers my the questions I had.  
+Them: Yes.  
+Me: Thank you very much.  
+Them: Andre? That's pretty much it.  
+Me: Okay?  
+Them: Happy days. I've got your CV, Sebastian.  
+Me: Good. Mhmm.  
+Them: So leave it with me. I've got a conversation with the CTO think tomorrow. So leave with me. I will get your feedback.  
+Me: Question. The CTO is ordered right now. Is in is in Milan,  
+Them: Australia. Australia. No. No. No. It's based on Australia.  
+Me: Oh, it's French. Okay. So it's eight hours. Right?  
+Them: So he he flies to Milan.  
+Me: Where are you in the street? Because he's big.  
+Them: Oh, man. Yeah, I mean, at the moment, yeah, at the moment, eight hours between Milan and Australia.  
+Me: Yeah.  
+Them: And we're eight hours ahead of you. But he he flies in at least  
+Me: Okay. Good.  
+Them: twice a year. But it's funny because he is the bottle He is the unblocker for you guys. Like, he wants to empower you guys to do your thing, and then he's translating, like, the strategy that then translates into milestones, still strategy, but for each section, like payments for you, strategy for you. And then you're translating it down for tech leads and so on and so forth. So yeah. But he's nice. I think you'll get along. He's very chilled. He's very Australian. Yeah. He's, yeah, he's yeah, he's, look. He's very switched on. He he really likes AI as well, by the way. So if you speak about AI, and what you've been doing since, he he will love that. Because he like we were saying before, he's, like, vibe coded. It Vibe code is a bit cheap for a CTO. He's he's more than a vibe coder.  
+Me: Yeah.  
+Them: He's built using a AI led of the, like, the internal source of truth design tooling he's obsessed with it. And by the way, everyone's package, when they come in, unlimited, like like, tokens, licenses, They were called, but then Gemini is now really good. And then GPT 5.5 was good. So now they're just it's choose your own. They've got unlimited  
+Me: Yeah. Nice. I'm using OpenCode  
+Them: web like that. Everyone  
+Me: in order to be able to switch models as  
+Them: Yeah. Openclaw. Nice.  
+Me: as they go to different things. Yeah. Yeah.  
+Them: Nice. Have you got a Mac mini or you got a virtual server?  
+Me: Open code. Yeah. Open code. No. No. I have one. I have an open claw. True. No, I have a small, a very small... No, I don't run locally the the the  
+Them: Yeah.  
+Me: thing. I have my own smart home that also runs all the time. So I have my open clothes there.  
+Them: Wow.  
+Me: It's an OpenCode, which is the the open source version of  
+Them: Oh, code.  
+Me: cloud. And I can switch my I can use different providers, so I can switch models as I need to. Because, also, not only changes, but also some, models are good for certain things that very bad to others. So you can choose different ones. So yeah. It's a new world. Yeah.  
+Them: Maybe we need to have another conversation because I'm I'll build stuff. Sebastian. So maybe we'll, yeah, maybe we'll we'll have another conversation about that. For sure. But, yeah, no, just the process from here. I will get some feedback on your profile. Give me  
+Me: Okay.  
+Them: she's usually forty eight hours, but I'm chatting with him tomorrow. It should be tomorrow. And then it'll go through through Andre. So next conversations Andre will will manage the process. And we we've got a a Danny who will organize your interviews. Like, he'll book in your interviews. And then, yeah, any escalation or questions, whatever, you you Andre and yourself. Andre is my boss. So you you you come you come to me. Alright?  
+Me: Okay. Amazing. Thank you very much, guys.  
+Them: Amazing.  
+Me: It's a pleasure to meet you. Gracias.  
+Them: Have a great rest of your day. Speak soon. Take care. Bye bye. Bye, Joe.  
+Me: Chao.

@@ -1,0 +1,33 @@
+Meeting Title: Sebastian / Thomas - Débrief Call
+Date: Jul 17
+Meeting participants: Greco Sebastian, Thomas G.
+
+Transcript:
+Thomas Guillet: Sebastian.
+Me: Hello, how are you?
+Thomas Guillet: Good, good, good. And you.
+Me: Doing? Good. Thank you.
+Thomas Guillet: So how was the call with Guy yesterday?
+Me: It was a good conversation honestly. I like how they frame it. How was my performance? I think I could have done better. But yeah, I think it was fine. I think I managed to do what they asked, but I think it could have done better. But yeah, it's a bit like that.
+Thomas Guillet: Yes. Oh, no. Overall, I received a good feedback from them.
+Me: Okay, that's good. Yeah.
+Thomas Guillet: It was a pleasant interview. They felt that you had quite a good energy and you. And they do believe that you have quite a good understanding of engineering topics in general. You definitely understood the case quite well and managed to provide some good insights of how you, you could solve the problem.
+Me: Good to hear. I only think that I was kind of all over the place. I need to focus more next time. Okay, good, good, good.
+Thomas Guillet: Yes. No, no. Overall, they do felt that you have some good intuitions. You also, they also faced quite a good experience using AI. And you, you cover the quickly most of the caveats were usually candidates for shorts, such as ingestion difference between supplier and customer invoices, for example, on the end to end relationship between invoices and transactions. So no, no, all good. You ask also relevant questions. From the, the get-go and took the time to carefully read the exercise, which was a positive. Maybe on the constructive part sometimes you could have been maybe more concise. In your communication. And maybe you, you spent maybe a bit too much time on some parts of the solution that were not critical. They would have preferred maybe a multi-layered approach. So that, you know, we make sure that you cover the end-to-end solution. Before first before diving into too many det.
+Me: Before the time. Yeah, yeah, yeah. I totally agree with them, to be honest. Yeah, yeah. But I'm glad that either way they felt that I understood what I was doing there. Yeah.
+Thomas Guillet: Ail. Yes. And overall, yes, quite a positive feedback to, to move forward.
+Me: Okay, amazing, amazing. Thank you. That's an exciting news.
+Thomas Guillet: Yes. So let's move on to the next stage. Is that good for you?
+Me: Yeah, yeah, totally.
+Thomas Guillet: The next step will be the, the product discussion. The idea is that you can meet a lot of product and senior design manager. For one hour discussion. So your potential counterparts tomorrow. Within the, the trio. And, and yes, it's like our fully discussion on how you usually collaborate with the product and design counterparts. What's your general philosophy in terms of collaboration, alignment and so on? Do you have any examples to share? In terms of successful projects? And so on?
+Me: Work it up. Yeah, I work side by side with product for a long time, so I think I'll have something for them for sure. Yeah, that's great that you never put them in the process, but I think it's very important because at the end work with them side by side. So it's a good thing. By the way.
+Thomas Guillet: Would it be the first time that you are meeting those type of stakeholders?
+Me: Yep, yeah, yeah. Let's see how it goes. I think the other thing I think I got really good idea of the cultural kind of vibes of the company, I think.
+Thomas Guillet: Yes.
+Me: Also from them, I really think there and also very long, six year and four years in the company. That always speaks good about. The workplace. Yeah.
+Thomas Guillet: So maybe same as that time, I should be able to find a couple of availabilities. So I let you maybe giving to me a few available slots so that I can involve two people and will give you a short brief so that you can be fully prepared for the discussion next week, for example.
+Me: That's great. Yeah, I think for me, the mornings are from 9:30 to the mornings. Are fine except for Monday, then Tuesday, all the days. But I'm going to send you like a well detail of my slots there. So.
+Thomas Guillet: Okay. Great. So let's do it. It, let's proceed in that way. Sebastian, let's go and feel free to reach out to me if you have any, any other. Questions.
+Me: Amazing. Thank you very much and have a good weekend.
+Thomas Guillet: You're welcome. See you. Bye bye.
+Me: Bye-bye.

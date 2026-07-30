@@ -1,0 +1,266 @@
+Meeting Title: Final interview catch up**
+Date: Jul 10
+Meeting participants: Greco Sebastian, Matt Gold
+
+Transcript:
+Them: Sebastian.
+Me: Hello, how are you?
+Them: Good morning. Good morning.
+Me: Good morning.
+Them: Yeah, no, not bad. It's not bad.
+Me: Good evening. What time is it there?
+Them: Good evening for me. Yeah, look, if I don't know if you can see, but it's pitch black here. It's winter in Australia. So it goes dark about 4 p.m.
+Me: Oh my gosh, I hate that one that happens.
+Them: So. I know. And it's freezing as well. I know you guys, like, I've just spoken to my. I catch up my family as well because they're in. They're all in the UK, and it's the same in Italy, right? There's a massive heat wave.
+Me: Terrible. Yeah.
+Them: And. Yeah. And they're not built for it in the UK as well. I think in Italy, I. I guess you guys are built for the. For the heat a little bit.
+Me: A bit more, but I wouldn't say like we are in Argentina, for example, like in Argentina. Like everyone has air conditioning and everything. But yeah, I do here at my home. So I'm surviving.
+Them: Yeah. You do. Yeah. Amazing. Did you have a look at the. The dog?
+Me: Yes, I did.
+Them: Or simone?
+Me: Yes, I did. I did.
+Them: Yeah. Cool. Nice. So.
+Me: Quite a lot for half an hour, I would say. But yeah, I guess it's very on point.
+Them: Yeah. I know. I thought about it. Because, like, one school of thought is not to overwhelm people. And the other is just you might as well prepare for it. And then. So you're prepared for every situation. Because from Simone's perspective, everyone that comes in, like the company. They value Innovation and ambition and all of this kinds of stuff. And everyone that comes in at every level. Like, especially this role as an engineering manager, like, you really do influence the business. So he just wants to know that he's got a safe pair of hands in this position. And that's why. I guess he asked these kinds of questions, like, what's the greatest achievement and just all of these kinds of stuff, really? And it could be anything like they've had people. Someone said to him that they. I don't know. I think they were either overweight or they were really unfit and they ended up running a marathon. And that was a story that because we asked, like, in our intake, we, like, we're saying, well, what do you want out of these. Questions? Like, what? What? Like, does it matter if it's work related or not? He goes, no, I just want to see that someone's got driving ambition. I was like, okay. So it could be anything, but, like, the. We've placed four people in the last month, and at this stage. People. Yeah. Like someone had 24 hours to. To fix a bug. This is that the staff engineering level. And no one wanted to do it. And it was like. Like a Bruce Willis diehard movies put his hand up. He's got to work, locked himself away, and he solved this bug, and he's the hero of the story. Stuff. Maybe stuff like this. So one side of it is going above and beyond. And as long as the story that you tell is that it's beyond what you were employed to do, you have gone above and beyond, right? The definition of it. As long as it satisfies that criteria, I think that will satisfy that question. And, yeah, that's like sort of greatest achievement. And just stuff like that, those kinds of questions. So, yeah, do you on just on that note then, do you have a couple of stories prepared if. If that. That kind of question.
+Me: Yeah, I have one from Riverside when I took something. I went more on the direction of doing something that then changed how the organization worked from there. So yeah, there is a situation where we had this team that was being overwhelmed with database issues and things like that. So what we propose as a manager for them is to prepare and sessions with atlas, Mongo Atlas folks and do a whole kind of, yeah, I'm telling it all very disorganized now, right? The idea is I'll apply the framework when talking to him for sure.
+Them: Comes up. Yeah, it's fun. As a matter of fact. Yeah. Yeah. Yeah.
+Me: But yeah, the situation was everyone was basically having a lot of this team in particular was having a lot of in the bottleneck of the company because every single database change needed to pass through the platform team because all the other teams didn't know, didn't have enough. Knowledge in database and things like that. So they started being a problem, right? Because first we had a database issues and incidents all the time. And then when we, what happened when we gatekeep it, it started to slow down our release, right? So what we did there is we organized sessions with the whole engineering company, the organization with the folks of Mongo and we, from those, I went to every single other team and gathered different champions, the ones that perform better and things like that. And then we distributed, started doing meetings with them specifically and we distributed the responsibility. They started to be owners of different parts of the database and things like that. So that way we distribute it. And from there, we basically try to put some numbers on it. So from there would reduce the amount of PRs by half for the platform team. And each team has its own owner and champion. We call it champions back then back in champions that will the gatekeepers for each team. So we started again like freeing every team to release faster and more safely. I don't know if it is an extraordinary story. For that I will have to think a bit more. I believe I can find something or a problem beyond, I don't know what is above and beyond.
+Them: I think so. I think so. Because the. The other. Like, way to frame it is that you are. Because this role as an engineering manager is you're bringing up everyone else around you. So there's a story of something that you've implemented or changed done that's brought up everyone else that elevated either the engineering standards or promotions or, like, retention rates. Or you've taken an ambiguous business problem, maybe that was in one of the strategy meetings and managed to create a, you know, a new initiative, milestone it and get it, get it through. Just stuff like this. That's just show. Yeah. Like showing that initiative.
+Me: Yeah, yeah, I have another one. I think the other one I have is when there was a project also that one of my teams was just a dependency there. We needed to do something for them in order for to finish. So there were two different things. And when I went there to the kickoff meeting with them, I realized that they haven't talked at all between them. They didn't have anything. And the one that the manager that was supposed to lead the teacher, it was a video dub feature. So the editor and the AI team video AI team needed to collaborate. And we were in the middle because we were like the platform team in the middle. So we needed to provide them the transcriptions for that. So after that, I went there with a bunch of questions and then of course didn't even had their own things done. So I basically took over the leading there. I wrote every single flow, the contracts for each part of them. And of course I delegated each part to them. And basically we managed to deliver that in time. And I mentioned that because it's something was something that was like very praised by the VP back then. And also I think that it's not only by the BP. I think what also I felt like it was a recognition was the other team leads also giving me the space to take it and lead it and push it through them and do what I said. As the standard and how we were going to implement it and etc. And that could be also of course that wasn't at all my responsibilities, but it was a big feature that we needed to deliver. They needed to deliver actually. And yeah, maybe that one too. I'd give it a thought a bit more about other things that I could say regarding that. But yeah.
+Them: That's good. Yeah. Yeah.
+Me: Then of course I have more personal ones, ambition. I can talk about like the startup, the acceleration program pitching in front of 250 persons. Like there are a few more.
+Them: Well, yeah. Yeah. That's the beauty of having a long career. That's the beauty of having a long career. You've got so much to pick from and you've done. You've done a lot. I mean, yeah, you've got your own. You've found it and led your own company before, and that has its own challenges that are going to be. That makes you very unique as well.
+Me: Yeah.
+Them: And because you could say, like, because you. You have been on the tools, but you're also. Been a strategic leader and a product focused person. Like, you've got all of these different elements. Like a Swiss army knife, in a way. So these are all really valuable and all things that someone that's because he's. So his background is a pro. He's a product. He's a business product person. Right. So that's how we think. So from his perspective, he's walking into this conversation knowing that technically. Like, everything is sound. Like the. The validate. Yeah, the validation is there. So now.
+Me: It's clear out. Yeah, they already cleared it out. So yeah.
+Them: Yeah. Like Johnny. Johnny's happy, right? So, Marco, you've met Johnny's very, very happy. And so, Simone is already walking. This is why there's, like, there's not a lot of pressure on this conversation, but there are certain things that would give you a big advantage with mentioning. And, yeah, I think because he sits on the product and the business side, mentioning those kinds of achievements is talking directly to him. Like a product that didn't exist or it did exist, but it was failing. And you've taken that and you've accelerated it or the pitch that you made or what you just said about. Because the PR thing is good, but it's quite. It's an engineering focused output. Like the. The win was an engineer. Like, you cut down the amount of time to push to. To commit to PR. Which that would probably. I mean, look, it's a success story.
+Me: I think that most important thing there was not reducing is for me. I think it's something that happens usually. I'm sure they went through this is having some team or some person that becomes a bottleneck.
+Them: Right?
+Me: Right? And that's a problem usually. And it's not an easy thing to solve usually. So what I was trying to showcase there that is with sharing the responsibilities, the ownership and with the right processes, you can unblock this kind of things and be less dependent of a single point of failure basically.
+Them: Yep. Okay. Okay. Oh, I see what you mean.
+Me: Maybe I need to, yeah. So it's more like very stational thing. Less than okay, we accelerate. The problem there was a bottleneck, right? That there was a clear bottleneck where everyone got stuck.
+Them: No, no, no, no. That's fine. I get it.
+Me: But if you remove that bottleneck then it's like problems in production. So yeah, I guess the case goes both ways. Maybe I can focus it more on product. I can try to think something like that.
+Them: Yeah.
+Me: Yeah.
+Them: Yeah.
+Me: I'll give it a thought. Yeah. Okay.
+Them: Yeah. Yeah. Something that's business and product related and. Yeah, it's. Again, sorry for repeating, but just above and beyond what was expected at that point, something maybe that's new, something that's fresh, and then the end result is the. The team is elevated or the product is elevated. Just if there's figures behind the elevation as well, which you. Which you've suggested with the bottleneck and the standardization and what that meant for the business, the impact, then that validates. That satisfies that. That question. And you might ask, what's the hardest thing or what's the greatest achievement? I mean, it's like the same sort of question, just two sides of the same coin. So that's why I always suggest have a couple of them just in case those come up. But these will be like fleeting questions as well. He. He usually. Yeah, he'll. Because he's only got half an hour. He's going to ask, like, only a couple of questions. And there's only a couple of sides of the conversation. It's like, you know, the greatest achievement or the biggest, the hardest thing. There's another side to it where he asks an abstract question. I don't know if you saw it on the. The PDF, but it's like a critical thinking question.
+Me: Yeah, the ones that ask you to do ask you to estimate those are really hard. Like honestly, at least for me. I tried a few. Of course I sent it to AI and hit me with a few and reply to them. I practice a bit.
+Them: Yeah. Yeah.
+Me: Those and then the cross check, right? Like going button down the other way around to do it. Yeah, I did a few.
+Them: Yeah.
+Me: Yeah, that's a weird one.
+Them: One. It's a weird one. But to be honest, I've spoken. So I spoke with two people now in Italy that have told me one person, a staff engineer that said that he asks these questions when he's at an interview. I've never heard of this until I started working with scarlet pay. I don't know if it's an Italian thing or have you experienced it? Or do you.
+Me: Yeah.
+Them: Do you ask it? You don't ask it.
+Me: No, I do sometimes ask the other types of questions, right? Not so abstract. I must say that.
+Them: Yeah. Yeah.
+Me: I think they already did with me, by the way, because if I have to be honest, the assignment they send me, the assignment, the assignment they send me was they told me what was the symptoms of a problem, but they never told me what was the architecture. Behind it. So I had to.
+Them: Right.
+Me: Just guess from there. Exactly what they had there. Instead of telling me, okay, we have this thing and it's failing like this. And that would be much, much easier for me. I actually really struggle to say, okay, what I'm doing is okay or not. I think the ambiguity thing is something that they play with a lot and trying to test if I can handle those kind of not knowing.
+Them: Yeah. I think that's it. Yeah, that. That is it. It's just. Yeah, they've got business problems, and it's just how, like, basically, like an abstract or first principles thinking. So taking something that's so ambiguous. And I guess the way to think of it is, and I'm sure you have anyway, even, you know, when you prompt Claude and you say you click on the clawed thinking and Claude does it, he's like, right, so this is this. Then I've got to assume this. So you basically start from, like, the most broadest thing, and then you just ask questions, assumptions, clarify. You get it, like, down and down and down until you've got some kind of working answer. And it doesn't even need to be right. It's like he might ask.
+Me: More about the process of solving the uncertainty.
+Them: The. Yeah. Yeah. Yeah.
+Me: Rather than the answer itself. Yeah, yeah, I get that. I get that look, I don't think it's wrong. I think it does show something.
+Them: Exactly.
+Me: But yeah, but at the time that I train it, it's a bit less.
+Them: Yeah. No, I know, I know. But by the way, by the way, it's usually like a minute. Like, I had someone the other week, and we. We went over this, like, because he was quite nervous about it. And, like, we had loads of examples because it could, like, usually the one he asks is how big do you think the buy now pay later Market is? There was one about how many coffee cups or how many balls in a swimming pool, but he hasn't asked that one in ages, so it's usually like how big do you think the buy now pay later Market is? And it's like, well, in Italy. And so he's like, okay, well, the population of Italy is this. And then the population of the demographic of people that, like, have disposable income between 80, 18 or 16. Sorry.
+Me: Yeah.
+Them: And like 80 is this. And then the people that are technically Savvy that might download it, you just get smaller and smaller and smaller. And then the guy, like, he was prepared. He, like, he was basically AI. The singularity had got to him at that point. And then he went to answer it. And then Simone was like, yeah, no, all good. And it was 30 seconds. And he was like, I really wanted to finish it. I felt like he said, I felt like stopping some money and said, let me finish this because I'm prepared so much. So I don't know. It's probably going to be a minute and it's an abstract question. And the whole idea is, yeah, you start really broad and then you keep answer asking questions.
+Me: Narrow it down and you describe the process. Yeah.
+Them: That's it. That's it. So, yeah.
+Me: Yeah, yeah. I'm not worried about that one, to be honest. I do know that I struggle a bit with not having the data, but I did a few and yeah, pretty much you can try to guess. I think if the process is there, I think it's enough. I hope, I hope. Also, I'm quite of a talker. I don't know if I go into make to answer, I don't know, I need to be more concise sometimes.
+Them: It's fine. Concise.
+Me: Yeah. But yeah.
+Them: Yeah. Yeah, that's fine.
+Me: It's a work in progress. Yeah, I guess it's.
+Them: No, no, but look, this, this is good. This is good. Because, again, you need to translate problems. That is essentially the role, right? You, you're working at the intersection between pure strategy and then being able to translate into something that's productive. Because you were part of this role is sitting down with johnny and simone and they've got a lot of products and things that are in flight. And it's a key team for them. The payments team. And so, yeah, you're going to have a lot of strategy and then you're going to have a team underneath you, and it's like you're bridging that, that Gap. So there is that ambiguity in how they want to think about the business and the product strategy and how that can translate to Milestones. So, yeah, no, I'm sure it's, it's good stuff. Like, it's a big, big, like, pivotal time for them. So. Yeah, it's exciting stuff.
+Me: Okay. And what about then there is something that I have to be honest. I didn't enjoy the part that how hard you work. Like that was something I said.
+Them: So you. Got. To know about that one, to be honest. I don't know. I don't think he's asked that question.
+Me: For a while.
+Them: Maybe that was AI. I think that was AI hallucinating.
+Me: I have my answer, right? I have my answer already. And I think it's a good one. But I don't know if he will agree that that's up to be seen.
+Them: What's your answer?
+Me: Yeah, no, I'm just saying like. How I work, I usually work. Like, so the answer is if you look at my resume, you will see that I have been, I had my own things from the beginning, from an early age. I started my own digital agency and startup. So my whole idea of working is I cannot do it otherwise is whatever I work on is I treat it like my own. Okay, so I work as the thing I'm working is my own is I don't know what to do a different way. So I have a very high ownership. That means if there is a deadline, I'm going to be there. If the system is down, I'm going to wake up and do whatever it needs to put it at its place. But I also know from experience that I'm learning from being an engineer manager that you need to set up a healthy pace of engineering. Right. And we all can, as a marathon, you cannot just print all the time because otherwise you just get burned out. And I came to realize this like exactly because one of my one, so one of my team, I was one day saying to him, hey, just you were working too very late last night. It wasn't needed. We could have done it today. Just don't. It's a bad thing because you're going to get burned out and we want. And the answer from this person was.
+Them: Yeah.
+Me: Yesterday when I was working, you were online too and doing things. So also that came to me. I was like, yeah, because I was trying to protect the team from some things. But then I realized that actually is like if you're living by example, as I like to say always that also sets the culture of engineering and how you make a team like that can be, that can work steady and consistent for a long time. Otherwise it won't happen. So something around that those lines are. So the idea is I have full ownership. But I do grow into knowing that I cannot burn myself into the job. Right. I don't know. Let's see how it goes.
+Them: Good one. That's a good one. Again, I haven't seen him ask that question. To be honest, it's gone like introductions and maybe what the hardest, the greatest or biggest impact thing that you've done is and then a little bit of sort of abstract reasoning, that kind of thing, asking about AI. So any AI stuff? How you use it? I mean, it could go anywhere, but, like, how you use it. That kind of thing.
+Me: Yeah, those are easy. I think the other ones are more. I'm going to think better some of the stories of the exceptional kind of thing. I'll take like, I'll do another thought about it.
+Them: Yeah. I mean, look, you've got straight, straight, straight mix is something that you built from the ground up.
+Me: Business. Or something. Like that. Yeah. Yeah.
+Them: You've got the pitch that you did in front of 250 investors. A boot camp accelerator. I mean, you could, you could say, look, I've got a couple of stories, but, like, one from Riverside and then one from stream mix. And you can say that whatever one you think is more, like, impactful or higher achieving, let's say maybe it's the stream mix one. I'm presuming that was when you pitched you the pitch was successful. You got investment.
+Me: Picture for me was a big, big, big problem. I'm an engineer, so staying in front of 250. Like, and then that process also, yeah, I had to, we were two founders and I said, okay, I want to do it. I'll do it. And I got prepared. I coach for that, right? For a lot. And it was very hard. I did like a coaching sessions and everything. That was part of the program. But yeah, the end of the thing was pitching in front of 250 people and doing a live demo, which is something that you try to avoid while pitching to people. And actually there is out there. If you go like you can see my picture is recorded in there. Yeah. So I might say that I don't know how much exceptional it is, but it is surely something that I put myself out of my comfort zone.
+Them: Yeah. Yeah. All right. Yeah, cool. That's a great experience.
+Me: To get to a goal, my ambition, to make, to find the streaming investment. There. But I don't know. I don't know. I'll go into give it another round of thinking of what can be or maybe more product or business impact that I had even in Riverside. I think in these last years, like I can probably think of something.
+Them: Yeah.
+Me: Yeah, I'll do that.
+Them: Yeah.
+Me: Yeah.
+Them: Just something that sort of. Yeah. Because that, that. Yeah. The framework that they're looking at is. Yeah. Innovation. Elevating everyone else. Being business-minded and product minded as I was. Yeah. As long as that story satisfies those kind of elements. Which I think that story did, if I'm honest. But, yeah, like, look, you've got. A good career. And I'm sure you got lots of war stories. Sebastian. So, yeah, I'm sure.
+Me: Exceptional is a big word, right? Like.
+Them: It is a big one. And it's subjective as well. It is subjective. But I guess this is why I try and, like. Use frameworks to objectify it. Just areas that anyone could agree. Like something started here and then it finished here, which suggests that without you doing it, it wouldn't have ended up here, which suggests that you've gone above and beyond or you have innovated. So just sort of undeniable. Things that you've done. The other thing is just the Q&A at the end. Have you thought about questions? For someone?
+Me: Yeah, I have a few questions, two questions actually. One is the one that I think I already did. I usually do that one because I honestly think it's a good question for me to know. Which is let's fast forward one year. And I'm already in. You hire me. And I want to know aside from, okay, delivering a good pace, having a roadmap and being just cultural fit from the company, aside from those things. What is, what are the things that would make you say, okay, I did a great decision hiring Sebastian. But things I'm solving for the team and for you or what things challenges I have overcome in this year of things. And it's because I want to know also what challenges might be and what are the challenges ahead and what is expected to me as well, right from me. Right. So I always do that because I think it's insightful for me.
+Them: Yeah, I like that question. I use that same question when I'm interviewing. It's just another way of saying what a success look like, but then again, it's good because you, you put yourself, you, you pre-assume that you've already been hired. So you're psychologically, you're putting yourself as a hired employer. So it's like using the dark arts. It's. I like it. I use that same question when I'm interviewing.
+Me: Yeah.
+Them: Yeah. Any others?
+Me: And the other one that I wanted to know, like it's an honest question is there any like probably we will talk a lot about AI, but a lot of how we use it in engineering. I was wondering if scalape already has a way to use AI as a product without being part of the hype of AI just using because of that and how he sees the product growing in that area. If there is something for the merchants or the customers itself that has been thinking as a product and how we were going to implement it in the product itself.
+Them: Yep.
+Me: Because I think it's mixing a bit of the, I honestly want to know there is any problem because I cannot think a very good options maybe for the merchant you could do things. But I don't know exactly what. The answer there.
+Them: Good question. Good question. A lot of the customer face, because other than, like, chat Bots, people haven't really thought of really good B2C, like customer face, other than, like, maybe you're trying to improve the experience, the user experience, the customer experience. Because it's usually the internal tooling to build. So it's like you're using AI to build, and then maybe there's AI native products. But that. S still. Like, you know, it's, it's not like an AI, a customer facing AI product. Do you know what I mean? So it is interesting. I don't know that. Yeah. Yeah.
+Me: No, it's not like I can't think in riverside this was a very easy answer, right? You could add a lot of things on it and you will get a lot of perks by using the iPad. In this thing unless it's on the merchants and you're giving it some advice because you have the entire formation of how checkout or a certain user is doing something, I don't know, like I don't know. I don't know if it's a good one, but yeah. Let's see.
+Them: I like it. I like it. I like it. I think that. Yeah. One person asked, they did. They didn't get through and they asked. What about the work-life balance? And he didn't like that one. So just maybe. And it's a shame because he's the only person that I didn't. I usually speak to everyone and honestly my voice went. I couldn't talk. So I didn't speak to this person. And I think Andre was meant to. The timings clashed. And. Yeah, that. Yeah. When it with the CEO questions, if you ask about, like, what's career progression, what's work life balance. Yeah, those are questions for me. I can tell you about it. But. Yeah. Like anything business, product relay.
+Me: Yeah, but I think it's also because of this document that you guys sent. Like it does give a lot of vibes that is going to be.
+Them: Yeah.
+Me: Very bad work-life balance, if I must be, I have to be honest. If I read that document, I say this is going to be a very, very stressful kind of 24/7 kind of position, which I understand this is payments in a huge thing. Like that. Comes almost granted in a fintech. Right? But how is I understand this is part of the deal. Okay. I know that. Like. But maybe in the document it scares you a bit more than I should.
+Them: I think so. I think so. Because remember, I play. So the last person I placed for last year is an engineering better and engineering manager. Did you meet Marco or better? Did you meet out any of those guys? Marco.
+Me: And another guy that I never got.
+Them: And johnny, the Australian.
+Me: Okay joining yes and Marco and there was another Italian guy in one of my in the technical assignment. Yeah, there was another junior manager there.
+Them: It might be better. Better Augusta.
+Me: One was from Cuban guy that was been living in Italy.
+Them: Yeah. Better. Yeah. Yeah. I placed him. So, yeah, I mean. He. Yeah. I'd say you'd be surprised. I think it's, it's good that you think that work-life balance will be tough because I, I think that they, you'll be pleasantly surprised if you speak with them. They've gotten, like, they've got initiatives. And I think that it's, they're spinning up new initiatives that are demanding. Like, they essentially want to become a bank and they're building up an entire banking as a service infrastructure, which is, you know, that's a big undertaking. But, yeah, I think as far as, like, they've got quite a good retention rate. They do look after people very well. Yeah. I, I think work life. And also, you've got to remember, it's, it's remote first. Now. So it's, you know,
+Me: Yeah, yeah, that's fun for me. Like honestly I love the fact that I can go there and it's an hour away. Actually a bit surprised that today's interview is not going to be face to face, but maybe he's not in the.
+Them: I think he is, but I just, I, I think that, I think that. Like, they used to have, like, three days a week in office.
+Me: Sense. If everything is going to be remote. Yes.
+Them: Yeah, I, I know, I know. And I think. Like, from an engineering management perspective, it would be advantageous to come in. Like, if you're able initially anyway for the first six months, if you're able to come in a couple of days a week. Then that would be a huge advice.
+Me: I think like I will have to just for the fact because this is an existing team I need to know them. Like I'll do my best to do that honestly. And I think it's a perk honestly. It's something that I haven't had for many years now. I have been working remote for a long time with people very far away. So it's something that I think it's really nice to, if I put in my balance the fact that I can go to the office and sit with the people. I think it's a perk for me honestly.
+Them: Yeah. Yeah. And, and I think the, the culture is an engineering culture as well. Like the engineers, the technology is the product and the engineers build the technology and therefore the culture has to be an engineering culture if the companies to be successful. So I think that's filtered its way. To the, to the point why they have now a remote first culture, because I think that, like, for, from their perspective, and I understand it as well, like, they were a startup and then they've grown to over 200 people. So as a startup, their culture is really strong and they became a unicorn. They're worth 1.8 or 1.9 billion. So in their mind, they're like, okay, well, we're now, like, we're so successful. And we've had this culture. So it's like you put in two and two together. We're successful because we've had this incredible culture. But because they're at the, the next stage where they're pivoting maybe tools like Enterprise level, they're thinking, well, you know, we need to attract the right talent. We need to, this is part of our retention strategy. And so, yeah, this is what people have wanted and they've listened. And so this is sort of filtered through. But just to paint, just to give, I only say that just to give you context about work life balance, because it is really important to them. They've also, there's a lady called Amanda guests who you'll speak to. She's in Australia. Every single person that comes in, she'll sit down with them and ask them where they want to get to, what's important for them. I mean, you know, it's going to be salary increases along the way. And you might say, oh, I want to get, you know, a salary. What do I need to do to get this? And everything's planned. Everything's customized and tailored. Better has a very young daughter. So, you know, that flexibility was really important to him. You know, he wanted to take his daughter to school and after school activities. So there, there is flexibility, man, and they will work around you. To, to make sure that you're sanctified.
+Me: Okay. Because yeah, that's the same. So I have a four year old so I'm going to pick it up. So I'm going to work hard because I don't know work otherwise again. Sometimes I would love to be able to work otherwise, but that's how I'm baked. But this flexibility. Yeah. What time is it there again? Yeah.
+Them: It's a story of my life. I agree. Yeah. Well, man, even worse. I work the us as well. So yesterday I was up till three in the morning.
+Me: Oh my gosh.
+Them: I, I work. So me and it was funny enough, me and my Mrs. She's pregnant. She's due in October. And next year we're relocating back to England and it will be because, and it's the time zones will just be so much better because I'm living in Australia and I'm working italy and in the us. And then the us is a disgusting time. Like Italy is okay. I can kind of do it.
+Me: Probably the other basically part of the war.
+Them: Hey, I might, it's 4 30 and the 4 30 for the us. So I've got to wait another five hours to even have one conversation, the first conversation. I might as well be AI at this point, man. I'm just, I'm up all the time. So. Yeah. There was a point to what I was saying. I can't remember now. But, yeah, young children.
+Me: Yeah.
+Them: Oh, yeah, yeah, yeah, yeah, yeah. Young. Yeah. I mean, it's.
+Me: Children.
+Them: Yeah, they, they, they're a human organization. And again, they want to retain people, right? They're gonna, they're gonna build things and build an environment to retain people. So that's the key thing.
+Me: Yeah to be honest that's the only thing that worries me about this position because the other thing I love the challenge I think is going to be something that I'm going to learn so much because as I told you I don't have payments but the fintechs is something that I always was interesting to and that's why I was a bit reclaimed at the beginning because I was like I don't have all this knowledge but I do believe I have a lot of other like experiences that I can bring but at the same time I know technically I'm going to learn hopefully from their principal engineers and what they have there and I think it's going to be very exciting from from that point of view. Like that really excites me.
+Them: Yeah. Yeah.
+Me: The technical challenges and the business challenges like becoming a bank. Is not a joke.
+Them: No, no, exactly. And, I mean, look, there's a lot of smart people coming in. I'm a bit biased because I've placed all of them, but there is a lot of smart people. We've got, like, people that have led initiatives at Gucci and eBay and NTT and we road. Yeah, there's a, like, a lot of phds in there. Like, a lot of really nice and really smart people. So I think you're going to have a good time. It's like you want to have fun, man. You want to learn and you want to have fun and you want to feel incentivized and you want to, you know, realize why you're doing things. And I, I think, yeah, if you can have a good time along the way, then, yeah, it's going to be, it's going to be a lot better. So now, look, I think you'd enjoy the conversation. He's quite a, like a laid back person, by the way. He just asks these blunt questions, that's all. He actually asked them, there was one question that he asked.
+Me: I certainly sometimes do those kind of questions that are just I want to see what you think. And I sometimes challenge people on the wrong things only to correct me for example to see some character you know or if you just agree with me because I'm your interviewing I do those kind of things. I know it can tell you a bit about a person so let's see how I do I think.
+Them: Yeah. Yeah. One, one other thing, actually. So. Oh, sorry. A slight delay. One other thing that he did that he asked, I don't know if it's in the document. He asked someone, what do you think of when, when the, when I say the word injustice? Like, what's an injustice to you? And you know what this guy?
+Me: Is life is unjust right like there is no justice but yeah, I don't know okay that's an interesting one I'm going to give it a thought like.
+Them: Well, he. Okay, I, I wasn't prepared for him to ask that question, and he was the candidate. But this guy came up with the best answer. And the answer was he said, and this is just off the floor because he's chatting with someone. It's a final interview, and he says an injustice would be, I've come all this way and I'm interviewing with you. And then adjust this would be, would, would be if, if your brother or someone that you knew came in last minute and you just gave it to them. That would be an injustice. That's a great, that's a great answer.
+Me: God said.
+Them: I don't know.
+Me: He entered he ended up being in the company.
+Them: Yeah. Yeah. Yay. You got the offer. You got the offer. Yeah.
+Me: Okay.
+Them: I don't know if he's asked that question before. I mean, yeah, it's up to you, mate. Maybe you can. I don't know if it's a sensitive thing for you. Maybe Argentina versus Egypt, maybe that first, that disallow girl from Egypt.
+Me: Oh my gosh.
+Them: No, no, no. I've only joked. I'm a big fan of argentina. Yeah. But anyway, that was a question that came up. So maybe prepare for that one.
+Me: Yeah might drop something that is not scripted but that's fine I think I can. I can tackle it I think I think.
+Them: Yeah. Yeah.
+Me: Let's see question I didn't ask sorry for going over the time.
+Them: Yeah.
+Me: You know it's going to be in english and italian.
+Them: Good question. I think he asks. I think he says, what do you found? What do you prefer? And then you do the interview in that.
+Me: Okay.
+Them: You're prefer english or Italian?
+Me: Oh. I get I'm fluent in Italian and I don't have problem but the thing is interviewing is a thing and you have your you know your schemas and your stories and I have those in english I don't know how I'm going to do it in Italian but I guess well I don't know let's see.
+Them: Which is say, look, I prefer English. I prepared in English. Matt's English.
+Me: Interview in english like I had never done a single interview in my life in Italian. So that's yeah but anyway.
+Them: Yeah, just. Yeah, I think.
+Me: Maybe I. Will let him peek and that's it that's fine.
+Them: Yeah.
+Me: I will figure it out.
+Them: Yeah. But no, look, it's half an hour. And again, the guy's laid back and you got to remember he's coming into this conversation already knowing that you've, you've been validated technically and that you've been. Like, proved. Like you've been approved. Sorry. Like, you, you've. You've had, you're coming into this conversation. It's not like a fresh, it is a fresh conversation, but there's context behind it, and the context is that technically they think you're a great fit. And so, yeah, it's just the framing is someone that's Innovative, someone that's ambitious. Someone that can Elevate people around them. And that and, and that is all in on AI. And then if that can be demonstrated, then it's fine. And then you got your questions at the end. And it's pretty much it. So. Yeah. And then you're, you're still immediately available, right? So you've been on sabbatical and you're, you still like, do you have any holidays or anything like this?
+Me: I have holidays in August two weeks.
+Them: So do they, by the way. Yeah. Yeah.
+Me: Yeah. Yeah I guess whole intelli stops at that at that time.
+Them: The how. I'm just thinking because, yeah, like most of August is a bit sporadic for them. Like, I think one of the engineering managers is off from the 10th all the way to the end of August.
+Me: Yeah.
+Them: So it's up to you. If you're immediately available and you want, because onboarding is its own thing. It's like you're not really working. You just onboarding.
+Me: Love to start right away and take it like more easy for sure I do have a first week in September that I I think I'm going to have to work only half a day because the kid doesn't have anything like schools are not open but it's just one week of that but I'll usually do with my wife is we take turns like I take the morning and yeah something like that but yeah.
+Them: Yeah. Yeah. Nice. Nice. And that's the.
+Me: But other than that I could start like right away.
+Them: Okay. That week is. Sorry. That week is the first, just the 1st of September till the 4th.
+Me: Let me. Double check. Yes actually is again looking at the calendar so the whole first week of September is closed.
+Them: Yeah, it's fine.
+Me: And then there is only. In the morning Monday and Tuesday so the 7 and the 8 might have some like kind of issues there but other than that that's from the 8th of September and after that's totally just normal.
+Them: Yeah. Cool. Sweet.
+Me: I can I can show you how everything and my vacations are from. The. Okay Saturday 8th of August. The 22nd. So.
+Them: So just the two weeks, 10th to the 14th, 7.
+Me: Just central ones that again no schools.
+Them: 3.
+Me: Or summer camps anything available so we take off.
+Them: Yeah. I think they're all off, man. Honestly, I'm. When I look at, when I look at a diary last, it was like just completely like everyone was off this. Is it like a nationwide thing in Italy? Everyone just decides.
+Me: Yeah. Yeah. It's crazy also the problem is when you go to anywhere is full of people because the entire country is on vacations so it's crazy.
+Them: Yeah. Yeah. Okay, cool. Cool. Just to clarify as well. Is it like outside of skyler pays there any other developments, any other applications or interviews, anything like this outside of scarlet bay?
+Me: Yeah yeah process with American company.
+Them: Yeah.
+Me: And just another one that just started now so because I apply like a month ago and they just reply now but I'm at the end of another one so I don't know if I'm going to get an offer or not but should happen next week if if it if it's ever going to happen.
+Them: Okay. How does it compare to scarlet pay?
+Me: It's a big company it's also unicorn is a similar position as well is reporting to the CEO and CTO as well engineer manager and for a team in Europe. Is paying a bit more.
+Them: Ments?
+Me: And benefits and such I don't know because I didn't got any of the offers yet but then it's an interesting one as well is it like a very nice AI based product. But as I far as I know there is a lot of people competing for the position and and yeah the other thing is some like the CEO is eight hours away because they are on the. West coast on the US. So that in theory is not a problem but I don't know. Yeah.
+Them: But you have to work us hours or both.
+Me: The entire team is European is based in Portugal Spain and Germany the people from the team but I will be reporting they're very async kind of organization anyway but how there's some half of the organization is in the states on the west coast.
+Them: UK.
+Me: So they say it's not that needed and it's not that a big deal. But I don't know. If like some overlap is required and I think I already said like I cannot do 20 hours and they say no it's fine it's not going to be not even near that and blah blah blah but yeah so it's basically a team that is in Europe but is yeah fully. Well. Yeah.
+Them: Makes sense. Makes sense, man. Sometimes these us companies, they do want their pound of flesh. It's the land of dreams. They do pay very well, but there's no such thing as a free lunch.
+Me: They don't pay that much more than like there's not like they have different faces that they they have the US salary and then the European salary okay so they pay a bit better like a 10 15% more something like that I didn't do the math but but it's not the crazy to 200k kind of thing that you see sometimes no no bit more in the same range I would say.
+Them: Yeah. Yeah. Okay.
+Me: Yeah.
+Them: And we, we're going for 120k package, aren't we? Or scarlet pay.
+Me: 120.
+Them: 120. Yeah. Is that still the case?
+Me: Yeah I thought there was 110. Right so yeah.
+Them: One term plus the plus 10k. So 120.
+Me: Okay then it's more like the other one.
+Them: There you go. Good surprise. Scott, just got 10,000 euro increase. Congratulations. Yeah. No, we've, we've,
+Me: Okay. Like let's see how it works I'm what you told me about the the work life balance because it was something on my mind of course I wouldn't I wouldn't have asked him about that for sure but yeah but other than that I love the challenge I think is a very hard thing or it's going to be there.
+Them: When it. Yeah.
+Me: Which is interesting to me.
+Them: Yeah. Cool. Amazing. What time is it? Where, when, when have you got it at four? When is it?
+Me: For 430. Let me see my.
+Them: 4 30? Okay, so that is five hours time.
+Me: Yeah hope how good is his English.
+Them: Very good. Yeah.
+Me: Okay.
+Them: Really good English.
+Me: Okay.
+Them: Yeah, you kind of. Because he was in Australia. Like they met in Australia. John, you.
+Me: You'll never know like Italians usually don't have very good I'm not saying I have a perfect one right but I find myself when on that panel one of the guys I think was Marco I was I had a hard time to understand him maybe because he was a bit far away but also the parents I had like maybe I was a bit also anxious about the whole situation as well but yeah.
+Them: Never know. Yeah. Marco is a little bit broken because, again, they do. That. They are bilingual. But it's. I think Marco, he only. Marco only joined, like, six months ago, and then the company before was pure Italian. So I think he's adjusting to the English. Right. So. Yeah.
+Me: With Italian when I came by I'm fluent in it like I don't see zero like no issues whatsoever but coming out Simone is I would say okay let's do it in Italian then it's easier for me to understand I prefer to understand what he's asking me then rather than yeah no but that that's the only reason behind it like to to choose what language.
+Them: Yeah. And Spanish as well, right? Because of your Argentinian background.
+Me: Yes.
+Them: Wow. Cool, isn't it? Crazy. What do you, what do you think about.
+Me: Already four years it is correcting me the Italian you know like it's crazy teenage years probably in a few years.
+Them: Is he? Exactly. But you need to, you need to keep one language to yourself. Maybe keep this. I don't know. So you, you can, I don't know. Speak in tongue. So you can kind of. I'm. I'm snooking, man. It's English or Australian English, which is just a bit more aggressive, sweary. But. Yeah.
+Me: But you have.
+Them: I'm very.
+Me: I didn't. Like. Johnny has a different I don't know why I felt like it's a bit different from.
+Them: Hey, guys. It has got a different accent. I'm English and he's Australian.
+Me: Oh. Yeah yeah.
+Them: So he's proper like Aussie. Aussie.
+Me: With you I like a young perfectly fine I had a bit hard harder time with him I think he has a very strong accent but yeah anyway.
+Them: And sometimes Aussies sort of, they don't slur, but it's like some words roll into others and they've got their own slang. Whereas in the UK with. And I'm from the south of the uk as well, so it is kind of very neutral. The accent.
+Me: Yeah at least it I'm very used to here right because in Argentina we actually run American English rather than.
+Them: So. Yeah.
+Me: But still for me it's very clear if you have to ask me I prefer like British English rather than American I think it sounds more nicer.
+Them: That's a good answer.
+Me: Yeah.
+Them: It's. It's football, not soccer. It's football, not soccer. Yeah. What do you, what do you think about. What do you think of your chances against Switzerland?
+Me: I think Argentina. I don't know I think if it I don't know. It's to be honest.
+Them: They've had a great room.
+Me: Yeah so far but honestly we we had only like we have problems in defense and we didn't have any good attackers okay everyone that we just encountered so far was we always had the ball you know.
+Them: They've had, they've had a great, great route.
+Me: When that happened when something like that changes I think that the team is going to struggle yeah I hope we get another Argentinian friends okay that was an amazing I almost died that day but that's that's fine.
+Them: Man. Yeah. Yeah. Yeah. France.
+Me: But I don't I don't know if we're going to get to the final. Maybe same is yeah maybe yeah. Maybe.
+Them: I think a beat Switzerland, and then I think who would it be? Would it be if England beat Norway? Is it England versus Argentina?
+Me: It's not going to be easy is very very strong this year like I think. Yeah.
+Them: We're all right. But erling Haaland is just on a different planet, man. He single for him to do that to Brazil is just. They're playing with no pressure. I think that's the difference. They are playing with no pressure because they, they didn't qualify for the last sort of 20 years. So, you know, they, they're just having fun out there. Brazilian, you know, there's a lot of pressure. It's Brazil. England. We're just crazy, man. Our media with the game, with the English fans and media put so much pressure on our players. Argentina, I mean, you've got that massive statue of messy. It's been done. Right. So I don't know if there is pressure or maybe there is because it might be his last, I don't know.
+Me: From now on it's less pressure if I think we as Argentinians are going to be happy anyway I think it was a nice workup so far and if we don't get it we're already like I think the pressure went down right now because now our stronger opponents if we lose. Yeah I think yeah I think it's not a messy God his workup so it's fine it's nice if we have it but I think the pressure went down now that we are in this stage.
+Them: You beating all the teams that you should be. And if you lose now, then it's against world class teams that might win. Yeah, yeah, yeah. Makes sense. Makes sense.
+Me: X. R. Yeah.
+Them: All right, man. Cool. Really good to chat with you. Yeah. Any, is there anything else? Like, I know we've covered quite a lot, but is there anything else that I can help.
+Me: I think. It's fine I think I'm going to prepare a bit more so I have the kid at home because after surgery is at home all the time but I'm going to take some time put a movie or something and work on those answers a bit more but I think I have all I need thank you very much Matt.
+Them: No problem at all, man. All right, I'll speak to you after. Have a great conversation, Sebastian. And it'll probably be. Tomorrow. I'll give you a call tomorrow. And as soon as I've got feedback, then I will let you know. All right.
+Me: Thank you very much.
+Them: Cool. Speak to you soon. Take care.

@@ -1,0 +1,287 @@
+Meeting Title: Sebastian Greco and Max Nowicki
+Date: Jun 3
+Meeting participants: Greco Sebastian, Max Nowicki
+
+Transcript:
+
+Them: Hey, Sebastian. How are doing? Nice to see you again.  
+Me: Hello, Max. You hear me well? Yeah.  
+Them: Yeah. I can hear you good. Can you is the mic coming through okay?  
+Me: Yeah. Perfectly fine. How are you?  
+Them: Awesome. Not too bad. Not too bad. Yeah. Sun is just about shining in Manchester Day, which is nice. Weeks been okay so far. So, yeah, continuing good. A little bit been a little bit slower here at ReCare just because of the holiday season. Everyone seems to be away, but apart from that, all good. All good. Everything okay on your side?  
+Me: Well, look good. Pretty nice day today as well here. Oh, yeah.  
+Them: Nice.  
+Me: All good.  
+Them: Nice. Good. Good. Good. Good. Good. Appreciate you reaching back out then because I know how I remember I was leaving the conversation last time was just around the the compensation just being the biggest challenge because you were on a chunky b to b salary previously, and you were because this role is kind of they can do a direct employment contract I I kinda I think I remember saying kind of one sixty or kind of even it's a big big drop from kind of one sixty to to one thirty where where the company budget is currently at. So you're gonna go away and and have a kind of a think about things, but and and and to be honest, like, nothing they they can't change the salary. That's that's kind of where the budget is at, unfortunately. But am I correct in thinking you've done had some conversations and and you in yours time and just had looked at numbers a little bit more?  
+Me: Yeah. I'll Yeah. Exactly. So I made the, like, think, a a mistake of translating my b two b directly to to the salary I would get as a with a contract. And and that actually was from another recruiter when I when I said these numbers, they they told me that you need to take a look at that because I don't think it's the same. So I did. And when I did that, I I found out that indeed is like that. Like, I'm the fact that I'm paying all the taxes on my side, I pay a lot of more taxes when I'm  
+Them: Yeah.  
+Me: just doing the invoices than rather than of course, the company also pays the taxes. So the the money is going everywhere, but the the numbers are like, it's not fair to say that I'm a 160 is is the number that I I I need in a contract  
+Them: Yeah.  
+Me: nowadays to maintain at least what we have. I have. Yeah.  
+Them: Okay. Yeah. No no problem. I think you would you could use it. I think I've read before translating into around one twenty kind of  
+Me: Yeah.  
+Them: you yeah. Yeah. Yeah.  
+Me: Yeah. Exactly. Yeah.  
+Them: Okay. Good. Good. Good. Can it's been I would say it's speak to a lot of people every day, all day. Where did we get up to in our conversation? I think had a little bit of a chat in terms of your current situation. What's been going on. We touched on kind of your kind of expectations, but I don't think we went too much into the role, if I'm correct. It was very much quite kind of, yeah, early on the conversation, it?  
+Me: Yeah. Exactly. I think we we talked about that early on, and we said, like, that's we're we're far away. But yeah. So we talked very briefly of what what I'm now I'm at now. So maybe we I can go there again and  
+Them: Yeah.  
+Me: you a bit the  
+Them: Yeah. That'd be, yeah, that'd good. It's just a a little bit of recap in terms of your situation because I am under I  
+Me: yeah. Yeah.  
+Them: understand that you left Riverside, sabbatical. You you obviously pursuing kind of your own, own kind of, business and and and kind of the the AI side. And so but, yeah, if you could just give me a bit of a recap and then we can have a bit more of a chat through the role as well. That's that's not an issue.  
+Me: Yeah. Of course. So so I left. We were setting August, last year. After four and a half years, I was we call it back then group lead. They now call it direct Basically, I was managing four different teams. One of those was a platform team and the other the other three were featured teams. Basically, I left them not like I went to do  
+Them: Okay.  
+Me: my own thing. I just took a sabbatical time. But in the meantime, like, I you know, when you are a group lead, you're a bit that far away from the code for a long time. So  
+Them: Yeah. Yeah.  
+Me: what all what has happening with the with AI, I just went back to that and and build some products. And  
+Them: Yes.  
+Me: have fun with the code and things like that. Not not that I  
+Them: Yeah. Is it an option?  
+Me: actually pursue that as a as an as an enterprise. Now it was more like me experimenting and playing it and  
+Them: Yeah. Of course.  
+Me: I think and taking things end to end, like because it's all nice when it's on your computer, but when you do it end to end, it's a different thing.  
+Them: Yeah. Of course.  
+Me: So so yeah. Yeah. That's that's pretty much my  
+Them: Situation. Yeah? Okay.  
+Me: my current situation. Yeah.  
+Them: Nice. Nice. No. It's really, really good. And during just remind me as well. So with your time with Riverside, did you you join the business quite early on? Am I correct in thinking you there was a quite a scaling and kind of involvements around yes, scaling the teams and the business. It was it wasn't when you first joined it, it wasn't the business when you it's it's when you left. Is is that correct?  
+Me: So when when I started, they already have their  
+Them: Yeah.  
+Me: first round of investment. As as soon as I enter, they close it.  
+Them: Yeah.  
+Me: The series a, we were six developers when I entered and 20 people  
+Them: Yeah.  
+Me: in general. When I left the engineering organization was a 110 persons or so.  
+Them: Wow.  
+Me: We grew quite a yeah. And a total of three hundred and twenty fifty something like that persons in the whole organization. So, yes, we went through, like, a very high  
+Them: Yeah. Yeah.  
+Me: high growth moment. So he started as a full stack developer had my own team, then started leading those teams. Actually, I I formed three of those and another one was already there, but was put under me. Basically. So it also was a lot of on hiring and hiring for those teams and and coaching some of the persons that ended up being the engineering managers from from the new teams  
+Them: Nice.  
+Me: etcetera. So, yeah, it was kind of a ride. Yeah.  
+Them: Yeah. Yeah. And I think that's the type of ride that we care are looking for. I think some some businesses should come in at a certain level and inherit already stable environments and teams, and I think where we care are there's quite a bit of scaling and growth and changing in terms of workshop Like, it's quite important kind of exposure the business are looking for. So, yeah, that that's really, really good. The where did you get with because I was I was reading your profile again, just before our call. So you started to do some around the AI native kind of engineering, the the journey, taking the business on on that kind of journey with you. How far did you get with before you left? Because I know from  
+Me: It changed a lot. Yeah. Yeah.  
+Them: August yeah. From August, it's in a completely different position.  
+Me: Absolutely. When I when I when I  
+Them: Yeah.  
+Me: I left, we already all my teams were using Cursor for the daily drivers.  
+Them: Yeah.  
+Me: And we already have automated we use CodeRabbit Actually, one of my teams was came to me proposing it using it and ended up being an organizational  
+Them: Yeah.  
+Me: thing that we implemented. So code review and code it wasn't that like it is today. We were in the beginnings of the MCPs. We actually did some some work with the MCPs and some things, but it the early beginnings of that.  
+Them: Yeah.  
+Me: I think things have changed  
+Them: Yeah.  
+Me: pretty radically since then. And that's also the reason why I kept myself busy with the development also because I think it's I haven't had so much fun since a long time.  
+Them: Yeah. Yeah.  
+Me: So I I I did a lot of things. So, yeah, that that was  
+Them: Because  
+Me: pretty much it. When I left, we already were coding and pushing code that was generated by AI, but it was a different time, I believe.  
+Them: Yeah. Yeah. Do you think you'd be quite comfortable coming in now of being out to, obviously, you've you've been out the kind of professional industry, you keep yourself warm and kind of to date with all the advancements in AI. Would you be comfortable coming in an organization such as ReCare where they've they're they're different teams on different stages of the AI native engineering journey. But to kinda come home come in and really kind of own that strategy and and kinda push it from kind of where it was in terms of AI assisted development to now, obviously, much more AI driven workflows and kind of yeah. Or like, would you feel comfortable doing that, do you think?  
+Me: Yeah. Yeah. Totally. Also because I had the  
+Them: Yeah.  
+Me: freedom of trying a lot of different things different models, different providers, different things of course, it's not it's one thing put it, like, doing AI in your own small product than working in a big code base and production.  
+Them: Yeah.  
+Me: Of course, I I'm aware of that difference. But yeah. For sure. And especially yeah. Some especially this kind of this kind of roles where you enter as a manager from the x exterior, you first start asking questions and knowing what are the struggles. And then  
+Them: Yeah.  
+Me: you tailor something for for for them in particular. Right? But, yeah, totally, I would feel totally comfortable with it.  
+Them: Welcome to work. Okay. Good. Good. Good. Last question from my side. So  
+Me: Yeah.  
+Them: and, again, this is probably relevant to kind of you didn't get to a you obviously progress through the company to a point where you weren't obviously, you were removed from day to day kind of coding, but you were still kind of had that that that technical depth and and experience to be able to kind of really help the structure and the the road map to progress because being transparent with you, Miguel's had a couple of interviews since we spoke. None of them have kind of progressed to the next round. I spoke to a introduced a couple of people at right director level position, engineering, couple of people that were at head of engineering. And he says, the good a solid experience, good knowledge and but what they're even missing is, like, that I'll I'll give you the exact wording that he said rather than just try and paraphrase  
+Me: Yeah.  
+Them: So he said basically that it was either the kind of missing, like, drive or the kind of technical to steer the the to to steer re care through this kind of crucial phase. So he's looking for somebody who's got kind of evidence of of kind of ability to to do this and and kind of his done this before. So that's kind of what he's looking for. So I think he doesn't want somebody too high up who's maybe done some of this, but like, now too far removed. He doesn't want someone who's not been through the phase of kind of growth and steering kind of the the technical depth within the organization. So he's trying to find a middle route ground, and it and it is challenging. So that's what he's he's giving me on in terms of the feedback. We can touch in terms of how you think this aligns to you a little bit later on, but let me dive into re care in a bit more detail because I tell you about the organization  
+Me: Yep.  
+Them: structure and and anything like that last time. And, again, did I tell you much about the business we care at all? Did I give you an overview? No. Okay.  
+Me: No. I did my homework, though. I I I did my homework, and and  
+Them: Okay. Okay. You do your homework.  
+Me: also Amy on this. Yeah. But they go ahead, please.  
+Them: I'll just give you a quick because you've done the better homework anyway, so I'll just give you a quick really super high level. So, they were started back in 2017, established themselves now as a scale up business. In the health tech space, and that's actually transitioned from kind of traditional health tech into health AI health tech. The business have around about a 120 staff working for them today. So the product that they've created is a product for hospitals. Ultimately, what what the product does is helps hospitals to coordinate patients' aftercare, and I don't know how it's set up in in in in Italy, but in Germany, if you're a patient say, gone into hospital, the system is settled whereby when I say system, mean, like, the German health care system is set up whereby you don't spend the whole time recovering in a hospital. They will move you into, a rehabilitation center, a care home for that after treatment piece. Traditionally, what the hospitals have struggled with is coordinating that care because the only way they've been able to do this is, like, calling around these facilities, checking for availability, There's a lot of bureaucracy in Germany around how you do this and the the patient data and the complex ities. All this together, there was a problem there, we can't solve this through creating a platform. Hospitals have access to it. Then they they have access to thousands of these health care rehabilitation centers within Germany. And you can do everything from end to end on this platform, from checking availability to coordinating it, to much more. Like, there's so many kind of layers to it now. It was something really simple. Now it's like, how can we make this even smoother for the the hospitals and the clinicians that are doing it day to day? On one platform, and they've been successful. That's a successful that over a over a thousand hospitals are using the platform day to day, and they have around about eight what that translates into in terms of specifics is around about 80% of all German hospitals are using this platform. They have coordinated around about 900,000 patients on the platform, and it's just getting bigger and better. Through the adoption of building kind of AI with inside the product. And and the features and development is just yeah, kind of scaled it even further. So that's kind of what where the products come from and what they're about. Through that 37,000,000 in funding at the start of the year. They're now going through some growth. So current or or structure within engineering, they have direct of engineering, Miguel, head of engineering, a guy called Sam Shaw. Sam Shaw is leaving. He's an Aussie guy. He's he's been with the business for about five years moving back to Australia in November. So, unfortunately, if time zones work crazy, he'd probably continue, but it doesn't work. So, you know,  
+Me: It's like, hey. That works now? Yeah. It's good.  
+Them: something mad like that. So, yeah, it's just not gonna work.  
+Me: Yeah.  
+Them: But he is staying till November, but they're gonna be replacing him. Underneath Sam, you have six small cross functional teams. Cross functional teams in terms of structure, tech lead, a couple of engineers, designer. So typically four or five people in each team, so not big teams. And then you have, like, floating product managers, floating QAs, a separate platform area. Separate integration so platform engineers like, in a separate area, not kind of like, they support the teams in building environments. Then they have a separate integrations  
+Me: The systems. Yeah.  
+Them: area, which is more focused on integrating the software into the hospitals.  
+Me: The systems. Yeah. Yeah. Mhmm.  
+Them: Yeah. And then a separate AI team as well, which is currently consists of five people as well. The plan is that they wanna grow from six small cross functional teams to 10 they wanna build in a brand new engineering managed layer that they've never had before. I've just hired for them the first EM they've never had in the EM before. So she starts in July. So, yeah, what they're looking to do now is bring in a head of engineering with proven in scaling and growing departments going through those in terms of how do you scale in the right way, how does that not affect kind of bottlenecks within the company, Obviously, the AI native engineering piece is massive. So taking strategy and control of that. Managing the managers,  
+Me: So they don't have They don't have, like, a platform team per se. That's what you said. They have floating people in there?  
+Them: So they have floating product managers. So Pierre and then floating QAs. They do have a platform team It's a small platform team. Yeah. Which is separate to kind of well,  
+Me: Yes. Ah, okay. Okay. Okay.  
+Them: just doesn't sit with inside the teams, if that makes sense. And then they got yeah. So that's kind of the across engineering, I think there's just over 20 people now. That's changed a little bit. I think it's probably, like, 25 people in total. So  
+Me: Okay.  
+Them: so they obviously, they're gonna grow out another four teams as well. Based on different requirements because of what the AI team are building. Example would be like the voice native team They've got more of a an integrations team lead, which is gonna grow our team. They've got one we've just hired a the voice native one is more of, like, a mobile focused team as well. Yeah. That that kind of includes kind of the AI products that they've got there. So, yeah, as as an as a head of engineering, they're looking for somebody who's managed EMs before. The technical needs as well, just to kind of give you an oversight, they're currently being responsible for not just kind of technical but also and architecture. They're doing the people management, so it doesn't work at the minute, and they wanna change that. So they want that's why  
+Me: Estas dos  
+Them: yeah. So that's why they're they're bringing the EMs in to be pure people managers.  
+Me: Yeah. So Yeah. So the data also that job description as well. Yeah.  
+Them: Managing through yeah. So three three, yeah, three teams each roughly. There's gonna be that kind of focus on how do you create, like, a environment where people can progress and develop, so create create kind of pathway plan that's kind of integrated There's gonna be technical oversight from your side. So it's not you like, fully directing exactly everything that's going on. But making sure that the road map is being followed. You're asking the right questions. Doing skip level meetings with the technical leads as well. And he just wants somebody with energy, like, and and kind of, like, wants to work in a company which are growing into scaling quickly. They've got an amazing culture, and Miguel's played a huge part in in making a really strong culture where everyone's like, in line with the mission and vision of what the business is doing. And, you yeah, that's kind of obviously, Miguel's role gonna kind of change as well as the organization scales out So there's gonna be some responsibilities kind of taken on from him. Making sure that he's not gonna create any because he's doing a lot at the minute as well. So, yeah, that kind of a snapshot. The engineering team is probably 80% of engineers are based across  
+Me: K.  
+Them: Germany. They do hire in Spain. Portugal, Italy, and Austria. So there's a couple the the one of the most recent hires tech leads is a Spanish guy from there. So yeah, what else can I tell you? It's just a really exciting role somebody who's got a lot of energy, wants to kind of, yeah, work with a core company that's scaling and growing and really in the AI space. This this is a this is a good role for that. So I'll pause there because I can talk about this business all day. Let me get a bit of feedback from you. Any questions and and then see what you think.  
+Me: Songs amazing. Honestly. Like, it really sounds like a a nice challenge because growing is always a challenge.  
+Them: Yeah.  
+Me: And I do believe I I experienced this myself during the the the growth of Riverside. For a long time, we didn't have, like, for a year, almost, we didn't have a VP of engineering. So we directly work with the with the CEO. So I was that was my role as a as a group lead also. We manage how we wanted to do the processes, how to improve things. Made a lot of mistakes along the way as well.  
+Them: Yeah.  
+Me: And I think that that leaves you a lot of experience in in and lessons learned. So in that sense, I do believe that I can bring what I I learned there  
+Them: Yeah.  
+Me: And then you were saying about the technical depths. So I never so even if I wasn't coding anymore, I was basically in any major of course, in all platform decisions on technical and architecture, never left that part. Also, because being from the beginning, you get  
+Them: Yeah.  
+Me: some knowledge that is is is useful almost everywhere. So I was very involved on that. And and, yes, I I was I was there making decisions, asking for for different things, and, of course, being part of of the technical. And and to be honest, I wouldn't wouldn't like, even if I discover myself really good about the people management and all those things, and it was surprising for me how much I enjoyed as well.  
+Them: Yeah.  
+Me: I do I I am a technical person, and  
+Them: Yeah.  
+Me: I would like to be in the table when when big things are are being talked. Right?  
+Them: That that's it, isn't it? I think it's knowing, like, having strong oversight and understand like, not getting into the weeds and everything, but, like, very much, like, you coordinating multiple teams and knowing what's going on and  
+Me: Yeah. And communication and coordination on  
+Them: yeah.  
+Me: rope face are fundamental. Like, I believe it. That that's  
+Them: Yeah. Yeah.  
+Me: at least was our struggle very, very hard struggle, for for for some time. But, yes, once you tackle those  
+Them: Yeah.  
+Me: to start moving. Yeah.  
+Them: Yeah. So perfect. Any questions from your side on on any of that or any further questions about the team or anything that's going on?  
+Me: No. I think you give me a good a good oversight of how it is today. But, yeah, there is a stealing  
+Them: Yeah.  
+Me: in the making. Right? They but they already have a structure that they wanna push.  
+Them: Then  
+Me: Not like they don't know what they they already kind of know or not.  
+Them: Yeah. They know. So they know obviously, yeah. Replace current head of newer EMs. Change the responsibilities of the technical leads to take away that people management, give it to the EMs, They can focus on what they do best, which is technical direct architectural decisions, and kind of manage like, the the technical structure within the team rather than obviously worrying about kind of the people management side and the creative aggression side of the team. So it just that's that's the kind of plan of action they've got, obviously, the the team headcount is obviously growing growing considerably as well. So they but I I again, like, something that Miguel kinda touched on to me shortly around this role is he sets a lot of kinda what the hires should be, kinda what do we need now, and kind of what what what I think what he wants is a head off to have lots more say in that as well and kinda where are we missing resources? What's the next hire or the profile type we need that to look like? And I think it's because Sam Sam, at the minute, is is quite busy in terms of his role, so he's not had that much kind of scope on on being able to do that. And bringing the EMs in to to kind of leave  
+Me: Sense.  
+Them: allow him to only have three direct reports makes it a lot easier rather than six plus skip levels. So yeah. Really good.  
+Me: Yeah.  
+Them: Where'd you just give me a quick overview of because I was looking, again, your profile, was looking at you. You've had 27 people in the highest form. Across four cross functional teams. Am I so you said that kind of when you you you didn't inherit them, you grew up them, conducted a lot of interviews. Did you have, say, in terms of the types of people and and profiles that you were looking for, or where where was where was a lot of this direction coming from? Was it the c t or the VP, or was it kind of  
+Me: So, basically, we but how how it was is basically so the stories started at a full stack, and then I took ownership of a part of the product, the domain in particular.  
+Them: Yeah.  
+Me: Which was the dashboard and the back end. That was my team. I hire a few developers from there, others I took from the Flat organization we were before. And we grew from there. Then we had a head of engineering that started to structure things a bit more. And so we started talking about growing my team into more more  
+Them: Yeah.  
+Me: different domains. And so I had I had two very good performer, like, developers that also wanted to go that way. Of course, they wanted to  
+Them: Yeah.  
+Me: start doing management. So we started there, and we created this two new Then the head of engineering left, and we hear anything. So that's where I got another team on top of what I was already building.  
+Them: Yeah.  
+Me: So that was my fourteenths. And yeah, there was that was, like, a very complicated situation in the company. Head of QA left, so I had to reorganize also QAs, etcetera. But yeah. So those teams new teams we hire with the with the engineer managers. I was the the last to sign off.  
+Them: Nice.  
+Me: On someone entering to the to the team. And we did did some internal promotions as well as to tech leads in that process. And we hire  
+Them: Yeah.  
+Me: two tech leads as well. Yeah, that that's pretty much the story of how it progress. So  
+Them: Yeah. Yeah.  
+Me: actually have four teams, but five direct reporting. Yeah. Because they had the head of QA of my group, basically, I created something that then was copied by the other groups. Along the way, we I was the first group, to be honest.  
+Them: Nice.  
+Me: That was created. Yeah. Yeah.  
+Them: What would what was the biggest challenge that you faced in that that kind of that time? Like, obviously, things scaled quite quickly. You were given lots of responsibility across multiple different teams, EMs. You were responsible. What what were you yeah. What was your biggest challenge  
+Me: Again, communication  
+Them: just out of interest? Yeah.  
+Me: and coordination was very, very complicated there because of course, that was my group, and I had a very good over like, overview of what was happening. But then there was other other teams that, of course, we have a head of anymore, so they were directly reporting to the CEO as well.  
+Them: Yeah.  
+Me: So there were two other teams, basically, editor and studio teams. And so coordinating with them was a bit complicated at the beginning. And the other problem we had was con quite complicated is that we didn't have the same in in product than in engineering. So we had  
+Them: Yeah.  
+Me: a lot of miscommunication sometimes with product, sometimes product itself with start developing something very similar, and we they know what they do in that  
+Them: Yeah. Yeah.  
+Me: So yeah. Gladly, afterwards, also, we I tried to to, of course, improve my, like, the communication with other team leads and try to coordinate a bit more. But the real change was when new VP of engineering came and started creating groups again and we started planning altogether talking about dependencies and and and organizing it better. Were I we my group already was doing a  
+Them: Yeah.  
+Me: scrum in agile, but the others weren't. So we weren't a bit so we we put everything into the same line, and that really changed things. But I would say communication and coordination with the other teams was kind of a problem. And the other big problem that we have was ownership of certain parts of the model. We had a big one of it.  
+Them: Okay.  
+Me: And the platform team was very very focused on dividing and giving, like, things to people to be owners and responsible instead of  
+Them: Yeah.  
+Me: everything landing on the platform team. Yeah.  
+Them: No. Really good. In terms of management of the EMs and then, obviously, QA, that they had. Like, how did you structure that? How did you ensure that kind of team health awareness was was fully tracked and everyone was happy and yeah. Because there's a lot of people that that sat underneath you there across four teams. Just under 30 people. Like, what was your methodology or process around that?  
+Me: Wow. Helen Well, Helen, 30 people happy all the time is not possible.  
+Them: Yeah. Yeah.  
+Me: There is a lot of conflict going on all the time. But but  
+Them: Yeah.  
+Me: yeah. So I I think my my idea there is first and foremost, my my engineering managers are are partners for me, and I work with them on their struggles. I I I try to be on every, like, retros of the team, so I go there and try also to answer because some sometimes there are things that exceed the engineering manager.  
+Them: Yeah.  
+Me: So me being there also can give answers to developers and, hey. How how this happened or why this happened? So I was trying to be on in the  
+Them: Y  
+Me: touch with reality of the the other teams as well.  
+Them: Yeah. Yeah.  
+Me: So I would rotate. Right? So we have two sprints, so I would rotate how two one sprint that will do two teams on retros and and the other one too. So I kept and then, of course, I will have my my daily my my dailies with the not dailies, weeklies with with the engineer managers to know what is going on, etcetera, etcetera. And on top of, of course, having one on ones with every engineer manager for their career, their problems, their struggles, their performance, and whatever is is happening. But, yeah, I think something for me that really worked was being pressing I wasn't something like  
+Them: Yeah. Tufa.  
+Me: somewhere that no one could could reach or I was there. I was on the crisis is or I was with them when they have problems. I was sometimes in the tough conversations with the employees if if the the engineer manager needed my my assistance there. So I tried to keep my myself on the front lines as much as I could.  
+Them: Yeah.  
+Me: In that sense. But  
+Them: Really good. Did you did you and did you do skip  
+Me: Basically done.  
+Them: meetings with some of the tech leads as well? Like like individual because, obviously, I had your EMs which are reporting into you, but did you did you do skip levels and stuff like that?  
+Me: No. I didn't have with the tech with the what we did is we started having guilds we talk about Chase. So we had a back end and a front end guilds, and I was part of those. And and on those were only tech leads. Okay? So we will do these tech leads, and we would  
+Them: Yeah.  
+Me: discuss the changes or introductions of new technologies. Or sometimes someone could bring something and just treat it there. That's how we manage the technical.  
+Them: Yep.  
+Me: In my opinion, we did that very late. We had  
+Them: Yeah.  
+Me: should have done that very, like, early days, and we we couldn't. Yeah. But that's how the tech lead kind of conversation was because it's not only a tech lead talking and me talking with a tech lead is  
+Them: Yeah.  
+Me: tag leads talking with with between them as well. No? And aligning and having and making decisions or what direction we wanna go. Right?  
+Them: Yeah. That's really good. I was gonna touch on to you about what what kind of leadership style do you do you typically follow, or what what's your approach to to leadership? So you you touched on about kind of whichever you like. You obviously being present, being there, being like, hearing what people have I'd say. What how else do you kind of describe your your leadership style?  
+Me: So so I always said I lead by example, and that's how that's that's why I like to be  
+Them: Yeah.  
+Me: in different meetings in being in some I will be in in the preplanning as well. So so I can be with with the product as well and the the engineering managers. Again, rotating. Right? You have some so much of time, so you need to be you cannot be everywhere.  
+Them: Yeah.  
+Me: But I think my idea is I want to lead by example and giving so if I have ownership on what I do and what I do, I expect ownership and responsibility from my managers too. And I really hope that also that translates to the ICs and the tech leads as well. So  
+Them: Yeah.  
+Me: yeah. I think when you go one map level up, what  
+Them: Yeah.  
+Me: leading by example of changes. Okay? Because you do a different kind of job. Right?  
+Them: Yeah. Yeah.  
+Me: So how you react with them, how you're present when they have a some issue or something is happening inside the team or something like that. Is important to how you react and how fast you respond to them and you they know that you have your back because I expect them to do the same with their IC Right? That's that's what I expect for them because, of course, I cannot be everywhere and yeah, that's a bit the trust that I need to build with the team, basically.  
+Them: Да, No. Really good. Amazed. Just going back to the, the AI piece now. Miguel will hope I will ask me this question, so I'm asking you it.  
+Me: Yeah. Yeah. Good.  
+Them: So he will say to me, Max, Okay? Sebastian's obviously he's he's he's taking a a Chris about a call. He's he's not been around kind of engineering for for for a little while. How like, what what's his kind of scope on, like, like, the AI piece. Like, how would his strategy look? What would you what and I know it's hard for you to to know where we care at the in their journey, but what would be your approach to setting out a a typical kind of strategy around AI native engineering and and not taking taking the teams on that journey.  
+Me: Yeah. So so I think yeah. So as I said, I know exactly I can tell you, like, a bit  
+Them: Yeah.  
+Me: generally what I think and how how this should be done, in my opinion. In general, I believe that we what we just got is an enhancement of every single engineer and the skills that are needed today are different from two years ago because  
+Them: Yeah.  
+Me: kind of every engineer now in IC is their own kind of manager of different, kind of agents you call it,  
+Them: Yeah.  
+Me: but also that comes with a lot of risk. I think there is a lot of also weird kind of comeback to looking at the amount of tokens you consume or those kind of things.  
+Them: Yeah.  
+Me: In my point of view, that's a wrong way to look at, how this should be implemented. I do believe that platform teams should provide really a good tool set for people, like, meaning, like, giving agents, like, command lines, they run with experience and having rules that are applied to the whole company  
+Them: Yeah, yeah.  
+Me: things that we all agree that we want to so have rule sets for those skills that are particularly for our for our organization that we believe as a team that are important to have. And then I think there is another high risk that we need to like, now doing code is cheap and you can do a lot of code. But I think the principles of engineering still are valid. Small, very focused PRs are important because you need to review what  
+Them: Yeah.  
+Me: is happening there, and we need to like, there there is a different kind of skill that people needs to do now. And also, is, sadly, a lot more context switching because  
+Them: Yeah.  
+Me: you have doing a lot of things at the same time and things like that.  
+Them: Yeah.  
+Me: But then, yes, also using it for the daily things. If you are taking support tickets or SLAs, you can automate most of the things with AI today.  
+Them: Yeah.  
+Me: And providing also that to your engineers, like, as tool sets where they can be more efficient on doing that job so they can focus on the on the product more on those kind of things. Think it's should be also an approach for the organization to have  
+Them: Yeah. Yeah.  
+Me: and not single single people. Like, I see I I talked with my colleagues today, in Riverside, how they work. I I don't agree how they are. Everyone is doing their own thing.  
+Them: Yeah.  
+Me: And they everyone in in shouldn't be like that. I I believe it we are already in the face that things could be organized and well structured today.  
+Them: And and that's that exactly what you just said is what Miguel wants to get to a lot more structure and consistency across the teams because it's certain teams are further ahead than others and certain teams So if we if you like, whoever comes into this role and  
+Me: Yeah. So the baseline. Of course, everyone is going to run a bit differently, but at the  
+Them: that base, yeah, Yeah.  
+Me: the standard should be there. I agree. That's let's  
+Them: Yeah. And it's a baseline process. It structure, and also, like, a a a culture or a mindset for kind of people wanting to do it and and interested in that journey unless kind of it's not being encouraged and it's just like rather than just saying, go out and do your own thing, like, this is what we do. This is the kind of impact. It's it's it's it's a journey, isn't it? I think it's it's good that kind of you're on the same page as that. So I think that's pretty much it from my side. Interview process, the business are looking for to do is first agents view with Miguel. That's a chat through your and background. Second stage is then gonna be a what's what is it class as, like, a case study round. So it'll give you a few ideas to present back to with Miguel and Sam Shaw, the current head of engineering. Then kind of yeah. It's basically a few topics about your experience, how you would come into the role, how would what would be your your approach. The third stage is then a product interview. That is with the director of product. Jono. So more around kind of mindset collaboration approach. And then the final stage is the four stages with Mac the CEO and and founder. So that's the kind of process to be looking at for the position. Yeah. I'll be here to guide you through it and and give you kind of feedback as we go. Miguel is on annual leave at the minute. He comes back next week. Everything's been on pause for the last, well, week so far, and there's obviously finished off this week. And so hopefully, things should pick back up. As soon as he's returns. There's no one else to interview process right now, so it is just a kind of CD review stage. He's been super busy before he went away. Am I good to put you down as immediately available?  
+Me: Yes. Yes. Of course.  
+Them: Yeah.  
+Me: Yeah.  
+Them: Good. Good. And have you how how are you finding the market, by the way? Have you got many other interview processes progress?  
+Me: No.  
+Them: Pretty quickly? Or  
+Me: No. Not really. To be honest, seems like it's the  
+Them: is slow here.  
+Me: slow. I'm currently in other very early one and a bit more advanced in  
+Them: Yeah.  
+Me: in a second in a second thing  
+Them: Yeah.  
+Me: yeah, for for another role here in in Italy, by the way. Yeah.  
+Them: Yeah. Okay. No no problem at all. And am I pitching you in at $1.20? Is that €120 full time? Yeah. Yeah. Okay. So, yeah, it'd be normal setup  
+Me: Yeah. Yeah. Yeah.  
+Them: because they've got the German chambers council, something like that. They've got an agreement in place with with them so they can hire a normal contract in Italy, Spain and Portugal and Austria. So that's there should be no issues there. The only thing you don't get access to because you're in Italy is there called Adrian card. Yeah. Like a health card. So yeah. So that's it. But, yeah, let me drop you over a copy of the job description after the call. I'll make the introduction to Miguel and keep you posted. Is there anything else you wanted to know? Any other questions? Or  
+Me: Yeah. So so you said, like, the the head of engineering is leaving in November. It's going to be, anyway, like, a transition period. Okay. Oh, that's amazing. Okay.  
+Them: Yeah. Which is really good,  
+Me: Yeah. Yeah.  
+Them: So the more time you can spend with Sam, the better, really. So  
+Me: Yeah. Yeah. That would be amazing.  
+Them: yeah, which which which puts them in a really good good role, like Sam's or awesome. You can Australian peep like, he's an Aussie. He's he's dead down to a three nice guy.  
+Me: Okay.  
+Them: So and and Miguel as well. Miguel's kind of yeah. He's he's Miguel's progressed up through similar to yourself, to be honest. He progressed from he was a an IC progressed up to kinda tech lead, head of, now director of engineering. So he's been through the same journey as yourself, which again is is interesting. So I think you'll have a good a good chat with him when you come to speak with him and, how yeah, hopefully, it's a good connection, really.  
+Me: Oh, I think  
+Them: Yeah. Anything else you can think of? No.  
+Me: I think that's it. Thank you very much.  
+Them: Awesome. No. No problem at all. Well, I'll fire this email over to shortly just with the JD attached. I'll get everything in process. And then, yeah, hopefully, kind of early next week, I'll give you some updates on feedback.  
+Me: Okay. Yeah. And Yeah. I'm going to be off and go in few days off, but I'm back on Thursday. But, yeah, I'll be with my computer anyway. So  
+Them: Yeah. Pretty good. That's fantastic. Yeah. I'll drop you any updates anyway. So you've got all all that kind of and then, yeah, if we need to jump on a call or kind of you need that one to arrange in this video, I can just drop you a message about it. So  
+Me: Okay. It may Okay. Amazing. Thank you very much, Max.  
+Them: awesome. Fantastic. No. No problem, Thanks for reaching back out as well, and yeah, I'll speak to you soon.  
+Me: Okay. Have a good one. Bye bye.  
+Them: Take care. Thanks. Bye.
