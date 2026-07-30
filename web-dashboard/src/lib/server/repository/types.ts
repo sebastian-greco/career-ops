@@ -1,4 +1,5 @@
 import type {
+  DashboardApplication,
   PipelineSnapshot,
   ProgressSnapshot,
   ReportDocument,
@@ -7,6 +8,7 @@ import type {
 } from "@/lib/dashboard/types";
 
 export interface CareerOpsRepository {
+  getPipelineApplications(): Promise<DashboardApplication[]>;
   getPipelineSnapshot(): Promise<PipelineSnapshot>;
   getProgressSnapshot(): Promise<ProgressSnapshot>;
   getReportSummary(reportId: string): Promise<ReportSummary | null>;

@@ -43,7 +43,7 @@ export interface DashboardApplication {
   reportNumber: string;
   notes: string;
   jobUrl: string;
-  summary?: ReportSummary;
+  compEstimate: string;
 }
 
 export interface ReportSummary {
@@ -61,6 +61,7 @@ export interface ReportSummary {
   pdf: string;
   jobDescriptionPath: string;
   skillCoveragePath: string;
+  interviewPrepPath: string;
   resumeArtifactPath: string;
   applicationQuestions: string[];
 }
@@ -112,7 +113,6 @@ export interface PipelineSnapshot {
   metrics: PipelineMetrics;
   filterCounts: Record<PipelineFilter, number>;
   statuses: StatusOption[];
-  summariesByReportId: Record<string, ReportSummary>;
 }
 
 export interface ProgressSnapshot {

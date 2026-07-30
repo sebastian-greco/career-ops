@@ -18,14 +18,30 @@ function getBaseUrl() {
   return "http://localhost:3000";
 }
 
+function getWriteHeaders() {
+  const token = process.env.NEXT_PUBLIC_DASHBOARD_WRITE_TOKEN;
+  return token ? { "x-career-ops-dashboard-token": token } : {};
+}
+
 export function TrpcProvider({ children }: PropsWithChildren) {
-  const [queryClient] = useState(() => new QueryClient());
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            gcTime: 120_000,
+            refetchOnWindowFocus: false,
+          },
+        },
+      }),
+  );
   const [trpcClient] = useState(() =>
     trpc.createClient({
       links: [
         httpBatchLink({
           url: `${getBaseUrl()}/api/trpc`,
           transformer: superjson,
+          headers: getWriteHeaders,
         }),
       ],
     }),

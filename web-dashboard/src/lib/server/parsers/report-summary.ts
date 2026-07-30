@@ -86,6 +86,7 @@ export function parseReportSummary(reportPath: string, raw: string): ReportSumma
     pdf,
     jobDescriptionPath,
     skillCoveragePath,
+    interviewPrepPath: "",
     resumeArtifactPath,
     applicationQuestions,
   };

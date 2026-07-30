@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 
 import type {
+  DashboardApplication,
   PipelineSnapshot,
   ProgressSnapshot,
   ReportDocument,
@@ -12,10 +13,25 @@ import { countFilters, parseApplicationsMarkdown } from "@/lib/server/parsers/ap
 import { parseReportDocument } from "@/lib/server/parsers/report-document";
 import { parseReportSummary } from "@/lib/server/parsers/report-summary";
 import { loadStatusCatalog, normalizeStatus } from "@/lib/server/parsers/status-catalog";
-import { enrichApplicationUrls } from "@/lib/server/parsers/url-resolution";
+import {
+  enrichApplicationUrls,
+  extractReportHints,
+  type ReportUrlHints,
+} from "@/lib/server/parsers/url-resolution";
 import { computePipelineMetrics } from "@/lib/server/metrics/pipeline-metrics";
 import { computeProgressMetrics } from "@/lib/server/metrics/progress-metrics";
 import type { CareerOpsRepository } from "@/lib/server/repository/types";
+
+const REPORT_READ_CONCURRENCY = 24;
+
+interface CachedReport {
+  modifiedAtMs: number;
+  size: number;
+  summary: ReportSummary;
+  hints: ReportUrlHints;
+}
+
+const reportCache = new Map<string, CachedReport>();
 
 async function readFirstExisting(paths: string[]) {
   for (const filePath of paths) {
@@ -55,6 +71,50 @@ function serializeTrackerLine(fields: string[], delimiter: "pipe" | "tab") {
   return `| ${fields.join(" | ")} |`;
 }
 
+function slugifyFileName(value: string) {
+  return value
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function interviewPrepPath(company: string, role: string, availableFileNames: ReadonlySet<string>) {
+  const slug = slugifyFileName(`${company} ${role}`);
+  if (!slug) {
+    return "";
+  }
+
+  const fileName = `${slug}.md`;
+  return availableFileNames.has(fileName) ? path.posix.join("interview-prep", fileName) : "";
+}
+
+function cloneSummary(summary: ReportSummary): ReportSummary {
+  return {
+    ...summary,
+    applicationQuestions: [...summary.applicationQuestions],
+  };
+}
+
+async function mapWithConcurrency<T, R>(items: T[], limit: number, mapper: (item: T) => Promise<R>) {
+  const results: R[] = [];
+  let nextIndex = 0;
+  const workerCount = Math.min(limit, items.length);
+
+  await Promise.all(
+    Array.from({ length: workerCount }, async () => {
+      while (nextIndex < items.length) {
+        const currentIndex = nextIndex;
+        nextIndex += 1;
+        results[currentIndex] = await mapper(items[currentIndex]!);
+      }
+    }),
+  );
+
+  return results;
+}
+
 export class FsCareerOpsRepository implements CareerOpsRepository {
   constructor(private readonly careerOpsRoot: string) {}
 
@@ -69,88 +129,168 @@ export class FsCareerOpsRepository implements CareerOpsRepository {
     }
   }
 
+  private async readApplications() {
+    const [statuses, applicationsRaw] = await Promise.all([
+      this.getStatusCatalog(),
+      readFirstExisting([
+        path.join(this.careerOpsRoot, "applications.md"),
+        path.join(this.careerOpsRoot, "data", "applications.md"),
+      ]),
+    ]);
+
+    return {
+      statuses,
+      applications: parseApplicationsMarkdown(applicationsRaw, (status) => normalizeStatus(status, statuses)),
+    };
+  }
+
+  private async readCachedReport(reportPath: string): Promise<CachedReport | null> {
+    const absolutePath = path.join(this.careerOpsRoot, reportPath);
+    const cacheKey = `${this.careerOpsRoot}\0${reportPath}`;
+
+    try {
+      const stat = await fs.stat(absolutePath);
+      const cached = reportCache.get(cacheKey);
+      if (cached && cached.modifiedAtMs === stat.mtimeMs && cached.size === stat.size) {
+        return cached;
+      }
+
+      const raw = await fs.readFile(absolutePath, "utf8");
+      const parsed = {
+        modifiedAtMs: stat.mtimeMs,
+        size: stat.size,
+        summary: parseReportSummary(reportPath, raw),
+        hints: extractReportHints(raw.slice(0, 1000)),
+      };
+      reportCache.set(cacheKey, parsed);
+      return parsed;
+    } catch {
+      return null;
+    }
+  }
+
+  private async getReportMetadata(applications: DashboardApplication[]) {
+    const entries = await mapWithConcurrency(applications, REPORT_READ_CONCURRENCY, async (application) => {
+      if (!application.reportPath || !application.reportNumber) {
+        return null;
+      }
+
+      const report = await this.readCachedReport(application.reportPath);
+      return report ? ([application.reportPath, report] as const) : null;
+    });
+
+    return new Map(entries.filter((entry): entry is readonly [string, CachedReport] => entry !== null));
+  }
+
+  private async getInterviewPrepFileNames() {
+    try {
+      return new Set(await fs.readdir(path.join(this.careerOpsRoot, "interview-prep")));
+    } catch {
+      return new Set<string>();
+    }
+  }
+
+  private async getApplicationByReportId(reportId: string) {
+    const { applications } = await this.readApplications();
+    return applications.find((application) => application.reportNumber === reportId) ?? null;
+  }
+
+  private async getSingleReportSummary(reportId: string) {
+    const application = await this.getApplicationByReportId(reportId);
+    if (!application?.reportPath) {
+      return null;
+    }
+
+    const report = await this.readCachedReport(application.reportPath);
+    if (!report) {
+      return null;
+    }
+
+    await enrichApplicationUrls(
+      this.careerOpsRoot,
+      [application],
+      new Map([[application.reportPath, report.hints]]),
+    );
+
+    const summary = cloneSummary(report.summary);
+    if (!summary.url && application.jobUrl) {
+      summary.url = application.jobUrl;
+    }
+    summary.interviewPrepPath = interviewPrepPath(
+      application.company,
+      application.role,
+      await this.getInterviewPrepFileNames(),
+    );
+
+    return { application, summary };
+  }
+
   async getStatusCatalog(): Promise<StatusOption[]> {
     return loadStatusCatalog(this.careerOpsRoot);
   }
 
+  async getPipelineApplications(): Promise<DashboardApplication[]> {
+    return (await this.readApplications()).applications;
+  }
+
   async getPipelineSnapshot(): Promise<PipelineSnapshot> {
-    const statuses = await this.getStatusCatalog();
-    const applicationsRaw = await readFirstExisting([
-      path.join(this.careerOpsRoot, "applications.md"),
-      path.join(this.careerOpsRoot, "data", "applications.md"),
-    ]);
+    const { statuses, applications } = await this.readApplications();
+    const reportMetadata = await this.getReportMetadata(applications);
+    const reportHintsByPath = new Map<string, ReportUrlHints>();
 
-    const applications = parseApplicationsMarkdown(applicationsRaw, (status) =>
-      normalizeStatus(status, statuses),
-    );
+    for (const [reportPath, report] of reportMetadata) {
+      reportHintsByPath.set(reportPath, report.hints);
+    }
 
-    await enrichApplicationUrls(this.careerOpsRoot, applications);
+    await enrichApplicationUrls(this.careerOpsRoot, applications, reportHintsByPath, { includeScanHistory: false });
 
-    const summariesByReportId: Record<string, ReportSummary> = {};
-    await Promise.all(
-      applications.map(async (application) => {
-        if (!application.reportPath || !application.reportNumber) {
-          return;
-        }
+    for (const application of applications) {
+      const report = reportMetadata.get(application.reportPath);
+      if (!report) {
+        continue;
+      }
 
-        try {
-          const raw = await fs.readFile(path.join(this.careerOpsRoot, application.reportPath), "utf8");
-          const summary = parseReportSummary(application.reportPath, raw);
-          if (!summary.url && application.jobUrl) {
-            summary.url = application.jobUrl;
-          }
-          application.summary = summary;
-          summariesByReportId[application.reportNumber] = summary;
-        } catch {
-          // Keep pipeline resilient when an individual report is missing.
-        }
-      }),
-    );
+      application.compEstimate = report.summary.compEstimate;
+      // The table only needs compensation; report details are loaded on demand.
+      // Keeping summaries out of every row avoids serializing them twice.
+    }
 
     return {
       applications,
       metrics: computePipelineMetrics(applications),
       filterCounts: countFilters(applications),
       statuses,
-      summariesByReportId,
     };
   }
 
   async getProgressSnapshot(): Promise<ProgressSnapshot> {
-    const snapshot = await this.getPipelineSnapshot();
+    const { applications } = await this.readApplications();
     return {
-      metrics: computeProgressMetrics(snapshot.applications),
+      metrics: computeProgressMetrics(applications),
     };
   }
 
   async getReportSummary(reportId: string): Promise<ReportSummary | null> {
-    const snapshot = await this.getPipelineSnapshot();
-    const application = snapshot.applications.find((app) => app.reportNumber === reportId);
-    if (!application?.reportPath) {
-      return null;
-    }
-
-    const raw = await fs.readFile(path.join(this.careerOpsRoot, application.reportPath), "utf8");
-    const summary = parseReportSummary(application.reportPath, raw);
-    if (!summary.url && application.jobUrl) {
-      summary.url = application.jobUrl;
-    }
-    return summary;
+    return (await this.getSingleReportSummary(reportId))?.summary ?? null;
   }
 
   async getReportDocument(reportId: string): Promise<ReportDocument | null> {
-    const snapshot = await this.getPipelineSnapshot();
-    const application = snapshot.applications.find((app) => app.reportNumber === reportId);
-    if (!application?.reportPath) {
+    const entry = await this.getSingleReportSummary(reportId);
+    if (!entry) {
       return null;
     }
 
-    const raw = await fs.readFile(path.join(this.careerOpsRoot, application.reportPath), "utf8");
-    const document = parseReportDocument(application.reportPath, raw);
-    if (!document.url && application.jobUrl) {
-      document.url = application.jobUrl;
+    try {
+      const raw = await fs.readFile(path.join(this.careerOpsRoot, entry.application.reportPath), "utf8");
+      const document = parseReportDocument(entry.application.reportPath, raw);
+      if (!document.url && entry.application.jobUrl) {
+        document.url = entry.application.jobUrl;
+      }
+      document.interviewPrepPath = entry.summary.interviewPrepPath;
+      return document;
+    } catch {
+      return null;
     }
-    return document;
   }
 
   async updateApplicationStatus(reportId: string, newStatus: string): Promise<void> {

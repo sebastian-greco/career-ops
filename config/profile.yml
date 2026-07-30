@@ -97,10 +97,23 @@ narrative:
       hero_metric: "Helped scale Riverside from roughly 20 people to 300+ after founding and leading prior ventures"
 
 compensation:
-  target_range: "€150K-200K"
+  target_range: "€110K-150K"
   currency: "EUR"
-  minimum: ""
+  minimum: "€110K salary equivalent, or €75/hour for strong B2B contractor roles"
   location_flexibility: "Remote-first, Europe-compatible, with strong preference for flexible and family-friendly cultures"
+  alternate_ranges:
+    - track: "contractor"
+      target_range: "€75-100/hour"
+      minimum: "€75/hour"
+      note: "Well-paid contractor roles are a valid option when they are fixed-term or clearly scoped, remote-friendly, and buy real schedule flexibility rather than full-time employee expectations without employee upside."
+  employment_preferences:
+    permanent:
+      preference: "default"
+    contractor:
+      acceptable: true
+      preferred_shape: "Fixed-term or clearly scoped contracts with strong rate, flexibility, and family-compatible pace"
+      minimum_rate_eur_per_hour: 75
+      note: "Do not treat contractor status alone as a downgrade if the economics and lifestyle fit are strong."
 
 location:
   country: "Italy"

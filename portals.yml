@@ -323,6 +323,7 @@ tracked_companies:
 
   - name: Talkdesk
     careers_url: https://www.talkdesk.com/careers
+    api: https://boards-api.greenhouse.io/v1/boards/talkdesk2/jobs
     scan_method: playwright
     scan_query: 'site:talkdesk.com/careers "AI" OR "Solutions Architect" OR "AI Engineer"'
     notes: "Lisbon. Contact center AI. EMEA friendly."
@@ -486,7 +487,7 @@ tracked_companies:
     enabled: true
 
   - name: Travelperk
-    careers_url: https://jobs.ashbyhq.com/travelperk
+    careers_url: https://www.perk.com/careers/
     notes: "Barcelona. Business travel unicorn."
     enabled: true
 
@@ -1143,6 +1144,19 @@ tracked_companies:
     notes: "Serverless MySQL platform. Customer Engineering, Engineering, Sales."
     enabled: true
 
+  - name: MongoDB
+    careers_url: https://www.mongodb.com/company/careers
+    api: https://boards-api.greenhouse.io/v1/boards/mongodb/jobs
+    notes: "Disabled for now: verified Greenhouse-backed board, but current target-fit leadership roles are hybrid Dublin or North America-only remote, so not actionable from Italy for a remote-first search."
+    enabled: false
+
+  - name: Snowflake
+    careers_url: https://careers.snowflake.com/
+    scan_method: websearch
+    scan_query: 'site:careers.snowflake.com/us/en "Engineering Manager" OR "Senior Engineering Manager" OR "Staff Engineer" OR "Principal Engineer" OR "Director of Engineering" OR "Platform Architect"'
+    notes: "Data cloud platform with a large engineering org. Track selectively for leadership and senior platform/backend openings."
+    enabled: true
+
   - name: GitLab
     careers_url: https://job-boards.greenhouse.io/gitlab
     api: https://boards-api.greenhouse.io/v1/boards/gitlab/jobs
@@ -1152,6 +1166,68 @@ tracked_companies:
   - name: RevenueCat
     careers_url: https://jobs.ashbyhq.com/revenuecat
     notes: "Remote-first subscription infrastructure company. Strong product/platform fit with healthy remote culture signals."
+    enabled: true
+
+  - name: Camunda
+    careers_url: https://camunda.com/careers/all-jobs/
+    api: https://api.ashbyhq.com/posting-api/job-board/camunda?includeCompensation=true
+    api_provider: ashby
+    notes: "Fully remote workflow-orchestration company hiring across 75+ countries, with Remote.com support outside direct-employment markets. Track leadership roles; remote flexibility alone does not clear the exceptional-culture IC gate."
+    enabled: true
+
+  - name: Elastic
+    careers_url: https://jobs.elastic.co/
+    api: https://boards-api.greenhouse.io/v1/boards/elastic/jobs
+    notes: "Distributed search, observability, and retrieval platform that can employ in Italy. Track leadership roles and verify each posting's country list; standard distributed-work benefits do not clear the exceptional-culture IC gate."
+    enabled: true
+
+  - name: Sourcegraph
+    careers_url: https://sourcegraph.com/jobs
+    scan_method: playwright
+    scan_query: 'site:sourcegraph.com/jobs "Engineering Manager" OR "Director of Engineering" OR "Staff Engineer" OR "Principal Engineer" OR "Tech Lead"'
+    notes: "Global all-remote code-intelligence and agentic developer-tools company. Track leadership roles; EST overlap, intensity, and post-layoff signals mean it does not clear the exceptional-culture IC gate."
+    enabled: true
+
+  - name: GitBook
+    careers_url: https://www.gitbook.com/careers
+    api: https://api.ashbyhq.com/posting-api/job-board/GitBook?includeCompensation=true
+    api_provider: ashby
+    notes: "Fully remote developer knowledge platform with a mostly European team, async work, and Europe +/-3-hour hiring. Strong culture fit, though openings are infrequent."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Product Engineer"
+      - "Platform Engineer"
+    enabled: true
+
+  - name: PostHog
+    careers_url: https://posthog.com/careers
+    api: https://api.ashbyhq.com/posting-api/job-board/posthog?includeCompensation=true
+    api_provider: ashby
+    notes: "Fully remote open-source product engineering platform with autonomous small teams, but its explicit high-expectation, fast-shipping model does not clear the exceptional-culture IC gate. Keep enabled only for rare leadership openings."
+    enabled: true
+
+  - name: ClickHouse
+    careers_url: https://clickhouse.com/company/careers
+    api: https://boards-api.greenhouse.io/v1/boards/clickhouse/jobs
+    notes: "Distributed real-time analytics and database platform. Track leadership roles and verify Italy eligibility carefully because many European openings name specific countries."
+    enabled: true
+
+  - name: Grafana Labs
+    careers_url: https://grafana.com/careers/
+    api: https://boards-api.greenhouse.io/v1/boards/grafanalabs/jobs
+    notes: "Global remote-first observability company that can employ in Italy, but eligible countries vary by role. Track leadership openings; its standard remote and leave package does not clear the exceptional-culture IC gate."
+    enabled: true
+
+  - name: Bitrise
+    careers_url: https://bitrise.io/careers
+    scan_method: playwright
+    scan_query: 'site:bitrise.io/careers "Engineering Manager" OR "Director of Engineering" OR "Head of Engineering" OR "Staff Engineer" OR "Principal Engineer"'
+    notes: "Remote-first mobile CI/CD and developer-infrastructure company. Strong RevenueCat adjacency, but current technical openings and Italy hiring footprint are sparse, so keep leadership-first and verify geography."
     enabled: true
 
   - name: Phantom

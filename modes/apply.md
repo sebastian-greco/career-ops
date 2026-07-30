@@ -142,6 +142,13 @@ For each question, generate the response following:
 6. **Specificity**: Reference something specific from the JD visible on screen
 7. **career-ops proof point**: Include in "Additional info" if there is a field for it
 
+Before presenting any candidate-facing application text, run a humanization pass:
+- Remove AI-sounding phrasing, generic enthusiasm, and polished abstractions
+- Keep the user's direct, plain writing style from `modes/_profile.md`
+- Prefer concrete proof points over broad claims
+- Use natural first-person language where appropriate
+- Keep answers specific to the live JD and avoid filler
+
 For cover letters:
 - If the form has a dedicated cover-letter field, always draft one
 - Save the cover letter into the external tracker app `currentDraft` field only when the live form has a dedicated cover-letter field

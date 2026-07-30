@@ -16,11 +16,32 @@ Compact proof points from extended experience that do not always fit cleanly in 
 - Helped evolve the org from a flatter structure into clearer team ownership and leadership layers.
 - Elevated strong ICs into Team Lead roles and coached emerging engineering managers as the organization scaled.
 - Stayed accountable for group direction, architecture, hiring quality, and org design while delegating local execution through leaders.
+- After candid feedback from Riverside's CEO that he was spreading himself too thin, changed his operating model from being the person who jumped into every gap to building leaders and teams that could count on him without depending on him.
 
 **Proof points:**
 - Managed a 27-person group across 3 feature teams and 1 platform team, plus QA leadership spanning those teams, without operating as a flat direct-manager for all 27 people.
 - Built leadership leverage by growing team leads and coaching engineering managers rather than centralizing all execution.
 - Combined org design, hiring, architectural review, and platform strategy in one group-level leadership role.
+- Reframed management success around teams remaining healthy and effective without his constant intervention, reducing key-person dependency rather than making himself the center of delivery.
+
+---
+
+## Riverside -- Performance Recovery Through Structured Coaching
+
+**Tags:** people-management, coaching, performance, feedback, senior-engineers, delegation, platform, retention
+
+**Hero scope:** Took on a demoralized senior engineer whom the VP of Engineering was considering dismissing, then helped him recover to an above-average performance outcome without lowering delivery expectations.
+
+**Key decisions:**
+- Started with direct acknowledgment of the engineer's strengths and the existing feedback: exceptional problem solving and willingness to help, but weak focus, time management, delivery predictability, and communication when work slipped.
+- Put him on a deep technical problem that used his strongest skills while also assigning bounded SLA work, bug fixes, and cross-team dependencies with explicit delivery commitments.
+- Made early communication the central behavior change: ask for help, surface a delay, or narrow the investigation before the rest of the team became blocked.
+- Treated improvement as a sustained coaching process rather than a single difficult conversation, while keeping the expectations measurable and visible.
+
+**Proof points:**
+- The engineer began asking for help openly and communicating risks earlier instead of disappearing into problems.
+- Roughly eight months later, Sebastian gave him an above-average performance review that was also approved by the VP who had originally been considering dismissal.
+- The team retained a highly capable senior engineer while reducing the dependency and delivery risks that had made his performance unsustainable.
 
 ---
 
@@ -104,6 +125,47 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 ---
 
+## Riverside -- Early Full-Stack Product Engineering and Customer Feedback Loops
+
+**Tags:** product-engineering, full-stack, early-stage, studio, exports, clips, dashboard, accounts, support, b2b, sso
+
+**Hero scope:** Joined Riverside as one of the earliest engineers in a high-agency setup where engineering worked directly with the CEO and CTO before product management was formalized.
+
+**Operating model:** Fast iteration, broad product surface area, direct exposure to support tickets and user pain, and occasional direct work with B2B customers on product needs.
+
+**Key decisions:**
+- Helped shape what to build and how to build it instead of only implementing pre-defined tickets.
+- Worked across a wide product surface, including Studio features, early exporting and clip-generation flows, dashboard/account work, and enterprise-facing capabilities.
+- Stayed close to support tickets so product and engineering decisions were grounded in real user struggles rather than second-hand summaries.
+- Worked directly on some B2B customer needs, including SSO-related work, which strengthened the connection between product trade-offs and commercial reality.
+
+**Proof points:**
+- Shipped across multiple user-facing product areas in Riverside's early phase rather than staying inside a narrow backend lane.
+- Combined product judgment, customer context, and hands-on implementation in the same role.
+- Used direct feedback loops from users, support, and internal stakeholders to iterate quickly and improve the product.
+- Strong evidence for high-agency product-engineering roles that want broad ownership, fast learning, and end-to-end thinking.
+
+---
+
+## Riverside -- Protecting Customer Workflows During a Product Information-Architecture Migration
+
+**Tags:** product-leadership, customer-empathy, information-architecture, search, migration, prioritization, analytics, cross-functional
+
+**Hero scope:** Helped protect users during a major change from studio-bound recordings to account-wide projects by surfacing the discovery risk early and reprioritizing global search as a companion capability.
+
+**Key decisions:**
+- Challenged the planned experience after recognizing that heavy users with hundreds or thousands of recordings could lose the familiar locations of their content when Riverside introduced projects above studios.
+- Accepted that the core migration was too far advanced to reverse, then worked with Product and Design on targeted UX changes instead of turning the disagreement into a late veto.
+- Reprioritized account-wide global search so users had a reliable recovery path when the new hierarchy made existing content harder to find.
+- Evaluated the rollout through project creation and renaming, acceptance of automatic grouping, search usage, complaints, and the core recording/creation metrics that should not decline because of the change.
+
+**Proof points:**
+- The migration did not produce a significant decline in Riverside's core product-usage trends.
+- Heavy users actively adopted the project model, while many other users accepted the automatic grouping without needing to reorganize it.
+- Global search was well received and addressed a concrete customer risk identified by Engineering rather than only fulfilling a pre-written roadmap item.
+
+---
+
 ## Riverside -- Cross-Team AI Dubbing Orchestration
 
 **Tags:** ai, orchestration, event-driven, kafka, cross-team, platform, async-contracts, integrations
@@ -146,7 +208,7 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 ## Riverside -- Developer Platform, CI/CD, and Service Templates
 
-**Tags:** developer-experience, devex, platform, ci-cd, github-actions, microservices, kafka, logging, templates, docker, release-engineering, openapi, swagger, api-contracts, nestjs
+**Tags:** developer-experience, devex, platform, ci-cd, github-actions, microservices, kafka, logging, templates, docker, release-engineering, openapi, swagger, api-contracts, nestjs, guilds, technical-enablement
 
 **Hero scope:** Improved the internal developer platform at Riverside by standardizing how microservices were created, instrumented, and released.
 
@@ -158,6 +220,8 @@ Compact proof points from extended experience that do not always fit cleanly in 
 - Created reusable service templates so new microservices started from a consistent baseline instead of custom one-off setups.
 - Standardized OpenAPI/Swagger as a default requirement for new endpoints, first by introducing it into the monolith and then by shipping it out of the box in new NestJS microservices through decorator-based API definitions.
 - Built shared company libraries for Kafka consumption and logging so teams could adopt the same operational patterns across services.
+- Used engineering-wide technical guilds for the biggest workflow and platform changes so teams could understand the why, see concrete examples, ask questions, and influence adoption rather than receiving a top-down rollout.
+- Ran guild sessions around the new NestJS microservice templates, the first shared Kafka library and usage model, and the CI/CD / branching-model changes that simplified releases.
 - Simplified release engineering from a more complicated branching model to a thinner single-branch flow: work via PRs into `main`, create a version tag or release, and let GitHub Actions deploy the latest release automatically.
 - Kept Docker packaging deliberately simple so teams could ship reliably without accumulating unnecessary CI/CD complexity.
 - Started measuring operational health through release frequency, alert responsiveness, and defect trends as the platform model replaced older multi-environment release habits.
@@ -167,6 +231,7 @@ Compact proof points from extended experience that do not always fit cleanly in 
 - Built the first formal platform team around internal infrastructure, developer workflows, and shared engineering leverage.
 - Improved developer experience by making service setup faster and more standardized across teams.
 - Improved API consistency and integration readiness by making OpenAPI/Swagger documentation a default part of both legacy endpoint evolution and new microservice delivery.
+- Used engineering-wide guilds to introduce major platform changes, including shared Kafka concepts and libraries, service templates, code examples, and release-model changes.
 - Reduced friction in microservice delivery through a simpler GitHub Actions-based release model.
 - Helped turn platform work into leverage for the broader engineering organization rather than only supporting a single team.
 - Partnered directly with the platform team lead, release manager, and VP of Engineering to push the release-process redesign first through microservices and then into the monolith.
@@ -203,6 +268,7 @@ Compact proof points from extended experience that do not always fit cleanly in 
 **Key decisions:**
 - Expanded a more structured agile approach from a single engineering-managed team to a broader group as Riverside scaled and a new VP of Engineering pushed for stronger operating discipline across the org.
 - Worked through resistance from some product partners by framing the change as a way to reduce waste and rework, not add process for its own sake.
+- Worked closely with product and design counterparts to improve planning quality, scope clarity, acceptance criteria, and cross-team trade-off discussions before delivery work started.
 - Used the first wave of internal AI tooling to make documentation, clearer ticket descriptions, and stronger acceptance criteria easier to produce and maintain.
 - Reinforced that the process should stay lightweight and only exist where it made delivery more genuinely agile, especially around planning, scope clarity, and edge-case definition.
 - Connected the team-level changes to better quarterly planning, so cross-company alignment improved instead of each team planning in isolation.
@@ -211,6 +277,7 @@ Compact proof points from extended experience that do not always fit cleanly in 
 - Reduced late back-and-forth between product, design, and engineering by improving scope definition and acceptance criteria earlier in the cycle.
 - Improved predictability and made it easier to align multiple teams with broader company priorities.
 - Reduced communication noise and delivery friction across engineering, product, and design.
+- Built a tighter product-design-engineering loop where trade-offs were surfaced earlier and teams could move faster with less rework.
 - Earned explicit buy-in from initially skeptical product stakeholders once the new model showed clearer planning and smoother execution.
 
 ---
@@ -272,3 +339,27 @@ Compact proof points from extended experience that do not always fit cleanly in 
 - Shipped Riverside's first flagship AI features: Show Notes (automated chapters, summaries, keywords) and Magic Clips (automated viral highlights).
 - Created the foundational LLM microservice that enabled multiple other teams to build AI features (blog posts, translations, video dubbing).
 - Transitioned a prompt-engineered GPT-3 MVP into a data-flywheel that powered a custom fine-tuned model.
+
+---
+
+## Riverside -- B2B Partnerships and External Platform Integrations
+
+**Tags:** b2b, partnerships, integrations, external-platforms, podcast-hosting, product-engineering, technical-alignment, business-team
+
+**Hero scope:** Worked on Riverside's B2B-facing product and integration surface, including direct coordination with external podcast hosting platforms and technical/product stakeholders.
+
+**Operating model:** Riverside had B2B partnership work and later a Business team focused on the B2B side of the company. Sebastian was part of that business-facing engineering context, connecting product needs, technical constraints, and external partner integration requirements.
+
+**Key decisions:**
+- Worked on integrations with external platforms, including podcast hosting services that needed to connect with Riverside services.
+- Spoke directly with external technical and product teams to understand their systems, align expectations, and shape integration contracts between platforms.
+- Used the external partner context to make engineering decisions that served B2B product and business needs, not just internal implementation preferences.
+- Connected this work with Riverside's broader dashboard, account, enterprise, SSO, and platform ownership.
+- When Sky UK's unsupported automation broke after an internal API change, treated the failure as evidence of a real enterprise need instead of preserving the private interface they had reverse-engineered.
+- Replaced that fragile path with a supported API/microservice using proper authentication and token refresh, then made the capability reusable for other business customers.
+
+**Proof points:**
+- Real B2B integration experience involving external companies, not only internal APIs.
+- Direct technical/product alignment with partner teams before and during integration work.
+- Strong evidence for roles that mention integrations, enterprise connections, partner platforms, health systems, employer partners, or B2B SaaS surfaces.
+- Turned one customer's unsupported workaround into a supported product surface that could be offered to additional enterprise accounts.

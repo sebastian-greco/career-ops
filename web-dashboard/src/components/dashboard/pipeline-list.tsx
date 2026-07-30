@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { startTransition, useEffect, useMemo, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -53,6 +53,10 @@ function truncateComp(compEstimate: string, max = 72) {
   return `${compEstimate.slice(0, max - 3)}...`;
 }
 
+function resolveJobUrl(applicationUrl: string | undefined, summaryUrl: string | undefined) {
+  return applicationUrl || summaryUrl || "";
+}
+
 function isEditableTarget(target: EventTarget | null) {
   return target instanceof HTMLElement
     ? target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)
@@ -71,10 +75,6 @@ function nextFilter(current: PipelineFilter, direction: 1 | -1) {
   return pipelineFilters[nextIndex]?.value ?? "applied";
 }
 
-function groupCount(applications: DashboardApplication[], status: string) {
-  return applications.filter((application) => application.statusNormalized === status).length;
-}
-
 interface PipelineListProps {
   initialSnapshot: PipelineSnapshot;
   initialFilter: PipelineFilter;
@@ -82,6 +82,7 @@ interface PipelineListProps {
   initialView: PipelineView;
   initialSearch: string;
   initialSelectedReportId?: string;
+  initialHasExplicitFilter: boolean;
 }
 
 export function PipelineList({
@@ -91,26 +92,14 @@ export function PipelineList({
   initialView,
   initialSearch,
   initialSelectedReportId,
+  initialHasExplicitFilter,
 }: PipelineListProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const hasExplicitFilter = searchParams.has("filter");
   const utils = trpc.useUtils();
   const selectedRowRef = useRef<HTMLTableRowElement | null>(null);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
-  const [activeFilter, setActiveFilter] = useState<PipelineFilter>(() => {
-    if (hasExplicitFilter || typeof window === "undefined") {
-      return initialFilter;
-    }
-
-    const savedFilter = window.localStorage.getItem("career-ops-pipeline-filter");
-    if (savedFilter && pipelineFilters.some((filter) => filter.value === savedFilter)) {
-      return savedFilter as PipelineFilter;
-    }
-
-    return initialFilter;
-  });
+  const [activeFilter, setActiveFilter] = useState<PipelineFilter>(initialFilter);
   const [activeSort, setActiveSort] = useState<PipelineSort>(initialSort);
   const [activeView, setActiveView] = useState<PipelineView>(initialView);
   const [activeSearch, setActiveSearch] = useState(initialSearch);
@@ -128,17 +117,30 @@ export function PipelineList({
   });
   const [statusMode, setStatusMode] = useState(false);
   const [pendingStatus, setPendingStatus] = useState("");
+  const [preferencesLoaded, setPreferencesLoaded] = useState(false);
 
   useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
+    if (!initialHasExplicitFilter) {
+      const savedFilter = window.localStorage.getItem("career-ops-pipeline-filter");
+      if (savedFilter && pipelineFilters.some((filter) => filter.value === savedFilter)) {
+        startTransition(() => setActiveFilter(savedFilter as PipelineFilter));
+      }
     }
 
+    startTransition(() => setPreferencesLoaded(true));
+  }, [initialFilter, initialHasExplicitFilter]);
+
+  useEffect(() => {
+    if (!preferencesLoaded) {
+      return;
+    }
     window.localStorage.setItem("career-ops-pipeline-filter", activeFilter);
-  }, [activeFilter]);
+  }, [activeFilter, preferencesLoaded]);
 
   const snapshotQuery = trpc.pipeline.snapshot.useQuery(undefined, {
     initialData: initialSnapshot,
+    staleTime: Number.POSITIVE_INFINITY,
+    refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
 
@@ -154,6 +156,14 @@ export function PipelineList({
       ),
     [activeFilter, activeSort, activeView, normalizedSearch, snapshot.applications],
   );
+  const groupCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const application of filtered) {
+      const status = String(application.statusNormalized);
+      counts.set(status, (counts.get(status) ?? 0) + 1);
+    }
+    return counts;
+  }, [filtered]);
 
   const selected = filtered.find((application) => getApplicationId(application) === selectedApplicationId) ?? filtered[0];
   const currentStatusLabel = selected
@@ -168,20 +178,31 @@ export function PipelineList({
   }, [selectedApplicationId, activeFilter, activeSort, activeView, normalizedSearch]);
 
   useEffect(() => {
-    const currentQuery = searchParams.toString();
+    if (!preferencesLoaded) {
+      return;
+    }
+
+    const currentQuery = window.location.search.slice(1);
     const nextQuery = toPipelineSearchParams(activeFilter, activeSort, activeView, selectedStateId, normalizedSearch);
     if (nextQuery !== currentQuery) {
-      router.replace(nextQuery ? `${pathname}?${nextQuery}` : pathname, { scroll: false });
+      window.history.replaceState(
+        null,
+        "",
+        nextQuery ? `${pathname}?${nextQuery}` : pathname,
+      );
     }
-  }, [activeFilter, activeSort, activeView, normalizedSearch, pathname, router, searchParams, selectedStateId]);
+  }, [activeFilter, activeSort, activeView, normalizedSearch, pathname, preferencesLoaded, selectedStateId]);
 
   const summaryQuery = trpc.reports.summary.useQuery(
     { reportId: selected?.reportNumber ?? "" },
     {
       enabled: Boolean(selected?.reportNumber),
+      staleTime: 60_000,
       refetchOnWindowFocus: false,
     },
   );
+  const selectedSummary: ReportSummary | null | undefined = summaryQuery.data;
+  const previewJobUrl = resolveJobUrl(selected?.jobUrl, selectedSummary?.url);
 
   const updateStatusMutation = trpc.pipeline.updateStatus.useMutation({
     onSuccess(nextSnapshot) {
@@ -325,9 +346,9 @@ export function PipelineList({
         return;
       }
 
-      if (event.key.toLowerCase() === "o" && selected?.jobUrl) {
+      if (event.key.toLowerCase() === "o" && previewJobUrl) {
         event.preventDefault();
-        window.open(selected.jobUrl, "_blank", "noopener,noreferrer");
+        window.open(previewJobUrl, "_blank", "noopener,noreferrer");
         return;
       }
 
@@ -393,13 +414,12 @@ export function PipelineList({
     selected,
     selectedApplicationId,
     currentStatusLabel,
+    previewJobUrl,
     snapshot.statuses,
     snapshotQuery,
     statusMode,
     updateStatusMutation,
   ]);
-
-  const selectedSummary: ReportSummary | null | undefined = summaryQuery.data;
 
   return (
     <div className="space-y-6">
@@ -509,7 +529,7 @@ export function PipelineList({
                             isSelected={selected ? getApplicationId(selected) === getApplicationId(application) : false}
                             showGroupHeader={showGroupHeader}
                             statuses={snapshot.statuses}
-                            groupCount={groupCount(filtered, String(application.statusNormalized))}
+                            groupCount={groupCounts.get(String(application.statusNormalized)) ?? 0}
                             onSelect={() => setSelectedApplicationId(getApplicationId(application))}
                             onOpen={() => {
                               if (!application.reportNumber) {
@@ -523,7 +543,7 @@ export function PipelineList({
                               );
                             }}
                             rowRef={selected && getApplicationId(selected) === getApplicationId(application) ? selectedRowRef : undefined}
-                            compEstimate={truncateComp(snapshot.summariesByReportId[application.reportNumber]?.compEstimate ?? "")}
+                            compEstimate={truncateComp(application.compEstimate)}
                           />
                         );
                       })}
@@ -557,6 +577,7 @@ export function PipelineList({
                   <PreviewField label="Report" value={selected.reportPath || "Missing report path"} mono />
                   <PreviewField label="Saved JD" value={selectedSummary?.jobDescriptionPath || "Not found"} mono />
                   <PreviewField label="Skill Scan" value={selectedSummary?.skillCoveragePath || "Not found"} mono />
+                  <PreviewField label="Interview Prep" value={selectedSummary?.interviewPrepPath || "Not found"} mono />
                   <PreviewField
                     label="Form Questions"
                     value={selectedSummary?.applicationQuestions.length ? `${selectedSummary.applicationQuestions.length} captured` : "Not found"}
@@ -572,8 +593,8 @@ export function PipelineList({
                   ) : (
                     <Button disabled>No Report</Button>
                   )}
-                  {selected.jobUrl ? (
-                    <a href={selected.jobUrl} target="_blank" rel="noreferrer">
+                  {previewJobUrl ? (
+                    <a href={previewJobUrl} target="_blank" rel="noreferrer">
                       <Button variant="secondary">Open Job URL</Button>
                     </a>
                   ) : null}
@@ -585,6 +606,11 @@ export function PipelineList({
                   {selectedSummary?.skillCoveragePath ? (
                     <Link href={artifactHref(selectedSummary.skillCoveragePath)}>
                       <Button variant="secondary">Open Skills Scan</Button>
+                    </Link>
+                  ) : null}
+                  {selectedSummary?.interviewPrepPath ? (
+                    <Link href={artifactHref(selectedSummary.interviewPrepPath)}>
+                      <Button variant="secondary">Open Interview Prep</Button>
                     </Link>
                   ) : null}
                 </div>

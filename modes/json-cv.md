@@ -314,4 +314,5 @@ After writing it:
 - Never treat `article-digest.md` or `story-bank.md` as permission to add unsupported content without user approval
 - Never let one-page leadership tailoring grow into a larger resume by accumulation
 - Never reorder professional experience entries out of chronological order
+- Never let tailoring commentary leak into the resume itself. Candidate-facing text must read like a normal resume, not like notes about tailoring choices or role-fit analysis. Avoid meta phrases such as `this version`, `for this role`, `for this position`, `this resume emphasizes`, or any wording that explains why the resume was changed instead of presenting the candidate directly.
 - Prefer preserving speed and trust over forcing alignment

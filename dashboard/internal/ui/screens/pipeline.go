@@ -2,9 +2,11 @@ package screens
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
 	"sort"
 	"strings"
+	"unicode"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
@@ -316,6 +318,16 @@ func (m PipelineModel) handleKey(msg tea.KeyMsg) (PipelineModel, tea.Cmd) {
 		if app, ok := m.CurrentApp(); ok && app.JobURL != "" {
 			return m, func() tea.Msg {
 				return PipelineOpenURLMsg{URL: app.JobURL}
+			}
+		}
+
+	case "i":
+		if app, ok := m.CurrentApp(); ok {
+			if prepPath := m.interviewPrepPath(app); prepPath != "" {
+				title := fmt.Sprintf("Interview Prep — %s — %s", app.Company, app.Role)
+				return m, func() tea.Msg {
+					return PipelineOpenReportMsg{Path: prepPath, Title: title, JobURL: app.JobURL}
+				}
 			}
 		}
 
@@ -867,6 +879,7 @@ func (m PipelineModel) renderHelp() string {
 		keyStyle.Render("s") + descStyle.Render(" sort  ") +
 		keyStyle.Render("r") + descStyle.Render(" refresh  ") +
 		keyStyle.Render("Enter") + descStyle.Render(" report  ") +
+		keyStyle.Render("i") + descStyle.Render(" prep  ") +
 		keyStyle.Render("o") + descStyle.Render(" open URL  ") +
 		keyStyle.Render("c") + descStyle.Render(" change  ") +
 		keyStyle.Render("v") + descStyle.Render(" view  ") +
@@ -959,6 +972,35 @@ func truncateRunes(s string, maxRunes int) string {
 		return string(runes[:maxRunes])
 	}
 	return string(runes[:maxRunes-3]) + "..."
+}
+
+func (m PipelineModel) interviewPrepPath(app model.CareerApplication) string {
+	file := slugifyFileName(app.Company + " " + app.Role)
+	if file == "" {
+		return ""
+	}
+	path := filepath.Join(m.careerOpsPath, "interview-prep", file+".md")
+	if _, err := os.Stat(path); err == nil {
+		return path
+	}
+	return ""
+}
+
+func slugifyFileName(s string) string {
+	var b strings.Builder
+	lastDash := false
+	for _, r := range strings.ToLower(s) {
+		if unicode.IsLetter(r) || unicode.IsDigit(r) {
+			b.WriteRune(r)
+			lastDash = false
+			continue
+		}
+		if !lastDash && b.Len() > 0 {
+			b.WriteRune('-')
+			lastDash = true
+		}
+	}
+	return strings.Trim(b.String(), "-")
 }
 
 func statusLabel(norm string) string {

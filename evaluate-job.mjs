@@ -207,6 +207,33 @@ ${metaContent}
 ${jdContent}
 `;
 
+function parseModelJson(text) {
+  const cleaned = String(text || '')
+    .trim()
+    .replace(/^```(?:json)?\s*/i, '')
+    .replace(/\s*```$/i, '')
+    .trim();
+
+  try {
+    return JSON.parse(cleaned);
+  } catch {
+    const start = cleaned.indexOf('{');
+    const end = cleaned.lastIndexOf('}');
+    if (start !== -1 && end > start) {
+      return JSON.parse(cleaned.slice(start, end + 1));
+    }
+    throw new Error('Model response did not contain a JSON object');
+  }
+}
+
+async function generateEvaluationJson(prompt) {
+  const result = await model.generateContent([
+    { text: systemPrompt },
+    { text: prompt },
+  ]);
+  return parseModelJson(result.response.text());
+}
+
 const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({
   model: modelName,
@@ -219,14 +246,14 @@ const model = genAI.getGenerativeModel({
 
 let parsed;
 try {
-  const result = await model.generateContent([
-    { text: systemPrompt },
-    { text: userPrompt },
-  ]);
-  parsed = JSON.parse(result.response.text());
+  parsed = await generateEvaluationJson(userPrompt);
 } catch (error) {
-  console.error(`Failed to evaluate job: ${error.message}`);
-  process.exit(1);
+  try {
+    parsed = await generateEvaluationJson(`${userPrompt}\n\nYour previous response was invalid JSON. Return one valid JSON object only. Use double quotes for every string, no markdown, no comments, no trailing commas, and no prose outside JSON.`);
+  } catch (retryError) {
+    console.error(`Failed to evaluate job: ${retryError.message}`);
+    process.exit(1);
+  }
 }
 
 const evaluation = coerceEvaluation(parsed);

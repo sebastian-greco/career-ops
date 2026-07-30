@@ -132,6 +132,7 @@ Agent(
 - Keep the markdown tracker in sync too, but do not edit `data/applications.md` directly from `apply`; use the tracker-additions flow.
 - When moving an application to a new pipeline stage through the tracker API, prefer omitting `pipelineStatus.effectiveDate` so the backend stores the current timestamp. Only send `effectiveDate` when intentionally backfilling/correcting the stage time, and use a full ISO-8601 datetime.
 - Generate answers without submitting the application.
+- Before presenting candidate-facing application answers or cover letters, run a humanization pass: remove AI-sounding phrasing, generic enthusiasm, polished abstractions, and filler; keep the user's direct plain style from `modes/_profile.md`; use concrete proof points and natural first-person language grounded in the live JD.
 
 #### `scan-jobgether`
 

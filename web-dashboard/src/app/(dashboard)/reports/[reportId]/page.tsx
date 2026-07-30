@@ -35,7 +35,7 @@ export default async function ReportPage({
   const query = await searchParams;
   const backHref = typeof query.back === "string" && query.back.startsWith("/pipeline") ? query.back : "/pipeline";
   const caller = await getServerCaller();
-  const snapshot = await caller.pipeline.snapshot();
+  const applications = await caller.pipeline.applications();
   const report = await caller.reports.document({ reportId });
 
   if (!report) {
@@ -48,7 +48,7 @@ export default async function ReportPage({
   const view = coerceView(backUrl.searchParams.get("view") ?? undefined);
   const search = coerceSearch(backUrl.searchParams.get("q") ?? undefined);
   const orderedReports = sortApplications(
-    searchApplications(getFilteredApplications(snapshot.applications, filter), search),
+    searchApplications(getFilteredApplications(applications, filter), search),
     sort,
     view,
   ).filter((application) => application.reportNumber);
@@ -96,6 +96,11 @@ export default async function ReportPage({
           {report.skillCoveragePath ? (
             <Link href={artifactHref(report.skillCoveragePath)}>
               <Button variant="secondary">Open Skills Scan</Button>
+            </Link>
+          ) : null}
+          {report.interviewPrepPath ? (
+            <Link href={artifactHref(report.interviewPrepPath)}>
+              <Button variant="secondary">Open Interview Prep</Button>
             </Link>
           ) : null}
         </div>
@@ -153,6 +158,16 @@ export default async function ReportPage({
               {report.skillCoveragePath ? (
                 <Link className="font-mono text-xs text-primary underline-offset-4 hover:underline" href={artifactHref(report.skillCoveragePath)}>
                   {report.skillCoveragePath}
+                </Link>
+              ) : (
+                <p className="font-medium text-foreground">Not found</p>
+              )}
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Interview Prep</p>
+              {report.interviewPrepPath ? (
+                <Link className="font-mono text-xs text-primary underline-offset-4 hover:underline" href={artifactHref(report.interviewPrepPath)}>
+                  {report.interviewPrepPath}
                 </Link>
               ) : (
                 <p className="font-medium text-foreground">Not found</p>

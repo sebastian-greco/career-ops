@@ -4,9 +4,10 @@ import { initTRPC } from "@trpc/server";
 import { resolveCareerOpsRoot } from "@/lib/server/career-ops-root";
 import { FsCareerOpsRepository } from "@/lib/server/repository/fs-career-ops-repository";
 
-export async function createTRPCContext() {
+export async function createTRPCContext({ request }: { request?: Request } = {}) {
   return {
     repository: new FsCareerOpsRepository(resolveCareerOpsRoot()),
+    request,
   };
 }
 

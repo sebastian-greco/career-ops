@@ -92,7 +92,7 @@ const ROLE_STOPWORDS = new Set([
   'europe', 'emea', 'apac', 'latam', 'americas', 'india', 'spain', 'germany',
   'france', 'italy', 'canada', 'brazil', 'mexico', 'japan',
   // prepositions leaking through length filter
-  'with', 'from', 'into', 'over', 'this', 'that',
+  'with', 'from', 'into', 'over', 'this', 'that', 'only',
 ]);
 
 // Very generic job-family words that should not, on their own, cause two roles
@@ -100,6 +100,12 @@ const ROLE_STOPWORDS = new Set([
 const GENERIC_ROLE_TOKENS = new Set([
   'engineering', 'engineer', 'engineers', 'manager', 'managers',
   'software', 'developer', 'developers', 'technical', 'technology',
+]);
+
+// Shared discipline words do not identify the same opening when both titles
+// also name different product or team domains.
+const BROAD_SPECIALIZATION_TOKENS = new Set([
+  'backend', 'frontend', 'fullstack', 'platform', 'cloud', 'infrastructure', 'data',
 ]);
 
 function normalizeRoleIdentity(s) {
@@ -137,6 +143,15 @@ function roleFuzzyMatch(a, b) {
   // where the only shared words are generic role-family terms.
   const specificOverlap = overlapWords.filter(w => !GENERIC_ROLE_TOKENS.has(w));
   if (specificOverlap.length === 0) return false;
+
+  const setA = new Set(wordsA);
+  const uniqueSpecificA = wordsA.filter(w => !setB.has(w) && !GENERIC_ROLE_TOKENS.has(w));
+  const uniqueSpecificB = wordsB.filter(w => !setA.has(w) && !GENERIC_ROLE_TOKENS.has(w));
+  if (
+    specificOverlap.every(w => BROAD_SPECIALIZATION_TOKENS.has(w))
+    && uniqueSpecificA.length > 0
+    && uniqueSpecificB.length > 0
+  ) return false;
 
   // Jaccard-style ratio on content tokens. Two roles are "the same" only
   // when the overlap dominates the smaller side — not when they just share

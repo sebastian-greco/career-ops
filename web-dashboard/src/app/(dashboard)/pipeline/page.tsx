@@ -11,6 +11,7 @@ export default async function PipelinePage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const params = await searchParams;
+  const hasExplicitFilter = typeof params.filter === "string";
   const filter = coerceFilter(typeof params.filter === "string" ? params.filter : undefined);
   const sort = coerceSort(typeof params.sort === "string" ? params.sort : undefined);
   const view = coerceView(typeof params.view === "string" ? params.view : undefined);
@@ -41,6 +42,7 @@ export default async function PipelinePage({
         initialView={view}
         initialSearch={search}
         initialSelectedReportId={selected}
+        initialHasExplicitFilter={hasExplicitFilter}
       />
     </div>
   );

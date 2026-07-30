@@ -58,6 +58,7 @@ export function parseApplicationsMarkdown(raw: string, normalizeStatus: (status:
       reportPath: reportMatch?.[2] ?? "",
       notes: fields[8] ?? "",
       jobUrl: "",
+      compEstimate: "",
     });
   }
 

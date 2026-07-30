@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Career-Ops Web Dashboard
 
-## Getting Started
+Filesystem-backed Next.js dashboard for the Career-Ops tracker, reports, job descriptions, skill scans, and interview preparation.
 
-First, run the development server:
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The dashboard reads the parent Career-Ops repository by default. Set `CAREER_OPS_ROOT` only when it lives elsewhere.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+CAREER_OPS_ROOT=/absolute/path/to/career-ops npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Write access
 
-## Learn More
+Status updates are deliberately limited to requests made from `localhost` by default. If you intentionally expose the dashboard on a network interface or through a proxy, configure matching tokens for the server and dashboard client:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+DASHBOARD_WRITE_TOKEN=replace-with-a-long-random-value \
+NEXT_PUBLIC_DASHBOARD_WRITE_TOKEN=replace-with-a-long-random-value \
+npm run start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The client-side value lets the dashboard make status updates; it is not user authentication. Expose the dashboard only behind authenticated infrastructure when it is reachable beyond your machine.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Artifact pages are restricted to saved job descriptions, skills scans, and interview-prep markdown files; they cannot be used to browse repository files such as `.env`, the CV, or tracker configuration.
 
-## Deploy on Vercel
+## Verification
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm test
+npm run lint
+npm run build
+```

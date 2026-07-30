@@ -132,3 +132,48 @@ This file accumulates your best interview stories over time. Each evaluation (Bl
 **R (Result):** We shipped Riverside's most famous AI features. Our microservice became the backbone for all subsequent AI features built by other teams (blog posts, translations). As a Senior EM, I later used this foundation to orchestrate multi-team efforts like Video Dubbing.
 **Reflection:** Getting to market first with AI requires pragmatic engineering to bypass model limitations. But turning that into a platform capability (microservice + data flywheel for fine-tuning) is what creates lasting company value.
 **Best for questions about:** AI integration, LLMs, microservice architecture, greenfield projects, working with product, scaling AI features.
+
+### [Leadership Growth] Building teams that could count on me without depending on me
+**Source:** Sourcegraph peer and values interviews — Riverside
+**S (Situation):** I moved from Engineering Manager to Group Lead during a reorganization after the Head of Engineering left. I suddenly had multiple teams, new leaders to support, and a direct reporting line to the CEO, and I responded by trying to jump into every gap myself.
+**T (Task):** Keep delivery moving while learning how to lead through other people instead of becoming the bottleneck for a 27-person group.
+**A (Action):** I raised the workload problem with the CEO. He reviewed my calendar with me and gave me candid feedback: people should be able to count on me, but they should not depend on me. I initially resisted because I believed work would stall if I did not intervene. I then changed the job I thought I was doing—delegated outcomes rather than tasks, coached team leads, clarified decision ownership, and measured my success through the independence of the teams rather than my personal involvement.
+**R (Result):** The leaders and teams became increasingly self-sufficient. I could step away without delivery stopping, and I reached the point where I could tell the CEO—only half joking—that one of the teams would be fine if he fired me the next day.
+**Reflection:** A manager who rescues every situation may feel useful while quietly preventing the organization from growing. Leadership leverage means being available and accountable without making every path run through you.
+**Best for questions about:** constructive feedback, delegation, manager-of-managers growth, key-person risk, changing leadership style, scaling yourself
+
+### [People Management] Recovering a high-potential senior engineer from near dismissal
+**Source:** Sourcegraph peer interview — Riverside
+**S (Situation):** A new VP asked me to take on a brilliant but demoralized senior engineer whom leadership was considering dismissing. He solved difficult problems and helped everyone, but struggled to focus, estimate his work, communicate delays, and finish team commitments predictably.
+**T (Task):** Preserve his unusual technical value while making his way of working reliable enough for the team.
+**A (Action):** I was direct about both sides of the problem: his ownership and problem-solving were valuable, but when his work slipped the whole team slipped. I paired a deep server-side problem that played to his strengths with bounded SLA tickets, bugs, and cross-team dependencies. We agreed that getting stuck was acceptable; going silent was not. I coached him over time to ask for help, narrow investigations, say no to interruptions, and surface risks early.
+**R (Result):** He began asking for help openly and became more predictable without losing the strengths that made colleagues want to work with him. About eight months later, I gave him an above-average performance review, approved by the same VP who had originally been considering dismissal.
+**Reflection:** Performance management works best when it is specific about the cost of a behavior, equally clear about the person's value, and designed around observable changes—not vague encouragement or a surprise ultimatum.
+**Best for questions about:** difficult feedback, performance recovery, coaching senior engineers, retention, accountability, adapting management style
+
+### [Product Leadership] Reprioritizing global search to protect users during a major navigation change
+**Source:** Sourcegraph cross-functional and Pennylane product/design interviews — Riverside
+**S (Situation):** Riverside was moving recordings from a studio-bound structure into account-wide projects. The migration supported the product vision, but heavy users with hundreds or thousands of recordings risked losing the familiar places where they found their work.
+**T (Task):** Protect customer workflows without derailing a major product migration that was already far along.
+**A (Action):** My team raised the discovery risk with Product and Design using real account shapes rather than a generic technical objection. Once it was clear the core direction would remain, we collaborated on targeted UX changes and pulled global search forward so users had a reliable way to recover content across the new hierarchy. We monitored complaints, project creation and renaming, acceptance of automatic grouping, search usage, and the core recording metrics.
+**R (Result):** Core usage did not show a significant decline, heavy users actively adopted projects, many other users accepted the automatic grouping, and global search was well received.
+**Reflection:** Product leadership is not winning every disagreement. It is making the customer risk concrete, preserving the strategic direction where it still makes sense, and finding the highest-leverage mitigation.
+**Best for questions about:** product judgment, customer empathy, disagreement with Product, prioritization, large migrations, data-informed rollout
+
+### [Customer/Product] Turning an unsupported enterprise workaround into a reusable API
+**Source:** Sourcegraph technical interview — Riverside / Sky UK
+**S (Situation):** Sky UK had automated its Riverside workflow by reverse-engineering internal authentication and APIs. An internal change broke that workflow, and the customer complained even though the interface had never been supported.
+**T (Task):** Restore the customer's business workflow without freezing Riverside's private interfaces or creating a one-off exception.
+**A (Action):** We treated the workaround as product discovery. I worked directly with the customer's technical side to understand the real integration need, then helped create a supported API/microservice with explicit authentication, tokens, and refresh behavior rather than repairing the hack.
+**R (Result):** Sky received a stable integration path, Riverside could continue changing its internals safely, and the same capability became useful for additional business customers and enterprise upsell conversations.
+**Reflection:** Customers who work around your product are often showing you a missing product surface. The right response is not always to block the behavior; sometimes it is to turn the validated need into a supported contract.
+**Best for questions about:** customer discovery, enterprise integrations, API product strategy, turning incidents into opportunities, B2B collaboration
+
+### [Failure & Reflection] Launching on-call before the operating system was ready
+**Source:** Scalapay CTO interview — Riverside
+**S (Situation):** Riverside needed broader production support as it scaled, and I pushed for a rotating on-call model while the company lacked mature alerting, complete observability, clear compensation, and stable operational ownership.
+**T (Task):** Spread production responsibility beyond a few leaders and improve incident response.
+**A (Action):** I advocated for a rotation and for better tooling, including PagerDuty-style alerting, while the company had gaps in DevOps leadership. We improved logs and later added Datadog APM and cross-service tracing, but I allowed the rotation proposal to move without first securing all of the prerequisites and boundaries.
+**R (Result):** The operating model did not become sustainable; I remained the default escalation path, including informal late-night WhatsApp alerts, which preserved key-person risk instead of removing it. The company formalized more of the missing system around the time I left, but later than it should have.
+**Reflection:** I would now make the prerequisites explicit before calling something an on-call rotation: owned services, actionable alerts, runbooks, escalation policy, compensated participation, observability, and executive agreement on the load. If those are not funded, the honest decision is to limit the promise—not quietly absorb the gap myself.
+**Best for questions about:** failure, burnout prevention, on-call design, influencing executives, operational maturity, what you would do differently

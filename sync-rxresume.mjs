@@ -104,7 +104,8 @@ function resolveReportPath(target) {
 function parseReportMeta(reportPath, raw) {
   const reportFile = basename(reportPath);
   const reportNum = reportFile.match(/^(\d+)-/)?.[1] || '';
-  const headerMatch = raw.match(/^# Evaluation: (.+?) -- (.+)$/m);
+  const headerMatch = raw.match(/^# Evaluation: (.+?) -- (.+)$/m)
+    || raw.match(/^# Evaluaci[oó]n: (.+?) - (.+)$/m);
   const company = headerMatch?.[1]?.trim() || '';
   const role = headerMatch?.[2]?.trim() || '';
   const artifactMatch = raw.match(/- Resume artifact generated: `([^`]+\.json)`/);
@@ -291,7 +292,9 @@ async function main() {
   const slug = buildResumeSlug(candidateName, context.reportMeta);
   const tags = buildTags(context.reportMeta);
   const resumes = await listResumes();
-  const existing = resumes.find((resume) => resume.slug === slug);
+  const reportTag = context.reportMeta.reportNum ? `report-${context.reportMeta.reportNum}` : '';
+  const existing = resumes.find((resume) => resume.slug === slug)
+    || (reportTag ? resumes.find((resume) => resume.tags?.includes(reportTag)) : null);
 
   const summary = {
     action: existing ? 'update' : 'create',

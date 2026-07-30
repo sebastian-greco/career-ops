@@ -1,30 +1,15 @@
 import fs from "node:fs/promises";
-import path from "node:path";
-
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { ReportRenderer } from "@/components/markdown/report-renderer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { resolveArtifactPath } from "@/lib/server/artifact-path";
 import { resolveCareerOpsRoot } from "@/lib/server/career-ops-root";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-
-function normalizeArtifactPath(parts: string[]) {
-  const relativePath = parts.join("/");
-  if (!relativePath) {
-    return "";
-  }
-
-  const normalized = path.posix.normalize(relativePath).replace(/^\/+/, "");
-  if (!normalized || normalized.startsWith("..") || normalized.includes("../")) {
-    return "";
-  }
-
-  return normalized;
-}
 
 function artifactTitle(relativePath: string) {
   if (relativePath.startsWith("jds/") && relativePath.endsWith(".md")) {
@@ -32,6 +17,9 @@ function artifactTitle(relativePath: string) {
   }
   if (relativePath.endsWith("-skills.md")) {
     return "Skills Scan";
+  }
+  if (relativePath.startsWith("interview-prep/") && relativePath.endsWith(".md")) {
+    return "Interview Prep";
   }
   return "Artifact";
 }
@@ -42,18 +30,12 @@ export default async function ArtifactPage({
   params: Promise<{ artifactPath: string[] }>;
 }) {
   const { artifactPath } = await params;
-  const relativePath = normalizeArtifactPath(artifactPath);
-  if (!relativePath) {
-    notFound();
-  }
-
   const root = resolveCareerOpsRoot();
-  const absolutePath = path.resolve(root, relativePath);
-  const relativeFromRoot = path.relative(root, absolutePath);
-
-  if (relativeFromRoot.startsWith("..") || path.isAbsolute(relativeFromRoot)) {
+  const resolvedArtifact = resolveArtifactPath(root, artifactPath);
+  if (!resolvedArtifact) {
     notFound();
   }
+  const { absolutePath, relativePath } = resolvedArtifact;
 
   let raw = "";
   try {

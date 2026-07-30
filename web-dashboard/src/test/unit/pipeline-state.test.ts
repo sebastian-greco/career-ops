@@ -16,6 +16,7 @@ const applications: DashboardApplication[] = [
     reportNumber: "001",
     notes: "Already submitted",
     jobUrl: "https://example.com/1",
+    compEstimate: "",
   },
   {
     number: 2,
@@ -31,6 +32,7 @@ const applications: DashboardApplication[] = [
     reportNumber: "002",
     notes: "Apply next",
     jobUrl: "https://example.com/2",
+    compEstimate: "",
   },
   {
     number: 3,
@@ -46,6 +48,7 @@ const applications: DashboardApplication[] = [
     reportNumber: "003",
     notes: "Active process",
     jobUrl: "https://example.com/3",
+    compEstimate: "",
   },
 ];
 

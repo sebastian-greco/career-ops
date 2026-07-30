@@ -192,6 +192,12 @@ export function normalizeExternalJobUrl(url) {
       return parsed.toString();
     }
 
+    if (parsed.hostname.replace(/^www\./, '') === 'sumup.com' && parsed.pathname.includes('/careers/positions/')) {
+      const jobId = parsed.searchParams.get('gh_jid')
+        || parsed.pathname.split('/').filter(Boolean).findLast((part) => /^\d+$/.test(part));
+      if (jobId) return `https://sumup.com/careers/positions/${jobId}?gh_jid=${jobId}`;
+    }
+
     if (parsed.hostname.includes('successfactors.com')) {
       const next = new URL(`${parsed.origin}${parsed.pathname}`);
       for (const key of ['career_ns', 'company', 'career_job_req_id']) {

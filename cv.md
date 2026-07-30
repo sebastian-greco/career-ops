@@ -60,6 +60,7 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 03/2021 - 06/2022 | 1 year 3 months - Remote
 
 - Joined Riverside as one of 6 engineers and shipped core backend features that supported the product's early growth.
+- Worked across Studio, exporting, clips, dashboard, account flows, and early enterprise features, using support tickets and B2B work like SSO to shape better product decisions.
 - Took ownership of billing, payments, plans, features, and entitlements, evolving an early Stripe-and-webhooks setup into a more robust internal monetization model.
 - Resolved monolith and database bottlenecks that improved reliability and performance while mentoring junior engineers on architecture and design.
 

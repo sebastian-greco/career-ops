@@ -904,6 +904,8 @@ async function scanBrowserCompanies(companies, state) {
     for (const company of companies) {
       if (!company.careers_url) continue;
 
+      state.sourceStats.direct.attempted++;
+
       try {
         const response = await page.goto(company.careers_url, {
           waitUntil: 'domcontentloaded',
@@ -915,11 +917,22 @@ async function scanBrowserCompanies(companies, state) {
         }
 
         await page.waitForTimeout(BROWSER_WAIT_MS);
+        const finalUrl = page.url();
+        const configuredUrl = new URL(company.careers_url);
+        const resolvedUrl = new URL(finalUrl);
+        const configuredPath = configuredUrl.pathname.replace(/\/$/, '');
+        const resolvedPath = resolvedUrl.pathname.replace(/\/$/, '');
+        if (configuredUrl.origin !== resolvedUrl.origin || configuredPath !== resolvedPath) {
+          state.redirects.push({ company: company.name, from: company.careers_url, to: finalUrl });
+        }
+
         const extractor = pickBrowserExtractor(page.url());
         const jobs = normalizeBrowserJobs(await extractor(page), company.name, page.url());
         processJobs(jobs, company, `${company.name} careers_url`, state);
+        state.sourceStats.direct.succeeded++;
       } catch (error) {
-        state.errors.push({ company: company.name, error: error.message });
+        state.sourceStats.direct.failed++;
+        state.errors.push({ source: 'direct', company: company.name, error: error.message });
       }
     }
   } finally {
@@ -966,7 +979,7 @@ async function main() {
   const icExceptionFilter = buildIcExceptionFilter(config.title_filter);
   const excludedCompanyFilter = buildExcludedCompanyFilter(config.title_filter);
 
-  // 2. Split enabled companies into API-backed, browser-backed, and company-search paths
+  // 2. Build additive API, direct-page, and search paths
   const enabledCompanies = companies
     .filter(c => c.enabled !== false)
     .filter(c => !filterCompany || c.name.toLowerCase().includes(filterCompany))
@@ -975,10 +988,10 @@ async function main() {
     ? []
     : (config.search_queries || []).filter(q => q.enabled !== false);
   const companySearchTargets = enabledCompanies.filter(c => c.scan_method === 'websearch' && c.scan_query);
-  const apiTargets = enabledCompanies.filter(c => c._api !== null && c.scan_method !== 'websearch');
-  const browserTargets = enabledCompanies.filter(c => c._api === null && c.careers_url && (c.scan_method !== 'websearch' || hasDedicatedBrowserExtractor(c.careers_url)));
+  const apiTargets = enabledCompanies.filter(c => c._api !== null);
+  const browserTargets = enabledCompanies.filter(c => c.careers_url);
 
-  console.log(`Scanning ${enabledCompanies.length} companies (${apiTargets.length} API, ${browserTargets.length} browser, ${companySearchTargets.length} company-search)`);
+  console.log(`Scanning ${enabledCompanies.length} companies (${browserTargets.length} direct, ${apiTargets.length} API/feed, ${companySearchTargets.length} company-search, ${searchQueries.length} broad-search)`);
   if (dryRun) console.log('(dry run — no files will be written)\n');
 
   // 3. Load dedup sets
@@ -1001,9 +1014,14 @@ async function main() {
     pendingSearchOffers: [],
     historyRows: [],
     errors: [],
+    redirects: [],
+    sourceStats: {
+      direct: { attempted: 0, succeeded: 0, failed: 0 },
+      api: { attempted: apiTargets.length, succeeded: 0, failed: 0 },
+      companySearch: { attempted: companySearchTargets.length, succeeded: 0, failed: 0 },
+      broadSearch: { attempted: searchQueries.length, succeeded: 0, failed: 0 },
+    },
   };
-  const browserFallbackTargets = [];
-  const companySearchFallbackTargets = [];
 
   const tasks = apiTargets.map(company => async () => {
     const { type, url } = company._api;
@@ -1011,22 +1029,24 @@ async function main() {
       const payload = await fetchApiPayload(url, type);
       const jobs = PARSERS[type](payload, company.name, company);
       processJobs(jobs, company, `${type}-api`, state);
+      state.sourceStats.api.succeeded++;
     } catch (err) {
-      if (company.scan_query) companySearchFallbackTargets.push(company);
-      else if (company.careers_url) browserFallbackTargets.push(company);
-      else state.errors.push({ company: company.name, error: err.message });
+      state.sourceStats.api.failed++;
+      state.errors.push({ source: 'api', company: company.name, error: err.message });
     }
   });
 
   await parallelFetch(tasks, CONCURRENCY);
-  await scanBrowserCompanies([...browserTargets, ...browserFallbackTargets], state);
+  await scanBrowserCompanies(browserTargets, state);
 
-  const companySearchTasks = [...companySearchTargets, ...companySearchFallbackTargets].map(company => async () => {
+  const companySearchTasks = companySearchTargets.map(company => async () => {
     try {
       const jobs = await runSearchQuery(buildCompanySearchConfig(company));
       processJobs(jobs, company, `CompanySearch — ${company.name}`, state);
+      state.sourceStats.companySearch.succeeded++;
     } catch (error) {
-      state.errors.push({ company: company.name, error: error.message });
+      state.sourceStats.companySearch.failed++;
+      state.errors.push({ source: 'company-search', company: company.name, error: error.message });
     }
   });
 
@@ -1036,8 +1056,10 @@ async function main() {
     try {
       const jobs = await runSearchQuery(queryConfig);
       processJobs(jobs, { name: 'WebSearch' }, `WebSearch — ${queryConfig.name}`, state);
+      state.sourceStats.broadSearch.succeeded++;
     } catch (error) {
-      state.errors.push({ company: queryConfig.name, error: error.message });
+      state.sourceStats.broadSearch.failed++;
+      state.errors.push({ source: 'broad-search', company: queryConfig.name, error: error.message });
     }
   });
 
@@ -1058,7 +1080,12 @@ async function main() {
   console.log(`Portal Scan — ${date}`);
   console.log(`${'━'.repeat(45)}`);
   console.log(`Companies scanned:     ${enabledCompanies.length}`);
+  console.log(`Direct pages:          ${state.sourceStats.direct.attempted} attempted, ${state.sourceStats.direct.succeeded} succeeded, ${state.sourceStats.direct.failed} failed`);
+  console.log(`APIs/feeds:            ${state.sourceStats.api.attempted} attempted, ${state.sourceStats.api.succeeded} succeeded, ${state.sourceStats.api.failed} failed`);
+  console.log(`Company searches:      ${state.sourceStats.companySearch.attempted} attempted, ${state.sourceStats.companySearch.succeeded} succeeded, ${state.sourceStats.companySearch.failed} failed`);
+  console.log(`Broad search queries:  ${state.sourceStats.broadSearch.attempted} attempted, ${state.sourceStats.broadSearch.succeeded} succeeded, ${state.sourceStats.broadSearch.failed} failed`);
   console.log(`Total jobs found:      ${state.totalFound}`);
+  console.log(`Title-relevant:        ${state.totalFound - state.totalFiltered}`);
   console.log(`Filtered by title:     ${state.totalFiltered} removed`);
   console.log(`Duplicates:            ${state.totalDupes} skipped`);
   console.log(`Expired:               ${state.totalExpired} skipped`);
@@ -1067,7 +1094,14 @@ async function main() {
   if (state.errors.length > 0) {
     console.log(`\nErrors (${state.errors.length}):`);
     for (const e of state.errors) {
-      console.log(`  ✗ ${e.company}: ${e.error}`);
+      console.log(`  ✗ [${e.source || 'liveness'}] ${e.company}: ${e.error}`);
+    }
+  }
+
+  if (state.redirects.length > 0) {
+    console.log(`\nCareer URL redirects (${state.redirects.length}):`);
+    for (const redirect of state.redirects) {
+      console.log(`  → ${redirect.company}: ${redirect.from} -> ${redirect.to}`);
     }
   }
 

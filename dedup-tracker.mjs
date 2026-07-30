@@ -68,7 +68,7 @@ function normalizeRole(role) {
 const ROLE_STOPWORDS = new Set([
   'senior', 'junior', 'lead', 'staff', 'principal', 'head', 'chief',
   'manager', 'director', 'associate', 'intern', 'contractor',
-  'remote', 'hybrid', 'onsite',
+  'remote', 'hybrid', 'onsite', 'only',
   'engineer', 'engineering',
 ]);
 
@@ -76,12 +76,12 @@ const LOCATION_STOPWORDS = new Set([
   'tokyo', 'japan', 'london', 'berlin', 'paris', 'singapore',
   'york', 'francisco', 'angeles', 'seattle', 'austin', 'boston',
   'chicago', 'denver', 'toronto', 'amsterdam', 'dublin', 'sydney',
-  'remote', 'global', 'emea', 'apac', 'latam',
+  'remote', 'global', 'emea', 'apac', 'latam', 'usa',
 ]);
 
 function roleMatch(a, b) {
   const filterStopwords = (words) =>
-    words.filter(w => !ROLE_STOPWORDS.has(w) && !LOCATION_STOPWORDS.has(w));
+    words.filter(w => !/^\d+$/.test(w) && !ROLE_STOPWORDS.has(w) && !LOCATION_STOPWORDS.has(w));
 
   const wordsA = filterStopwords(normalizeRole(a).split(/\s+/).filter(w => w.length > 2));
   const wordsB = filterStopwords(normalizeRole(b).split(/\s+/).filter(w => w.length > 2));
