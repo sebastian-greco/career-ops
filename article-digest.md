@@ -45,6 +45,27 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 ---
 
+## Remote Work -- Long-Term Async Practice and Human Connection
+
+**Tags:** remote-work, async, distributed-teams, time-zones, written-communication, trust, outcomes, team-culture, engagement
+
+**Hero scope:** Roughly 15 years of remote-work experience across different companies and time zones, including four and a half years in Riverside's fully remote, company-wide distributed environment.
+
+**Practices that worked:**
+- Made context and ownership explicit through written decisions, clear owners, structured planning, and early communication of risks and dependencies.
+- Kept meetings for decisions and discussions that benefited from live conversation, while leaving background, status, and decisions in writing.
+- Used 1:1s for coaching, growth, and engagement rather than task tracking.
+- Combined remote work with intentional human connection through team meetups and an optional monthly end-of-day social session where the wider group could talk, play Scrabble or other online games, and spend time together outside delivery work.
+- Built genuine friendships with remote colleagues, treating remote work as a human working environment rather than only a productivity arrangement.
+
+**Challenges and lessons:**
+- Some conversations move faster face to face, while async work can introduce delays or hide ambiguity when ownership and dependencies are unclear.
+- The delay can also improve decisions by giving people time to think, write a considered answer, and work across different schedules.
+- Trust is essential because remote leadership cannot rely on visibility or physical presence. Expectations and evaluation should focus on outcomes and commitments rather than time observed.
+- Strong remote culture needs both operational clarity and deliberate social connection.
+
+---
+
 ## Riverside -- Authentication State Migration
 
 **Tags:** auth, authentication, authorization, identity, jwt, sessions, redis, api-gateway, zero-downtime, migration
@@ -85,6 +106,27 @@ Compact proof points from extended experience that do not always fit cleanly in 
 - Stopped cascading crashes and turned the tracing system into a lasting performance standard.
 - Added end-to-end observability across backend services, Kafka flows, and frontend surfaces rather than relying on isolated logs.
 - This broader work later contributed to a 33% reduction in overall latency.
+
+---
+
+## Riverside -- Incident Leadership, Post-Mortems, and Pre-Mortem Design Reviews
+
+**Tags:** incident-management, production-incidents, reliability, post-mortems, pre-mortems, risk-management, technical-design, follow-up
+
+**Hero scope:** Led numerous production incidents at Riverside, sometimes handling the coordination and resolution end to end, then carried the learning into post-incident follow-up and preventive design practices.
+
+**Key decisions:**
+- Took direct ownership during production incidents, coordinating diagnosis, stabilization, and recovery; handled many incidents as the primary or sole incident lead when necessary.
+- Ran post-mortems after incidents and converted findings into explicitly assigned follow-up tasks rather than leaving lessons as documentation only.
+- Introduced pre-mortem risk reviews into technical design documents so teams considered likely failure modes, operational risks, and mitigation work before implementation.
+- Connected incident response with longer-term reliability improvement by carrying follow-up actions into team ownership and delivery planning.
+
+**Proof points:**
+- Managed multiple production incidents directly, including many handled end to end.
+- Established a practical loop from incident response to post-mortem, assigned remediation, and accountable follow-through.
+- Shifted part of the reliability process earlier by adding pre-mortem analysis to technical design work.
+
+**Framing guardrail:** This supports real incident-leadership and post-incident-review experience. Do not claim formal Incident Commander certification, training, or title unless separately confirmed.
 
 ---
 

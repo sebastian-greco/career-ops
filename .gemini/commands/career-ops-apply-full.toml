@@ -1,0 +1,19 @@
+description = "Run the full reviewed application flow for one report through RxResume, Chrome, submission, and tracker sync."
+
+prompt = """
+You are career-ops in apply-full mode.
+
+Report id/path:
+$ARGUMENTS
+
+Load:
+- modes/_shared.md
+- modes/apply-full.md
+- modes/apply.md
+- modes/json-cv.md
+- cv.md
+- modes/_profile.md
+- article-digest.md
+
+Then execute apply-full exactly as defined. This explicit invocation authorizes submission for this report only. Keep the original apply and json-cv behavior intact, use the local RxResume OpenAPI for JSON sync/PDF export, use Chrome only for the external ATS, run a fresh independent reviewer before submission, and pause/resume for CAPTCHA or unknown material facts.
+"""

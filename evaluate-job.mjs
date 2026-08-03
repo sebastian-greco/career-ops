@@ -83,7 +83,6 @@ function safeLegitimacy(value) {
 }
 
 function safeRecommendation(value, global) {
-  if (['APPLY', 'CONSIDER', 'SKIP'].includes(value)) return value;
   if (global >= 4.0) return 'APPLY';
   if (global >= 3.5) return 'CONSIDER';
   return 'SKIP';
@@ -103,7 +102,7 @@ function coerceEvaluation(raw) {
     + (scores.comp * 0.15)
     + (scores.culture * 0.15)
     + (scores.redFlags * 0.10);
-  scores.global = clampScore(raw?.scores?.global) ?? Math.round(weighted * 10) / 10;
+  scores.global = Math.round(weighted * 10) / 10;
 
   const recommendation = safeRecommendation(raw?.recommendation, scores.global);
   const concerns = safeArray(raw?.concerns);
@@ -241,6 +240,86 @@ const model = genAI.getGenerativeModel({
     temperature: 0.2,
     maxOutputTokens: 8192,
     responseMimeType: 'application/json',
+    responseSchema: {
+      type: 'object',
+      properties: {
+        company: { type: 'string' },
+        role: { type: 'string' },
+        archetype: { type: 'string' },
+        domain: { type: 'string' },
+        remoteModel: { type: 'string' },
+        legitimacy: { type: 'string', enum: ['High Confidence', 'Proceed with Caution', 'Suspicious'] },
+        summary: { type: 'string' },
+        strengths: { type: 'array', items: { type: 'string' } },
+        concerns: { type: 'array', items: { type: 'string' } },
+        hardSkills: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              skill: { type: 'string' },
+              evidence: { type: 'string' },
+              jobDescription: { type: 'string' },
+              notes: { type: 'string' },
+            },
+            required: ['skill', 'evidence', 'jobDescription', 'notes'],
+          },
+        },
+        softSkills: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              skill: { type: 'string' },
+              evidence: { type: 'string' },
+              jobDescription: { type: 'string' },
+              notes: { type: 'string' },
+            },
+            required: ['skill', 'evidence', 'jobDescription', 'notes'],
+          },
+        },
+        fitNotes: {
+          type: 'object',
+          properties: {
+            cvMatch: { type: 'string' },
+            northStar: { type: 'string' },
+            comp: { type: 'string' },
+            culture: { type: 'string' },
+            redFlags: { type: 'string' },
+          },
+          required: ['cvMatch', 'northStar', 'comp', 'culture', 'redFlags'],
+        },
+        legitimacySignals: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              signal: { type: 'string' },
+              finding: { type: 'string' },
+              weight: { type: 'string', enum: ['Positive', 'Neutral', 'Concerning'] },
+            },
+            required: ['signal', 'finding', 'weight'],
+          },
+        },
+        keywords: { type: 'array', items: { type: 'string' } },
+        scores: {
+          type: 'object',
+          properties: {
+            cvMatch: { type: 'number' },
+            northStar: { type: 'number' },
+            comp: { type: 'number' },
+            culture: { type: 'number' },
+            redFlags: { type: 'number' },
+            global: { type: 'number' },
+          },
+          required: ['cvMatch', 'northStar', 'comp', 'culture', 'redFlags', 'global'],
+        },
+        recommendation: { type: 'string', enum: ['APPLY', 'CONSIDER', 'SKIP'] },
+        compensation: { type: 'string' },
+        note: { type: 'string' },
+      },
+      required: ['company', 'role', 'archetype', 'domain', 'remoteModel', 'legitimacy', 'summary', 'strengths', 'concerns', 'hardSkills', 'softSkills', 'fitNotes', 'legitimacySignals', 'keywords', 'scores', 'recommendation', 'compensation', 'note'],
+    },
   },
 });
 

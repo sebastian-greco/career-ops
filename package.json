@@ -11,6 +11,7 @@
     "pdf": "node generate-pdf.mjs",
     "resume:validate": "node validate-resume-json.mjs",
     "resume:sync": "node sync-rxresume.mjs",
+    "resume:verify-pdf": "node verify-rxresume-pdf.mjs",
     "tracker:app": "node sync-application-tracker.mjs",
     "sync-check": "node cv-sync-check.mjs",
     "update:check": "node update-system.mjs check",
@@ -19,6 +20,7 @@
     "liveness": "node check-liveness.mjs",
     "scan": "node scan.mjs",
     "scan:jobgether": "node scan-jobgether.mjs",
+    "scan:wttj": "node scan-wttj.mjs",
     "gemini:eval": "node gemini-eval.mjs",
     "evaluate:job": "node evaluate-job.mjs"
   },

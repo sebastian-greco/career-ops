@@ -217,7 +217,7 @@ export function normalizeExternalJobUrl(url) {
   }
 }
 
-export function isObviousJobgetherNonFit(title, company, titleFilter, icExceptionFilter, portals) {
+export function isObviousFeedNonFit(title, company, titleFilter, icExceptionFilter, portals) {
   if (!title) return true;
 
   const matchingCompany = (portals?.tracked_companies || []).find((entry) => entry.name?.toLowerCase() === (company || '').toLowerCase());
@@ -225,3 +225,6 @@ export function isObviousJobgetherNonFit(title, company, titleFilter, icExceptio
   if (matchingCompany && hasIcExceptionPolicy(matchingCompany) && icExceptionFilter(title, matchingCompany)) return false;
   return true;
 }
+
+// Backwards-compatible alias for the existing Jobgether helper.
+export const isObviousJobgetherNonFit = isObviousFeedNonFit;

@@ -138,7 +138,7 @@
             "url": "",
             "label": ""
           },
-          "description": "<ul><li><p>Co-founded and led a 6-person digital agency for 11 years, delivering web, mobile, and interactive work across 5 countries.</p></li></ul><p></p>",
+          "description": "<ul><li><p>Co-founded and led a 6-person digital agency for 11 years, delivering web, mobile, and interactive work globally.</p></li></ul><p></p>",
           "roles": []
         }
       ]
@@ -440,7 +440,7 @@
       "gapX": 4,
       "gapY": 8,
       "marginX": 25,
-      "marginY": 15,
+      "marginY": 14,
       "format": "a4",
       "locale": "en-US",
       "hideIcons": false

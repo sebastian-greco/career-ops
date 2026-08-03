@@ -87,8 +87,10 @@ When using [OpenCode](https://opencode.ai), the following slash commands are ava
 | `/career-ops-project` | `/career-ops project` | Evaluate portfolio project idea |
 | `/career-ops-tracker` | `/career-ops tracker` | Application status overview |
 | `/career-ops-apply` | `/career-ops apply` | Live application assistant |
+| `/career-ops-apply-full` | `/career-ops apply-full` | Full reviewed RxResume + Chrome application and submission |
 | `/career-ops-scan` | `/career-ops scan` | Scan portals for new offers |
 | `/career-ops-scan-jobgether` | `/career-ops scan-jobgether` | Scan first 10 visible Jobgether cards into pipeline |
+| `/career-ops-scan-wttj` | `/career-ops scan-wttj` | Scan Welcome to the Jungle through logged-in Chrome |
 | `/career-ops-batch` | `/career-ops batch` | Batch processing with parallel workers |
 | `/career-ops-patterns` | `/career-ops patterns` | Analyze rejection patterns and improve targeting |
 | `/career-ops-followup` | `/career-ops followup` | Follow-up cadence tracker |
@@ -112,7 +114,9 @@ When using the [Gemini CLI](https://github.com/google-gemini/gemini-cli), the fo
 | `/career-ops-project` | `/career-ops project` | Evaluate portfolio project idea |
 | `/career-ops-tracker` | `/career-ops tracker` | Application status overview |
 | `/career-ops-apply` | `/career-ops apply` | Live application assistant |
+| `/career-ops-apply-full` | `/career-ops apply-full` | Full reviewed RxResume + Chrome application and submission |
 | `/career-ops-scan` | `/career-ops scan` | Scan portals for new offers |
+| `/career-ops-scan-wttj` | `/career-ops scan-wttj` | Scan Welcome to the Jungle through logged-in Chrome |
 | `/career-ops-batch` | `/career-ops batch` | Batch processing with parallel workers |
 | `/career-ops-patterns` | `/career-ops patterns` | Analyze rejection patterns and improve targeting |
 | `/career-ops-followup` | `/career-ops followup` | Follow-up cadence tracker |
@@ -255,6 +259,7 @@ Default modes are in `modes/` (English). Additional language-specific modes are 
 | Evaluates portfolio project | `project` |
 | Asks about application status | `tracker` |
 | Fills out application form | `apply` |
+| Wants the full reviewed application filled and submitted | `apply-full` |
 | Searches for new offers | `scan` |
 | Processes pending URLs | `pipeline` |
 | Batch processes offers | `batch` |
@@ -273,7 +278,11 @@ Default modes are in `modes/` (English). Additional language-specific modes are 
 
 **This system is designed for quality, not quantity.** The goal is to help the user find and apply to roles where there is a genuine match -- not to spam companies with mass applications.
 
-- **NEVER submit an application without the user reviewing it first.** Fill forms, draft answers, generate PDFs -- but always STOP before clicking Submit/Send/Apply. The user makes the final call.
+- **Explicit apply-full invocation is submission authority.** `/career-ops apply-full <report-id>` authorizes the full flow for that one application: existing RxResume tailoring, PDF export, form completion, independent quality review, document upload, and submission when every gate passes. The original `apply` mode remains read-only and never submits.
+- **Fail closed on uncertainty.** Never guess a material factual answer, legal attestation, work-authorization answer, compensation answer, or identity field. Pause for the user, preserve state, and resume after the answer is supplied.
+- **CAPTCHA/auth handoff:** Pause on CAPTCHAs or authentication challenges, tell the user exactly what to complete, and resume in the same browser tab after confirmation.
+- **No implicit submission from discovery.** Scans, evaluations, pipeline processing, and schedules may prepare applications but do not authorize submission unless an explicit application policy says otherwise.
+- **Independent review before submit.** A separate reviewer must pass the JD coverage, tailored JSON, exported PDF, and form answers before the browser agent clicks Submit/Send/Apply. Reviewer `HUMAN_REVIEW` or unresolved findings block submission.
 - **Strongly discourage low-fit applications.** If a score is below 4.0/5, explicitly recommend against applying. The user's time and the recruiter's time are both valuable. Only proceed if the user has a specific reason to override the score.
 - **Quality over speed.** A well-targeted application to 5 companies beats a generic blast to 50. Guide the user toward fewer, better applications.
 - **Respect recruiters' time.** Every application a human reads costs someone's attention. Only send what's worth reading.

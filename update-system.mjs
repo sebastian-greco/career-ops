@@ -36,6 +36,7 @@ const SYSTEM_PATHS = [
   'modes/scan.md',
   'modes/batch.md',
   'modes/apply.md',
+  'modes/apply-full.md',
   'modes/auto-pipeline.md',
   'modes/contacto.md',
   'modes/deep.md',

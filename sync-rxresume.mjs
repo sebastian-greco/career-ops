@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readFileSync, existsSync, readdirSync, statSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs';
 import { resolve, join, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
 import { execFileSync } from 'child_process';
@@ -35,10 +35,11 @@ const OUTPUT_DIR = join(ROOT, 'output');
 
 function usage() {
   console.log(`Usage:
-  node sync-rxresume.mjs <report-id|report-path|resume-json> [--dry-run]
+  node sync-rxresume.mjs <report-id|report-path|resume-json> [--dry-run] [--export-pdf]
 
 Examples:
   node sync-rxresume.mjs 369
+  node sync-rxresume.mjs 369 --export-pdf
   node sync-rxresume.mjs reports/369-wundergraph-inc-head-of-engineering-2026-05-07.md
   node sync-rxresume.mjs output/369-cv-sebastian-greco-wundergraph-inc-head-of-engineering-2026-05-07.json --dry-run
 `);
@@ -55,13 +56,17 @@ function slugify(text) {
 
 function parseArgs(argv) {
   const args = argv.slice(2);
-  const flags = { dryRun: false };
+  const flags = { dryRun: false, exportPdf: false };
   const positionals = [];
 
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index];
     if (arg === '--dry-run') {
       flags.dryRun = true;
+      continue;
+    }
+    if (arg === '--export-pdf') {
+      flags.exportPdf = true;
       continue;
     }
     if (arg === '--help' || arg === '-h') {
@@ -76,7 +81,7 @@ function parseArgs(argv) {
     process.exit(1);
   }
 
-  return { target: positionals[0], dryRun: flags.dryRun };
+  return { target: positionals[0], ...flags };
 }
 
 function resolveReportPath(target) {
@@ -242,6 +247,29 @@ async function updateResume(id, payload) {
   });
 }
 
+async function exportResumePdf(id, jsonPath) {
+  const { url } = await apiRequest(`/resumes/${id}/pdf`);
+  if (!url || typeof url !== 'string') {
+    throw new Error('RxResume PDF export did not return a download URL');
+  }
+
+  const baseUrl = process.env.RX_RESUME_URL.replace(/\/$/, '');
+  const downloadUrl = new URL(url, `${baseUrl}/`).toString();
+  const response = await fetch(downloadUrl);
+  if (!response.ok) {
+    throw new Error(`RxResume PDF download failed: ${response.status} ${response.statusText}`);
+  }
+
+  const pdfBuffer = Buffer.from(await response.arrayBuffer());
+  if (pdfBuffer.length < 5 || pdfBuffer.subarray(0, 5).toString('ascii') !== '%PDF-') {
+    throw new Error('RxResume PDF download did not return a valid PDF file');
+  }
+
+  const pdfPath = jsonPath.replace(/\.json$/i, '.pdf');
+  writeFileSync(pdfPath, pdfBuffer);
+  return { pdfPath, pdfBytes: pdfBuffer.length };
+}
+
 function buildDirectJsonContext(jsonPath) {
   const jsonRaw = readFileSync(jsonPath, 'utf8');
   const json = JSON.parse(jsonRaw);
@@ -282,7 +310,7 @@ function resolveTargetContext(target) {
 }
 
 async function main() {
-  const { target, dryRun } = parseArgs(process.argv);
+  const { target, dryRun, exportPdf } = parseArgs(process.argv);
   const context = resolveTargetContext(target);
   validateResumeArtifact(context.jsonPath);
 
@@ -305,6 +333,7 @@ async function main() {
     tags,
     reportPath: context.reportPath || null,
     jsonPath: context.jsonPath,
+    pdfPath: exportPdf ? context.jsonPath.replace(/\.json$/i, '.pdf') : null,
   };
 
   if (dryRun) {
@@ -329,11 +358,14 @@ async function main() {
     isPublic: existing?.isPublic ?? false,
   });
 
+  const pdf = exportPdf ? await exportResumePdf(updated.id, context.jsonPath) : null;
+
   console.log(JSON.stringify({
     ...summary,
     dryRun: false,
     id: updated.id,
     updatedAt: updated.updatedAt,
+    ...(pdf || {}),
   }, null, 2));
 }
 

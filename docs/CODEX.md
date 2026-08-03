@@ -36,8 +36,10 @@ npx playwright install chromium
 | Multiple offers | `modes/_shared.md` + `modes/ofertas.md` |
 | Portal scan | `modes/_shared.md` + `modes/scan.md` |
 | Jobgether scan | `modes/_shared.md` + `modes/scan-jobgether.md` |
+| Welcome to the Jungle scan | `modes/_shared.md` + `modes/scan-wttj.md` |
 | PDF generation | `modes/_shared.md` + `modes/pdf.md` |
 | Live application help | `modes/_shared.md` + `modes/apply.md` |
+| Full reviewed application and submission | `modes/_shared.md` + `modes/apply-full.md` + `modes/apply.md` + `modes/json-cv.md` |
 | Pipeline inbox processing | `modes/_shared.md` + `modes/pipeline.md` |
 | Tracker status | `modes/tracker.md` |
 | Deep company research | `modes/deep.md` |
@@ -53,8 +55,10 @@ layer.
 - Treat raw JD text or a job URL as the full auto-pipeline path unless the user explicitly asks for evaluation only.
 - Keep all personalization in `config/profile.yml`, `modes/_profile.md`, `article-digest.md`, or `portals.yml`.
 - Never verify a job’s live status with generic web fetch when Playwright is available.
-- Never submit an application for the user.
-- In `apply` mode, never fill fields, upload files, solve captchas, or click through the application on the user's behalf. Use the browser only to inspect the live JD and visible form questions.
+- Keep `apply` as the original read-only assistant: inspect the live JD/questions, draft answers, and never fill or submit.
+- Treat `/career-ops apply-full <report-id>` as explicit authority for that single full application flow, including filling fields, uploading the independently reviewed RxResume PDF, and submitting when all gates pass.
+- In `apply-full`, pause rather than guess when a CAPTCHA, authentication step, missing factual answer, legal attestation, or reviewer escalation requires the user. Resume in the same Chrome tab afterward.
+- Scans, evaluations, pipeline processing, and schedules do not authorize submission by themselves.
 - Never add new tracker rows directly to `data/applications.md`; use the TSV addition flow and `merge-tracker.mjs`.
 - In `apply` mode, treat the live JD as the primary proof source and use reports only as supporting context.
 - In `apply` mode, sync only selective reusable application memory to the external tracker app through `APPLICATION_TRACKER_URL` when configured. The tracker script also loads this from the repo `.env`, so do not assume it is missing just because the current shell does not export it.

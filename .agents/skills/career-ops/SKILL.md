@@ -3,7 +3,7 @@ name: career-ops
 description: AI job search command center -- evaluate offers, generate CVs, scan portals, track applications
 user_invocable: true
 args: mode
-argument-hint: "[scan | scan-jobgether | deep | pdf | json-cv | oferta | ofertas | apply | batch | tracker | pipeline | contacto | training | project | interview-prep | update]"
+argument-hint: "[scan | scan-jobgether | scan-wttj | deep | pdf | json-cv | oferta | ofertas | apply | apply-full | batch | tracker | pipeline | contacto | training | project | interview-prep | update]"
 ---
 
 # career-ops -- Router
@@ -27,8 +27,10 @@ Determine the mode from `{{mode}}`:
 | `tracker` | `tracker` |
 | `pipeline` | `pipeline` |
 | `apply` | `apply` |
+| `apply-full` | `apply-full` |
 | `scan` | `scan` |
 | `scan-jobgether` | `scan-jobgether` |
+| `scan-wttj` | `scan-wttj` |
 | `batch` | `batch` |
 | `patterns` | `patterns` |
 | `followup` | `followup` |
@@ -59,8 +61,10 @@ Available commands:
   /career-ops project   → Evaluate portfolio project idea
   /career-ops tracker   → Application status overview
   /career-ops apply     → Live application assistant (reads form + generates answers)
+  /career-ops apply-full <report-id> → Full reviewed RxResume + Chrome application and submission
   /career-ops scan      → Scan portals and discover new offers
   /career-ops scan-jobgether → Scan first 10 Jobgether cards into pipeline
+  /career-ops scan-wttj → Scan Welcome to the Jungle through logged-in Chrome
   /career-ops batch     → Batch processing with parallel workers
   /career-ops patterns  → Analyze rejection patterns and improve targeting
   /career-ops followup  → Follow-up cadence tracker: flag overdue, generate drafts
@@ -78,7 +82,7 @@ After determining the mode, load the necessary files before executing:
 ### Modes that require `_shared.md` + their mode file:
 Read `modes/_shared.md` + `modes/{mode}.md`
 
-Applies to: `auto-pipeline`, `oferta`, `ofertas`, `pdf`, `json-cv`, `contacto`, `apply`, `pipeline`, `scan`, `scan-jobgether`, `batch`
+Applies to: `auto-pipeline`, `oferta`, `ofertas`, `pdf`, `json-cv`, `contacto`, `apply`, `apply-full`, `pipeline`, `scan`, `scan-jobgether`, `scan-wttj`, `batch`
 
 ### Standalone modes (only their mode file):
 Read `modes/{mode}.md`
@@ -96,7 +100,7 @@ For any resume-tailoring mode (`json-cv`, `pdf`, `latex`, and resume generation 
 - If stronger older evidence matters, surface it by reordering bullets within that role or lightly rewriting supported wording, not by reordering the job history.
 
 ### Modes delegated to subagent:
-For `scan`, `scan-jobgether`, `apply` (with Playwright), and `pipeline` (3+ URLs): launch as Agent with the content of `_shared.md` + `modes/{mode}.md` injected into the subagent prompt.
+For `scan`, `scan-jobgether`, `scan-wttj`, `apply` (with Playwright), `apply-full`, and `pipeline` (3+ URLs): launch as Agent with the content of `_shared.md` + `modes/{mode}.md` injected into the subagent prompt.
 
 ```
 Agent(
@@ -133,6 +137,16 @@ Agent(
 - When moving an application to a new pipeline stage through the tracker API, prefer omitting `pipelineStatus.effectiveDate` so the backend stores the current timestamp. Only send `effectiveDate` when intentionally backfilling/correcting the stage time, and use a full ISO-8601 datetime.
 - Generate answers without submitting the application.
 
+#### `apply-full`
+
+- This is a separate manually triggered full executor. `/career-ops apply-full <report-id>` authorizes submission for that report only; it does not change `apply` or `json-cv` behavior.
+- Load `modes/apply-full.md` plus its required companions `modes/apply.md` and `modes/json-cv.md`.
+- Use the existing `json-cv` coverage analysis/tailoring unchanged, and reuse its evidence map for Q&A.
+- Sync and export only through the local RxResume OpenAPI with `npm run resume:sync -- <report> --export-pdf`; use Chrome only for the external ATS.
+- Run the one-page verifier and a fresh independent reviewer before filling or submitting.
+- Pause for CAPTCHA/authentication or unknown material facts, then resume in the same Chrome tab.
+- Mark trackers Applied only after visible submission confirmation.
+
 #### `scan-jobgether`
 
 - This mode is a browser-driven workflow, not a pure shell scan.
@@ -152,5 +166,15 @@ node scan-jobgether.mjs --input /tmp/jobgether-batch.json
   - `added` + obvious non-fit → `Not Interested`
   - `skipped_invalid` → `Leave Alone`
 - Report the batch summary after processing.
+
+#### `scan-wttj`
+
+- This mode uses the logged-in Codex Chrome extension tab plus the deterministic `scan-wttj.mjs` helper.
+- Never launch a separate Playwright/MCP Chrome profile or export the extension session.
+- Extract the secondary employer website link from the visible job's Apply modal, then run `node scan-wttj.mjs --input /tmp/wttj-batch.json`.
+- Never export cookies or tokens, never apply through Welcome to the Jungle, and never add a WTTJ URL to the pipeline.
+- Store only a relevant external employer/ATS job-description URL returned as `originalUrl`.
+- Use helper `cleanupAction`: Save relevant/duplicate/WTTJ-only roles, reject obvious non-fits, and leave malformed items alone.
+- Report the structured batch summary after processing.
 
 Execute the instructions from the loaded mode file.
