@@ -83,6 +83,10 @@ function safeLegitimacy(value) {
 }
 
 function safeRecommendation(value, global) {
+  // A hard eligibility gate (location, authorization, etc.) may explicitly
+  // return SKIP even when skill-fit dimensions would otherwise average >= 4.
+  // Never coerce that terminal judgment back into APPLY.
+  if (String(value || '').trim().toUpperCase() === 'SKIP') return 'SKIP';
   if (global >= 4.0) return 'APPLY';
   if (global >= 3.5) return 'CONSIDER';
   return 'SKIP';
@@ -195,6 +199,7 @@ Rules:
 5. Keep strengths and concerns concise, specific, and evidence-backed.
 6. The global score must respect the shared weighted formula.
 7. Use recommendation thresholds from the shared rubric.
+8. Apply the user's location eligibility policy before weighting fit. For an explicit hard location blocker, return SKIP even if skill-match dimensions are high.
 `;
 
 const userPrompt = `Evaluate this job.

@@ -15,14 +15,15 @@ Procesa URLs de ofertas acumuladas en `data/pipeline.md`. El usuario agrega URLs
 
 1. **Leer** `data/pipeline.md` → buscar items `- [ ]` en la sección "Pendientes"
 2. **Para cada URL pendiente**:
-   a. Calcular siguiente `REPORT_NUM` secuencial (leer `reports/`, tomar el número más alto + 1)
-   b. **Extraer JD** usando Playwright (browser_navigate + browser_snapshot) → WebFetch → WebSearch
-   c. **Guardar el JD** en `jds/{###}-{company-slug}-{role-slug}-{YYYY-MM-DD}.md` salvo que el input ya sea `local:jds/...`
-   d. **Generar coverage scan reutilizable** en `reports/{###}-{company-slug}-{YYYY-MM-DD}-skills.md` siguiendo la misma estructura base que usa `json-cv` para hard skills, soft skills y keywords
-   e. **Inspeccionar preguntas visibles del formulario** cuando sea factible con Playwright y embutirlas en el report
-   c. Si la URL no es accesible → marcar como `- [!]` con nota y continuar
-   f. **Ejecutar auto-pipeline completo**: Evaluación A-F → Report .md con referencias a JD/skills → JSON CV (si score >= 4.0, siguiendo la preferencia RxResume) → Tracker
-   g. **Mover de "Pendientes" a "Procesadas"**: `- [x] #NNN | URL | Empresa | Rol | Score/5 | JSON ✅/❌`
+   a. **Extraer JD** usando Playwright (browser_navigate + browser_snapshot) → WebFetch → WebSearch
+   b. **Location eligibility preflight (before report numbering/scoring/artifacts):** apply the hard location gate from `modes/_profile.md`. If the JD explicitly requires hybrid/on-site attendance outside Italy, limits remote work to a non-actionable region such as US/Canada/Americas/APAC, or requires residence in a specific foreign country with no realistic flexibility, do not score it and do not create a report, CV, or tracker row. Move it directly to Procesadas with `LOCATION BLOCKED` and the decisive location text. Remote Spain/Switzerland/Europe or multi-country European remote roles remain eligible even when Italy is omitted.
+   c. Calcular siguiente `REPORT_NUM` secuencial (leer `reports/`, tomar el número más alto + 1)
+   d. **Guardar el JD** en `jds/{###}-{company-slug}-{role-slug}-{YYYY-MM-DD}.md` salvo que el input ya sea `local:jds/...`
+   e. **Generar coverage scan reutilizable** en `reports/{###}-{company-slug}-{YYYY-MM-DD}-skills.md` siguiendo la misma estructura base que usa `json-cv` para hard skills, soft skills y keywords
+   f. **Inspeccionar preguntas visibles del formulario** cuando sea factible con Playwright y embutirlas en el report
+   g. Si la URL no es accesible → marcar como `- [!]` con nota y continuar
+   h. **Ejecutar auto-pipeline completo**: Evaluación A-F → Report .md con referencias a JD/skills → JSON CV (si score >= 4.0, siguiendo la preferencia RxResume) → Tracker
+   i. **Mover de "Pendientes" a "Procesadas"**: `- [x] #NNN | URL | Empresa | Rol | Score/5 | JSON ✅/❌`
 3. **Si hay 3+ URLs pendientes**, lanzar agentes en paralelo para maximizar velocidad, pero cada agente debe usar la misma rubric final de `modes/_evaluation-rubric.md`.
 4. **Al terminar**, mostrar tabla resumen:
 

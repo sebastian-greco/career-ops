@@ -63,6 +63,43 @@ export function buildExcludedCompanyFilter(titleFilter) {
   };
 }
 
+export function buildLocationFilter(locationFilter = {}) {
+  if (locationFilter.enabled !== true) return () => true;
+
+  const markers = (values = []) => values
+    .map((value) => normalizeText(value).toLowerCase())
+    .filter(Boolean);
+  const localMarkers = markers(locationFilter.local_markers);
+  const remoteMarkers = markers(locationFilter.remote_markers || ['remote']);
+  const blockedRemoteMarkers = markers(locationFilter.blocked_remote_markers);
+  const hybridMarkers = markers(locationFilter.hybrid_markers || ['hybrid', 'on-site', 'onsite', 'office-based']);
+
+  const markerMatches = (text, value) => {
+    if (value.length > 3) return text.includes(value);
+    const escaped = value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`, 'i').test(text);
+  };
+  const containsAny = (text, values) => values.some((value) => markerMatches(text, value));
+
+  return (location = '') => {
+    const lower = normalizeText(location).toLowerCase();
+    if (!lower) return true; // Unknown is reviewed from the full JD later.
+
+    const isLocal = containsAny(lower, localMarkers);
+    const isRemote = containsAny(lower, remoteMarkers);
+    const isHybrid = containsAny(lower, hybridMarkers);
+
+    if (isHybrid) return isLocal;
+    if (isRemote) return !containsAny(lower, blockedRemoteMarkers);
+    if (isLocal) return true;
+
+    // A single explicit foreign location with no remote signal is not actionable.
+    // Ambiguous multi-location lists continue to the full-JD eligibility gate.
+    const looksMultiLocation = /[,;/|].*[,;/|]/.test(lower);
+    return looksMultiLocation;
+  };
+}
+
 export function hasIcExceptionPolicy(company = {}) {
   return company.ic_exception_company === true || company.culture_fit_tier === 'high';
 }

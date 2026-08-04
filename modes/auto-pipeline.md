@@ -33,6 +33,8 @@ Si el input es una **URL** (no texto de JD pegado), seguir esta estrategia para 
 - Si el input ya era `local:jds/...`, reutilizar ese archivo y referenciarlo en el report en vez de crear una copia innecesaria
 
 ## Paso 1 — Evaluación A-G
+Antes de puntuar o crear artefactos, aplicar el location eligibility preflight de `modes/_profile.md`. Una exigencia explícita de híbrido/presencial fuera de Italia, remote limitado a una región no accionable (US/Canada/Americas/APAC), o residencia obligatoria en un país extranjero sin flexibilidad termina el flujo como `LOCATION BLOCKED`: no score, report, CV ni tracker. Remote España/Suiza/Europa o listas remotas multi-país europeas siguen siendo accionables aunque no incluyan Italia.
+
 Ejecutar exactamente igual que el modo `oferta` (leer `modes/oferta.md` para todos los bloques A-F + Block G Posting Legitimacy).
 
 The score in this mode must come from the shared rubric, not from heuristic-only code.

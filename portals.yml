@@ -110,6 +110,44 @@ title_filter:
     - "Head"
     - "Director"
 
+# -- Location pre-filter --
+# This is intentionally conservative: empty/ambiguous locations continue to
+# full-JD review, while explicit foreign office/hybrid and non-European remote
+# restrictions never enter the pipeline.
+location_filter:
+  enabled: true
+  local_markers:
+    - "Italy"
+    - "Italia"
+    - "Milan"
+    - "Milano"
+    - "Seregno"
+  remote_markers:
+    - "Remote"
+    - "Anywhere"
+    - "Worldwide"
+    - "Global"
+    - "Europe"
+    - "European"
+    - "EU"
+    - "EMEA"
+  blocked_remote_markers:
+    - "United States"
+    - "US only"
+    - "USA only"
+    - "Canada only"
+    - "North America"
+    - "Americas only"
+    - "LATAM"
+    - "APAC"
+    - "Australia"
+    - "India"
+  hybrid_markers:
+    - "Hybrid"
+    - "On-site"
+    - "Onsite"
+    - "Office-based"
+
 # -- Search queries --
 # Each query triggers a WebSearch. Use site: to filter by portal.
 # The scanner extracts title, URL, and company from results.

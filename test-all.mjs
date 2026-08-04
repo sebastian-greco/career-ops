@@ -137,6 +137,35 @@ try {
   fail(`Liveness classification tests crashed: ${e.message}`);
 }
 
+console.log('\n3b. Location pre-filter');
+
+try {
+  const { buildLocationFilter } = await import(pathToFileURL(join(ROOT, 'scan-utils.mjs')).href);
+  const locationFilter = buildLocationFilter({
+    enabled: true,
+    local_markers: ['Italy', 'Milan'],
+    remote_markers: ['Remote', 'Europe', 'EMEA'],
+    blocked_remote_markers: ['United States', 'US only', 'Canada only', 'Americas only'],
+    hybrid_markers: ['Hybrid', 'On-site'],
+  });
+
+  const cases = [
+    ['Hybrid Amsterdam', false],
+    ['New York, NY', false],
+    ['Milan, Italy (Hybrid)', true],
+    ['Remote - Spain', true],
+    ['Remote - Switzerland', true],
+    ['Remote - US only', false],
+    ['Remote - Europe', true],
+    ['', true],
+  ];
+  const failures = cases.filter(([location, expected]) => locationFilter(location) !== expected);
+  if (failures.length === 0) pass('Location gate rejects foreign office/US-only roles and keeps actionable European remote roles');
+  else fail(`Location gate mismatches: ${JSON.stringify(failures)}`);
+} catch (e) {
+  fail(`Location pre-filter tests crashed: ${e.message}`);
+}
+
 // ── 4. TRACKER QUESTION PERSISTENCE ─────────────────────────────
 
 console.log('\n4. Tracker question persistence');

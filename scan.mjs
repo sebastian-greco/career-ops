@@ -26,6 +26,7 @@ import {
   appendHistoryRows,
   appendToPipeline,
   buildExcludedCompanyFilter,
+  buildLocationFilter,
   buildIcExceptionFilter,
   buildTitleFilter,
   hasIcExceptionPolicy,
@@ -794,11 +795,19 @@ function processJobs(jobs, company, source, state) {
       continue;
     }
 
+    if (!state.locationFilter(job.location)) {
+      state.totalFiltered++;
+      state.totalLocationFiltered++;
+      state.historyRows.push({ ...job, source, status: 'skipped_location' });
+      continue;
+    }
+
     const passesDefaultFilter = state.titleFilter(job.title);
     const passesCompanyIcException = hasIcExceptionPolicy(company) && state.icExceptionFilter(job.title, company);
 
     if (!passesDefaultFilter && !passesCompanyIcException) {
       state.totalFiltered++;
+      state.totalTitleFiltered++;
       state.historyRows.push({ ...job, source, status: 'skipped_title' });
       continue;
     }
@@ -978,6 +987,7 @@ async function main() {
   const titleFilter = buildTitleFilter(config.title_filter);
   const icExceptionFilter = buildIcExceptionFilter(config.title_filter);
   const excludedCompanyFilter = buildExcludedCompanyFilter(config.title_filter);
+  const locationFilter = buildLocationFilter(config.location_filter);
 
   // 2. Build additive API, direct-page, and search paths
   const enabledCompanies = companies
@@ -1004,10 +1014,13 @@ async function main() {
     titleFilter,
     icExceptionFilter,
     excludedCompanyFilter,
+    locationFilter,
     seenUrls,
     seenCompanyRoles,
     totalFound: 0,
     totalFiltered: 0,
+    totalTitleFiltered: 0,
+    totalLocationFiltered: 0,
     totalDupes: 0,
     totalExpired: 0,
     newOffers: [],
@@ -1085,8 +1098,9 @@ async function main() {
   console.log(`Company searches:      ${state.sourceStats.companySearch.attempted} attempted, ${state.sourceStats.companySearch.succeeded} succeeded, ${state.sourceStats.companySearch.failed} failed`);
   console.log(`Broad search queries:  ${state.sourceStats.broadSearch.attempted} attempted, ${state.sourceStats.broadSearch.succeeded} succeeded, ${state.sourceStats.broadSearch.failed} failed`);
   console.log(`Total jobs found:      ${state.totalFound}`);
-  console.log(`Title-relevant:        ${state.totalFound - state.totalFiltered}`);
-  console.log(`Filtered by title:     ${state.totalFiltered} removed`);
+  console.log(`Title-relevant:        ${state.totalFound - state.totalTitleFiltered}`);
+  console.log(`Filtered by title:     ${state.totalTitleFiltered} removed`);
+  console.log(`Location blockers:     ${state.totalLocationFiltered} removed`);
   console.log(`Duplicates:            ${state.totalDupes} skipped`);
   console.log(`Expired:               ${state.totalExpired} skipped`);
   console.log(`New offers added:      ${state.newOffers.length}`);
