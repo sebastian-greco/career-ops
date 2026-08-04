@@ -1,78 +1,48 @@
-# Codex Setup
+# Codex Guide
 
-Career-Ops supports Codex through the root `AGENTS.md` file.
+Career-ops supports Codex through the same shared router used by the other CLI integrations.
 
-If your Codex client reads project instructions automatically, `AGENTS.md`
-is enough for routing and behavior. Codex should reuse the same checked-in
-mode files, templates, tracker flow, and scripts that already power the
-Claude workflow.
+## How Codex maps to career-ops
 
-## Prerequisites
+- `AGENTS.md` is the shared instruction source.
+- Root `CODEX.md` is the thin Codex wrapper that imports `AGENTS.md`.
+- This file is the human-facing guide for running career-ops workflows from Codex.
 
-- A Codex client that can work with project `AGENTS.md`
-- Node.js 18+
-- Playwright Chromium installed for PDF generation and reliable job verification
-- Go 1.21+ if you want the TUI dashboard
+## Interactive Codex
 
-## Install
+Start Codex in the repository root:
 
 ```bash
-npm install
-npx playwright install chromium
+cd career-ops
+codex
 ```
 
-## Recommended Starting Prompts
+Codex may not expose a native `/career-ops` slash command. When it does not, ask for the same workflow in plain language:
 
-- `Evaluate this job URL with Career-Ops and run the full pipeline.`
-- `Scan my configured portals for new roles that match my profile.`
-- `Generate the tailored ATS PDF for this role using Career-Ops.`
+```text
+Evaluate this JD with career-ops auto-pipeline: https://company.com/jobs/123
+Run the career-ops scan mode and summarize new matches.
+Run the career-ops pipeline mode for data/pipeline.md.
+Run the career-ops pdf mode for the latest evaluated role.
+Run the career-ops email mode for the latest evaluated role. Draft only; never sends, submits, or clicks.
+Run the career-ops tracker mode and summarize the current statuses.
+```
 
-## Routing Map
+## One-shot workers
 
-| User intent | Files Codex should read |
-|-------------|-------------------------|
-| Raw JD text or job URL | `modes/_shared.md` + `modes/auto-pipeline.md` |
-| Single evaluation only | `modes/_shared.md` + `modes/oferta.md` |
-| Multiple offers | `modes/_shared.md` + `modes/ofertas.md` |
-| Portal scan | `modes/_shared.md` + `modes/scan.md` |
-| Jobgether scan | `modes/_shared.md` + `modes/scan-jobgether.md` |
-| Welcome to the Jungle scan | `modes/_shared.md` + `modes/scan-wttj.md` |
-| PDF generation | `modes/_shared.md` + `modes/pdf.md` |
-| Live application help | `modes/_shared.md` + `modes/apply.md` |
-| Full reviewed application and submission | `modes/_shared.md` + `modes/apply-full.md` + `modes/apply.md` + `modes/json-cv.md` |
-| Pipeline inbox processing | `modes/_shared.md` + `modes/pipeline.md` |
-| Tracker status | `modes/tracker.md` |
-| Deep company research | `modes/deep.md` |
-| Training / certification review | `modes/training.md` |
-| Project evaluation | `modes/project.md` |
-
-The key point: Codex support is additive. It should route into the existing
-Career-Ops modes and scripts rather than introducing a parallel automation
-layer.
-
-## Behavioral Rules
-
-- Treat raw JD text or a job URL as the full auto-pipeline path unless the user explicitly asks for evaluation only.
-- Keep all personalization in `config/profile.yml`, `modes/_profile.md`, `article-digest.md`, or `portals.yml`.
-- Never verify a job’s live status with generic web fetch when Playwright is available.
-- Keep `apply` as the original read-only assistant: inspect the live JD/questions, draft answers, and never fill or submit.
-- Treat `/career-ops apply-full <report-id>` as explicit authority for that single full application flow, including filling fields, uploading the independently reviewed RxResume PDF, and submitting when all gates pass.
-- In `apply-full`, pause rather than guess when a CAPTCHA, authentication step, missing factual answer, legal attestation, or reviewer escalation requires the user. Resume in the same Chrome tab afterward.
-- Scans, evaluations, pipeline processing, and schedules do not authorize submission by themselves.
-- Never add new tracker rows directly to `data/applications.md`; use the TSV addition flow and `merge-tracker.mjs`.
-- In `apply` mode, treat the live JD as the primary proof source and use reports only as supporting context.
-- In `apply` mode, sync only selective reusable application memory to the external tracker app through `APPLICATION_TRACKER_URL` when configured. The tracker script also loads this from the repo `.env`, so do not assume it is missing just because the current shell does not export it.
-- In `apply` mode, also keep salary / compensation answers in the tracker for recordkeeping.
-- In `apply` mode, also keep substantive text-entry management / hiring / coaching experience answers when they are reusable narratives rather than simple numeric screening answers.
-- In `apply` mode, only store a cover letter in the external tracker if the live form explicitly asks for one.
-- In `apply` mode, the agent should decide which question answers are worth saving; the tracker sync script should not reclassify them with regex heuristics.
-- Saved tracker Q&A should default to `includeInAiContext: false`.
-
-## Verification
+For single commands or batch workers, use `codex exec`:
 
 ```bash
-npm run verify
-
-# optional dashboard build
-cd dashboard && go build ./...
+codex exec "Evaluate this JD with career-ops auto-pipeline: https://company.com/jobs/123"
+codex exec "Run career-ops scan mode in this repo and summarize new matches."
+codex exec "Run career-ops pipeline mode for data/pipeline.md."
+codex exec "Run career-ops pdf mode for the latest evaluated role."
+codex exec "Run career-ops email mode for the latest evaluated role. Draft only; do not send, submit, or click anything."
+codex exec "Run career-ops tracker mode and summarize the current statuses."
 ```
+
+## Notes
+
+- If your Codex environment exposes slash commands, the shared `/career-ops` router semantics still apply.
+- If it does not, use the same mode names through prompts or `codex exec`.
+- Browser-heavy flows such as `scan`, `pipeline`, and `apply` still depend on Playwright browser tools being available in the active agent setup.
