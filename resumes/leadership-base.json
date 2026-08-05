@@ -91,13 +91,13 @@
               "id": "019d864b-73f5-728f-9144-dd88d08237ae",
               "position": "Senior Engineering Manager (Internal Title: Group Lead)",
               "period": "01/2024 – 08/2025 | 1 year 8 months - Remote",
-              "description": "<ul><li><p>Directed a 27-person engineering group across 4 teams spanning Platform, Publishing, Business, and Growth.</p></li><li><p>Owned budget and compensation planning and partnered with the CEO on evaluating and hiring VP-level engineering leaders.</p></li><li><p>Served as final technical sign-off for senior backend and system design interviews across multiple orgs.</p></li><li><p>Guided broader backend evolution toward Kafka-based services, and led design review across two teams to ship an event-driven token ledger for AI feature consumption.</p></li><li><p>Piloted AI-assisted development and review workflows across my teams, helping normalize practical use of GitHub Copilot and Cursor in production engineering work.</p></li></ul><p></p>"
+              "description": "<ul><li><p>Directed a 27-person engineering group across 4 teams spanning Platform, Publishing, Business, and Growth.</p></li><li><p>Owned budget and compensation planning and partnered with the CEO on evaluating and hiring VP-level engineering leaders.</p></li><li><p>Ran 100+ interviews and served as final technical sign-off for senior backend, system design, and culture-fit evaluation across multiple orgs.</p></li><li><p>Guided broader backend evolution toward Kafka-based services, and led design review across two teams to ship an event-driven token ledger for AI feature consumption.</p></li><li><p>Piloted AI-assisted development and review workflows across my teams, helping normalize practical use of GitHub Copilot and Cursor in production engineering work.</p></li></ul><p></p>"
             },
             {
               "id": "019d864b-b332-751e-8e7d-ee03d331fe64",
               "position": "Engineering Manager",
               "period": "06/2022 - 01/2024 | 1 year 6 months - Remote",
-              "description": "<ul><li><p>Built Riverside's first formal full-stack team, growing the team to 6.</p></li><li><p>Owned core platform services plus billing, plans, entitlements, and Stripe-backed payment flows, and helped the mobile team integrate RevenueCat with our backend monetization systems.</p></li><li><p>Split critical services from the monolith and introduced end-to-end observability across backend services and Kafka flows, contributing to a 33% reduction in overall system latency.</p></li></ul><p></p>"
+              "description": "<ul><li><p>Built Riverside's first formal full-stack team, growing the team to 6.</p></li><li><p>Coached 2 high-performing engineers into Team Lead roles as the Dashboard group evolved into Riverside's core Platform team.</p></li><li><p>Owned core platform services plus billing, plans, entitlements, and Stripe-backed payment flows, and helped the mobile team integrate RevenueCat with our backend monetization systems.</p></li><li><p>Split critical services from the monolith and introduced end-to-end observability across backend services and Kafka flows, contributing to a 33% reduction in overall system latency.</p></li></ul><p></p>"
             },
             {
               "id": "019e0263-d9ee-71cf-958b-2ce3b1289fb6",
@@ -459,13 +459,19 @@
     "typography": {
       "body": {
         "fontFamily": "Open Sans",
-        "fontWeights": ["400", "600"],
+        "fontWeights": [
+          "400",
+          "600"
+        ],
         "fontSize": 10,
         "lineHeight": 1.19
       },
       "heading": {
         "fontFamily": "Open Sans",
-        "fontWeights": ["700", "800"],
+        "fontWeights": [
+          "700",
+          "800"
+        ],
         "fontSize": 16,
         "lineHeight": 1.3
       }
