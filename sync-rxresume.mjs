@@ -109,8 +109,8 @@ function resolveReportPath(target) {
 function parseReportMeta(reportPath, raw) {
   const reportFile = basename(reportPath);
   const reportNum = reportFile.match(/^(\d+)-/)?.[1] || '';
-  const headerMatch = raw.match(/^# Evaluation: (.+?) -- (.+)$/m)
-    || raw.match(/^# Evaluaci[oó]n: (.+?) - (.+)$/m);
+  const headerMatch = raw.match(/^# Evaluation: (.+?) (?:--|—) (.+)$/m)
+    || raw.match(/^# Evaluaci[oó]n: (.+?) [-—] (.+)$/m);
   const company = headerMatch?.[1]?.trim() || '';
   const role = headerMatch?.[2]?.trim() || '';
   const artifactMatch = raw.match(/- Resume artifact generated: `([^`]+\.json)`/);
@@ -162,7 +162,7 @@ function collectCompanyRoles() {
     if (!file.endsWith('.md')) continue;
     const absolutePath = join(REPORTS_DIR, file);
     const raw = readFileSync(absolutePath, 'utf8');
-    const match = raw.match(/^# Evaluation: (.+?) -- (.+)$/m);
+    const match = raw.match(/^# Evaluation: (.+?) (?:--|—) (.+)$/m);
     if (!match) continue;
     const companyKey = slugify(match[1]);
     if (!rolesByCompany.has(companyKey)) rolesByCompany.set(companyKey, new Set());

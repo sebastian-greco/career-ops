@@ -21,8 +21,8 @@ This user-layer file defines procedural rules for this fork. It may override a s
 
 ## External application tracker
 
-- During `apply` and `apply-full`, use `sync-application-tracker.mjs` when `APPLICATION_TRACKER_URL` is configured. The script reads the repository `.env`; do not rely on exported shell variables alone.
-- Treat the exact live JD as the primary proof source and store it verbatim in `jobDescriptionText`. Reports are supporting context.
+- **Hard gate for `apply` / `apply-full`:** when `APPLICATION_TRACKER_URL` is set in the repo `.env`, upsert via `sync-application-tracker.mjs` before presenting copy-paste answers as complete or marking the apply run done. Surface the returned `applicationId` in the apply summary. If upsert fails, stop and report the error — do not silently skip. The script reads `.env`; do not rely on exported shell variables alone. If `APPLICATION_TRACKER_URL` is absent, say so once and continue without an external entry.
+- Required upsert payload: `companyName`, `roleTitle`, `jobPostingUrl`, verbatim live JD in `jobDescriptionText`, `source: apply`, and `pipelineStage: draft` until submission is confirmed. Reports are supporting context only.
 - Save `currentDraft` only when the live form explicitly asks for a cover letter.
 - Default to not saving form Q&A. Save genuinely reusable substantive answers, including salary/compensation answers for recordkeeping, substantive management/hiring/coaching narratives, and useful role-specific `Additional Information` responses.
 - Do not save identity boilerplate, uploads, generic authorization fields, short radio/dropdown screens, or other form-only answers. Saved Q&A defaults to `includeInAiContext: false` unless the user explicitly opts it in.
