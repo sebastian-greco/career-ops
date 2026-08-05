@@ -20,6 +20,7 @@ import {
 } from "@/lib/server/parsers/url-resolution";
 import { computePipelineMetrics } from "@/lib/server/metrics/pipeline-metrics";
 import { computeProgressMetrics } from "@/lib/server/metrics/progress-metrics";
+import { resolveTrackerReportPath } from "@/lib/server/report-path";
 import type { CareerOpsRepository } from "@/lib/server/repository/types";
 
 const REPORT_READ_CONCURRENCY = 24;
@@ -32,17 +33,6 @@ interface CachedReport {
 }
 
 const reportCache = new Map<string, CachedReport>();
-
-async function readFirstExisting(paths: string[]) {
-  for (const filePath of paths) {
-    try {
-      return await fs.readFile(filePath, "utf8");
-    } catch {
-      continue;
-    }
-  }
-  throw new Error(`None of the expected files exist: ${paths.join(", ")}`);
-}
 
 function parseTrackerLine(line: string) {
   if (line.includes("\t")) {
@@ -130,17 +120,30 @@ export class FsCareerOpsRepository implements CareerOpsRepository {
   }
 
   private async readApplications() {
-    const [statuses, applicationsRaw] = await Promise.all([
+    const [statuses, applicationsFilePath] = await Promise.all([
       this.getStatusCatalog(),
-      readFirstExisting([
-        path.join(this.careerOpsRoot, "applications.md"),
-        path.join(this.careerOpsRoot, "data", "applications.md"),
-      ]),
+      this.getApplicationsFilePath(),
     ]);
+    const applicationsRaw = await fs.readFile(applicationsFilePath, "utf8");
+    const applications = parseApplicationsMarkdown(applicationsRaw, (status) => normalizeStatus(status, statuses));
+
+    await Promise.all(
+      applications.map(async (application) => {
+        if (!application.reportPath) {
+          return;
+        }
+
+        application.reportPath = await resolveTrackerReportPath(
+          this.careerOpsRoot,
+          applicationsFilePath,
+          application.reportPath,
+        );
+      }),
+    );
 
     return {
       statuses,
-      applications: parseApplicationsMarkdown(applicationsRaw, (status) => normalizeStatus(status, statuses)),
+      applications,
     };
   }
 
