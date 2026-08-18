@@ -35,6 +35,21 @@ This user-layer file defines procedural rules for this fork. It may override a s
 - Remove inflated symbolism, promotional language, vague attribution, shallow analysis, repetitive transitions, excessive em dashes, and formulaic three-part constructions.
 - Preserve the local `humanizer-zh` skill. When producing Chinese candidate-facing prose, use it as a final editing pass when available without altering facts or form constraints.
 
+### GitHub profile voice
+
+- Treat GitHub as Sebastian's builder surface, not as a second CV or a leadership landing page.
+- Lead with Sebastian as a developer who likes making useful things. Engineering leadership is relevant context, but it should not dominate the introduction or repository selection.
+- The intended impression is: **a developer and builder who also happens to be an experienced engineering leader.**
+- Keep the tone relaxed, personal, technically curious, and informal. Avoid institutional CV language, executive positioning, recruiter-facing claims, and buzzwords.
+- A GitHub-style tech stack with badges and a concise Impact section are welcome when they make the profile easier to scan. Impact should use concrete technical and coaching stories rather than résumé abstractions.
+- Keep GitHub Impact bullets to one sentence when possible. Lead with a number or shipped result, then give only enough context to make it credible.
+- Format GitHub Impact as plain single-line bullets like Cristian Conedera's profile. Do not use bold lead-ins or colon-separated labels.
+- Use `---` separators between major GitHub profile sections and `###` for section headings beneath the main profile title.
+- Let projects, screenshots, demos, code, and concise explanations carry the professional signal. Prefer what Sebastian is building, experimenting with, learning, and sharing over a catalogue of management achievements.
+- Mention leadership lightly and factually where it adds context, without turning the profile into a management narrative.
+- Include some personality and interests so the profile feels like a person rather than a branded professional document.
+- Do not feature Human Review in the GitHub profile README. It belongs to an earlier stage of AI-assisted coding and is no longer representative enough for the main profile.
+
 ## Discovery and scanning
 
 - Use the upstream 1.24 provider-based scanner and official `web/` experience for broad discovery.

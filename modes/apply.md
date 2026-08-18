@@ -24,7 +24,9 @@ Interactive mode for when the candidate is filling out an application form in Ch
 6. ANALYZE     → Identify ALL visible form questions
 7. GENERATE    → For each question, generate a personalized response
 8. PRESENT     → Show formatted responses for copy-paste
+8b. SYNC-TRACK → Upsert application and questions to external tracker (sync-application-tracker.mjs)
 9. PERSIST     → Save the final filled/submitted answers into the report
+10. POST-APPLY → Set tracker status to Applied, seed follow-up, and sync external tracker status
 ```
 
 ## Step 5 — Preflight gate
@@ -220,13 +222,37 @@ Use `application-answers.mjs` when possible to format/upsert the section:
 node application-answers.mjs --report reports/NNN-company-role-date.md --input answers.json --state filled
 ```
 
-## Step 9 — Post-apply (optional)
+## Step 8b — Synchronize external tracker (MANDATORY)
+
+When `APPLICATION_TRACKER_URL` is configured in `.env`, synchronize the application and substantive questions with the external NextStage tracker before completing the drafting flow:
+
+1. Assemble the upsert payload containing:
+   - `companyName`, `roleTitle`, `jobPostingUrl`, `jobDescriptionText` (the extracted JD text)
+   - `source: "apply"`, `reportId`, `reportPath`, `fitNotes`
+   - `hasCoverLetterField` (boolean)
+   - `pipelineStatus: { stage: "draft" }`
+   - `questions`: array of substantive Q&A entries with `{ id, question, answer, includeInAiContext }`
+2. Save payload to `output/<num>-<company-slug>-external-tracker.json`
+3. Run the synchronization command:
+```bash
+node sync-application-tracker.mjs upsert --input output/<num>-<company-slug>-external-tracker.json
+```
+4. Surface the returned `applicationId` in the summary so the candidate knows it is tracked. If `APPLICATION_TRACKER_URL` is not set, state that once and continue.
+
+## Step 9 — Post-apply (optional / submission)
 
 If the candidate confirms that they submitted the application:
-1. Update status to Applied via the canonical CLI: `node set-status.mjs <report#> Applied` (never hand-edit the table). If the candidate submitted on a different day than today, add `--on YYYY-MM-DD` with the actual submission date — the status-log ledger should record when it happened, not when it was typed in.
-2. Seed the follow-up schedule: run `node followup-seed.mjs {num} --json` (where `{num}` is the tracker row number). If the candidate applied on a different day than today, pass `--date YYYY-MM-DD` with the actual submission date. It's idempotent, so re-running is safe. (`--on` and `--date` are the same concept — the real submission date — each under its own script's flag name; pass the same value to both.)
-3. Refresh the report's `## Application Answers` section with the final field values and `**State:** submitted`
-4. Suggest next step: run the `contacto` mode (`/career-ops contacto` where available) for LinkedIn outreach
+1. Update status to Applied via the canonical CLI: `node set-status.mjs <report#> Applied` (never hand-edit the table). If the candidate submitted on a different day than today, add `--on YYYY-MM-DD` with the actual submission date.
+2. Seed the follow-up schedule: run `node followup-seed.mjs {num} --json`.
+3. Refresh the report's `## Application Answers` section with `**State:** submitted` via:
+```bash
+node application-answers.mjs --report reports/NNN-company-role-date.md --input answers.json --state submitted
+```
+4. If `APPLICATION_TRACKER_URL` is configured, update the external tracker stage to `applied`:
+```bash
+node sync-application-tracker.mjs status --id <applicationId> --stage applied
+```
+5. Suggest next step: run the `contacto` mode (`/career-ops contacto` where available) for LinkedIn outreach
 
 **Confirmed resume-verification failure at this vendor? Check the rest of the pipeline (#1870).** If the candidate confirms the ATS silently dropped or altered resume content that they had submitted (see the SuccessFactors-family quirk below), don't treat it as a one-off. Tracker rows in `data/applications.md` don't carry a canonical ATS-vendor field, so don't grep the tracker text for a vendor name — it will miss rows silently. Instead, resolve the vendor per row from its linked report's `**URL:**` field:
 - For clean-fingerprint vendors (Greenhouse, Lever, Ashby, Workday), match the URL's hostname the same way `detectVendor()` in `analyze-patterns.mjs` does — reuse that function/pattern rather than re-deriving it, so the two stay in sync.

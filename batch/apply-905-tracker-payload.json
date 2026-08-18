@@ -1,0 +1,46 @@
+{
+  "source": "apply",
+  "reportId": "905",
+  "reportPath": "reports/905-weroad-2026-08-18.md",
+  "companyName": "WeRoad",
+  "roleTitle": "Head of Product Engineering",
+  "jobPostingUrl": "https://weroad.teamtailor.com/jobs/8003758-head-of-product-engineering",
+  "pipelineStatus": {
+    "stage": "draft"
+  },
+  "hasCoverLetterField": true,
+  "coverLetter": "Dear WeRoad Team,\n\nI am applying for the Head of Product Engineering role because it matches the work I do best: scaling product engineering teams while staying close to architecture, delivery, and the product itself.\n\nAt Riverside, I led a 27-person engineering organization across 4 teams through Engineering Managers, spanning 3 full-stack product teams (Publishing, Growth, and Business) alongside Core Platform and org-wide QA. I partnered closely with Product and Design leadership on quarterly roadmap planning, org structure, and delivery predictability.\n\nMy background combines product engineering leadership with hands-on experience in full-stack web architecture, event-driven systems, and monetization platforms (Stripe, RevenueCat). That foundation also allows me to step in and support the frontend team directly on day one while hiring and onboarding its next Engineering Manager.\n\nWeRoad's combination of an international consumer product, ambitious growth, and a strong ownership culture is the kind of environment where I do my best work. I look forward to discussing how my experience managing managers, scaling teams, and building healthy engineering habits can support your next stage.\n\nBest regards,\nSebastian Greco",
+  "jobDescriptionText": "ABOUT WEROAD: CONNECTING PEOPLE, CULTURES, AND STORIES\nFounded in 2017, WeRoad is a fast-growing startup that is disrupting the travel industry in Italy, Spain, UK, Germany, France, Switzerland and… the USA!\nWith 200 team members and 4K Travel Coordinators, we're a community of travelers who turn every trip into a life-changing experience. We connect like-minded millennials and send them on adventures to 1000+ destinations worldwide.\n\nABOUT THE ROLE\nJOB TITLE: Head of Product Engineering\nLOCATION: Full Remote or Hybrid (Milan)\nTYPE OF CONTRACT: Permanent, full-time\nSALARY RANGE: €90,000 – €110,000\n\nAs Head of Product Engineering you'll lead four product engineering teams, covering our consumer website and frontend; the checkout, booking and payments experience; the internal operations platform; and the tools our tour coordinators and travel partners rely on — along with the Engineering Managers who run them: 20+ engineers and product people. You'll report to the CTPO and own how fast, how well, and how predictably we ship across every market.\nInitially, this role will also directly manage the website and frontend team. Shaping the leadership of these teams — including developing or hiring the Engineering Manager who will ultimately run that team — is a core responsibility of the Head.\n\nWhat you'll do:\n- Lead the four product engineering teams, managing their Engineering Managers and owning team structure and headcount.\n- Own delivery of the product roadmap across web, checkout & payments, tour operations, and coordinator/partner platforms, translating company OKRs into quarterly plans.\n- Work with the CTPO, Product, and Design on product and technical strategy, and with the Director of AI on AI engineering practices.\n- Set and maintain standards for architecture, code quality, testing, reliability, and observability across the stack (Nuxt/Vue, NestJS, Laravel/PHP, Python, RabbitMQ, GraphQL/REST, GCP).\n- Manage and develop Engineering Managers and senior engineers, run performance metrics and career frameworks, own hiring and onboarding, and keep teams healthy and collaborative.\n- Manage cross-team dependencies and shared platforms, and maintain incident response, postmortem, and technical-debt processes.\n- Report engineering health to the C-Team: delivery throughput, reliability, and roadmap progress.\n\nWhat you'll bring to the table:\n- 8+ years in software engineering, including 4+ years leading teams and managing other managers in an org of 20+ people.\n- Experience delivering complex, high-traffic consumer products in a scaleup or high-growth environment.\n- Technical depth across modern web and backend stacks (JS/TS plus PHP and/or Node), microservices, and event-driven architectures.\n- People-management experience: coaching EMs, setting priorities, and running autonomous teams.\n- A track record of turning strategy into delivery, managed with data and metrics.\n- Experience with AI-assisted engineering (AI IDEs such as Cursor/Copilot and CLIs such as Claude Code) and driving its adoption across teams.\n- Fluent English; comfortable in a fast-paced, multi-market, remote-first environment.",
+  "questions": [
+    {
+      "question": "How did you hear about us?",
+      "answer": "Linkedin",
+      "includeInAiContext": false
+    },
+    {
+      "question": "Are you a travel coordinator?",
+      "answer": "No",
+      "includeInAiContext": false
+    },
+    {
+      "question": "Please attach here any links to any of your personal websites/blogs/portfolios that you'd like to share with us.",
+      "answer": "https://www.linkedin.com/in/grecosebastian\nhttps://github.com/sebastian-greco\nhttps://verbaspeech.app (macOS dictation app, on-device transcription)\nhttps://informia.com.ar (property document intelligence workflow)\nhttps://falloses.com (grounded legal research assistant)\nhttps://www.youtube.com/watch?v=iGYf1SZFDMU (Streamix Startupbootcamp pitch)",
+      "includeInAiContext": false
+    },
+    {
+      "question": "Based on our range salary in the job description, what are your salary expectations?",
+      "answer": "€110,000 gross annual base salary",
+      "includeInAiContext": false
+    },
+    {
+      "question": "Do you belong to a protected category as defined by Law 68/1999 (Categoria Protetta)?",
+      "answer": "No",
+      "includeInAiContext": false
+    },
+    {
+      "question": "Why do you think you are a good fit for this role, and how do your skills, experiences, and motivations align with what we are looking for?",
+      "answer": "The scope of this role directly matches my recent work at Riverside: I led a 27-person engineering organization across 4 teams through Engineering Managers, spanning 3 full-stack product teams (Publishing, Growth, and Business) alongside Core Platform.\n\nI worked closely with Product and Design leadership to run quarterly roadmap planning and introduced an agile operating model that removed cross-team delivery churn.\n\nMy technical foundation is in full-stack web and backend architectures (React, Next.js, Node.js, PHP/Laravel, event-driven systems, and Stripe/RevenueCat monetization flows). Because of that background, I can step in immediately to guide and mentor the website frontend team while hiring their dedicated Engineering Manager.\n\nI also drove practical AI-assisted workflows (Copilot, Cursor) across my teams to speed up PR cycles without lowering review standards.",
+      "includeInAiContext": true
+    }
+  ]
+}

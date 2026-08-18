@@ -45,6 +45,7 @@ import { fingerprintText, findCrossListings } from './fingerprint-core.mjs';
 import { resolveColumns, parseTrackerRow } from './tracker-parse.mjs';
 import { normalizeCompany } from './tracker-utils.mjs';
 import { normalizeCompanyName } from './invite-match.mjs';
+import { buildIcExceptionFilter, hasIcExceptionPolicy } from './scan-utils.mjs';
 import { withPipelineLock } from './pipeline-lock.mjs';
 import { withPortalHealthLock } from './portal-health-lock.mjs';
 
@@ -2021,6 +2022,7 @@ async function main() {
   const companies = Array.isArray(config.tracked_companies) ? config.tracked_companies : [];
   const boards = Array.isArray(config.job_boards) ? config.job_boards : [];
   const titleFilter = buildTitleFilter(config.title_filter);
+  const icExceptionFilter = buildIcExceptionFilter(config.title_filter);
 
   // Seniority tier classifier integration
   let classifyTier = null;
@@ -2208,7 +2210,9 @@ async function main() {
           }
         }
 
-        if (!titleFilter(job.title)) {
+        const matchesIcException = hasIcExceptionPolicy(company)
+          && icExceptionFilter(job.title, company);
+        if (!titleFilter(job.title) && !matchesIcException) {
           totalFilteredTitle++;
           continue;
         }

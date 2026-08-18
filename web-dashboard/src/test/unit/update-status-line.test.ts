@@ -60,4 +60,17 @@ describe("FsCareerOpsRepository.updateApplicationStatus", () => {
     const updated = await fs.readFile(path.join(repoRoot, "data", "applications.md"), "utf8");
     expect(updated).toContain("| 1\t2026-04-10\tDuckDuckGo\tEngineering Director\t4.7/5\tInterview\t✅\t[001](reports/001.md)\tStrong fit |");
   });
+
+  it("rewrites the status cell when the tracker has a Via column", async () => {
+    const repoRoot = await makeFixtureRepo(`| # | Date | Company | Via | Role | Score | Status | PDF | Report | Notes |
+|---|------|---------|-----|------|-------|--------|-----|--------|-------|
+| 1 | 2026-04-10 | DuckDuckGo | Recruiter | Engineering Director | 4.7/5 | Evaluated | ✅ | [001](reports/001.md) | Strong fit |
+`);
+
+    const repository = new FsCareerOpsRepository(repoRoot);
+    await repository.updateApplicationStatus("001", "Applied");
+
+    const updated = await fs.readFile(path.join(repoRoot, "data", "applications.md"), "utf8");
+    expect(updated).toContain("| DuckDuckGo | Recruiter | Engineering Director | 4.7/5 | Applied | ✅ |");
+  });
 });

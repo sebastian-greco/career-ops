@@ -22,14 +22,42 @@ function parseFields(line: string) {
 export function parseApplicationsMarkdown(raw: string, normalizeStatus: (status: string) => string) {
   const applications: DashboardApplication[] = [];
   let number = 0;
+  let columnIndexes = {
+    date: 1,
+    company: 2,
+    role: 3,
+    score: 4,
+    status: 5,
+    pdf: 6,
+    report: 7,
+    notes: 8,
+  };
 
   for (const sourceLine of raw.split(/\r?\n/)) {
     const line = sourceLine.trim();
+    if (line.startsWith("| #")) {
+      const headers = parseFields(line).map((header) => header.toLowerCase());
+      const indexOf = (header: string, fallback: number) => {
+        const index = headers.indexOf(header);
+        return index === -1 ? fallback : index;
+      };
+      columnIndexes = {
+        date: indexOf("date", columnIndexes.date),
+        company: indexOf("company", columnIndexes.company),
+        role: indexOf("role", columnIndexes.role),
+        score: indexOf("score", columnIndexes.score),
+        status: indexOf("status", columnIndexes.status),
+        pdf: indexOf("pdf", columnIndexes.pdf),
+        report: indexOf("report", columnIndexes.report),
+        notes: indexOf("notes", columnIndexes.notes),
+      };
+      continue;
+    }
+
     if (
       line === "" ||
       line.startsWith("# ") ||
       line.startsWith("|---") ||
-      line.startsWith("| #") ||
       !line.startsWith("|")
     ) {
       continue;
@@ -41,22 +69,24 @@ export function parseApplicationsMarkdown(raw: string, normalizeStatus: (status:
     }
 
     number += 1;
-    const scoreMatch = fields[4]?.match(scoreRegex);
-    const reportMatch = fields[7]?.match(reportLinkRegex);
+    const scoreRaw = fields[columnIndexes.score] ?? "";
+    const statusRaw = fields[columnIndexes.status] ?? "";
+    const scoreMatch = scoreRaw.match(scoreRegex);
+    const reportMatch = fields[columnIndexes.report]?.match(reportLinkRegex);
 
     applications.push({
       number,
-      date: fields[1] ?? "",
-      company: fields[2] ?? "",
-      role: fields[3] ?? "",
-      statusRaw: fields[5] ?? "",
-      statusNormalized: normalizeStatus(fields[5] ?? ""),
+      date: fields[columnIndexes.date] ?? "",
+      company: fields[columnIndexes.company] ?? "",
+      role: fields[columnIndexes.role] ?? "",
+      statusRaw,
+      statusNormalized: normalizeStatus(statusRaw),
       score: scoreMatch ? Number.parseFloat(scoreMatch[1]) : 0,
-      scoreRaw: fields[4] ?? "",
-      hasPdf: (fields[6] ?? "").includes("✅"),
+      scoreRaw,
+      hasPdf: (fields[columnIndexes.pdf] ?? "").includes("✅"),
       reportNumber: reportMatch?.[1] ?? "",
       reportPath: reportMatch?.[2] ?? "",
-      notes: fields[8] ?? "",
+      notes: fields[columnIndexes.notes] ?? "",
       jobUrl: "",
       compEstimate: "",
     });

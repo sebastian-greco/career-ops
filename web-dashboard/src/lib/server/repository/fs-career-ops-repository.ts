@@ -307,10 +307,24 @@ export class FsCareerOpsRepository implements CareerOpsRepository {
     const raw = await fs.readFile(filePath, "utf8");
     const lines = raw.split(/\r?\n/);
     let updated = false;
+    let statusColumnIndex = 5;
 
     for (let index = 0; index < lines.length; index += 1) {
       const line = lines[index]?.trim();
-      if (!line?.startsWith("|") || !line.includes(`[${reportId}]`)) {
+      if (!line?.startsWith("|")) {
+        continue;
+      }
+
+      if (line.startsWith("| #")) {
+        const headers = parseTrackerLine(line).fields.map((header) => header.toLowerCase());
+        const detectedStatusIndex = headers.indexOf("status");
+        if (detectedStatusIndex !== -1) {
+          statusColumnIndex = detectedStatusIndex;
+        }
+        continue;
+      }
+
+      if (!line.includes(`[${reportId}]`)) {
         continue;
       }
 
@@ -319,7 +333,7 @@ export class FsCareerOpsRepository implements CareerOpsRepository {
       if (fields.length < 8) {
         continue;
       }
-      fields[5] = newStatus;
+      fields[statusColumnIndex] = newStatus;
       lines[index] = serializeTrackerLine(fields, parsed.delimiter);
       updated = true;
       break;

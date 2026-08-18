@@ -17,7 +17,7 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 - Leadership: Engineering leadership, Org design & hiring, Coaching & mentorship, Compensation planning, Cross-functional strategy
 - Architecture & Platforms: Platform strategy, Distributed systems, Event-driven architecture, Performance optimization, Billing & monetization systems
 - AI & Product: AI coding tools, LLM applications, Retrieval & context caching, Workflow automation, Product engineering
-- Technologies: Node.js, TypeScript, NestJS, Next.js, React, Kafka, AWS, Kubernetes, Docker, MongoDB, MySQL, Qdrant
+- Technologies: Node.js, TypeScript, NestJS, Next.js, React, Supabase, Vercel, Kafka, AWS, Kubernetes, Docker, MongoDB, MySQL, Qdrant
 
 ## Professional Experience
 
@@ -30,7 +30,7 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 - Built [Verba](https://verbaspeech.app/), a macOS dictation app using on-device transcription models and local LLM cleanup for privacy-first speech workflows.
 - Built [Informia](https://www.informia.com.ar/), a multi-pass document-intelligence workflow for Argentine property records using vision models, evidence scoring, and context caching.
 - Advised a stealth startup founder in a fractional CTO-style engagement, defining scope, tech stack, database architecture, roadmap, and an initial product skeleton and POC.
-- Used the sabbatical to deepen hands-on expertise with Next.js product builds, long-running workflow orchestration, LLM applications, retrieval, context caching, and AI workflow design.
+- Used the sabbatical to deepen hands-on expertise with Next.js and Vercel product builds, Supabase databases, long-running workflow orchestration, LLM applications, retrieval, context caching, and AI workflow design.
 
 ### [Riverside - 4.5 years](https://riverside.com)
 
@@ -51,7 +51,7 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 
 - Built Riverside's first formal full-stack team by consolidating engineers from a flat structure and hiring 2 additional engineers, growing the team to 6.
 - Oversaw the team responsible for core platform services and the main user dashboard across billing, plans, entitlements, and Stripe-backed payment flows.
-- Coached 2 high-performing engineers into Team Lead roles as the Dashboard group evolved into Riverside's core Platform team.
+- Coached 3 high-performing engineers into Team Lead roles as the Dashboard group evolved into Riverside's core Platform team.
 - Split critical services from the monolith and introduced end-to-end observability across backend services and Kafka flows, contributing to a 33% reduction in overall system latency.
 - Helped the mobile team integrate RevenueCat with our backend billing, entitlements, and payment systems.
 

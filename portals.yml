@@ -90,6 +90,17 @@ title_filter:
     - "Robotics"
     - "Bioinformatics"
     - "Protein"
+    - "Manufacturing"
+    - "Mechanical"
+    - "Electrical"
+    - "Facilities"
+    - "Quality Engineering"
+    - "Systems Engineering"
+    - "Hardware"
+    - "Field Service"
+    - "Test Engineering"
+    - "Process Engineering"
+    - "Aerospace"
     - "Salesforce Admin"
     - "SAP "
     - "Oracle EBS"
@@ -116,6 +127,39 @@ title_filter:
 # restrictions never enter the pipeline.
 location_filter:
   enabled: true
+  # Current scanner schema. `always_allow` takes precedence so Italy/Milan
+  # remains actionable even when a posting also says hybrid.
+  always_allow:
+    - "Italy"
+    - "Italia"
+    - "Milan"
+    - "Milano"
+    - "Seregno"
+  allow:
+    - "Remote"
+    - "Anywhere"
+    - "Worldwide"
+    - "Global"
+    - "Europe"
+    - "European"
+    - "EU"
+    - "EMEA"
+  block:
+    - "United States"
+    - "US only"
+    - "USA only"
+    - "Canada"
+    - "Canada only"
+    - "North America"
+    - "Americas only"
+    - "LATAM"
+    - "APAC"
+    - "Australia"
+    - "India"
+    - "Hybrid"
+    - "On-site"
+    - "Onsite"
+    - "Office-based"
   local_markers:
     - "Italy"
     - "Italia"
@@ -514,6 +558,20 @@ tracked_companies:
     notes: "AI-native CRM. Legit, well-funded ($116M total; GV/Redpoint/Balderton/Point Nine/01A). Keep tracked, but roles skew IC/GTM and Europe remote excludes Italy so fit is selective."
     enabled: true
 
+  - name: Sumsub
+    careers_url: https://careers.sumsub.com/jobs
+    provider: teamtailor
+    notes: "Remote-first compliance and fraud platform. Explicit flexible-hours, no-mandatory-office, extra-leave, and family-support signals clear the selective-IC culture gate; verify Italy eligibility and location-based compensation per role."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "AI Engineer"
+      - "Senior Backend Engineer"
+      - "Senior Backend Developer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+    enabled: true
+
   - name: Tinybird
     careers_url: https://tinybird.co/about#join-us
     notes: "Remote. Real-time data platform. Left Ashby; custom site with 1 open role (SRE only) as of 2026-04-11. Was: jobs.ashbyhq.com/tinybird"
@@ -531,7 +589,9 @@ tracked_companies:
 
   - name: Doist
     careers_url: https://doist.com/careers#open-roles
-    notes: "Remote-first company with strong work-life-balance and async culture signals."
+    scan_method: playwright
+    scan_query: 'site:doist.com/careers engineer OR manager OR director OR head'
+    notes: "Remote-first company with strong work-life-balance and async culture signals. Custom careers page with no public supported ATS feed; the page is live but had no open roles when verified on 2026-08-17."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -544,6 +604,7 @@ tracked_companies:
 
   - name: Ghost
     careers_url: https://careers.ghost.org/
+    api: https://boards-api.greenhouse.io/v1/boards/ghost/jobs
     notes: "Remote-first non-profit with strong async culture, four-day week, and balance-first company design."
     culture_fit_tier: high
     ic_exception_company: true
@@ -552,6 +613,28 @@ tracked_companies:
       - "Product Engineer"
       - "Staff Product Engineer"
       - "Staff Engineer"
+    enabled: true
+
+  - name: 37signals
+    careers_url: https://37signals.com/jobs
+    scan_method: playwright
+    scan_query: 'site:37signals.com/jobs engineer OR manager OR director OR head'
+    notes: "Fully remote Basecamp/HEY company with a custom careers page and no public supported ATS board. The page is live but had no openings when verified on 2026-08-17."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Software Engineer"
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Engineering Manager"
+    enabled: true
+
+  - name: Gumroad
+    careers_url: https://gumroad.com/jobs
+    scan_method: websearch
+    scan_query: 'site:gumroad.com OR site:gumroad.notion.site Gumroad hiring engineer OR manager OR director'
+    notes: "No current public ATS board or human openings. The official /jobs URL redirects to Gumclaw, where Gumroad says the company is run by an autonomous agent; the former Flexile board and legacy Notion jobs page are no longer current. Keep web-search fallback enabled in case hiring resumes. Verified 2026-08-17."
     enabled: true
 
   - name: Buffer
@@ -705,6 +788,7 @@ tracked_companies:
 
   - name: Automattic
     careers_url: https://automattic.com/work-with-us/
+    api: https://boards-api.greenhouse.io/v1/boards/automatticcareers/jobs
     scan_method: playwright
     scan_query: 'site:automattic.com/work-with-us engineer OR manager OR director OR head'
     notes: "Distributed product company with unusually strong async maturity, open parental leave up to 6 months, sabbaticals, and deep remote operating experience. Strong culture-fit company worth tracking even when role discovery is less structured."
@@ -859,7 +943,7 @@ tracked_companies:
 
   - name: Contentsquare
     careers_url: https://jobs.lever.co/contentsquare/
-    notes: "Add as Contentsquare rather than Hotjar. Good benefits, hybrid/remote flexibility, parental support, and learning investment. Keep as a selective target, but treat the old Hotjar culture signal as partially diluted after acquisition/integration."
+    notes: "Hotjar is tracked here under its current parent, Contentsquare: careers.hotjar.com now redirects to Contentsquare's careers page and both brands use the same Lever board. Keep as a selective target, but do not assume the former standalone Hotjar perks still apply after integration."
     enabled: true
 
   - name: Wildbit
@@ -972,10 +1056,10 @@ tracked_companies:
     enabled: true
 
   - name: Pliant
-    careers_url: https://pliant.bamboohr.com/careers/list
-    api: https://pliant.bamboohr.com/careers/list
-    api_provider: bamboohr
-    notes: "Berlin-based B2B payments fintech with remote engineering roles and credible product/engineering signals. Keep as a selective fintech target: strong domain fit, but watch for higher-intensity culture signals."
+    careers_url: https://jobs.ashbyhq.com/pliant
+    api: https://api.ashbyhq.com/posting-api/job-board/pliant?includeCompensation=true
+    api_provider: ashby
+    notes: "Berlin-based B2B payments fintech with EU/UK-remote engineering roles. Keep as a selective leadership target: strong payments/platform adjacency, but verify Italy eligibility and watch for higher-intensity culture signals. Migrated from BambooHR to Ashby in 2026."
     enabled: true
 
   - name: Qonto
@@ -1097,7 +1181,7 @@ tracked_companies:
 
   - name: Spotify
     careers_url: https://jobs.lever.co/spotify
-    notes: "Disabled: current openings consistently resolve to hybrid or geo-anchored roles that are not actionable from Italy for Sebastian's search."
+    notes: "Official careers hub is lifeatspotify.com; the current jobs feed is Lever. Disabled because current openings consistently resolve to hybrid or geo-anchored roles that are not actionable from Italy for Sebastian's search."
     enabled: false
 
   - name: Vinted
@@ -1161,6 +1245,54 @@ tracked_companies:
       - "GTM Engineer"
     enabled: true
 
+  - name: Fly.io
+    careers_url: https://fly.io/jobs/
+    scan_method: playwright
+    scan_query: 'site:fly.io/jobs engineer OR manager OR director OR head'
+    notes: "Fully distributed cloud platform company with a custom careers page and no public supported ATS board. Track the branded page directly; verify role-specific Europe/Italy eligibility."
+    enabled: true
+
+  - name: Railway
+    careers_url: https://jobs.ashbyhq.com/railway
+    api: https://api.ashbyhq.com/posting-api/job-board/railway?includeCompensation=true
+    api_provider: ashby
+    notes: "Globally distributed cloud infrastructure/PaaS company on Ashby. Track selectively because the current openings skew heavily toward hands-on infrastructure roles."
+    enabled: true
+
+  - name: Tailscale
+    careers_url: https://job-boards.greenhouse.io/tailscale
+    api: https://boards-api.greenhouse.io/v1/boards/tailscale/jobs
+    notes: "Remote-first mesh-networking company on Greenhouse. Verify each posting's country and timezone eligibility for Italy."
+    enabled: true
+
+  - name: Aiven
+    careers_url: https://aiven.io/careers/job
+    scan_method: playwright
+    scan_query: 'site:aiven.io/careers/job "Engineering Manager" OR "Director" OR "Head of Engineering" OR "Staff Engineer" OR "Principal Engineer"'
+    notes: "Helsinki-headquartered open-source cloud data platform. Its branded jobs page is Greenhouse-backed but does not expose a standard public board endpoint supported by the scanner, so track the live custom listing directly and verify remote/Italy eligibility per role."
+    enabled: true
+
+  - name: Strapi
+    careers_url: https://strapi.io/careers
+    scan_method: playwright
+    scan_query: 'site:strapi.io/careers Strapi engineer OR manager OR director OR head'
+    notes: "Remote-first open-source headless CMS company with a custom careers page and no current public ATS board. The page is live but showed no openings when verified on 2026-08-17."
+    enabled: true
+
+  - name: Ona (formerly Gitpod)
+    careers_url: https://ona.com/careers
+    scan_method: websearch
+    scan_query: 'site:jobs.ashbyhq.com/ona engineer OR manager OR director OR head'
+    notes: "Gitpod rebranded to Ona; gitpod.io/careers redirects here. ATS: Ashby, but the branded page currently remains on 'Loading job opportunities' and the standard public posting API is unavailable. The only indexed EMEA Ashby role was confirmed expired, while Ona now announces it is joining OpenAI. Keep targeted web-search fallback enabled in case the board returns. Verified 2026-08-17."
+    enabled: true
+
+  - name: Smallpdf
+    careers_url: https://jobs.ashbyhq.com/smallpdf
+    api: https://api.ashbyhq.com/posting-api/job-board/smallpdf?includeCompensation=true
+    api_provider: ashby
+    notes: "Swiss document software and API company on Ashby. Some roles are remote, but hiring geography varies across Smallpdf and Pdftools openings; verify Italy eligibility per posting."
+    enabled: true
+
   - name: Resend
     careers_url: https://jobs.ashbyhq.com/resend
     notes: "Remote-first developer tools company; keep, but expect many non-target roles."
@@ -1192,7 +1324,7 @@ tracked_companies:
     careers_url: https://careers.snowflake.com/
     scan_method: websearch
     scan_query: 'site:careers.snowflake.com/us/en "Engineering Manager" OR "Senior Engineering Manager" OR "Staff Engineer" OR "Principal Engineer" OR "Director of Engineering" OR "Platform Architect"'
-    notes: "Data cloud platform with a large engineering org. Track selectively for leadership and senior platform/backend openings."
+    notes: "Data cloud platform with a large engineering org. ATS/career platform: Phenom-style custom career site (not a supported structured scanner API), so use the official search page plus targeted web-search fallback. Track selectively for leadership and senior platform/backend openings. Verified 2026-08-17."
     enabled: true
 
   - name: GitLab
@@ -1220,9 +1352,8 @@ tracked_companies:
     enabled: true
 
   - name: Sourcegraph
-    careers_url: https://sourcegraph.com/jobs
-    scan_method: playwright
-    scan_query: 'site:sourcegraph.com/jobs "Engineering Manager" OR "Director of Engineering" OR "Staff Engineer" OR "Principal Engineer" OR "Tech Lead"'
+    careers_url: https://job-boards.greenhouse.io/sourcegraph91
+    api: https://boards-api.greenhouse.io/v1/boards/sourcegraph91/jobs
     notes: "Global all-remote code-intelligence and agentic developer-tools company. Track leadership roles; EST overlap, intensity, and post-layoff signals mean it does not clear the exceptional-culture IC gate."
     enabled: true
 

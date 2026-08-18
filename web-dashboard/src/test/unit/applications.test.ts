@@ -22,4 +22,22 @@ describe("parseApplicationsMarkdown", () => {
       reportPath: "reports/001-duckduckgo.md",
     });
   });
+
+  it("parses trackers with the optional Via column", () => {
+    const raw = `| # | Date | Company | Via | Role | Score | Status | PDF | Report | Notes |
+|---|------|---------|-----|------|-------|--------|-----|--------|-------|
+| 905 | 2026-08-18 | WeRoad | — | Head of Product Engineering | 4.1/5 | Evaluated | ❌ | [905](../reports/905-weroad.md) | Strong fit |
+`;
+
+    const applications = parseApplicationsMarkdown(raw, (status) => status.toLowerCase());
+
+    expect(applications[0]).toMatchObject({
+      company: "WeRoad",
+      role: "Head of Product Engineering",
+      score: 4.1,
+      statusNormalized: "evaluated",
+      reportNumber: "905",
+      notes: "Strong fit",
+    });
+  });
 });

@@ -14,7 +14,7 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 **Key decisions:**
 - Helped evolve the org from a flatter structure into clearer team ownership and leadership layers.
-- Elevated strong ICs into Team Lead roles and coached emerging engineering managers as the organization scaled.
+- Elevated 3 strong ICs into Team Lead roles and coached emerging engineering managers as the organization scaled.
 - Stayed accountable for group direction, architecture, hiring quality, and org design while delegating local execution through leaders.
 - After candid feedback from Riverside's CEO that he was spreading himself too thin, changed his operating model from being the person who jumped into every gap to building leaders and teams that could count on him without depending on him.
 
@@ -341,6 +341,21 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 ---
 
+## Streamix -- Founder, Product, and Pitching
+
+**Tags:** founder, product, webrtc, live-video, streaming, customers, startupbootcamp, pitching
+
+**Hero scope:** Co-founded Streamix and helped turn the idea into a working cloud-based live-video production product used by real customers.
+
+**Proof points:**
+- Streamix customers included Mediaset and Condé Nast.
+- The company was selected for the Startupbootcamp Media accelerator in the Netherlands.
+- Sebastian was the primary spokesperson and pitched Streamix to audiences of 250+ investors.
+- Public pitch video: [Streamix Pitch - SBC Media 2019 Demo Day](https://www.youtube.com/watch?v=iGYf1SZFDMU).
+- The product involved hands-on work across WebRTC, video transcoding, streaming formats, mobile development, PHP, and Laravel.
+
+---
+
 ## Sabbatical -- AI-Native Product Builds
 
 **Tags:** ai, llm, agentic, projects, product, local-first, grounded-search, browser-automation, hands-on
@@ -405,3 +420,54 @@ Compact proof points from extended experience that do not always fit cleanly in 
 - Direct technical/product alignment with partner teams before and during integration work.
 - Strong evidence for roles that mention integrations, enterprise connections, partner platforms, health systems, employer partners, or B2B SaaS surfaces.
 - Turned one customer's unsupported workaround into a supported product surface that could be offered to additional enterprise accounts.
+
+---
+
+## Riverside and Personal -- Automation for Team Management and Administrative Work
+
+**Tags:** automation, ai-agents, team-management, one-on-ones, performance-reviews, jira, sla-triage, local-agents, personal-productivity
+
+**Hero scope:** Built assistants for team management and engineering triage at Riverside, then continued developing local agents for recurring administrative and healthcare tasks.
+
+**Automations:**
+- Built a team management assistant using Granola transcriptions, a private memory per person, Slack reminders, and a dashboard covering discussions, action points, ongoing issues, goals, PRs, and commits.
+- Connected an SLA triage agent to Jira so it could retrieve assigned open tickets, inspect the relevant code, and draft questions plus possible short- and long-term fixes for review and decision.
+- Built a local pay slip agent that accounts for holidays and other variables, calls the reference website's services over HTTP, generates the monthly PDF, saves it to Drive, and reports the amount to transfer.
+- Built an SSN appointment agent that reads a prescription photo, considers calendar preferences, searches availability across nearby provinces, and schedules daily checks when no suitable appointment is available.
+
+**Proof points:**
+- Improved the quality of 1:1s and the accuracy of performance reviews by preserving discussion history, action points, and relevant team signals instead of relying on memory.
+- Increased attention to detail and follow-through across the team through persistent memory and Slack reminders.
+- Reduced SLA triage effort by preparing the investigation and possible responses before the management decision.
+- Made the cleaning person's monthly wire transfer consistently on time while removing repeated manual data entry and providing a direct link to the stored pay slip.
+- Removed the repeated work of checking healthcare availability province by province and rerunning the same search every day.
+
+**Evidence note:** The Riverside automations lived on a company computer, so screenshots are no longer available. The descriptions above come from Sebastian's direct account and should be presented as walkthrough-ready examples rather than externally linked demos.
+
+---
+
+## Riverside -- Succession Decision, Leadership Fit, and Delayed Replacement
+
+**Tags:** succession-planning, leadership-selection, people-management, technical-leadership, delegation, stakeholder-management, failure, reflection
+
+**Hero scope:** Made two connected succession mistakes while moving from Engineering Manager to Group Lead: committing to a future Team Lead before completing the evaluation, then waiting too long to replace him after coaching showed that people management was the wrong fit.
+
+**Situation:**
+- Had long viewed a technically strong, ambitious engineer as the natural successor for the Dashboard team. He had covered successfully during vacations and communicated well inside the team, but smaller warning signs in external stakeholder communication were given too little weight.
+- When that engineer was called to reserve duty during a conflict, appointed a technically more experienced but recently hired developer, about six months into Riverside, as interim lead. Sebastian doubted both his readiness as a new employee and his management skills, then was positively surprised by his delegation, stakeholder communication, and cross-team leadership.
+- Honored the original commitment when the intended successor returned. The mistake was making the promise before the evidence was complete, not keeping the promise afterward.
+
+**What happened next:**
+- After returning under significant personal stress, the new lead's difficulties became much stronger. He became highly protective of the team, treated outside pressure as hostile, struggled to mediate or compromise, delegated poorly, and passed organizational stress into the team instead of translating it into context and safety.
+- Gave direct and sometimes difficult feedback and continued coaching, but delayed the replacement decision partly because moving him out of management might cause him to leave.
+- While that coaching continued, an opportunity opened to create a new team. Sebastian proposed the former interim lead, hired a team around him from scratch, and watched him build one of the group's strongest-performing teams.
+- Began interviewing too late. The lead left before a successor was ready, the team was affected, and Sebastian carried both Group Lead and Platform Team Lead responsibilities for several months.
+- The former interim lead was already committed to his new team before the original successor left, so he was no longer available to fill the sudden gap.
+
+**Lessons:**
+- Keep succession options open because people and circumstances can change, even when a candidate has performed well in temporary internal leadership coverage.
+- Treat management communication as a broad skill set: internal trust, stakeholder relationships, mediation, compromise, delegation, cross-team behavior, and how leaders translate organizational pressure for their teams.
+- Look for a balanced set of management skills rather than assuming technical strength, ambition, or clear internal communication will compensate for missing external leadership skills.
+- Use interim assignments as real leadership trials rather than placeholders for a predetermined appointment.
+- Set a time-bound decision point when coaching someone through a role-fit problem.
+- Preserve a strong engineer through a technical-lead path when appropriate, but do not let retention risk keep someone in a management role that is hurting them and the team.
