@@ -43,6 +43,8 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 - Ran 100+ interviews and served as final technical sign-off for senior backend, system design, and culture-fit evaluation across multiple orgs.
 - Guided the backend evolution from a monolith to event-driven architecture with Kafka and Protobuf, improving reliability, observability, and team autonomy.
 - Acted as an architectural reviewer across my group and partner teams, including leading design review and coordination across two teams to ship an event-driven token ledger for AI feature consumption.
+- Led engineering-side work across multiple annual SOC 2 Type 2 audit cycles, working directly with auditors, driving team remediation, establishing recurring compliance processes, and later partnering with Security on code reviews; Riverside completed the process successfully each year, supporting enterprise contracts including Microsoft.
+- Participated in penetration-test remediation, personally resolving and coordinating findings and later partnering with the dedicated security specialist to review pull requests and correct security issues.
 - Piloted AI-assisted development and review workflows across my teams, helping normalize practical use of GitHub Copilot and Cursor in production engineering work.
 
 #### Engineering Manager

@@ -6,6 +6,10 @@ candidate:
   email: "greco.sebastian@gmail.com"
   phone: "+39 389 464 8029"
   location: "Seregno, Italy"
+  availability:
+    status: "available_now"
+    earliest_start: "immediate"
+    note: "On a career sabbatical; available to start immediately."
   linkedin: "linkedin.com/in/grecosebastian"
   portfolio_url: ""
   github: "github.com/sebastian-greco"
@@ -99,13 +103,13 @@ narrative:
 compensation:
   target_range: "€110K-150K"
   currency: "EUR"
-  minimum: "€110K salary equivalent, or €75/hour for strong B2B contractor roles"
+  minimum: "€110K for employee roles; €156K annual invoicing for full-time B2B service agreements; €75/hour for clearly scoped hourly work"
   location_flexibility: "Remote-first, Europe-compatible, with strong preference for flexible and family-friendly cultures"
   alternate_ranges:
     - track: "contractor"
-      target_range: "€75-100/hour"
-      minimum: "€75/hour"
-      note: "Well-paid contractor roles are a valid option when they are fixed-term or clearly scoped, remote-friendly, and buy real schedule flexibility rather than full-time employee expectations without employee upside."
+      target_range: "€156K-180K annual invoicing for full-time B2B; €75-100/hour for clearly scoped hourly work"
+      minimum: "€156K annual invoicing for full-time B2B, or €75/hour for clearly scoped hourly work"
+      note: "Full-time B2B targets must account for higher taxes, unpaid leave, and the absence of employee benefits. Use annual invoicing when a form asks for annual or gross compensation; use hourly wording only when the engagement or form is explicitly hourly."
   employment_preferences:
     permanent:
       preference: "default"

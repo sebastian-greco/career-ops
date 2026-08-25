@@ -101,6 +101,7 @@ export function toPipelineSearchParams(
   view: PipelineView,
   selectedId: string,
   search: string,
+  page = 1,
 ) {
   const params = new URLSearchParams();
   const normalizedSearch = coerceSearch(search);
@@ -120,8 +121,16 @@ export function toPipelineSearchParams(
   if (selectedId) {
     params.set("selected", selectedId);
   }
+  if (page > 1) {
+    params.set("page", String(page));
+  }
 
   return params.toString();
+}
+
+export function coercePage(value?: string) {
+  const page = Number.parseInt(value ?? "1", 10);
+  return Number.isFinite(page) && page > 0 ? page : 1;
 }
 
 export function coerceFilter(value?: string): PipelineFilter {

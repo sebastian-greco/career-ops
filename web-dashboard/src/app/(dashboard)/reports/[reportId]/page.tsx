@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { CopyCommandButton } from "@/components/dashboard/copy-command-button";
 import { ReportRenderer } from "@/components/markdown/report-renderer";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   coerceFilter,
   coerceSearch,
@@ -57,63 +57,66 @@ export default async function ReportPage({
   const nextReport = currentIndex >= 0 ? orderedReports[currentIndex + 1] ?? null : null;
 
   return (
-    <div className="space-y-6">
-      <div className="sticky top-[var(--dashboard-header-offset)] z-30 space-y-4 border-b border-border/40 bg-background/95 pb-6 pt-2 backdrop-blur">
+    <div className="space-y-4 sm:space-y-6">
+      <div className="sticky top-[var(--dashboard-header-offset)] z-30 space-y-3 border-b border-border/40 bg-background/95 pb-3 pt-1 backdrop-blur sm:space-y-4 sm:pb-6 sm:pt-2">
         <div className="space-y-1">
           <p className="text-[10px] font-bold uppercase tracking-widest text-primary/80">
             Report {report.reportId}
           </p>
-          <h2 className="text-3xl font-bold tracking-tight text-foreground">{report.title}</h2>
+          <h2 className="line-clamp-2 text-xl font-bold leading-tight tracking-tight text-foreground sm:text-3xl">{report.title}</h2>
         </div>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="-mx-3 flex items-center gap-2 overflow-x-auto px-3 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
           <Link href={backHref}>
-            <Button variant="outline">Back to Pipeline</Button>
+            <Button variant="outline" className="h-11 shrink-0">← Pipeline</Button>
           </Link>
           {previousReport ? (
             <Link href={`/reports/${previousReport.reportNumber}?back=${encodeURIComponent(backHref)}`}>
-              <Button variant="secondary">Previous</Button>
+              <Button variant="secondary" className="h-11 shrink-0">Previous</Button>
             </Link>
           ) : (
-            <Button variant="secondary" disabled>Previous</Button>
+            <Button variant="secondary" className="h-11 shrink-0" disabled>Previous</Button>
           )}
           {nextReport ? (
             <Link href={`/reports/${nextReport.reportNumber}?back=${encodeURIComponent(backHref)}`}>
-              <Button variant="secondary">Next</Button>
+              <Button variant="secondary" className="h-11 shrink-0">Next</Button>
             </Link>
           ) : (
-            <Button variant="secondary" disabled>Next</Button>
+            <Button variant="secondary" className="h-11 shrink-0" disabled>Next</Button>
           )}
           {report.url ? (
             <a href={report.url} target="_blank" rel="noreferrer">
-              <Button>Open Job URL</Button>
+              <Button className="h-11 shrink-0">Open Job</Button>
             </a>
           ) : null}
           {report.jobDescriptionPath ? (
             <Link href={artifactHref(report.jobDescriptionPath)}>
-              <Button variant="secondary">Open JD</Button>
+              <Button variant="secondary" className="h-11 shrink-0">JD</Button>
             </Link>
           ) : null}
           {report.skillCoveragePath ? (
             <Link href={artifactHref(report.skillCoveragePath)}>
-              <Button variant="secondary">Open Skills Scan</Button>
+              <Button variant="secondary" className="h-11 shrink-0">Skills</Button>
             </Link>
           ) : null}
           {report.interviewPrepPath ? (
             <Link href={artifactHref(report.interviewPrepPath)}>
-              <Button variant="secondary">Open Interview Prep</Button>
+              <Button variant="secondary" className="h-11 shrink-0">Interview Prep</Button>
             </Link>
           ) : null}
         </div>
       </div>
 
-      <div className="grid items-start gap-8 lg:grid-cols-[320px_minmax(0,1fr)]">
-        <Card className="sticky top-[calc(var(--dashboard-header-offset)+1.5rem)] border-border/50 shadow-xs">
-          <CardHeader className="border-b border-border/40 bg-muted/20 pb-4">
-            <CardTitle className="text-lg">Metadata</CardTitle>
-            <CardDescription>Parsed from the report header and summary blocks.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-5 p-5 text-sm">
-            <div className="rounded-xl border border-border bg-accent/40 px-4 py-3">
+      <div className="space-y-4 sm:space-y-6">
+        <details className="group overflow-hidden rounded-xl border border-border/50 bg-card text-card-foreground shadow-xs">
+          <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 bg-muted/20 px-4 py-3 marker:hidden sm:px-5 [&::-webkit-details-marker]:hidden">
+            <div>
+              <p className="font-bold">Report summary</p>
+              <p className="text-sm text-muted-foreground">Score {report.scoreRaw || (report.score ? `${report.score.toFixed(1)}/5` : "not found")} · tap for details</p>
+            </div>
+            <span aria-hidden="true" className="text-xl text-muted-foreground transition-transform group-open:rotate-45">+</span>
+          </summary>
+          <div className="grid gap-5 border-t border-border/40 p-4 text-sm sm:grid-cols-2 sm:p-5 lg:grid-cols-4">
+            <div className="rounded-xl border border-border bg-accent/40 px-4 py-3 sm:col-span-2 lg:col-span-1 lg:row-span-2">
               <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Overall Score</p>
               <p className="mt-2 text-3xl font-bold tracking-tight text-foreground">
                 {report.scoreRaw || (report.score ? `${report.score.toFixed(1)}/5` : "Not found")}
@@ -123,7 +126,7 @@ export default async function ReportPage({
                 <CopyCommandButton command={`/career-ops-json-cv ${report.reportId}`} label="JSON CV" />
               </div>
             </div>
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1.5 sm:col-span-2 lg:col-span-3">
               <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Archetype</p>
               <p className="font-medium text-foreground">{report.archetype || "Not found"}</p>
             </div>
@@ -179,11 +182,11 @@ export default async function ReportPage({
                 {report.applicationQuestions.length > 0 ? `${report.applicationQuestions.length} captured` : "Not found"}
               </p>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </details>
 
         <Card className="overflow-hidden border-border/50 shadow-sm">
-          <CardContent className="p-8 sm:p-12">
+          <CardContent className="p-4 sm:p-8 lg:p-12">
             <ReportRenderer markdown={report.markdown} />
           </CardContent>
         </Card>

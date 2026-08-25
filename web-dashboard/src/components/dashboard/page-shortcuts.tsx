@@ -71,7 +71,7 @@ export function PageShortcuts({ backHref }: PageShortcutsProps) {
   }, [backHref, router]);
 
   return (
-    <div className="rounded-xl border border-border bg-card/80 px-4 py-3 text-xs text-muted-foreground shadow-sm">
+    <div className="hidden rounded-xl border border-border bg-card/80 px-4 py-3 text-xs text-muted-foreground shadow-sm md:block">
       Shortcuts: <span className="font-medium text-foreground">j/k</span> scroll, <span className="font-medium text-foreground">PgUp/PgDn</span> page, <span className="font-medium text-foreground">g/G</span> top/end, <span className="font-medium text-foreground">Esc</span> back
     </div>
   );

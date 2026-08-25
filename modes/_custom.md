@@ -21,6 +21,15 @@ This user-layer file defines procedural rules for this fork. It may override a s
 
 ## External application tracker
 
+- **Always sync apply drafts:** When `APPLICATION_TRACKER_URL` is configured, `apply` should always upsert the draft and substantive questions to the external tracker before presenting the run as ready. The user's standing approval covers this apply-mode sync; surface the returned `applicationId` and stop on sync failure.
+
+## Application resume review gate
+
+- **Always run the JSON-CV review for applications:** Before an application is presented as upload-ready, run the `json-cv` workflow for the report. Use the live JD as the primary input, start from the correct candidate-authored base JSON, run the hard/soft skill coverage scan, make only reviewed minimal changes, validate the JSON, and sync the exact validated artifact to RxResume when configured. Keep PDF export opt-in unless the user asks for it.
+- **Apply handoff:** The apply workflow must record the exact resume artifact path/version and whether it was uploaded. It must never mark the application `Applied` unless the user confirms visible submission.
+
+- **Draft state is live state:** As soon as an `apply` or `apply-full` run has enough information to create a draft, upsert the complete current draft to the external tracker immediately. Keep that record synchronized after every material change to the JD, fit notes, answers, files, or application state; do not wait until form filling or submission.
+- Save the full draft payload supported by `sync-application-tracker.mjs`, including the exact JD, report linkage, fit notes, cover-letter state, substantive answers, and current pipeline stage. The external tracker should represent the real in-progress application, not remain empty while local drafting continues.
 - **Hard gate for `apply` / `apply-full`:** when `APPLICATION_TRACKER_URL` is set in the repo `.env`, upsert via `sync-application-tracker.mjs` before presenting copy-paste answers as complete or marking the apply run done. Surface the returned `applicationId` in the apply summary. If upsert fails, stop and report the error — do not silently skip. The script reads `.env`; do not rely on exported shell variables alone. If `APPLICATION_TRACKER_URL` is absent, say so once and continue without an external entry.
 - Required upsert payload: `companyName`, `roleTitle`, `jobPostingUrl`, verbatim live JD in `jobDescriptionText`, `source: apply`, and `pipelineStage: draft` until submission is confirmed. Reports are supporting context only.
 - Save `currentDraft` only when the live form explicitly asks for a cover letter.
@@ -33,6 +42,7 @@ This user-layer file defines procedural rules for this fork. It may override a s
 
 - Apply `voice-dna.md` and `modes/_writing.md` to candidate-facing prose. Prefer direct, specific, natural language over polished-but-generic AI phrasing.
 - Remove inflated symbolism, promotional language, vague attribution, shallow analysis, repetitive transitions, excessive em dashes, and formulaic three-part constructions.
+- In leadership cover letters, do not diagnose the employer or prescribe an operating model from the job description alone. Lead with curiosity about the current strengths, criticalities, and business priorities; describe changes as decisions to make after learning the real context. Keep CV recap brief because the resume already carries the detailed evidence.
 - Preserve the local `humanizer-zh` skill. When producing Chinese candidate-facing prose, use it as a final editing pass when available without altering facts or form constraints.
 
 ### GitHub profile voice
@@ -55,3 +65,12 @@ This user-layer file defines procedural rules for this fork. It may override a s
 - Use the upstream 1.24 provider-based scanner and official `web/` experience for broad discovery.
 - Retain the logged-in browser workflows in `scan-jobgether` and `scan-wttj`; use their deterministic helpers and cleanup rules rather than reimplementing portal logic.
 - Keep `portals.yml` as the candidate's source of search filters, target companies, exclusions, and location rules.
+- In `scan` mode, run `node scan.mjs` exactly once as the authoritative pass for every target resolved by its provider layer. A successful provider resolution counts as covered whether it used an ATS API, public board API/feed, Algolia, Workday, a local parser, or another built-in provider; do not reopen those companies with Playwright and do not refetch the same APIs through agent tools.
+- Provider scans require network-enabled execution. If Node reports broad `TypeError: fetch failed`, DNS `ENOTFOUND`, or similar transport errors across multiple ATS providers, treat that as a sandbox/network-permission failure first: rerun the same provider pass with network access enabled before classifying boards as broken or changing `portals.yml`. Only update a provider URL after a network-enabled probe confirms that the configured endpoint is stale, migrated, or otherwise invalid.
+- After the provider pass, compute the unresolved set from every enabled `tracked_companies` / `job_boards` entry for which `scan.mjs` reports no matched provider. Do not limit fallback coverage to the smaller `Agent/WebSearch handoff` list: entries marked `scan_method: playwright` and entries with a `careers_url` but no `scan_method` are unresolved browser targets too.
+- Scan each unresolved browser target through the user's Chrome extension, navigating its configured `careers_url`, following listing pagination or relevant job sections, and extracting canonical job-description URLs. Use the configured `scan_query` as a same-company fallback only after the Chrome page fails to expose usable listings. Entries explicitly marked `scan_method: websearch` remain WebSearch-first handoffs.
+- Chrome is the required browser surface for unresolved portal scanning. Do not silently substitute the in-app browser or a separate Playwright profile. If Chrome or its extension is unavailable, signed out where required, or blocked, fail closed for that target and name it in the final summary under `Chrome fallback not scanned` so an incomplete run is never reported as complete.
+- Also run enabled cross-portal `search_queries` whose purpose is discovering companies outside the provider-covered set. Discard every browser/search hit for a company/role already covered by the provider pass or present in scan history, the pipeline, or the application tracker. Verify the liveness and canonical URL of each genuinely new candidate before adding it.
+- Do not browse any provider-covered company as a redundant second scan level, and do not treat a transient provider network error as permission for a broad Chrome rescan; report transient errors and use the existing persistent-health workflow for repeated failures.
+- `scan` never invokes `scan-jobgether` or the logged-in `scan-wttj` recommendation workflow implicitly. Those remain separate, explicitly requested browser modes.
+- The scan task ends after discovery, filtering, deduplication, writes to `data/pipeline.md` / `data/scan-history.tsv`, and a concise summary. It does not run `pipeline`, evaluate offers, generate CV artifacts, or apply unless the user separately requests that next mode.

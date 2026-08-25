@@ -25,7 +25,7 @@ export function Button({
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
         variant === "ghost" && "hover:bg-accent hover:text-accent-foreground",
         size === "default" && "h-10 px-4 py-2",
-        size === "sm" && "h-8 px-3 text-xs",
+        size === "sm" && "h-10 px-3 text-xs sm:h-8",
         className,
       )}
       {...props}

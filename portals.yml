@@ -456,7 +456,8 @@ tracked_companies:
     enabled: false
 
   - name: Lindy
-    careers_url: https://jobs.ashbyhq.com/lindy
+    careers_url: https://careers.lindy.ai
+    provider: teamtailor
     notes: "Agent platform; keep as a selective frontier/product fit, not a default target."
     enabled: true
 
@@ -1812,4 +1813,25 @@ tracked_companies:
       - "Principal Engineer"
       - "Platform Engineer"
       - "DevOps Engineer"
+    enabled: true
+
+  # -- Welcome to the Jungle (Algolia provider) --
+  - name: Welcome to the Jungle
+    provider: wttj
+    wttj:
+      queries:
+        - "Director of Engineering"
+        - "Engineering Director"
+        - "Senior Engineering Manager"
+        - "Head of Engineering"
+        - "Engineering Manager"
+        - "Platform Engineering Manager"
+        - "Backend Engineering Manager"
+        - "Director of Platform Engineering"
+        - "Staff Engineer"
+        - "Principal Engineer"
+        - "Platform Architect"
+        - "Backend Architect"
+      max_hits: 100
+    notes: "Welcome to the Jungle Algolia index — broad discovery across European tech. No login required."
     enabled: true

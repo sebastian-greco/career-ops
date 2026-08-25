@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Outfit } from "next/font/google";
 
-import { TrpcProvider } from "@/lib/trpc/client";
-
 import "./globals.css";
 
 const outfitSans = Outfit({
@@ -31,7 +29,7 @@ export default function RootLayout({
       className={`${outfitSans.variable} ${geistMono.variable} h-full antialiased light`}
     >
       <body suppressHydrationWarning className="min-h-full flex flex-col">
-        <TrpcProvider>{children}</TrpcProvider>
+        {children}
       </body>
     </html>
   );

@@ -23,6 +23,7 @@ Interactive mode for when the candidate is filling out an application form in Ch
 5c. PROHIBITED → Warn if a form field asks for content the candidate's jurisdiction prohibits (warn-only; candidate decides)
 6. ANALYZE     → Identify ALL visible form questions
 7. GENERATE    → For each question, generate a personalized response
+7b. JSON-CV     → Run the review-first json-cv workflow, validate the exact artifact, and sync it to RxResume when configured before calling the application upload-ready
 8. PRESENT     → Show formatted responses for copy-paste
 8b. SYNC-TRACK → Upsert application and questions to external tracker (sync-application-tracker.mjs)
 9. PERSIST     → Save the final filled/submitted answers into the report

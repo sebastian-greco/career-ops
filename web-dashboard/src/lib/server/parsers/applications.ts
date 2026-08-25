@@ -3,6 +3,20 @@ import type { DashboardApplication, StatusOption } from "@/lib/dashboard/types";
 const reportLinkRegex = /\[(\d+)\]\(([^)]+)\)/;
 const scoreRegex = /(\d+\.?\d*)\/5/;
 
+function parseReportCell(cell: string | undefined): { reportNumber: string; reportPath: string } {
+  if (!cell) return { reportNumber: "", reportPath: "" };
+  const trimmed = cell.trim();
+  const linkMatch = trimmed.match(reportLinkRegex);
+  if (linkMatch) {
+    return { reportNumber: linkMatch[1], reportPath: linkMatch[2] };
+  }
+  const pathMatch = trimmed.match(/(?:(?:\.\.\/)?reports\/)?(\d+)-[^\s)]+\.md/);
+  if (pathMatch) {
+    return { reportNumber: pathMatch[1], reportPath: trimmed };
+  }
+  return { reportNumber: "", reportPath: "" };
+}
+
 function parseFields(line: string) {
   if (line.includes("\t")) {
     return line
@@ -72,7 +86,7 @@ export function parseApplicationsMarkdown(raw: string, normalizeStatus: (status:
     const scoreRaw = fields[columnIndexes.score] ?? "";
     const statusRaw = fields[columnIndexes.status] ?? "";
     const scoreMatch = scoreRaw.match(scoreRegex);
-    const reportMatch = fields[columnIndexes.report]?.match(reportLinkRegex);
+    const reportInfo = parseReportCell(fields[columnIndexes.report]);
 
     applications.push({
       number,
@@ -84,8 +98,8 @@ export function parseApplicationsMarkdown(raw: string, normalizeStatus: (status:
       score: scoreMatch ? Number.parseFloat(scoreMatch[1]) : 0,
       scoreRaw,
       hasPdf: (fields[columnIndexes.pdf] ?? "").includes("✅"),
-      reportNumber: reportMatch?.[1] ?? "",
-      reportPath: reportMatch?.[2] ?? "",
+      reportNumber: reportInfo.reportNumber,
+      reportPath: reportInfo.reportPath,
       notes: fields[columnIndexes.notes] ?? "",
       jobUrl: "",
       compEstimate: "",

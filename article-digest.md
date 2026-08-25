@@ -19,6 +19,7 @@ Compact proof points from extended experience that do not always fit cleanly in 
 - After candid feedback from Riverside's CEO that he was spreading himself too thin, changed his operating model from being the person who jumped into every gap to building leaders and teams that could count on him without depending on him.
 
 **Proof points:**
+- Riverside grew to 300+ people and roughly 100 engineers; Sebastian led 27 engineers across 4 teams and coached 3 engineers into Team Lead roles.
 - Managed a 27-person group across 3 feature teams and 1 platform team, plus QA leadership spanning those teams, without operating as a flat direct-manager for all 27 people.
 - Built leadership leverage by growing team leads and coaching engineering managers rather than centralizing all execution.
 - Combined org design, hiring, architectural review, and platform strategy in one group-level leadership role.
@@ -280,6 +281,30 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 ---
 
+## Riverside -- Annual SOC 2 Type 2 Audit Cycles and Security Remediation
+
+**Tags:** soc-2-type-2, compliance, security, audits, remediation, penetration-testing, enterprise-saas, code-review
+
+**Hero scope:** Led substantial engineering-side work across Riverside's recurring SOC 2 Type 2 audit cycles after the company's first cycle, helping turn compliance requirements into repeatable team processes and technical remediation.
+
+**Key decisions:**
+- Established recurring processes and reminders so engineering teams completed required compliance work rather than treating the audit as a last-minute exercise.
+- Worked directly with auditors, reviewed their reports and findings, coordinated responses, and personally handled much of the resulting remediation.
+- Made the relevant engineering team accountable for fixes while remaining closely involved in execution and follow-through.
+- After Riverside hired a dedicated security specialist, partnered directly with him on remediation and reviewed pull requests where security expectations had not been followed.
+- Participated in penetration-test remediation, personally resolving findings and coordinating corrective work. Penetration testing can support SOC 2 security controls and remediation, but do not claim it was a mandatory SOC 2 requirement or that Riverside's auditors required this specific work unless separately confirmed.
+
+**Proof points:**
+- Riverside completed its SOC 2 Type 2 process successfully every year during Sebastian's tenure.
+- The resulting compliance posture was required for enterprise customer contracts, including Microsoft.
+- Combined audit coordination, engineering-process ownership, hands-on remediation, and security-focused code review rather than treating compliance as a paperwork-only exercise.
+
+**External corroboration:** Riverside publicly announced its SOC 2 Type 2 compliance and explained its importance for enterprise customers in December 2023: https://riverside.com/blog/riverside-fm-is-soc-2-type-2-compliant
+
+**Framing guardrail:** Do not claim Sebastian owned Riverside's first audit cycle or was the sole company-wide compliance owner after the dedicated security hire. Keep penetration-test remediation as a distinct security fact: it is relevant to SOC 2 control effectiveness, but the exact relationship to Riverside's audit scope is not confirmed.
+
+---
+
 ## Riverside -- AI Adoption in Engineering Workflow
 
 **Tags:** ai, developer-experience, code-review, copilots, cursor, agentic-workflows, engineering-productivity, platform
@@ -409,6 +434,8 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 **Key decisions:**
 - Worked on integrations with external platforms, including podcast hosting services that needed to connect with Riverside services.
+- Built integrations with podcast hosting and distribution platforms including Spotify and YouTube.
+- Worked directly with partner teams at Descript, Castos, and Transistor.fm to define interfaces, contracts, and integration requirements.
 - Spoke directly with external technical and product teams to understand their systems, align expectations, and shape integration contracts between platforms.
 - Used the external partner context to make engineering decisions that served B2B product and business needs, not just internal implementation preferences.
 - Connected this work with Riverside's broader dashboard, account, enterprise, SSO, and platform ownership.
@@ -420,6 +447,19 @@ Compact proof points from extended experience that do not always fit cleanly in 
 - Direct technical/product alignment with partner teams before and during integration work.
 - Strong evidence for roles that mention integrations, enterprise connections, partner platforms, health systems, employer partners, or B2B SaaS surfaces.
 - Turned one customer's unsupported workaround into a supported product surface that could be offered to additional enterprise accounts.
+
+---
+
+## Earlier Backend Stack -- Java, Spring, Hibernate, MongoDB, and Redis
+
+**Tags:** java, spring, hibernate, android, mongodb, redis, backend, databases
+
+**Evidence:**
+- Worked with Java earlier in his career, including Spring and Hibernate, and built several small Android applications.
+- This is historical Java experience rather than recent production Java 17 work. For the Sumsub Travel Rule application, Sebastian self-assesses his current Java 17 proficiency at 3/10.
+- Has deep practical familiarity with MongoDB and Redis. ClickHouse is not established.
+
+**Framing guardrail:** Treat Java as real but rusty prior experience. Do not present Sebastian as a current Java 17 specialist or claim ClickHouse experience.
 
 ---
 
