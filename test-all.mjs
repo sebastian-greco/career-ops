@@ -5494,6 +5494,19 @@ try {
     fail('remote-title rescue must not override the block tier');
   }
 
+  // A provider may normalize a location to "USA - Remote" while the stronger
+  // eligibility wording ("USA Only") survives only in the title. The title is
+  // therefore part of the block tier, not merely the remote allow fallback.
+  if (
+    remoteTitleFilter('USA - Remote', undefined, 'Senior Backend Engineer (USA Only, 100% Remote)') === false &&
+    remoteTitleFilter('', undefined, 'Staff Engineer — Canada Only') === false &&
+    remoteTitleFilter('Remote', undefined, 'Engineering Manager — Europe') === true
+  ) {
+    pass('blocked geography in the title rejects USA/Canada-only roles even when location says Remote or is blank');
+  } else {
+    fail('title-level blocked geography must participate in the location block tier');
+  }
+
   // Case 26: only a work-arrangement marker counts. "Remote Sensing" is a GIS
   // domain compound — Esri, a tracked company, posts on-site roles with exactly
   // that phrase, so a bare /remote/ test would silently admit them.
@@ -6015,6 +6028,53 @@ try {
     pass('buildTitleFilter drops whitespace-only keywords instead of matching on spaces');
   } else {
     fail('buildTitleFilter should drop whitespace-only keywords');
+  }
+
+  const leadershipConfig = {
+    positive: ['Engineering Manager'],
+    negative: ['Forward Deployed'],
+    leadership_adjacent: {
+      enabled: true,
+      lead_markers: ['Engineering Lead', 'Team Lead'],
+      engineering_markers: ['Engineering', 'Software', 'Backend', 'Platform', 'Infrastructure', 'AI'],
+      excluded_markers: ['Sales', 'GTM', 'Customer', 'Solutions', 'Payroll', 'Operations'],
+    },
+  };
+  const leadershipFilter = buildTitleFilter(leadershipConfig);
+  const acceptedLeadershipTitles = [
+    'Senior Team Lead, AI Engineering',
+    'Engineering Team Lead, Alterya',
+    'Engineering Lead, Web Platform',
+  ];
+  const rejectedFunctionalTitles = [
+    'Sales Team Lead',
+    'Team Lead, Payroll Operations',
+    'Customer Engineering Team Lead',
+    'Forward Deployed Engineering Lead',
+    'Technical Lead Engineering',
+    'Tech Lead, Engineering',
+    'Software Engineer/Tech Lead - Code Plane [IC5]',
+  ];
+  if (acceptedLeadershipTitles.every((title) => leadershipFilter(title))) {
+    pass('leadership-adjacent filter accepts engineering lead titles regardless of word order');
+  } else {
+    fail('leadership-adjacent filter missed a supported engineering lead title');
+  }
+  if (rejectedFunctionalTitles.every((title) => !leadershipFilter(title))) {
+    pass('leadership-adjacent filter rejects functional/noisy team-lead titles and honors negatives');
+  } else {
+    fail('leadership-adjacent filter admitted a functional/noisy team-lead title');
+  }
+
+  const { buildTitleFilter: buildSharedTitleFilter } = await import(pathToFileURL(join(ROOT, 'scan-utils.mjs')).href);
+  const sharedLeadershipFilter = buildSharedTitleFilter(leadershipConfig);
+  if (
+    acceptedLeadershipTitles.every((title) => sharedLeadershipFilter(title))
+    && rejectedFunctionalTitles.every((title) => !sharedLeadershipFilter(title))
+  ) {
+    pass('shared browser-scanner title filter matches provider-scanner leadership semantics');
+  } else {
+    fail('shared browser-scanner title filter drifted from provider-scanner leadership semantics');
   }
 } catch (e) {
   fail(`title filter acronym tests crashed: ${e.message}`);

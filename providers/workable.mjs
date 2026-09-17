@@ -53,6 +53,19 @@ function assertWorkableUrl(url) {
  * @returns {string|null}
  */
 export function resolveWorkableSlug(entry) {
+  const api = entry && typeof entry.api === 'string' ? entry.api : '';
+  if (api) {
+    try {
+      const parsed = new URL(api);
+      const match = parsed.pathname.match(/^\/api\/v1\/widget\/accounts\/([^/]+)\/?$/);
+      const slug = match ? decodeURIComponent(match[1]) : '';
+      if (parsed.protocol === 'https:' && parsed.hostname === 'apply.workable.com' && SLUG_RE.test(slug)) return slug;
+      return null;
+    } catch {
+      return null;
+    }
+  }
+
   const raw = entry && typeof entry.careers_url === 'string' ? entry.careers_url : '';
   if (!raw) return null;
   let parsed;

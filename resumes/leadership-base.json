@@ -68,7 +68,7 @@
             "url": "",
             "label": ""
           },
-          "description": "<ul><li><p>Built AI-native products across local transcription, document-intelligence workflows, and applied retrieval systems.</p></li><li><p>Worked hands-on with on-device models, context caching, agent orchestration, and Polar payment integration.</p></li><li><p>Advised an Italian stealth startup as a fractional CTO, defining scope, tech stack, architecture, and an initial POC.</p></li></ul><p></p>",
+          "description": "<ul><li><p>Developed <a href=\"https://verbaspeech.app/\">Verba</a>, a privacy-first macOS dictation app with on-device transcription; <a href=\"https://www.informia.com.ar/\">Informia</a>, a vision-based document workflow; and <a href=\"https://falloses.com/\">FallosES</a>, a grounded legal research assistant with cited answers.</p></li><li><p>Advised an Italian stealth startup as a fractional CTO, defining scope, tech stack, architecture, and an initial POC.</p></li></ul>",
           "roles": []
         },
         {
@@ -77,9 +77,9 @@
           "options": {
             "showLinkInTitle": false
           },
-          "company": "Riverside",
+          "company": "Riverside · 4.5 years",
           "position": "",
-          "location": "4.5 years",
+          "location": "",
           "period": "",
           "website": {
             "url": "",
@@ -91,19 +91,19 @@
               "id": "019d864b-73f5-728f-9144-dd88d08237ae",
               "position": "Senior Engineering Manager (Internal Title: Group Lead)",
               "period": "01/2024 – 08/2025 | 1 year 8 months - Remote",
-              "description": "<ul><li><p>Directed a 27-person engineering group across 4 teams spanning Platform, Publishing, Business, and Growth.</p></li><li><p>Owned budget and compensation planning and partnered with the CEO on evaluating and hiring VP-level engineering leaders.</p></li><li><p>Ran 100+ interviews and served as final technical sign-off for senior backend, system design, and culture-fit evaluation across multiple orgs.</p></li><li><p>Guided broader backend evolution toward Kafka-based services, and led design review across two teams to ship an event-driven token ledger for AI feature consumption.</p></li><li><p>Piloted AI-assisted development and review workflows across my teams, helping normalize practical use of GitHub Copilot and Cursor in production engineering work.</p></li></ul><p></p>"
+              "description": "<ul><li><p>Led 27 engineers and managers across four teams spanning Platform, Publishing, Business, and Growth, working through team leads and engineering managers.</p></li><li><p>Owned budget and compensation planning and partnered with the CEO on evaluating and hiring VP-level engineering leaders.</p></li><li><p>Ran 100+ interviews and served as final technical sign-off for senior backend, system design, and culture-fit evaluation across multiple orgs.</p></li><li><p>Guided broader backend evolution toward Kafka-based services, and led design review across two teams to ship an event-driven token ledger for AI feature consumption.</p></li><li><p>Piloted AI-assisted development and review workflows across my teams, helping normalize practical use of GitHub Copilot and Cursor in production engineering work.</p></li></ul>"
             },
             {
               "id": "019d864b-b332-751e-8e7d-ee03d331fe64",
               "position": "Engineering Manager",
               "period": "06/2022 - 01/2024 | 1 year 6 months - Remote",
-              "description": "<ul><li><p>Built Riverside's first formal full-stack team, growing the team to 6.</p></li><li><p>Coached 3 high-performing engineers into Team Lead roles as the Dashboard group evolved into Riverside's core Platform team.</p></li><li><p>Owned core platform services plus billing, plans, entitlements, and Stripe-backed payment flows, and helped the mobile team integrate RevenueCat with our backend monetization systems.</p></li><li><p>Split critical services from the monolith and introduced end-to-end observability across backend services and Kafka flows, contributing to a 33% reduction in overall system latency.</p></li></ul><p></p>"
+              "description": "<ul><li><p>Built Riverside's first formal full-stack team, growing the team to 6.</p></li><li><p>Coached 3 high-performing engineers into Team Lead roles as the Dashboard group evolved into Riverside's core Platform team.</p></li><li><p>Owned core platform services plus billing, plans, entitlements, and Stripe-backed payment flows, and helped the mobile team integrate RevenueCat with our backend monetization systems.</p></li><li><p>Split critical services from the monolith and introduced end-to-end observability across backend services and Kafka flows, contributing to a 33% reduction in overall system latency.</p></li></ul>"
             },
             {
               "id": "019e0263-d9ee-71cf-958b-2ce3b1289fb6",
               "position": "Senior Full Stack Developer",
               "period": "03/2021 – 06/2022 | 1 year 3 months - Remote",
-              "description": "<ul><li><p>Joined Riverside as one of 6 engineers, shipping core backend features and evolving an early Stripe-and-webhooks setup into a more robust monetization model for billing, plans, entitlements, and payments.</p></li><li><p>Resolved monolith and database bottlenecks that improved reliability and performance while mentoring junior engineers on architecture and design.</p></li></ul><p></p>"
+              "description": "<ul><li><p>Joined Riverside as one of 6 engineers, shipping full-stack features across Studio, dashboard, account, and media workflows, including the original Media Board with WebSocket-controlled playback and supporting storage services.</p></li><li><p>Resolved monolith and database bottlenecks that improved reliability and performance while mentoring junior engineers on architecture and design.</p></li></ul>"
             }
           ]
         },
@@ -121,7 +121,7 @@
             "url": "",
             "label": ""
           },
-          "description": "<ul><li><p>Co-founded and led Streamix, a WebRTC video-production platform, owning product strategy and technical direction across streaming systems, backend services, and cross-platform product development.</p></li></ul><p></p>",
+          "description": "<ul><li><p>Co-founded and led Streamix, a WebRTC video-production platform, owning product strategy and technical direction across streaming systems, backend services, and cross-platform product development.</p></li></ul>",
           "roles": []
         },
         {
@@ -138,7 +138,7 @@
             "url": "",
             "label": ""
           },
-          "description": "<ul><li><p>Co-founded and led a 6-person digital agency for 11 years, delivering web, mobile, and interactive work globally.</p></li></ul><p></p>",
+          "description": "<ul><li><p>Co-founded and led a 6-person digital agency for 11 years, delivering web, mobile, and interactive work globally.</p></li></ul>",
           "roles": []
         }
       ]
@@ -240,8 +240,8 @@
           "proficiency": "",
           "level": 0,
           "keywords": [
-            "Engineering leadership",
-            "Hiring",
+            "Managing managers",
+            "Hiring & coaching",
             "Compensation planning",
             "Cross-functional coordination"
           ]
@@ -266,14 +266,14 @@
           "hidden": false,
           "icon": "",
           "iconColor": "",
-          "name": "AI & Product",
+          "name": "Agentic AI",
           "proficiency": "",
           "level": 0,
           "keywords": [
-            "Retrieval",
-            "Context caching",
-            "Agent orchestration",
-            "Workflow automation"
+            "Local LLMs",
+            "RAG & grounded search",
+            "Tool/function calling",
+            "Context caching"
           ]
         },
         {
@@ -291,8 +291,9 @@
             "Kafka",
             "AWS",
             "Kubernetes",
-            "MongoDB",
-            "React"
+            "PostgreSQL",
+            "Redis",
+            "S3 & SQS"
           ]
         }
       ]
@@ -439,7 +440,7 @@
     "page": {
       "gapX": 4,
       "gapY": 8,
-      "marginX": 25,
+      "marginX": 24,
       "marginY": 14,
       "format": "a4",
       "locale": "en-US",
@@ -464,7 +465,7 @@
           "600"
         ],
         "fontSize": 10,
-        "lineHeight": 1.19
+        "lineHeight": 1.2
       },
       "heading": {
         "fontFamily": "Open Sans",

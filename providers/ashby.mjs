@@ -76,6 +76,7 @@ export function parseCompensation(job) {
 }
 
 const ALLOWED_ASHBY_HOSTS = new Set(['api.ashbyhq.com']);
+const ALLOWED_ASHBY_BOARD_HOSTS = new Set(['jobs.ashbyhq.com']);
 
 /** @param {string} url */
 function assertAshbyUrl(url) {
@@ -104,6 +105,29 @@ function resolveApiUrl(entry) {
   const match = url.match(/jobs\.ashbyhq\.com\/([^/?#]+)/);
   if (!match) return null;
   return `https://api.ashbyhq.com/posting-api/job-board/${match[1]}?includeCompensation=true`;
+}
+
+/** @param {import('./_types.js').PortalEntry} entry */
+function resolveBoardUrl(entry) {
+  const raw = typeof entry.ashby_board_url === 'string'
+    ? entry.ashby_board_url
+    : typeof entry.careers_url === 'string' && entry.careers_url.includes('jobs.ashbyhq.com')
+      ? entry.careers_url
+      : '';
+  if (!raw) return null;
+  let parsed;
+  try {
+    parsed = new URL(raw);
+  } catch {
+    throw new Error(`ashby: invalid board URL: ${raw}`);
+  }
+  if (parsed.protocol !== 'https:') throw new Error(`ashby: board URL must use HTTPS: ${raw}`);
+  if (!ALLOWED_ASHBY_BOARD_HOSTS.has(parsed.hostname)) {
+    throw new Error(`ashby: untrusted board hostname "${parsed.hostname}" — must be jobs.ashbyhq.com`);
+  }
+  const slug = parsed.pathname.split('/').filter(Boolean)[0] || '';
+  if (!/^[A-Za-z0-9][A-Za-z0-9_-]*$/.test(slug)) throw new Error(`ashby: invalid board slug in ${raw}`);
+  return `https://jobs.ashbyhq.com/${slug}`;
 }
 
 function sleep(ms, ctx) {
@@ -144,6 +168,69 @@ function formatLocation(j) {
   return [...new Set(parts)].join(' · ');
 }
 
+/** Extract a balanced JSON object that follows `window.__appData =`. */
+function extractAppData(html) {
+  const marker = 'window.__appData';
+  const markerIndex = html.indexOf(marker);
+  if (markerIndex < 0) return null;
+  const equalsIndex = html.indexOf('=', markerIndex + marker.length);
+  const start = equalsIndex < 0 ? -1 : html.indexOf('{', equalsIndex + 1);
+  if (start < 0) return null;
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  for (let i = start; i < html.length; i++) {
+    const ch = html[i];
+    if (inString) {
+      if (escaped) escaped = false;
+      else if (ch === '\\') escaped = true;
+      else if (ch === '"') inString = false;
+      continue;
+    }
+    if (ch === '"') inString = true;
+    else if (ch === '{') depth++;
+    else if (ch === '}' && --depth === 0) {
+      try {
+        return JSON.parse(html.slice(start, i + 1));
+      } catch {
+        return null;
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Parse Ashby's server-rendered board state. Some boards render correctly on
+ * jobs.ashbyhq.com while their public posting-api tenant returns 404.
+ * @param {string} html
+ * @param {string} companyName
+ * @param {string} boardUrl
+ */
+export function parseAshbyBoardHtml(html, companyName, boardUrl) {
+  if (typeof html !== 'string') return [];
+  const appData = extractAppData(html);
+  const postings = appData?.jobBoard?.jobPostings;
+  if (!Array.isArray(postings)) return [];
+  const base = new URL(boardUrl);
+  const slug = base.pathname.split('/').filter(Boolean)[0] || '';
+  const seen = new Set();
+  const jobs = [];
+  for (const j of postings) {
+    const id = typeof j?.id === 'string' ? j.id.trim() : '';
+    const title = typeof j?.title === 'string' ? j.title.trim() : '';
+    if (!id || !title || !/^[A-Za-z0-9-]+$/.test(id)) continue;
+    const url = `https://jobs.ashbyhq.com/${slug}/${id}`;
+    if (seen.has(url)) continue;
+    seen.add(url);
+    const locationParts = [j.locationName, j.location, j.workplaceType]
+      .filter(v => typeof v === 'string' && v.trim())
+      .map(v => v.trim());
+    jobs.push({ title, url, company: companyName, location: [...new Set(locationParts)].join(' · ') });
+  }
+  return jobs;
+}
+
 /** @type {Provider} */
 export default {
   id: 'ashby',
@@ -181,7 +268,14 @@ export default {
         }));
       } catch (e) {
         lastErr = e;
+        // A missing tenant is deterministic; retrying cannot make it appear.
+        if (e?.status === 404) break;
       }
+    }
+    const boardUrl = resolveBoardUrl(entry);
+    if (boardUrl && typeof ctx.fetchText === 'function') {
+      const html = await ctx.fetchText(boardUrl, { timeoutMs: ASHBY_TIMEOUT_MS, redirect: 'error' });
+      return parseAshbyBoardHtml(html, entry.name, boardUrl);
     }
     throw lastErr;
   },

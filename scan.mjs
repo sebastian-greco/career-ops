@@ -45,7 +45,7 @@ import { fingerprintText, findCrossListings } from './fingerprint-core.mjs';
 import { resolveColumns, parseTrackerRow } from './tracker-parse.mjs';
 import { normalizeCompany } from './tracker-utils.mjs';
 import { normalizeCompanyName } from './invite-match.mjs';
-import { buildIcExceptionFilter, hasIcExceptionPolicy } from './scan-utils.mjs';
+import { buildIcExceptionFilter, buildLeadershipAdjacentFilter, hasIcExceptionPolicy } from './scan-utils.mjs';
 import { withPipelineLock } from './pipeline-lock.mjs';
 import { withPortalHealthLock } from './portal-health-lock.mjs';
 
@@ -103,10 +103,13 @@ export function buildTitleFilter(titleFilter) {
     .map(compileKeyword);
   const positive = normalize(titleFilter?.positive);
   const negative = normalize(titleFilter?.negative);
+  const leadershipAdjacent = buildLeadershipAdjacentFilter(titleFilter?.leadership_adjacent);
 
   return (title) => {
     const lower = (title || '').toLowerCase();
-    const hasPositive = positive.length === 0 || positive.some(m => m(lower));
+    const hasPositive = positive.length === 0
+      || positive.some(m => m(lower))
+      || leadershipAdjacent(title);
     const hasNegative = negative.some(m => m(lower));
     return hasPositive && !hasNegative;
   };
@@ -141,8 +144,8 @@ export function matchedTitleKeywords(title, titleFilter) {
 // ── Location filter ─────────────────────────────────────────────────
 // Optional. If `location_filter` is absent from portals.yml, all locations pass.
 // Semantics (case-insensitive substring, in this order):
-//   - Empty / whitespace-only / non-string location → pass (don't penalize
-//     missing or malformed provider data)
+//   - Empty / whitespace-only / non-string location → pass unless the title
+//     itself carries an explicit blocked geography (for example "USA Only")
 //   - `always_allow` matches → pass (takes precedence over `block` — lets a
 //     multi-location string like "Remote, Belgium or France" through because
 //     the home region is an option, even though "france" is blocked)
@@ -284,14 +287,17 @@ export function buildLocationFilter(locationFilter) {
   return (location, url, title) => {
     const lower = typeof location === 'string' ? location.trim().toLowerCase() : '';
     const hint = locationHintFromUrl(url);
-    // Nothing to judge on either field → pass (don't penalize missing data).
-    if (lower === '' && hint === '') return true;
+    const lowerTitle = typeof title === 'string' ? title.trim().toLowerCase() : '';
+    const titleIsBlocked = block.length > 0 && lowerTitle !== '' && block.some(m => m(lowerTitle));
+    // Nothing to judge on the location fields → pass unless the title gives us
+    // an explicit exclusion such as "USA Only" or "Canada Only".
+    if (lower === '' && hint === '' && !titleIsBlocked) return true;
     const matches = (m) => (lower !== '' && m(lower)) || (hint !== '' && m(hint));
     // always_allow still wins over block, and may be satisfied by either field:
     // a genuinely US role whose display string says "United States" is never
     // rejected because of what its URL happens to contain.
     if (alwaysAllow.length > 0 && alwaysAllow.some(matches)) return true;
-    if (block.length > 0 && block.some(matches)) return false;
+    if (titleIsBlocked || (block.length > 0 && block.some(matches))) return false;
     if (allow.length === 0) return true;
     if (allow.some(matches)) return true;
     // Last resort only. Deliberately placed AFTER `block` so a remote title can

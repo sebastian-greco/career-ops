@@ -16,6 +16,8 @@ import {
 } from './scan-utils.mjs';
 
 const PORTALS_PATH = 'portals.yml';
+const PIPELINE_PATH = 'data/pipeline.md';
+const SCAN_HISTORY_PATH = 'data/scan-history.tsv';
 
 function parseArgs(argv) {
   const args = { dryRun: false, stdin: false, input: null };
@@ -56,6 +58,38 @@ function readPayload(args) {
 function loadPortalsConfig() {
   if (!existsSync(PORTALS_PATH)) return null;
   return yaml.load(readFileSync(PORTALS_PATH, 'utf-8'));
+}
+
+function companyRoleKey(company, title) {
+  return `${normalizeText(company).toLowerCase()}::${normalizeText(title).toLowerCase()}`;
+}
+
+function loadJobgetherSeenState() {
+  const offerUrls = new Set();
+  const companyRoles = new Set();
+
+  if (existsSync(SCAN_HISTORY_PATH)) {
+    const lines = readFileSync(SCAN_HISTORY_PATH, 'utf-8').split('\n');
+    for (const line of lines.slice(1)) {
+      const cells = line.split('\t').map((cell) => normalizeText(cell));
+      if (cells.length < 6 || cells[2].toLowerCase() !== 'jobgether') continue;
+      if (cells[0].includes('jobgether.com/offer/')) offerUrls.add(cells[0]);
+      if (cells[3] && cells[4]) companyRoles.add(companyRoleKey(cells[4], cells[3]));
+    }
+  }
+
+  if (existsSync(PIPELINE_PATH)) {
+    const lines = readFileSync(PIPELINE_PATH, 'utf-8').split('\n');
+    for (const line of lines) {
+      if (!line.startsWith('- [')) continue;
+      const cells = line.split('|').map((cell) => normalizeText(cell));
+      const urlIndex = cells.findIndex((cell) => /^<?https?:\/\//.test(cell));
+      if (urlIndex < 0 || !cells[urlIndex + 1] || !cells[urlIndex + 2]) continue;
+      companyRoles.add(companyRoleKey(cells[urlIndex + 1], cells[urlIndex + 2]));
+    }
+  }
+
+  return { offerUrls, companyRoles };
 }
 
 function normalizeItem(item) {
@@ -134,8 +168,36 @@ function processItems(items, helpers) {
       continue;
     }
 
-    const companyRoleKey = `${item.company.toLowerCase()}::${item.title.toLowerCase()}`;
-    const duplicate = helpers.seenUrls.has(normalizedUrl) || helpers.seenCompanyRoles.has(companyRoleKey);
+    const obviousNonFit = isObviousJobgetherNonFit(
+      item.title,
+      item.company,
+      helpers.titleFilter,
+      helpers.icExceptionFilter,
+      helpers.portals,
+    );
+
+    if (obviousNonFit) {
+      const result = {
+        ...item,
+        normalizedUrl,
+        status: 'skipped_invalid',
+        cleanupAction: 'Not Interested',
+      };
+      results.push(result);
+      historyRows.push({
+        url: normalizedUrl,
+        source: 'Jobgether',
+        title: item.title,
+        company: item.company,
+        status: 'skipped_invalid',
+      });
+      continue;
+    }
+
+    const roleKey = companyRoleKey(item.company, item.title);
+    const duplicate = helpers.seenUrls.has(normalizedUrl)
+      || helpers.seenCompanyRoles.has(roleKey)
+      || helpers.jobgetherSeenOfferUrls.has(item.jobgetherOfferUrl);
     const status = duplicate ? 'skipped_dup' : 'added';
 
     const result = {
@@ -148,7 +210,8 @@ function processItems(items, helpers) {
 
     if (status === 'added') {
       helpers.seenUrls.add(normalizedUrl);
-      helpers.seenCompanyRoles.add(companyRoleKey);
+      helpers.seenCompanyRoles.add(roleKey);
+      if (item.jobgetherOfferUrl) helpers.jobgetherSeenOfferUrls.add(item.jobgetherOfferUrl);
       newOffers.push({
         company: item.company,
         title: item.title,
@@ -191,13 +254,17 @@ function main() {
   validatePayload(payload);
   const items = Array.isArray(payload.items) ? payload.items : [];
   const portals = loadPortalsConfig();
+  const jobgetherSeenState = loadJobgetherSeenState();
+  const seenCompanyRoles = loadSeenCompanyRoles();
+  for (const roleKey of jobgetherSeenState.companyRoles) seenCompanyRoles.add(roleKey);
   const helpers = {
     portals,
     titleFilter: buildTitleFilter(portals?.title_filter),
     icExceptionFilter: buildIcExceptionFilter(portals?.title_filter),
     excludedCompanyFilter: buildExcludedCompanyFilter(portals?.title_filter),
     seenUrls: loadSeenUrls(),
-    seenCompanyRoles: loadSeenCompanyRoles(),
+    seenCompanyRoles,
+    jobgetherSeenOfferUrls: jobgetherSeenState.offerUrls,
   };
 
   const { results, newOffers, historyRows } = processItems(items, helpers);

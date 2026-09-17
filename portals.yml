@@ -48,8 +48,40 @@ title_filter:
     - "Director of Agentic Products"
     - "Platform Architect"
     - "Backend Architect"
+    # High-upside early-stage engineering track; evaluate cash and equity separately.
+    - "Founder Engineer"
+    - "Founding Engineer"
+    - "Founding Product Engineer"
+    - "Founding Platform Engineer"
+    - "Founding Backend Engineer"
+    - "Founding AI Engineer"
+    - "First Engineer"
+    - "First Engineering Hire"
+    - "Early Engineer"
     # Selective IC titles are handled only through explicit
     # ic_exception_company + ic_exception_titles entries below.
+  # Player-coach and team-level engineering leadership titles vary widely by
+  # company and word order. Require both a lead marker and an engineering-domain
+  # marker so "Team Lead, AI Engineering" passes while functional team leads do not.
+  leadership_adjacent:
+    enabled: true
+    lead_markers:
+      - "Engineering Lead"
+      - "Team Lead"
+    engineering_markers:
+      - "Engineering"
+      - "Software"
+      - "Backend"
+      - "Platform"
+      - "Infrastructure"
+      - "AI"
+    excluded_markers:
+      - "Sales"
+      - "GTM"
+      - "Customer"
+      - "Solutions"
+      - "Payroll"
+      - "Operations"
   negative:
     # [CUSTOMIZE] Add keywords for roles you want to exclude
     - "Junior"
@@ -74,7 +106,6 @@ title_filter:
     - "Developer Advocate"
     - "Developer Relations"
     - "DevRel"
-    - "Founding Engineer"
     - "Machine Learning"
     - "ML"
     - "MLOps"
@@ -191,6 +222,29 @@ location_filter:
     - "On-site"
     - "Onsite"
     - "Office-based"
+
+# -- Country eligibility (opt-in) --
+# Deel-style boards expose multi-country location lists ("Spain, Portugal,
+# Italy, ...") as a single display string while the role may legally exclude
+# the candidate's country. location_filter cannot see that split, so keep the
+# opt-in JD-based check aligned with scan.mjs's built-in schema.
+country_eligibility_filter:
+  exclusionary:
+    - "US only"
+    - "US-based only"
+    - "United States only"
+    - "US citizens only"
+    - "must be US-based"
+    - "only for US-based"
+    - "not available in"
+  inclusive:
+    - "worldwide"
+    - "global"
+    - "remote (anywhere)"
+    - "anywhere"
+    - "europe"
+    - "emea"
+    - "italy"
 
 # -- Search queries --
 # Each query triggers a WebSearch. Use site: to filter by portal.
@@ -382,9 +436,8 @@ tracked_companies:
 
   - name: LivePerson
     careers_url: https://liveperson.com/company/careers
-    scan_method: playwright
-    scan_query: 'site:liveperson.com/careers OR "liveperson" "Solutions" OR "AI" site:job-boards.greenhouse.io'
-    notes: "Remote EMEA. Conversational AI enterprise."
+    api: https://boards-api.greenhouse.io/v1/boards/liveperson/jobs
+    notes: "Remote EMEA. Conversational AI enterprise. Public Greenhouse board verified 2026-09-01 and scanned directly via boards-api."
     enabled: true
 
   - name: Sierra
@@ -406,9 +459,7 @@ tracked_companies:
   - name: Talkdesk
     careers_url: https://www.talkdesk.com/careers
     api: https://boards-api.greenhouse.io/v1/boards/talkdesk2/jobs
-    scan_method: playwright
-    scan_query: 'site:talkdesk.com/careers "AI" OR "Solutions Architect" OR "AI Engineer"'
-    notes: "Lisbon. Contact center AI. EMEA friendly."
+    notes: "Lisbon. Contact center AI. EMEA friendly. Greenhouse board API configured directly."
     enabled: true
 
   - name: Twilio
@@ -463,9 +514,8 @@ tracked_companies:
 
   - name: Cognigy
     careers_url: https://careers.cognigy.com
-    scan_method: playwright
-    scan_query: '"cognigy" careers "AI" OR "Solutions" OR "Engineer"'
-    notes: "Dusseldorf EMEA. Conversational AI enterprise."
+    api: https://apply.workable.com/api/v1/widget/accounts/cognigy?details=true
+    notes: "Dusseldorf EMEA. Conversational AI enterprise. Corporate careers domain is backed by Workable account cognigy; widget API verified 2026-09-02."
     enabled: true
 
   - name: Speechmatics
@@ -496,6 +546,10 @@ tracked_companies:
   - name: Ashby
     careers_url: https://jobs.ashbyhq.com/ashby
     notes: "High culture-fit target: remote-friendly hiring software company with strong written-culture and hands-on leadership signals."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Product Engineering"
     enabled: true
 
   - name: Cohere
@@ -533,9 +587,8 @@ tracked_companies:
 
   - name: Weights & Biases
     careers_url: https://coreweave.com/careers/weights-biases
-    notes: "Acquired by CoreWeave 2025. Jobs now on CoreWeave site. JS-heavy, no API. Was: jobs.lever.co/wandb"
-    scan_method: playwright
-    scan_query: 'site:coreweave.com/careers "weights" OR "wandb"'
+    api: https://boards-api.greenhouse.io/v1/boards/weights_and_biases/jobs
+    notes: "Acquired by CoreWeave 2025. Corporate role links expose Greenhouse board=weights_and_biases; public board API verified 2026-09-02."
     enabled: true
 
   - name: Palantir
@@ -551,6 +604,12 @@ tracked_companies:
     scan_query: 'site:factorialhr.com/careers OR "factorial" "engineer" "manager"'
     notes: "Barcelona. HR SaaS. Greenhouse slug broken (all slugs 404, TLS cert issues on factorialhr.com). Disabled until resolved. Was: job-boards.greenhouse.io/factorial"
     enabled: false
+
+  - name: Remote
+    careers_url: https://remote.com/openings
+    api: https://boards-api.greenhouse.io/v1/boards/remotecom/jobs
+    notes: "Remote.com — global HR/EOR platform, fully distributed with broad EU hiring. Greenhouse board slug is 'remotecom' (the 'remote' board is an unrelated NY company)."
+    enabled: true
 
   - name: Attio
     careers_url: https://attio.com/careers
@@ -573,26 +632,33 @@ tracked_companies:
       - "Principal Engineer"
     enabled: true
 
+  - name: Fingerprint
+    careers_url: https://fingerprint.com/careers/jobs/
+    api: https://boards-api.greenhouse.io/v1/boards/fingerprint/jobs
+    notes: "100% remote device-intelligence and fraud-detection company. Verify Italy eligibility and the location-adjusted compensation band per role; shared on-call and generic remote benefits do not clear the selective-IC culture gate by default."
+    enabled: true
+
   - name: Tinybird
     careers_url: https://tinybird.co/about#join-us
-    notes: "Remote. Real-time data platform. Left Ashby; custom site with 1 open role (SRE only) as of 2026-04-11. Was: jobs.ashbyhq.com/tinybird"
+    api: https://api.lever.co/v0/postings/tinybird
+    notes: "Remote. Real-time data platform. Current public Lever board verified 2026-09-01 and scanned directly via postings API; it previously used Ashby."
     enabled: true
 
   - name: Clarity AI
     careers_url: https://clarity.ai/careers/
-    notes: "Madrid/Remote. Europe-compatible and mission-oriented. Left Lever; JS-heavy custom site as of 2026-04-11. Was: jobs.lever.co/clarity-ai"
+    api: https://boards-api.greenhouse.io/v1/boards/clarityai/jobs
+    notes: "Madrid/Remote. Europe-compatible and mission-oriented. Left Lever; now embeds a Greenhouse board 'clarityai' (verified via boards-api 2026-08-28), scanned zero-token. Was: jobs.lever.co/clarity-ai"
     enabled: true
 
   - name: Travelperk
     careers_url: https://www.perk.com/careers/
-    notes: "Barcelona. Business travel unicorn."
+    api: https://api.ashbyhq.com/posting-api/job-board/perk?includeCompensation=true
+    notes: "Barcelona. Business travel unicorn. Careers page fails to render its jobs table; board migrated to Ashby under slug 'perk' (verified via posting-api 2026-08-28), scanned zero-token."
     enabled: true
 
   - name: Doist
     careers_url: https://doist.com/careers#open-roles
-    scan_method: playwright
-    scan_query: 'site:doist.com/careers engineer OR manager OR director OR head'
-    notes: "Remote-first company with strong work-life-balance and async culture signals. Custom careers page with no public supported ATS feed; the page is live but had no open roles when verified on 2026-08-17."
+    notes: "Remote-first company with strong work-life-balance and async culture signals. First-party Todoist server-island roles endpoint parsed directly; verified 2026-09-02."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -618,9 +684,9 @@ tracked_companies:
 
   - name: 37signals
     careers_url: https://37signals.com/jobs
-    scan_method: playwright
-    scan_query: 'site:37signals.com/jobs engineer OR manager OR director OR head'
-    notes: "Fully remote Basecamp/HEY company with a custom careers page and no public supported ATS board. The page is live but had no openings when verified on 2026-08-17."
+    api: https://37signals.com/feed/jobs.xml
+    provider: atom-feed
+    notes: "Fully remote Basecamp/HEY company. First-party Atom jobs feed verified 2026-09-02; currently empty feeds are valid zero-opening results."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -711,8 +777,7 @@ tracked_companies:
 
   - name: Fastmail
     careers_url: https://apply.workable.com/fastmail-1/
-    scan_method: playwright
-    notes: "Bootstrapped, privacy-focused product company with strong leave policies, paid sabbatical, explicit long-term planning, and professional development support. Not as remote-native as the strongest targets, but still a credible people-first company worth tracking when compatible roles open."
+    notes: "Bootstrapped, privacy-focused product company with strong leave policies, paid sabbatical, and professional development support. Direct Workable widget API is auto-derived from the public board URL."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -725,9 +790,8 @@ tracked_companies:
 
   - name: Checkly
     careers_url: https://www.checklyhq.com/careers/
-    scan_method: playwright
-    scan_query: 'site:checklyhq.com/careers engineer OR manager OR director OR head'
-    notes: "Remote-first developer tooling company with strong async culture, 27 days PTO, paid parental leave, wellbeing budget, transparent pay calculator, and healthy work design. Strong people-first fit worth tracking even though the jobs site is custom."
+    api: https://api.ashbyhq.com/posting-api/job-board/checkly?includeCompensation=true
+    notes: "Remote-first developer tooling company with strong async culture, 27 days PTO, paid parental leave, wellbeing budget, transparent pay calculator, and healthy work design. Public Ashby board verified 2026-09-01 and scanned directly via posting-api."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -743,7 +807,7 @@ tracked_companies:
     careers_url: https://www.discourse.org/jobs
     scan_method: playwright
     scan_query: 'site:discourse.org/jobs engineer OR manager OR director OR head'
-    notes: "Remote-first, open-source product company with five weeks vacation, transparent salary framework, strong async culture, and broad autonomy. Strong culture-fit company worth tracking even when openings are sparse or custom-hosted."
+    notes: "Remote-first, open-source product company with five weeks vacation, transparent salary framework, strong async culture, and broad autonomy. First-party page explicitly had no openings and exposed no ATS/feed backend when verified 2026-09-02; retain browser fallback."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -759,7 +823,7 @@ tracked_companies:
     careers_url: https://www.getharvest.com/careers
     scan_method: playwright
     scan_query: 'site:getharvest.com/careers engineer OR manager OR director OR head'
-    notes: "Independent remote-first product company with strong written culture, generous benefits, 16 weeks parental leave, winter break, learning budget, and deliberate time-respecting operating principles. Strong people-first fit worth tracking via search-first discovery."
+    notes: "Independent remote-first product company with strong written culture and deliberate time-respecting principles. First-party page explicitly had no openings and no current ATS/feed backend when verified 2026-09-02; retain browser fallback."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -773,9 +837,9 @@ tracked_companies:
 
   - name: Toggl
     careers_url: https://toggl.com/jobs/
-    scan_method: playwright
-    scan_query: 'site:toggl.com/jobs engineer OR manager OR director OR head'
-    notes: "Bootstrapped remote company with ROWE-style flexibility, strong development budgets, sabbatical support, and a calm 40-hour work-week philosophy. Strong cultural fit and worth tracking despite the custom hiring setup."
+    api: https://api.ashbyhq.com/posting-api/job-board/toggl?includeCompensation=true
+    ashby_board_url: https://jobs.ashbyhq.com/toggl
+    notes: "Bootstrapped remote company with ROWE-style flexibility and calm 40-hour-week philosophy. Ashby embed verified 2026-09-02; scanner falls back to the server-rendered Ashby board because this tenant's posting API returns 404."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -790,9 +854,7 @@ tracked_companies:
   - name: Automattic
     careers_url: https://automattic.com/work-with-us/
     api: https://boards-api.greenhouse.io/v1/boards/automatticcareers/jobs
-    scan_method: playwright
-    scan_query: 'site:automattic.com/work-with-us engineer OR manager OR director OR head'
-    notes: "Distributed product company with unusually strong async maturity, open parental leave up to 6 months, sabbaticals, and deep remote operating experience. Strong culture-fit company worth tracking even when role discovery is less structured."
+    notes: "Distributed product company with unusually strong async maturity, sabbaticals, and deep remote operating experience. Greenhouse board API configured directly."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -808,7 +870,7 @@ tracked_companies:
     careers_url: https://whimsical.com/company/careers
     scan_method: playwright
     scan_query: 'site:whimsical.com/company/careers engineer OR manager OR director OR head'
-    notes: "Fully distributed product company with a calm 40-hour week, six weeks PTO, parental leave, equity, fair global compensation, and long-term craftsmanship culture. Strong people-first fit for selective leadership and IC opportunities."
+    notes: "Fully distributed product company with a calm 40-hour week and six weeks PTO. First-party page explicitly had no active openings and exposed no ATS/feed backend when verified 2026-09-02; retain browser fallback."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -822,9 +884,8 @@ tracked_companies:
 
   - name: Wistia
     careers_url: https://wistia.com/jobs
-    scan_method: playwright
-    scan_query: 'site:wistia.com/jobs engineer OR manager OR director OR head'
-    notes: "Profitable product company with flexible schedules, strong parental leave, profit sharing, and explicit DEI investment. Keep as a selective people-first target via company search even though the careers page is not ATS-friendly."
+    api: https://api.ashbyhq.com/posting-api/job-board/wistia?includeCompensation=true
+    notes: "Profitable product company with flexible schedules, strong parental leave, profit sharing, and explicit DEI investment. Public Ashby board verified 2026-09-01 and scanned directly via posting-api."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -838,9 +899,7 @@ tracked_companies:
 
   - name: SerpApi
     careers_url: https://serpapi.com/careers
-    scan_method: playwright
-    scan_query: 'site:serpapi.com/careers engineer OR manager OR director OR head'
-    notes: "Bootstrapped remote-first developer API company with transparent books, async culture, high trust, profit sharing, and strong neurodivergent-friendly signals. Strong people-first fit worth tracking through search-based discovery."
+    notes: "Bootstrapped remote-first developer API company with transparent books, async culture, high trust, and profit sharing. Static first-party role cards and stable detail URLs parsed directly; verified 2026-09-02."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -853,9 +912,8 @@ tracked_companies:
 
   - name: YouCanBookMe
     careers_url: https://youcanbook.me/jobs
-    scan_method: playwright
-    scan_query: 'site:youcanbook.me/jobs engineer OR manager OR director OR head'
-    notes: "Bootstrapped remote product company with family-friendly flexibility, strong insurance and pension support, profit sharing, transparent salary model, and healthy long-term culture signals. Worth tracking as a people-first target via company search."
+    api: https://api.rippling.com/platform/api/ats/v1/board/capacity/jobs
+    notes: "Bootstrapped remote product company, now on parent company Capacity's Rippling board. Corporate page still links an empty legacy BambooHR board; current Rippling API verified 2026-09-02."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -931,9 +989,8 @@ tracked_companies:
 
   - name: PagerDuty
     careers_url: https://careers.pagerduty.com/jobs/search
-    scan_method: playwright
-    scan_query: 'site:careers.pagerduty.com/jobs/search engineer OR manager OR director OR head'
-    notes: "Flexible, family-friendly company with strong benefits and credible culture signals, but likely a lower-priority fit than the calmer balance-first targets because the domain and operating environment can skew more intensity-heavy. Track selectively."
+    api: https://boards-api.greenhouse.io/v1/boards/pagerduty/jobs
+    notes: "Flexible, family-friendly company with strong benefits and credible culture signals, but likely a lower-priority fit than the calmer balance-first targets because the domain and operating environment can skew more intensity-heavy. Public Greenhouse board verified 2026-09-01 and scanned directly via boards-api."
     enabled: true
 
   - name: Datadog
@@ -951,7 +1008,7 @@ tracked_companies:
     careers_url: https://wildbit.com/jobs
     scan_method: playwright
     scan_query: 'site:wildbit.com/jobs engineer OR manager OR director OR head'
-    notes: "One of the strongest pure culture-fit companies in the set: strict 4-day week, explicit people-first philosophy, sustainable pace, profit sharing, and strong parent-friendly signals. Even though they are not currently hiring, this is worth tracking long-term."
+    notes: "One of the strongest pure culture-fit companies in the set: strict 4-day week, sustainable pace, and profit sharing. The company says it is not hiring and exposes no ATS/feed backend; verified 2026-09-02, retain browser fallback."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -1072,7 +1129,8 @@ tracked_companies:
 
   - name: Forto
     careers_url: https://careers.forto.com/forto-jobs/
-    notes: "Berlin DE. Digital freight forwarder. Left Lever; custom site with 10 roles as of 2026-04-11 (none matching title filter). Was: jobs.lever.co/forto"
+    api: https://api.ashbyhq.com/posting-api/job-board/forto?includeCompensation=true
+    notes: "Berlin DE. Digital freight forwarder. Current public Ashby board verified 2026-09-01 and scanned directly via posting-api; it previously used Lever."
     enabled: true
 
   # -- Switzerland / Austria AI --
@@ -1229,6 +1287,13 @@ tracked_companies:
     notes: "Developer tools company; plausible for healthier infrastructure/product culture."
     enabled: true
 
+  - name: Docker
+    careers_url: https://jobs.ashbyhq.com/docker
+    api: https://api.ashbyhq.com/posting-api/job-board/docker?includeCompensation=true
+    api_provider: ashby
+    notes: "Container platform / developer tools. Careers page (docker.com/career-openings) embeds the Ashby board 'docker' (~59 live jobs)."
+    enabled: true
+
   # -- Dev Tools / AI Infra (DevRel, SA, FDE focus) --
 
   - name: Supabase
@@ -1248,9 +1313,9 @@ tracked_companies:
 
   - name: Fly.io
     careers_url: https://fly.io/jobs/
-    scan_method: playwright
-    scan_query: 'site:fly.io/jobs engineer OR manager OR director OR head'
-    notes: "Fully distributed cloud platform company with a custom careers page and no public supported ATS board. Track the branded page directly; verify role-specific Europe/Italy eligibility."
+    api: https://fly.io/jobs/feed.xml
+    provider: atom-feed
+    notes: "Fully distributed cloud platform company. First-party Atom jobs feed verified 2026-09-02; verify role-specific Europe/Italy eligibility."
     enabled: true
 
   - name: Railway
@@ -1268,16 +1333,14 @@ tracked_companies:
 
   - name: Aiven
     careers_url: https://aiven.io/careers/job
-    scan_method: playwright
-    scan_query: 'site:aiven.io/careers/job "Engineering Manager" OR "Director" OR "Head of Engineering" OR "Staff Engineer" OR "Principal Engineer"'
-    notes: "Helsinki-headquartered open-source cloud data platform. Its branded jobs page is Greenhouse-backed but does not expose a standard public board endpoint supported by the scanner, so track the live custom listing directly and verify remote/Italy eligibility per role."
+    notes: "Helsinki-headquartered open-source cloud data platform. Branded page embeds complete first-party JobPosting JSON-LD and stable detail links; parsed directly because its Greenhouse board endpoint is non-standard. Verified 2026-09-02."
     enabled: true
 
   - name: Strapi
     careers_url: https://strapi.io/careers
     scan_method: playwright
     scan_query: 'site:strapi.io/careers Strapi engineer OR manager OR director OR head'
-    notes: "Remote-first open-source headless CMS company with a custom careers page and no current public ATS board. The page is live but showed no openings when verified on 2026-08-17."
+    notes: "Remote-first open-source headless CMS company. The first-party page showed no openings and exposed no current ATS/feed backend when verified 2026-09-02; retain browser fallback."
     enabled: true
 
   - name: Ona (formerly Gitpod)
@@ -1323,9 +1386,8 @@ tracked_companies:
 
   - name: Snowflake
     careers_url: https://careers.snowflake.com/
-    scan_method: websearch
-    scan_query: 'site:careers.snowflake.com/us/en "Engineering Manager" OR "Senior Engineering Manager" OR "Staff Engineer" OR "Principal Engineer" OR "Director of Engineering" OR "Platform Architect"'
-    notes: "Data cloud platform with a large engineering org. ATS/career platform: Phenom-style custom career site (not a supported structured scanner API), so use the official search page plus targeted web-search fallback. Track selectively for leadership and senior platform/backend openings. Verified 2026-08-17."
+    api: https://api.ashbyhq.com/posting-api/job-board/snowflake?includeCompensation=true
+    notes: "Data cloud platform with a large engineering org. The branded careers site is backed by a public Ashby board, verified 2026-09-01 and scanned directly via posting-api. Track selectively for leadership and senior platform/backend openings."
     enabled: true
 
   - name: GitLab
@@ -1336,7 +1398,20 @@ tracked_companies:
 
   - name: RevenueCat
     careers_url: https://jobs.ashbyhq.com/revenuecat
-    notes: "Remote-first subscription infrastructure company. Strong product/platform fit with healthy remote culture signals."
+    api: https://api.ashbyhq.com/posting-api/job-board/revenuecat?includeCompensation=true
+    api_provider: ashby
+    notes: "High culture-fit target: remote-first subscription infrastructure company with strong product/platform fit, flexible remote work, and healthy work-life-balance signals. Allow selective IC roles with end-to-end ownership and Europe-compatible hiring."
+    culture_fit_tier: high
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Software Engineer"
+      - "Product Engineer"
+      - "Backend Engineer"
+      - "Full Stack Engineer"
+      - "Full-Stack Engineer"
+      - "Platform Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
     enabled: true
 
   - name: Camunda
@@ -1383,7 +1458,8 @@ tracked_companies:
 
   - name: ClickHouse
     careers_url: https://clickhouse.com/company/careers
-    api: https://boards-api.greenhouse.io/v1/boards/clickhouse/jobs
+    api: https://api.ashbyhq.com/posting-api/job-board/clickhouse?includeCompensation=true
+    api_provider: ashby
     notes: "Distributed real-time analytics and database platform. Track leadership roles and verify Italy eligibility carefully because many European openings name specific countries."
     enabled: true
 
@@ -1395,9 +1471,8 @@ tracked_companies:
 
   - name: Bitrise
     careers_url: https://bitrise.io/careers
-    scan_method: playwright
-    scan_query: 'site:bitrise.io/careers "Engineering Manager" OR "Director of Engineering" OR "Head of Engineering" OR "Staff Engineer" OR "Principal Engineer"'
-    notes: "Remote-first mobile CI/CD and developer-infrastructure company. Strong RevenueCat adjacency, but current technical openings and Italy hiring footprint are sparse, so keep leadership-first and verify geography."
+    api: https://bitrise.bamboohr.com
+    notes: "Remote-first mobile CI/CD and developer-infrastructure company. Corporate careers page embeds Bitrise's BambooHR board; public careers API verified 2026-09-02."
     enabled: true
 
   - name: Phantom
@@ -1406,7 +1481,14 @@ tracked_companies:
     enabled: true
 
   - name: Deel
-    careers_url: https://jobs.ashbyhq.com/Deel
+    careers_url: https://www.deel.com/careers/
+    provider: deel
+    ic_exception_company: true
+    ic_exception_titles:
+      - "Senior Backend Engineer"
+      - "Staff Engineer"
+      - "Principal Engineer"
+      - "Senior Software Engineer"
     notes: "Global payroll and HR platform with strong remote maturity and EMEA-friendly hiring. Keep for selective leadership roles: the setup is attractive, but public culture and role language skew more hypergrowth and performance-heavy than the healthiest balance-first targets."
     enabled: true
 
@@ -1515,7 +1597,8 @@ tracked_companies:
 
   - name: Consensys
     careers_url: https://consensys.io/open-roles
-    notes: "MetaMask / Ethereum ecosystem company. Good selective crypto target, especially for remote-friendly EMEA roles."
+    api: https://boards-api.greenhouse.io/v1/boards/consensys/jobs
+    notes: "MetaMask / Ethereum ecosystem company. Good selective crypto target, especially for remote-friendly EMEA roles. Public Greenhouse board verified 2026-09-01 and scanned directly via boards-api."
     enabled: true
 
   - name: Relay
@@ -1539,8 +1622,7 @@ tracked_companies:
 
   - name: Mesh Payments
     careers_url: https://meshpayments.com/careers/
-    scan_method: playwright
-    notes: "NYC / Tel Aviv. Travel and expense management fintech. Custom WP careers page — no ATS API."
+    notes: "NYC / Tel Aviv travel and expense management fintech. First-party WordPress career cards and stable detail URLs parsed directly; verified 2026-09-02."
     enabled: true
 
   # -- Newly discovered: fintech / culture-fit / crypto --
@@ -1557,7 +1639,8 @@ tracked_companies:
 
   - name: Metabase
     careers_url: https://www.metabase.com/jobs
-    notes: "Fully remote, async-first analytics company with strong written culture, flexibility, and high autonomy."
+    api: https://api.lever.co/v0/postings/metabase
+    notes: "Fully remote, async-first analytics company with strong written culture, flexibility, and high autonomy. Public Lever board verified 2026-09-01 and scanned directly via postings API."
     culture_fit_tier: high
     ic_exception_company: true
     ic_exception_titles:
@@ -1637,7 +1720,8 @@ tracked_companies:
 
   - name: Tenderly
     careers_url: https://tenderly.co/careers
-    notes: "Remote-Europe or Belgrade-based Web3 developer platform. Worth following long-term for strong backend/platform openings even when current roles skew blockchain-heavy."
+    api: https://api.ashbyhq.com/posting-api/job-board/tenderly?includeCompensation=true
+    notes: "Remote-Europe or Belgrade-based Web3 developer platform. Public Ashby board verified 2026-09-01 and scanned directly via posting-api. Worth following long-term for strong backend/platform openings even when current roles skew blockchain-heavy."
     ic_exception_company: true
     ic_exception_titles:
       - "Lead Backend Engineer"
@@ -1744,7 +1828,8 @@ tracked_companies:
 
   - name: Lunar
     careers_url: https://jobs.lunar.app/jobs
-    notes: "Nordic digital bank. More hybrid than the strongest remote-first targets, but still worth monitoring for Denmark/Nordics fintech roles."
+    api: https://api.ashbyhq.com/posting-api/job-board/lunar?includeCompensation=true
+    notes: "Nordic digital bank. More hybrid than the strongest remote-first targets, but still worth monitoring for Denmark/Nordics fintech roles. Public Ashby board verified 2026-09-01 and scanned directly via posting-api."
     enabled: true
 
   - name: Mollie
@@ -1790,7 +1875,8 @@ tracked_companies:
 
   - name: Veriff
     careers_url: https://www.veriff.com/careers/open-positions
-    notes: "Estonian identity platform with real engineering-manager and backend openings, including Estonia/Spain remote options. Salary may not always clear the target, but worth monitoring selectively."
+    api: https://boards-api.greenhouse.io/v1/boards/veriff/jobs
+    notes: "Estonian identity platform with real engineering-manager and backend openings, including Estonia/Spain remote options. Public Greenhouse board verified 2026-09-01 and scanned directly via boards-api. Salary may not always clear the target, but worth monitoring selectively."
     ic_exception_company: true
     ic_exception_titles:
       - "Engineering Manager"

@@ -40,7 +40,7 @@
     "title": "Profile",
     "columns": 1,
     "hidden": false,
-    "content": "<p>Principal-level backend and platform engineer with 19+ years of experience building product-critical systems across SaaS, startups, and founder-led environments. Strongest hands-on depth in Node.js, TypeScript, event-driven architecture, monetization systems, performance, and technical design for backend platforms.</p><p>At Riverside, I helped evolve the backend from a monolith toward more observable, event-driven services while staying close to architecture, system design, and technical sign-off. Most recently, I built AI-native products and retrieval workflows end to end during a career sabbatical.</p>"
+    "content": "<p>Principal-level product, backend, and platform engineer with 19+ years of experience building product-critical systems across SaaS, startups, and founder-led environments. Strongest hands-on depth in Node.js, TypeScript, full-stack product development, event-driven architecture, monetization systems, performance, and technical design.</p><p>At Riverside, I helped evolve the backend from a monolith toward more observable, event-driven services while staying close to architecture, system design, and technical sign-off. Most recently, I built AI-native products end to end with Next.js and React during a career sabbatical.</p>"
   },
   "sections": {
     "profiles": {
@@ -68,7 +68,7 @@
             "url": "",
             "label": ""
           },
-          "description": "<ul><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://verbaspeech.app/\">Verba</a>, <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://www.informia.com.ar/\">Informia</a>, and <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://falloses.com/\">FallosES</a>, spanning on-device speech-to-text, document-intelligence workflows, and grounded agentic research.</p></li><li><p>Deepened hands-on expertise with retrieval, context caching, agent orchestration, and production AI workflow design.</p></li></ul><p></p>",
+        "description": "<ul><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://verbaspeech.app/\">Verba</a>, <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://www.informia.com.ar/\">Informia</a>, and <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://falloses.com/\">FallosES</a> using on-device transcription and local LLMs, vision models with evidence scoring, and grounded agentic search.</p></li><li><p>Built end-to-end products with Next.js, React, and Vercel, including long-running workflow patterns for multi-step AI and browser tasks.</p></li><li><p>Advised a stealth startup founder in a fractional CTO-style engagement, defining product scope, technical stack, database architecture, and an initial POC.</p></li></ul><p></p>",
           "roles": []
         },
         {
@@ -77,12 +77,12 @@
           "options": {
             "showLinkInTitle": false
           },
-          "company": "Riverside",
+          "company": "Riverside · 4.5 years",
           "position": "",
-          "location": "4.5 years",
+          "location": "",
           "period": "",
           "website": {
-            "url": "https://riverside.com",
+            "url": "",
             "label": ""
           },
           "description": "<p></p>",
@@ -91,19 +91,19 @@
               "id": "019d864b-73f5-728f-9144-dd88d08237ae",
               "position": "Senior Engineering Manager (Internal Title: Group Lead)",
               "period": "01/2024 – 08/2025 | 1 year 8 months - Remote",
-              "description": "<ul><li><p>Acted as an architectural reviewer across my group and partner teams, driving design reviews and technical sign-off for complex backend and platform changes.</p></li><li><p>Guided the backend evolution from a monolith to event-driven architecture with Kafka and Protobuf, improving reliability, observability, and team autonomy.</p></li><li><p>Stayed close to system design, backend architecture, incident reviews, and engineering quality while leading a 27-person group across 4 teams.</p></li></ul><p></p>"
+            "description": "<ul><li><p>Acted as an architectural reviewer across my group and partner teams, driving design reviews and technical sign-off for complex backend and platform changes.</p></li><li><p>Guided the backend evolution from a monolith to event-driven architecture with Kafka and Protobuf, improving reliability, observability, and team autonomy.</p></li><li><p>Stayed hands-on while leading a zero-downtime migration of millions of active sessions from legacy sessions to JWT authentication, with API Gateway validation and Redis-backed session state.</p></li></ul><p></p>"
             },
             {
               "id": "019d864b-b332-751e-8e7d-ee03d331fe64",
               "position": "Engineering Manager",
               "period": "06/2022 - 01/2024 | 1 year 6 months - Remote",
-              "description": "<ul><li><p>Split critical services from the monolith and introduced end-to-end observability across backend services and Kafka flows, contributing to a 33% reduction in overall system latency.</p></li><li><p>Designed and shipped an event-driven token ledger supporting AI feature billing and usage-based monetization.</p></li><li><p>Worked closely on API, platform, and monetization-system design for product-critical backend surfaces.</p></li></ul><p></p>"
+            "description": "<ul><li><p>Split critical services from the monolith and introduced end-to-end observability across backend services and Kafka flows, contributing to a 33% reduction in overall system latency.</p></li><li><p>Designed and shipped an event-driven token ledger supporting AI feature billing and usage-based monetization.</p></li><li><p>Helped Riverside's mobile team integrate RevenueCat with our backend billing, entitlements, and payment systems.</p></li></ul><p></p>"
             },
             {
               "id": "019e0263-d9ee-71cf-958b-2ce3b1289fb6",
               "position": "Senior Full Stack Developer",
               "period": "03/2021 – 06/2022 | 1 year 3 months - Remote",
-              "description": "<ul><li><p>Joined Riverside as one of 6 engineers and shipped core backend features that supported early product growth.</p></li><li><p>Took ownership of billing, payments, plans, features, and entitlements, evolving an early Stripe-and-webhooks setup into a more robust internal monetization model.</p></li></ul><p></p>"
+              "description": "<ul><li><p>Built full-stack features across Studio, exporting, clips, dashboard, account, and media workflows, including the original Media Board with WebSocket-controlled playback and supporting storage services.</p></li><li><p>Took ownership of billing, payments, plans, features, and entitlements, evolving an early Stripe-and-webhooks setup into a more robust internal monetization model.</p></li></ul><p></p>"
             }
           ]
         },
@@ -138,7 +138,7 @@
             "url": "",
             "label": ""
           },
-          "description": "<ul><li><p>Co-founded and led a digital agency for 11 years, overseeing technical delivery across web, mobile, and interactive projects in 5 countries.</p></li></ul><p></p>",
+          "description": "<ul><li><p>Co-founded and led a 6-person digital agency for 11 years, delivering web, mobile, and interactive work globally.</p></li></ul>",
           "roles": []
         }
       ]
@@ -227,7 +227,7 @@
       ]
     },
     "skills": {
-      "title": "Backend & Technical Skills",
+      "title": "Technical Skills",
       "columns": 2,
       "hidden": false,
       "items": [
@@ -241,9 +241,9 @@
           "level": 0,
           "keywords": [
             "REST API design",
-            "Platform services",
-            "Backend systems",
-            "Product infrastructure"
+            "Distributed systems",
+            "Event-driven architecture",
+            "Observability"
           ]
         },
         {
@@ -251,14 +251,17 @@
           "hidden": false,
           "icon": "",
           "iconColor": "",
-          "name": "Architecture & Reliability",
+          "name": "Full Stack",
           "proficiency": "",
           "level": 0,
           "keywords": [
-            "Distributed systems",
-            "Event-driven architecture",
-            "Observability",
-            "Performance optimization"
+            "TypeScript",
+            "Node.js",
+            "React",
+            "Next.js",
+            "MongoDB",
+            "AWS",
+            "S3 & SQS"
           ]
         },
         {
@@ -266,14 +269,14 @@
           "hidden": false,
           "icon": "",
           "iconColor": "",
-          "name": "AI Workflows",
+          "name": "Product & Monetization",
           "proficiency": "",
           "level": 0,
           "keywords": [
-            "Retrieval",
-            "Context caching",
-            "Agent orchestration",
-            "Workflow automation"
+            "Product engineering",
+            "Subscription systems",
+            "Billing & entitlements",
+            "Payments & token ledger"
           ]
         },
         {
@@ -281,17 +284,14 @@
           "hidden": false,
           "icon": "",
           "iconColor": "",
-          "name": "Technologies",
+          "name": "AI & Developer Tools",
           "proficiency": "",
           "level": 0,
           "keywords": [
-            "Node.js",
-            "TypeScript",
-            "NestJS",
-            "Kafka",
-            "AWS",
-            "Kubernetes",
-            "MongoDB"
+            "AI-assisted coding",
+            "RAG & grounded search",
+            "Tool/function calling",
+            "Context caching"
           ]
         }
       ]

@@ -1,0 +1,6 @@
+interface:
+  display_name: "LinkedIn Job Alerts"
+  short_description: "Extract and triage LinkedIn Gmail job alerts"
+  default_prompt: "Use $linkedin-job-alerts from the saved career-ops project environment to extract, verify, deduplicate, and queue recent LinkedIn job alerts through the connected Gmail plugin; use Chrome only for LinkedIn and external job pages, never Gmail."
+policy:
+  allow_implicit_invocation: true

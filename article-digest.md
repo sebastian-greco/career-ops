@@ -2,6 +2,15 @@
 
 Compact proof points from extended experience that do not always fit cleanly in the public CV. Read by career-ops at evaluation time.
 
+## Agentic coding environments
+
+**Source:** Direct user clarification, 2026-09-16.
+
+- Uses Codex and has used OpenCode for a long time.
+- Uses CodeRabbit for AI-assisted code review (direct user clarification, 2026-09-16).
+- Has tried Claude Code once; do not imply sustained Claude Code use.
+- This experience supplements the documented GitHub Copilot and Cursor adoption. No claim of formal AI-DLC methodology adoption is established by this clarification.
+
 ---
 
 ## Riverside -- Group Leadership, Org Design, and Leader Development
@@ -71,7 +80,7 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 **Tags:** auth, authentication, authorization, identity, jwt, sessions, redis, api-gateway, zero-downtime, migration
 
-**Hero scope:** Zero-downtime migration of millions of active sessions from a legacy monolith to a JWT-based service architecture while users were live in audio/video recording flows.
+**Hero scope:** While serving as Group Lead, remained hands-on in a zero-downtime migration of millions of active sessions from a legacy monolith to a JWT-based service architecture while users were live in audio/video recording flows.
 
 **Architecture:** Legacy Express + passport.js + MongoDB sessions -> API Gateway -> JWT service + Redis-backed session state
 
@@ -187,6 +196,59 @@ Compact proof points from extended experience that do not always fit cleanly in 
 - Combined product judgment, customer context, and hands-on implementation in the same role.
 - Used direct feedback loops from users, support, and internal stakeholders to iterate quickly and improve the product.
 - Strong evidence for high-agency product-engineering roles that want broad ownership, fast learning, and end-to-end thinking.
+
+---
+
+## Riverside -- Petabyte-Scale S3 Media Archiving and Restore Lifecycle
+
+**Tags:** aws, s3, sqs, object-storage, archive, media, lifecycle-management, state-machines, full-stack, cost-management, reliability
+
+**Hero scope:** Helped redesign and implement Riverside's end-to-end archiving system for petabyte-scale recordings, clips, and related media stored in S3.
+
+**Architecture:** S3 media objects across multiple storage classes + SQS-backed background processing + a dedicated lifecycle service with a state machine + frontend restore progress + email notifications
+
+**Key decisions:**
+- Moved older media through progressively colder storage tiers rather than treating archival as a single permanent state, with early files kept in the normal tier before moving through flexible retrieval and deep archive.
+- Modeled restore as a lifecycle because one studio recording could involve 20 or more files across participants and media formats, each with its own retrieval state and failure modes.
+- Evolved the first implementation inside the monolith into a dedicated service with an explicit state machine for storage transitions, restore orchestration, retries, and return to deep archive after the temporary access window.
+- Used SQS and service signals to coordinate restore work across many related objects without blocking the user request.
+- Built the user-facing side end to end: restore requests, visible progress and waiting states, completion emails, and clear handling when a file was unavailable or its storage state disagreed with the database.
+- Applied different lifecycle policies by account type. Enterprise media could be tagged at upload so it would not enter deep archive.
+- Reconciled legacy drift when old objects were archived in S3 but not marked correctly in the database, repairing state during recovery attempts and explaining the outcome to the user.
+- Measured storage cost, restore frequency, and usage patterns to tune lifecycle rules and understand the product impact.
+
+**Proof points:**
+- Real production experience with S3 storage classes, SQS-backed workflows, object tagging, lifecycle policies, large multi-object restores, and archive-state reconciliation.
+- Worked across frontend, email, monolith, background services, object storage, and the later dedicated state-machine service.
+- Operated at petabyte-scale media volume, where storage cost and retrieval behavior were product and architecture concerns.
+- Designed for complex recording units containing many participant and format files rather than assuming one user-visible recording mapped to one object.
+
+**Framing guardrail:** This is strong S3 and object-storage lifecycle experience. Do not claim that Sebastian designed S3 itself, built an object-storage engine, or owned bunny.net-style storage infrastructure. Describe the work as application and platform architecture built on S3.
+
+---
+
+## Riverside -- Media Board and CDN-Backed Media Delivery
+
+**Tags:** full-stack, media, studio, headless-browser, websockets, s3, cdn, caching, audio, video, product-engineering
+
+**Hero scope:** Built Riverside's original Media Board end to end so hosts could browse uploaded audio and video, insert it into live recordings, and control playback from the Studio.
+
+**Architecture:** Studio user interface + uploaded-media browser and storage + WebSocket control messages + server-side headless-browser playback + supporting media servers and delivery paths
+
+**Key decisions:**
+- Owned the feature across the user interface, uploaded-media browsing, storage, server orchestration, and playback control rather than implementing only one layer.
+- Used a headless browser for media playback and WebSockets for commands such as insert, play, and pause during a live recording.
+- Built the supporting server and storage workflows needed to make uploaded media available inside the recording experience.
+- Worked with S3-backed media delivery through an AWS CDN and cache for low-quality previews, thumbnails, and other recording assets.
+
+**Proof points:**
+- The Media Board became a heavily used Riverside Studio feature and an early foundation for richer media capabilities.
+- Strong early full-stack evidence spanning React-facing product work, real-time control, backend services, storage, and media delivery.
+- Practical CDN experience includes S3 origins, cached preview assets, thumbnails, and user-facing media access patterns.
+
+**Evolution boundary:** A different team replaced and expanded this implementation several years later using Riverside's own WebRTC work and Jitsi-related components. Do not attribute that later architecture or implementation to Sebastian.
+
+**Framing guardrail:** Describe the CDN work as application-side use and integration of an AWS CDN backed by S3. Do not claim CDN network design, edge-routing ownership, or building a CDN product.
 
 ---
 
@@ -307,6 +369,10 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 ## Riverside -- AI Adoption in Engineering Workflow
 
+**Timing and tools (direct user clarification, 2026-09-16):** Sebastian recalls this initiative around December 2024, with the exact month uncertain. The team used CodeRabbit for AI-assisted PR review while transitioning from GitHub Copilot to Cursor. Use approximate late-2024 wording; do not present December as a verified date.
+
+**Pilot and outcome (direct user clarification, 2026-09-16):** AI-assisted development increased code output and created a PR-review bottleneck. Sebastian partnered with one of his engineering managers to pilot CodeRabbit on that manager's team's code. They tuned settings and configured team-specific rules and conventions, then demonstrated the pilot to the wider engineering organization for adoption. Sebastian describes the rollout as a major success: better code quality, earlier bug detection, more consistent adherence to guidelines, and less review back-and-forth, freeing human reviewers to concentrate on business logic. No numeric impact measurement was supplied. Do not attribute today's multi-agent business-logic or acceptance-criteria review capabilities to this late-2024 pilot.
+
 **Tags:** ai, developer-experience, code-review, copilots, cursor, agentic-workflows, engineering-productivity, platform
 
 **Hero scope:** Pushed Riverside's early adoption of AI-assisted engineering in a pragmatic way, starting with coding and review workflows rather than hype-driven experiments.
@@ -392,8 +458,10 @@ Compact proof points from extended experience that do not always fit cleanly in 
 **Key decisions:**
 - Standardized a workflow around voice-prompted context capture, two-phase planning, TDD, and manual review.
 - Built the products primarily in Next.js and used long-running workflow patterns where multi-step AI and browser tasks needed durable execution.
-- Focused Verba on on-device transcription and privacy-by-default instead of cloud dependency and mandatory registration.
+- Focused Verba on on-device transcription, local LLMs, and privacy-by-default instead of cloud dependency and mandatory registration.
 - Used grounded retrieval, citations, and context caching where the product demanded traceable AI behavior.
+- Built a real-estate research agent using Qdrant-backed RAG, tool/function calling, and multi-step search workflows.
+- Used Drizzle ORM with PostgreSQL across several sabbatical projects.
 
 **Proof points:**
 - Kept hands-on product building current during the sabbatical rather than treating AI as a purely managerial topic.

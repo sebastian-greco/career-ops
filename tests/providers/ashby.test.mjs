@@ -15,7 +15,7 @@ console.log('\nProvider — ashby');
 try {
   const ashbyModule = await import(pathToFileURL(join(ROOT, 'providers/ashby.mjs')).href);
   const ashby = ashbyModule.default;
-  const { parseCompensation } = ashbyModule;
+  const { parseCompensation, parseAshbyBoardHtml } = ashbyModule;
 
   if (ashby.id === 'ashby') pass('ashby.id is "ashby"');
   else fail(`ashby.id is ${JSON.stringify(ashby.id)}`);
@@ -60,6 +60,49 @@ try {
     pass('ashby.detect() returns null for an api: on an untrusted host');
   } else {
     fail('ashby.detect() must reject an untrusted api: host');
+  }
+
+  const boardHtml = `<script>window.__appData = ${JSON.stringify({ jobBoard: { jobPostings: [
+    { id: 'abc-123', title: 'Engineering Manager', locationName: 'Europe', workplaceType: 'Remote' },
+  ] } })};</script>`;
+  const boardJobs = parseAshbyBoardHtml(boardHtml, 'Acme', 'https://jobs.ashbyhq.com/acme');
+  if (boardJobs.length === 1 && boardJobs[0]?.url === 'https://jobs.ashbyhq.com/acme/abc-123'
+      && boardJobs[0]?.location === 'Europe · Remote') {
+    pass('parseAshbyBoardHtml reads server-rendered __appData postings');
+  } else fail(`parseAshbyBoardHtml returned ${JSON.stringify(boardJobs)}`);
+
+  let fallbackJsonCalls = 0;
+  let fallbackTextUrl = null;
+  let fallbackTextOpts = null;
+  const notFound = new Error('HTTP 404 Not Found');
+  notFound.status = 404;
+  const boardFallback = await ashby.fetch(
+    {
+      name: 'Acme',
+      careers_url: 'https://example.com/careers',
+      api: 'https://api.ashbyhq.com/posting-api/job-board/acme?includeCompensation=true',
+      ashby_board_url: 'https://jobs.ashbyhq.com/acme',
+    },
+    {
+      fetchJson: async () => { fallbackJsonCalls++; throw notFound; },
+      fetchText: async (url, opts) => { fallbackTextUrl = url; fallbackTextOpts = opts; return boardHtml; },
+    },
+  );
+  if (fallbackJsonCalls === 1 && fallbackTextUrl === 'https://jobs.ashbyhq.com/acme'
+      && boardFallback[0]?.title === 'Engineering Manager' && fallbackTextOpts?.redirect === 'error') {
+    pass('ashby.fetch() falls back once to the server-rendered board after posting-api 404');
+  } else fail(`ashby board fallback calls=${fallbackJsonCalls}, url=${fallbackTextUrl}, jobs=${JSON.stringify(boardFallback)}`);
+
+  let badBoardFetched = false;
+  try {
+    await ashby.fetch(
+      { name: 'Evil', api: 'https://api.ashbyhq.com/posting-api/job-board/x', ashby_board_url: 'https://evil.example/x' },
+      { fetchJson: async () => { throw notFound; }, fetchText: async () => { badBoardFetched = true; return ''; } },
+    );
+    fail('ashby.fetch() should reject an untrusted board fallback URL');
+  } catch (e) {
+    if (!badBoardFetched && /untrusted board hostname/.test(e.message)) pass('ashby.fetch() rejects an untrusted board fallback before fetching');
+    else fail(`ashby untrusted board error=${e.message}`);
   }
 
   // detect() — api: must be HTTPS.

@@ -14,10 +14,10 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 
 ## Leadership & Technical Skills
 
-- Leadership: Engineering leadership, Org design & hiring, Coaching & mentorship, Compensation planning, Cross-functional strategy
+- Leadership: Engineering leadership, Managing managers, Org design & hiring, Coaching & mentorship, Compensation planning, Cross-functional strategy
 - Architecture & Platforms: Platform strategy, Distributed systems, Event-driven architecture, Performance optimization, Billing & monetization systems
 - AI & Product: AI coding tools, LLM applications, Retrieval & context caching, Workflow automation, Product engineering
-- Technologies: Node.js, TypeScript, NestJS, Next.js, React, Supabase, Vercel, Kafka, AWS, Kubernetes, Docker, MongoDB, MySQL, Qdrant
+- Technologies: Node.js, TypeScript, PHP, NestJS, Next.js, React, Supabase, Drizzle ORM, Vercel, Kafka, AWS, S3, SQS, Kubernetes, Docker, MongoDB, PostgreSQL, MySQL, Redis, Qdrant
 
 ## Professional Experience
 
@@ -27,10 +27,11 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 
 08/2025 - Present | Remote
 
-- Built [Verba](https://verbaspeech.app/), a macOS dictation app using on-device transcription models and local LLM cleanup for privacy-first speech workflows.
+- Built [Verba](https://verbaspeech.app/), a macOS dictation app using on-device transcription models and local LLMs for privacy-first speech workflows.
 - Built [Informia](https://www.informia.com.ar/), a multi-pass document-intelligence workflow for Argentine property records using vision models, evidence scoring, and context caching.
+- Built [FallosES](https://falloses.com/), a legal research assistant for Spain using grounded agentic search over official sources while maintaining context and returning cited answers.
 - Advised a stealth startup founder in a fractional CTO-style engagement, defining scope, tech stack, database architecture, roadmap, and an initial product skeleton and POC.
-- Used the sabbatical to deepen hands-on expertise with Next.js and Vercel product builds, Supabase databases, long-running workflow orchestration, LLM applications, retrieval, context caching, and AI workflow design.
+- Used the sabbatical to deepen hands-on expertise with Next.js and Vercel product builds, Supabase/PostgreSQL databases with Drizzle ORM, Qdrant-backed RAG, tool/function calling, context caching, and long-running AI workflows.
 
 ### [Riverside - 4.5 years](https://riverside.com)
 
@@ -55,14 +56,17 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 - Oversaw the team responsible for core platform services and the main user dashboard across billing, plans, entitlements, and Stripe-backed payment flows.
 - Coached 3 high-performing engineers into Team Lead roles as the Dashboard group evolved into Riverside's core Platform team.
 - Split critical services from the monolith and introduced end-to-end observability across backend services and Kafka flows, contributing to a 33% reduction in overall system latency.
+- Helped redesign Riverside's petabyte-scale S3 media archiving lifecycle end to end, including storage-tier transitions, SQS-backed restore workflows, state tracking, user progress, and email notifications.
 - Helped the mobile team integrate RevenueCat with our backend billing, entitlements, and payment systems.
+- Led development of Show Notes and Magic Clips, Riverside's first two LLM-powered features, working closely with Product to iterate based on usage metrics, export activity, and in-app user feedback. Established shared context-handling and quota-management capabilities that other teams reused.
 
 #### Senior Full Stack Developer
 
 03/2021 - 06/2022 | 1 year 3 months - Remote
 
-- Joined Riverside as one of 6 engineers and shipped core backend features that supported the product's early growth.
-- Worked across Studio, exporting, clips, dashboard, account flows, and early enterprise features, using support tickets and B2B work like SSO to shape better product decisions.
+- Joined Riverside as one of the first 6 engineers and shipped core full-stack features that supported the product's early growth.
+- Built Riverside's original Media Board end to end, combining uploaded-media browsing, WebSocket control, headless-browser playback, and the supporting storage and server workflows used inside live recording sessions.
+- Worked across Studio, dashboard, clips, account flows, and early enterprise features, using support tickets and B2B work like SSO to shape better product decisions.
 - Took ownership of billing, payments, plans, features, and entitlements, evolving an early Stripe-and-webhooks setup into a more robust internal monetization model.
 - Resolved monolith and database bottlenecks that improved reliability and performance while mentoring junior engineers on architecture and design.
 
@@ -120,5 +124,6 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 
 - This file is the compact, line-reference-friendly CV used by evaluators and report citations.
 - Resume base sources live in `resumes/leadership-base.json` and `resumes/ic-base.json`.
+- The fuller leadership resume base lives in `resumes/leadership-master-base.json`.
 - Extended proof points live in `article-digest.md`.
 - Interview narratives live in `interview-prep/story-bank.md`.

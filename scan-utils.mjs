@@ -10,6 +10,39 @@ export function normalizeText(value) {
   return (value || '').replace(/\s+/g, ' ').trim();
 }
 
+function normalizeTitleKeywords(values, fallback = []) {
+  const source = Array.isArray(values) ? values : fallback;
+  return source
+    .filter((value) => typeof value === 'string')
+    .map((value) => value.trim().toLowerCase())
+    .filter(Boolean);
+}
+
+export function buildLeadershipAdjacentFilter(config = {}) {
+  if (config?.enabled !== true) return () => false;
+
+  const leadMarkers = normalizeTitleKeywords(config.lead_markers, [
+    'engineering lead',
+    'team lead',
+  ]);
+  const engineeringMarkers = normalizeTitleKeywords(config.engineering_markers, [
+    'engineering',
+    'software',
+    'backend',
+    'platform',
+    'infrastructure',
+    'ai',
+  ]);
+  const excludedMarkers = normalizeTitleKeywords(config.excluded_markers);
+
+  return (title = '') => {
+    const lower = title.toLowerCase();
+    if (excludedMarkers.some((marker) => lower.includes(marker))) return false;
+    return leadMarkers.some((marker) => lower.includes(marker))
+      && engineeringMarkers.some((marker) => lower.includes(marker));
+  };
+}
+
 function normalizeCompanyMatchKey(value) {
   return (value || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 }
@@ -17,10 +50,13 @@ function normalizeCompanyMatchKey(value) {
 export function buildTitleFilter(titleFilter) {
   const positive = (titleFilter?.positive || []).map((keyword) => keyword.toLowerCase());
   const negative = (titleFilter?.negative || []).map((keyword) => keyword.toLowerCase());
+  const leadershipAdjacent = buildLeadershipAdjacentFilter(titleFilter?.leadership_adjacent);
 
   return (title) => {
     const lower = title.toLowerCase();
-    const hasPositive = positive.length === 0 || positive.some((keyword) => lower.includes(keyword));
+    const hasPositive = positive.length === 0
+      || positive.some((keyword) => lower.includes(keyword))
+      || leadershipAdjacent(title);
     const hasNegative = negative.some((keyword) => lower.includes(keyword));
     return hasPositive && !hasNegative;
   };

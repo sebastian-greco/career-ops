@@ -6,6 +6,8 @@ candidate:
   email: "greco.sebastian@gmail.com"
   phone: "+39 389 464 8029"
   location: "Seregno, Italy"
+  language_proficiency:
+    french: "none"
   availability:
     status: "available_now"
     earliest_start: "immediate"
@@ -53,10 +55,15 @@ target_roles:
     - "Senior Engineering Manager"
     - "Head of Engineering"
   adjacent:
+    - "Product Engineering"
     - "Platform Architect"
     - "Backend Architect"
     - "Staff Engineer"
     - "Principal Engineer"
+    - "Founding Engineer"
+    - "Founding Product Engineer"
+    - "Founding Platform Engineer"
+    - "First Engineer"
   archetypes:
     - name: "Engineering Leadership"
       level: "Senior Manager/Director"
@@ -124,3 +131,4 @@ location:
   city: "Seregno"
   timezone: "Europe/Rome"
   visa_status: "Italian and Argentinian citizenship; no visa needed in the EU"
+  uk_work_authorization: false

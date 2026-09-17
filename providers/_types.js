@@ -59,6 +59,7 @@
  * @property {boolean}            [enabled]        Default: true.
  * @property {string}             [careers_url]    Public listing URL; consumed by detect().
  * @property {string}             [api]            JSON API URL; used directly by greenhouse/ashby providers.
+ * @property {string}             [ashby_board_url] Server-rendered Ashby board used when a tenant's posting API is unavailable.
  * @property {string}             [provider]       Explicit provider id — bypasses detect().
  * @property {('http')}           [transport]      Default: 'http'. Reserved for future transports.
  * @property {number}             [max_pages]      Provider-specific pagination cap (avature, workday).

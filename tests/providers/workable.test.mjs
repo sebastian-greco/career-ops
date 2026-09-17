@@ -25,6 +25,19 @@ try {
   if (miss === null) pass('workable.detect() returns null for non-workable URLs');
   else fail(`workable.detect() should return null, got ${JSON.stringify(miss)}`);
 
+  const pinned = workable.detect({
+    name: 'Branded',
+    careers_url: 'https://careers.example.com',
+    api: 'https://apply.workable.com/api/v1/widget/accounts/branded?details=true',
+  });
+  if (pinned?.url === 'https://apply.workable.com/api/v1/widget/accounts/branded?details=true') {
+    pass('workable.detect() accepts an allowlisted explicit widget API with a branded careers URL');
+  } else fail(`workable.detect() explicit api returned ${JSON.stringify(pinned)}`);
+
+  if (workable.detect({ name: 'Evil', api: 'https://evil.example/api/v1/widget/accounts/x' }) === null) {
+    pass('workable.detect() rejects an explicit widget API on an untrusted host');
+  } else fail('workable.detect() must reject an untrusted explicit api host');
+
   // parse() — markdown table
   const sampleMd = [
     '# Optimile — All Open Positions',
@@ -216,4 +229,3 @@ try {
 } catch (e) {
   fail(`workable provider tests crashed: ${e.message}`);
 }
-

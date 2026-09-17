@@ -25,6 +25,20 @@ const SLUG_RE = /^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?$/;
  * @param {import('./_types.js').PortalEntry} entry
  */
 function resolveSlug(entry) {
+  const explicitApi = typeof entry.api === 'string' ? entry.api : '';
+  if (explicitApi) {
+    let parsed;
+    try {
+      parsed = new URL(explicitApi);
+    } catch {
+      return null;
+    }
+    if (parsed.protocol !== 'https:' || parsed.hostname !== API_HOST) return null;
+    const match = parsed.pathname.match(/^\/platform\/api\/ats\/v1\/board\/([^/]+)\/jobs\/?$/);
+    const segment = match ? decodeURIComponent(match[1]) : '';
+    return SLUG_RE.test(segment) ? segment : null;
+  }
+
   const raw = typeof entry.careers_url === 'string' ? entry.careers_url : '';
   if (!raw) return null;
   let parsed;

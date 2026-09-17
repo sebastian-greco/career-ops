@@ -35,6 +35,19 @@ try {
     fail('rippling.detect() should return null for non-rippling hosts');
   }
 
+  const pinned = rippling.detect({
+    name: 'Branded',
+    careers_url: 'https://example.com/jobs',
+    api: 'https://api.rippling.com/platform/api/ats/v1/board/capacity/jobs',
+  });
+  if (pinned?.url === 'https://api.rippling.com/platform/api/ats/v1/board/capacity/jobs') {
+    pass('rippling.detect() accepts an allowlisted explicit board API with a branded careers URL');
+  } else fail(`rippling.detect() explicit api returned ${JSON.stringify(pinned)}`);
+
+  if (rippling.detect({ name: 'Evil', api: 'https://evil.example/platform/api/ats/v1/board/x/jobs' }) === null) {
+    pass('rippling.detect() rejects an explicit board API on an untrusted host');
+  } else fail('rippling.detect() must reject an untrusted explicit api host');
+
   // careers_url with non-string value → detect() returns null without crashing.
   if (rippling.detect({ name: 'X', careers_url: null }) === null && rippling.detect({ name: 'X', careers_url: 7 }) === null) {
     pass('rippling.detect() returns null for non-string careers_url (null and 7)');
