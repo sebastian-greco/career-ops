@@ -40,7 +40,7 @@
     "title": "Profile",
     "columns": 1,
     "hidden": false,
-    "content": "<p>Engineering leader with 19+ years of experience across SaaS, startups, and founder-led environments. Scaled teams and backend/platform systems at Riverside through hypergrowth, including leading a 27-person engineering org across 4 teams.</p><p>Most recently focused on hands-on AI product and workflow development during a career sabbatical, building tools that combine LLMs, automation, and real-world operational workflows.</p>"
+    "content": "<p>Engineering leader with 19+ years of experience across SaaS, startups, and founder-led environments. Scaled teams and backend/platform systems at Riverside through hypergrowth, including leading a 27-person engineering org across 4 teams.</p><p>Most recently, I have built AI products and workflows that combine LLMs, automation, and real-world operational use cases while advising an early-stage startup on technical execution.</p>"
   },
   "sections": {
     "profiles": {
@@ -60,15 +60,15 @@
           "options": {
             "showLinkInTitle": false
           },
-          "company": "Career Sabbatical",
-          "position": "Independent AI Product Development",
+          "company": "Independent",
+          "position": "AI Product Builder & Technical Advisor",
           "location": "Remote",
           "period": "08/2025 – Present",
           "website": {
             "url": "",
             "label": ""
           },
-          "description": "<ul><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://verbaspeech.app/\">Verba</a>, a local-first speech-to-text app for macOS with on-device transcription, productized UX, and local LLM cleanup.</p></li><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://www.informia.com.ar/\">Informia</a>, an AI-assisted workflow for property registry processes in Argentina covering document extraction, evidence review, and browser-assisted submission.</p></li><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://falloses.com/\">FallosES</a>, a grounded legal research assistant for Spain with cited answers delivered through WhatsApp and a lightweight web app.</p></li><li><p>Used the sabbatical to deepen hands-on expertise with LLM applications, coding agents, retrieval, context caching, and lean product experimentation.</p></li></ul><p></p>",
+          "description": "<ul><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://verbaspeech.app/\">Verba</a>, a local-first speech-to-text app for macOS with on-device transcription, productized UX, and local LLM cleanup.</p></li><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://www.informia.com.ar/\">Informia</a>, an AI-assisted workflow for property registry processes in Argentina covering document extraction, evidence review, and browser-assisted submission.</p></li><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://falloses.com/\">FallosES</a>, a grounded legal research assistant for Spain with cited answers delivered through WhatsApp and a lightweight web app.</p></li><li><p>Deepened hands-on expertise with LLM applications, coding agents, retrieval, context caching, and lean product experimentation.</p></li></ul><p></p>",
           "roles": []
         },
         {

@@ -40,7 +40,7 @@
     "title": "Profile",
     "columns": 1,
     "hidden": false,
-    "content": "<p>Engineering leader with 19+ years of experience across SaaS, startups, and founder-led environments. Scaled teams and backend/platform systems at Riverside, including leading a 27-person engineering group across 4 teams.</p><p>My career spans the full entrepreneurial lifecycle, from running a digital agency and co-founding a startup to helping Riverside grow from a 20-person startup into a 300+ person company. Most recently, I focused on hands-on AI product and workflow development during a career sabbatical.</p>"
+    "content": "<p>Engineering leader with 19+ years of experience across SaaS, startups, and founder-led environments. Scaled teams and backend/platform systems at Riverside, including leading a 27-person engineering group across 4 teams.</p><p>My career spans the full entrepreneurial lifecycle, from running a digital agency and co-founding a startup to helping Riverside grow from a 20-person startup into a 300+ person company. Most recently, I have built AI-native products end to end and advised an early-stage startup on product scope, architecture, and technical execution.</p>"
   },
   "sections": {
     "profiles": {
@@ -60,8 +60,8 @@
           "options": {
             "showLinkInTitle": false
           },
-          "company": "Career Sabbatical",
-          "position": "Independent AI Product Development",
+          "company": "Independent",
+          "position": "AI Product Builder & Technical Advisor",
           "location": "Remote",
           "period": "08/2025 – Present",
           "website": {

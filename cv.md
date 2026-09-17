@@ -10,7 +10,7 @@
 
 Engineering leader with 19+ years of experience across SaaS, startups, and founder-led environments. Scaled teams and backend/platform systems at Riverside, including leading a 27-person engineering group across 4 teams.
 
-My career spans the full entrepreneurial lifecycle, from running a digital agency and co-founding a startup to helping Riverside grow from a 20-person startup into a 300+ person company. Most recently, I focused on hands-on AI product and workflow development during a career sabbatical.
+My career spans the full entrepreneurial lifecycle, from running a digital agency and co-founding a startup to helping Riverside grow from a 20-person startup into a 300+ person company. Most recently, I have built AI-native products end to end and advised an early-stage startup on product scope, architecture, and technical execution.
 
 ## Leadership & Technical Skills
 
@@ -21,9 +21,9 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 
 ## Professional Experience
 
-### Career Sabbatical
+### Independent
 
-#### Independent AI Product Development
+#### AI Product Builder & Technical Advisor
 
 08/2025 - Present | Remote
 
@@ -31,7 +31,7 @@ My career spans the full entrepreneurial lifecycle, from running a digital agenc
 - Built [Informia](https://www.informia.com.ar/), a multi-pass document-intelligence workflow for Argentine property records using vision models, evidence scoring, and context caching.
 - Built [FallosES](https://falloses.com/), a legal research assistant for Spain using grounded agentic search over official sources while maintaining context and returning cited answers.
 - Advised a stealth startup founder in a fractional CTO-style engagement, defining scope, tech stack, database architecture, roadmap, and an initial product skeleton and POC.
-- Used the sabbatical to deepen hands-on expertise with Next.js and Vercel product builds, Supabase/PostgreSQL databases with Drizzle ORM, Qdrant-backed RAG, tool/function calling, context caching, and long-running AI workflows.
+- Deepened hands-on expertise with Next.js and Vercel product builds, Supabase/PostgreSQL databases with Drizzle ORM, Qdrant-backed RAG, tool/function calling, context caching, and long-running AI workflows.
 
 ### [Riverside - 4.5 years](https://riverside.com)
 

@@ -40,7 +40,7 @@
     "title": "Profile",
     "columns": 1,
     "hidden": false,
-    "content": "<p>Principal-level backend and platform engineer with 19+ years of experience building product systems across SaaS, startups, and founder-led environments. My strongest hands-on background is in Node.js, TypeScript, event-driven architecture, monetization systems, performance work, and technical design for product-critical backend services.</p><p>At Riverside, I stayed close to architecture, system design, and technical sign-off as the company scaled from startup to 300+ people, helping evolve the backend from a monolith toward more observable, event-driven services. Most recently, I have stayed hands-on during my sabbatical by building AI-native products, orchestration workflows, and applied retrieval systems end to end.</p>"
+    "content": "<p>Principal-level backend and platform engineer with 19+ years of experience building product systems across SaaS, startups, and founder-led environments. My strongest hands-on background is in Node.js, TypeScript, event-driven architecture, monetization systems, performance work, and technical design for product-critical backend services.</p><p>At Riverside, I stayed close to architecture, system design, and technical sign-off as the company scaled from startup to 300+ people, helping evolve the backend from a monolith toward more observable, event-driven services. Most recently, I have built AI-native products, orchestration workflows, and applied retrieval systems end to end.</p>"
   },
   "sections": {
     "profiles": {
@@ -60,15 +60,15 @@
           "options": {
             "showLinkInTitle": false
           },
-          "company": "Career Sabbatical",
-          "position": "Independent AI Product Development",
+          "company": "Independent",
+          "position": "AI Product Builder & Technical Advisor",
           "location": "Remote",
           "period": "08/2025 – Present",
           "website": {
             "url": "",
             "label": ""
           },
-          "description": "<ul><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://verbaspeech.app/\">Verba</a>, a macOS dictation app using on-device transcription models and local LLM cleanup for privacy-first speech workflows.</p></li><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://www.informia.com.ar/\">Informia</a>, a multi-pass document-intelligence workflow for Argentine property records using vision models, evidence scoring, and context caching.</p></li><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://falloses.com/\">FallosES</a>, an agentic legal research assistant grounded on curated public sources, with cited answers via WhatsApp and web.</p></li><li><p>Used the sabbatical to deepen hands-on expertise with retrieval, context caching, agent orchestration, and AI workflow design.</p></li></ul><p></p>",
+          "description": "<ul><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://verbaspeech.app/\">Verba</a>, a macOS dictation app using on-device transcription models and local LLM cleanup for privacy-first speech workflows.</p></li><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://www.informia.com.ar/\">Informia</a>, a multi-pass document-intelligence workflow for Argentine property records using vision models, evidence scoring, and context caching.</p></li><li><p>Built <a target=\"_blank\" rel=\"noopener nofollow\" href=\"https://falloses.com/\">FallosES</a>, an agentic legal research assistant grounded on curated public sources, with cited answers via WhatsApp and web.</p></li><li><p>Deepened hands-on expertise with retrieval, context caching, agent orchestration, and AI workflow design.</p></li></ul><p></p>",
           "roles": []
         },
         {

@@ -40,7 +40,7 @@
     "title": "Profile",
     "columns": 1,
     "hidden": false,
-    "content": "<p>Principal-level product, backend, and platform engineer with 19+ years of experience building product-critical systems across SaaS, startups, and founder-led environments. Strongest hands-on depth in Node.js, TypeScript, full-stack product development, event-driven architecture, monetization systems, performance, and technical design.</p><p>At Riverside, I helped evolve the backend from a monolith toward more observable, event-driven services while staying close to architecture, system design, and technical sign-off. Most recently, I built AI-native products end to end with Next.js and React during a career sabbatical.</p>"
+    "content": "<p>Principal-level product, backend, and platform engineer with 19+ years of experience building product-critical systems across SaaS, startups, and founder-led environments. Strongest hands-on depth in Node.js, TypeScript, full-stack product development, event-driven architecture, monetization systems, performance, and technical design.</p><p>At Riverside, I helped evolve the backend from a monolith toward more observable, event-driven services while staying close to architecture, system design, and technical sign-off. Most recently, I have built AI-native products end to end with Next.js and React while advising an early-stage startup on product scope, architecture, and technical execution.</p>"
   },
   "sections": {
     "profiles": {
@@ -60,8 +60,8 @@
           "options": {
             "showLinkInTitle": false
           },
-          "company": "Career Sabbatical",
-          "position": "Independent AI Product Development",
+          "company": "Independent",
+          "position": "AI Product Builder & Technical Advisor",
           "location": "Remote",
           "period": "08/2025 – Present",
           "website": {
