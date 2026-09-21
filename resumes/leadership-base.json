@@ -460,19 +460,13 @@
     "typography": {
       "body": {
         "fontFamily": "Open Sans",
-        "fontWeights": [
-          "400",
-          "600"
-        ],
+        "fontWeights": ["400", "600"],
         "fontSize": 10,
-        "lineHeight": 1.2
+        "lineHeight": 1.18
       },
       "heading": {
         "fontFamily": "Open Sans",
-        "fontWeights": [
-          "700",
-          "800"
-        ],
+        "fontWeights": ["700", "800"],
         "fontSize": 16,
         "lineHeight": 1.3
       }

@@ -477,7 +477,7 @@ Compact proof points from extended experience that do not always fit cleanly in 
 
 **Hero scope:** Led the team that built Riverside's first LLM features (Show Notes, Magic Clips) and architected the foundational AI microservice used by the rest of the company.
 
-**Architecture:** GPT-3 -> Node.js microservice -> Context window management (splitting/summarizing) -> Quota management & common handlers -> Fine-tuned internal model (later phase)
+**Architecture:** GPT-3 -> NestJS microservice -> Context window management (splitting/summarizing) -> Quota management & common handlers -> Fine-tuned internal model (later phase)
 
 **Key decisions:**
 - Built the first AI-driven features (Show Notes, Magic Clips) by overcoming early GPT-3 context limitations through chunking and summarization pipelines.
